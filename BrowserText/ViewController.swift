@@ -1,0 +1,27 @@
+//
+//  ViewController.swift
+//  BrowserText
+//
+//  Created by Fool on 2/26/19.
+//  Copyright © 2019 Fool. All rights reserved.
+//
+
+import Cocoa
+
+class ViewController: NSViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+
+    override var representedObject: Any? {
+        didSet {
+        // Update the view, if already loaded.
+        }
+    }
+
+
+}
+
