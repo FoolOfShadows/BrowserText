@@ -135,9 +135,9 @@
 			children = (
 				79F577202225864D001B0C81 /* AppDelegate.swift */,
 				79F577222225864D001B0C81 /* ViewController.swift */,
+				79F577262225864F001B0C81 /* Main.storyboard */,
 				79361190222EE44A0009D2AF /* PTVN Builder */,
 				79F577242225864F001B0C81 /* Assets.xcassets */,
-				79F577262225864F001B0C81 /* Main.storyboard */,
 				79F577292225864F001B0C81 /* Info.plist */,
 				79F5772A2225864F001B0C81 /* BrowserText.entitlements */,
 				793611A1222EE9220009D2AF /* URLExtensions.swift */,

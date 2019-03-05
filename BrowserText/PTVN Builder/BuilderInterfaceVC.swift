@@ -26,7 +26,7 @@ class BuilderInterfaceVC: NSViewController, ptvnDelegate {
     var currentData = ChartData(chartData: "")
     var visitTime = "00"
     
-    weak var showWindowDelegate: ShowMainWindowDelegate?
+    //weak var showWindowDelegate: ShowMainWindowDelegate?
     
     let nc = NotificationCenter.default
     
