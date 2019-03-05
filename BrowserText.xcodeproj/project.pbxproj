@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79361199222EE44A0009D2AF /* PF Summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 79361191222EE44A0009D2AF /* PF Summary.png */; };
+		7936119A222EE44A0009D2AF /* NoteMedsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361192222EE44A0009D2AF /* NoteMedsVC.swift */; };
+		7936119B222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361193222EE44A0009D2AF /* BuilderInterfaceVC.swift */; };
+		7936119C222EE44A0009D2AF /* Builder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79361194222EE44A0009D2AF /* Builder.storyboard */; };
+		7936119D222EE44A0009D2AF /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361195222EE44A0009D2AF /* ChartData.swift */; };
+		7936119E222EE44A0009D2AF /* BuilderConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361196222EE44A0009D2AF /* BuilderConstants.swift */; };
+		7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361197222EE44A0009D2AF /* AssessmentModel.swift */; };
+		793611A0222EE44A0009D2AF /* Ellipsis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 79361198222EE44A0009D2AF /* Ellipsis.jpg */; };
+		793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793611A1222EE9220009D2AF /* URLExtensions.swift */; };
+		797C7D7122282C3300845C1F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7022282C3300845C1F /* Extensions.swift */; };
+		797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7222282E7700845C1F /* RegularExpressions.swift */; };
 		79F577212225864D001B0C81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F577202225864D001B0C81 /* AppDelegate.swift */; };
 		79F577232225864D001B0C81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F577222225864D001B0C81 /* ViewController.swift */; };
 		79F577252225864F001B0C81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F577242225864F001B0C81 /* Assets.xcassets */; };
@@ -33,6 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79361191222EE44A0009D2AF /* PF Summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PF Summary.png"; sourceTree = "<group>"; };
+		79361192222EE44A0009D2AF /* NoteMedsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteMedsVC.swift; sourceTree = "<group>"; };
+		79361193222EE44A0009D2AF /* BuilderInterfaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderInterfaceVC.swift; sourceTree = "<group>"; };
+		79361194222EE44A0009D2AF /* Builder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Builder.storyboard; sourceTree = "<group>"; };
+		79361195222EE44A0009D2AF /* ChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
+		79361196222EE44A0009D2AF /* BuilderConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderConstants.swift; sourceTree = "<group>"; };
+		79361197222EE44A0009D2AF /* AssessmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentModel.swift; sourceTree = "<group>"; };
+		79361198222EE44A0009D2AF /* Ellipsis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ellipsis.jpg; sourceTree = "<group>"; };
+		793611A1222EE9220009D2AF /* URLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		797C7D7022282C3300845C1F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		797C7D7222282E7700845C1F /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
 		79F5771D2225864D001B0C81 /* BrowserText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowserText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F577202225864D001B0C81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79F577222225864D001B0C81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +95,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79361190222EE44A0009D2AF /* PTVN Builder */ = {
+			isa = PBXGroup;
+			children = (
+				79361191222EE44A0009D2AF /* PF Summary.png */,
+				79361192222EE44A0009D2AF /* NoteMedsVC.swift */,
+				79361193222EE44A0009D2AF /* BuilderInterfaceVC.swift */,
+				79361194222EE44A0009D2AF /* Builder.storyboard */,
+				79361195222EE44A0009D2AF /* ChartData.swift */,
+				79361196222EE44A0009D2AF /* BuilderConstants.swift */,
+				79361197222EE44A0009D2AF /* AssessmentModel.swift */,
+				79361198222EE44A0009D2AF /* Ellipsis.jpg */,
+			);
+			path = "PTVN Builder";
+			sourceTree = "<group>";
+		};
 		79F577142225864D001B0C81 = {
 			isa = PBXGroup;
 			children = (
@@ -98,10 +135,14 @@
 			children = (
 				79F577202225864D001B0C81 /* AppDelegate.swift */,
 				79F577222225864D001B0C81 /* ViewController.swift */,
+				79361190222EE44A0009D2AF /* PTVN Builder */,
 				79F577242225864F001B0C81 /* Assets.xcassets */,
 				79F577262225864F001B0C81 /* Main.storyboard */,
 				79F577292225864F001B0C81 /* Info.plist */,
 				79F5772A2225864F001B0C81 /* BrowserText.entitlements */,
+				793611A1222EE9220009D2AF /* URLExtensions.swift */,
+				797C7D7022282C3300845C1F /* Extensions.swift */,
+				797C7D7222282E7700845C1F /* RegularExpressions.swift */,
 			);
 			path = BrowserText;
 			sourceTree = "<group>";
@@ -192,6 +233,11 @@
 				TargetAttributes = {
 					79F5771C2225864D001B0C81 = {
 						CreatedOnToolsVersion = 10.2;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 					79F5772E2225864F001B0C81 = {
 						CreatedOnToolsVersion = 10.2;
@@ -228,8 +274,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7936119C222EE44A0009D2AF /* Builder.storyboard in Resources */,
 				79F577252225864F001B0C81 /* Assets.xcassets in Resources */,
 				79F577282225864F001B0C81 /* Main.storyboard in Resources */,
+				79361199222EE44A0009D2AF /* PF Summary.png in Resources */,
+				793611A0222EE44A0009D2AF /* Ellipsis.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +303,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7936119B222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */,
+				797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */,
 				79F577232225864D001B0C81 /* ViewController.swift in Sources */,
+				7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */,
+				797C7D7122282C3300845C1F /* Extensions.swift in Sources */,
+				7936119D222EE44A0009D2AF /* ChartData.swift in Sources */,
+				7936119E222EE44A0009D2AF /* BuilderConstants.swift in Sources */,
+				793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */,
+				7936119A222EE44A0009D2AF /* NoteMedsVC.swift in Sources */,
 				79F577212225864D001B0C81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -421,7 +478,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
@@ -440,7 +496,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
