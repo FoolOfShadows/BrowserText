@@ -12,7 +12,7 @@ class NoteMedsVC: NSViewController {
 
     weak var currentPTVNDelegate: ptvnDelegate?
     //currentData gets passed the ChartData from the initial VC upon seque
-    var currentData = ChartData(chartData: "")
+    var currentData = ChartData(chartData: "", aptTime: "", aptDate: "")
     var saveLocation = "Desktop"
     var ptVisitDate = 0
     var visitTime = "00"

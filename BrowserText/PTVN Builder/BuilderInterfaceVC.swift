@@ -23,7 +23,11 @@ class BuilderInterfaceVC: NSViewController, ptvnDelegate {
     
     var saveLocation = "Desktop"
     var ptVisitDate = 0
-    var currentData = ChartData(chartData: "")
+    var currentData:ChartData = ChartData(chartData: "", aptTime: "", aptDate: "") {
+        didSet {
+            print("Updated data to: \(self.currentData.ptName)")
+        }
+    }
     var visitTime = "00"
     
     //weak var showWindowDelegate: ShowMainWindowDelegate?
@@ -76,7 +80,7 @@ class BuilderInterfaceVC: NSViewController, ptvnDelegate {
 //        }
         
         //Create a ChartData struct with the clipboard data
-        currentData = ChartData(chartData: theText)
+        currentData = ChartData(chartData: theText, aptTime: visitTimeView.stringValue, aptDate: "")
         
         //Get the info from the date scheduled popup menu
         ptVisitDate = visitDayView.indexOfSelectedItem

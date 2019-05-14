@@ -167,3 +167,43 @@ extension Date {
         return formatter.string(from: self)
     }
 }
+
+extension NSView {
+    func clearControllers() {
+        func clearChecksTextfields(theView: NSView) {
+            for item in theView.subviews {
+                if item is NSButton {
+                    let checkbox = item as? NSButton
+                    if (checkbox?.isEnabled)! {
+                        checkbox?.state = .off
+                    }
+                } else if item is NSTextField {
+                    let textfield = item as? NSTextField
+                    if (textfield?.isEditable)!{
+                        textfield?.stringValue = ""
+                    }
+                } else if item is NSMatrix {
+                    let matrix = item as? NSMatrix
+                    matrix?.deselectAllCells()
+                } else if item is NSTextView {
+                    let textView = item as? NSTextView
+                    if (textView?.isEditable)! {
+                        textView?.string = ""
+                    }
+                } else {
+                    clearChecksTextfields(theView: item)
+                }
+            }
+        }
+        clearChecksTextfields(theView: self)
+    }
+}
+
+extension NSComboBox {
+    func clearComboBox(menuItems: [String]) {
+        self.removeAllItems()
+        self.addItems(withObjectValues: menuItems)
+        self.selectItem(at: 0)
+        self.completes = true
+    }
+}

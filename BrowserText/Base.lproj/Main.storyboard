@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.59" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.59"/>
-        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14490.59"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -686,69 +686,131 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Whelchel Primary Care Medicine" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="196" y="240" width="1007" height="861"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                        <segue destination="gFC-E1-R4T" kind="relationship" relationship="window.shadowedContentViewController" id="Nrn-9Z-lcg"/>
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="-199" y="203"/>
+        </scene>
+        <!--Builder-->
+        <scene sceneID="nPS-fH-pzs">
+            <objects>
+                <controllerPlaceholder storyboardName="Builder" id="QWa-4C-Fut" sceneMemberID="viewController"/>
+                <customObject id="S3Z-sA-O8a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="587" y="343"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="hIz-AP-VOD">
+        <scene sceneID="QSp-Za-BLq">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
-                    <splitView key="view" arrangesAllSubviews="NO" dividerStyle="paneSplitter" vertical="YES" id="FAa-HE-rZu">
-                        <rect key="frame" x="0.0" y="0.0" width="1025" height="675"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                <viewController id="gFC-E1-R4T" customClass="ViewController" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="hBe-kG-JJX">
+                        <rect key="frame" x="0.0" y="0.0" width="1007" height="861"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <wkWebView wantsLayer="YES" fixedFrame="YES" id="FBB-bl-uge">
-                                <rect key="frame" x="0.0" y="0.0" width="907" height="675"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                            <customView fixedFrame="YES" id="cDS-X6-dmg">
-                                <rect key="frame" x="917" y="0.0" width="108" height="675"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="cDS-X6-dmg">
+                                <rect key="frame" x="854" y="0.0" width="153" height="861"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2u5-Ma-qar">
-                                        <rect key="frame" x="14" y="627" width="81" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bOb-LN-GQX">
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2u5-Ma-qar">
+                                        <rect key="frame" x="41" y="813" width="71" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Build" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bOb-LN-GQX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="getDataFromBrowser:" target="XfG-lQ-9wD" id="rf3-JA-d6w"/>
+                                            <segue destination="QWa-4C-Fut" kind="show" identifier="showBuilder" id="7vT-6v-Xhh"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="68" translatesAutoresizingMaskIntoConstraints="NO" id="y3z-WG-rdP">
+                                        <rect key="frame" x="43" y="790" width="67" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="y3z-WG-rdP" secondAttribute="height" multiplier="34:11" id="ziY-fj-hdh"/>
+                                        </constraints>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="CD3-Ke-5Ox">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M23-eg-t1s">
+                                        <rect key="frame" x="39" y="746" width="77" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="epb-1U-mvo" id="qQI-AB-xVn">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="2bn-Ck-3vV">
+                                                <items>
+                                                    <menuItem title="Item 1" state="on" id="epb-1U-mvo"/>
+                                                    <menuItem title="Item 2" id="oMr-Ec-pM0"/>
+                                                    <menuItem title="Item 3" id="s6v-ze-qEi"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                    </popUpButton>
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nSg-cn-a0O">
+                                        <rect key="frame" x="21" y="673" width="113" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Phone Msg" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NeN-ve-AnA">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="openPhoneMessage:" target="gFC-E1-R4T" id="B8F-ZO-Y7G"/>
+                                            <segue destination="vfp-Hv-K5N" kind="show" identifier="showPhoneMessage" id="mxI-e2-TfY"/>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="nSg-cn-a0O" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="0me-Cp-iWe"/>
+                                    <constraint firstItem="2u5-Ma-qar" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="2Ms-Zk-Y0Y"/>
+                                    <constraint firstItem="y3z-WG-rdP" firstAttribute="top" secondItem="2u5-Ma-qar" secondAttribute="bottom" constant="8" id="4sR-Af-gPr"/>
+                                    <constraint firstItem="M23-eg-t1s" firstAttribute="top" secondItem="y3z-WG-rdP" secondAttribute="bottom" constant="20" id="7vn-yG-mS9"/>
+                                    <constraint firstAttribute="width" constant="153" id="9eh-x6-m3e"/>
+                                    <constraint firstItem="2u5-Ma-qar" firstAttribute="top" secondItem="cDS-X6-dmg" secondAttribute="top" constant="20" id="Shz-tB-zaJ"/>
+                                    <constraint firstItem="y3z-WG-rdP" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="Xz5-IF-xQu"/>
+                                    <constraint firstItem="M23-eg-t1s" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="c47-fF-vuC"/>
+                                    <constraint firstItem="nSg-cn-a0O" firstAttribute="top" secondItem="M23-eg-t1s" secondAttribute="bottom" constant="48" id="ghZ-mA-svm"/>
+                                </constraints>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Cgc-4S-hp4">
+                                <rect key="frame" x="0.0" y="0.0" width="854" height="861"/>
                             </customView>
                         </subviews>
-                        <holdingPriorities>
-                            <real value="250"/>
-                            <real value="250"/>
-                        </holdingPriorities>
-                    </splitView>
+                        <constraints>
+                            <constraint firstItem="cDS-X6-dmg" firstAttribute="leading" secondItem="Cgc-4S-hp4" secondAttribute="trailing" id="5Nr-dF-5qY"/>
+                            <constraint firstItem="Cgc-4S-hp4" firstAttribute="top" secondItem="hBe-kG-JJX" secondAttribute="top" id="6Cx-qB-12K"/>
+                            <constraint firstAttribute="bottom" secondItem="Cgc-4S-hp4" secondAttribute="bottom" id="I1f-Ej-EQP"/>
+                            <constraint firstItem="cDS-X6-dmg" firstAttribute="top" secondItem="hBe-kG-JJX" secondAttribute="top" id="K9I-Fx-LBD"/>
+                            <constraint firstItem="Cgc-4S-hp4" firstAttribute="leading" secondItem="hBe-kG-JJX" secondAttribute="leading" id="OUK-yA-BxA"/>
+                            <constraint firstAttribute="trailing" secondItem="cDS-X6-dmg" secondAttribute="trailing" id="m6Q-WE-vWs"/>
+                            <constraint firstAttribute="bottom" secondItem="cDS-X6-dmg" secondAttribute="bottom" id="pYv-q3-hNP"/>
+                        </constraints>
+                    </view>
                     <connections>
-                        <outlet property="webView" destination="FBB-bl-uge" id="9rZ-hs-qsv"/>
+                        <outlet property="interfaceView" destination="cDS-X6-dmg" id="Fay-xE-jo0"/>
+                        <outlet property="theWebView" destination="Cgc-4S-hp4" id="53c-GG-1P8"/>
                     </connections>
                 </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="RfF-Xn-Y7Y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="366.5" y="786.5"/>
+            <point key="canvasLocation" x="-550.5" y="1229.5"/>
+        </scene>
+        <!--PhoneMessage-->
+        <scene sceneID="M3J-Se-Maz">
+            <objects>
+                <controllerPlaceholder storyboardName="PhoneMessage" id="vfp-Hv-K5N" sceneMemberID="viewController"/>
+                <customObject id="DE4-VT-LHn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="346" y="1098"/>
         </scene>
     </scenes>
 </document>

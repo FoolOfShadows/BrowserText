@@ -16,8 +16,16 @@
 		7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361197222EE44A0009D2AF /* AssessmentModel.swift */; };
 		793611A0222EE44A0009D2AF /* Ellipsis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 79361198222EE44A0009D2AF /* Ellipsis.jpg */; };
 		793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793611A1222EE9220009D2AF /* URLExtensions.swift */; };
+		796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F69542289CF0D007B615C /* WebMonitoringView.swift */; };
 		797C7D7122282C3300845C1F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7022282C3300845C1F /* Extensions.swift */; };
 		797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7222282E7700845C1F /* RegularExpressions.swift */; };
+		79C0DEA8225CEC18002894FC /* Phone Message Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA0225CEC18002894FC /* Phone Message Model.swift */; };
+		79C0DEA9225CEC18002894FC /* PMCurrentMedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA1225CEC18002894FC /* PMCurrentMedsController.swift */; };
+		79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA2225CEC18002894FC /* PM Constants.swift */; };
+		79C0DEAB225CEC18002894FC /* PhoneMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA3225CEC18002894FC /* PhoneMessageVC.swift */; };
+		79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA4225CEC18002894FC /* PMSymptomsController.swift */; };
+		79C0DEAD225CEC18002894FC /* PhoneMessage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C0DEA6225CEC18002894FC /* PhoneMessage.storyboard */; };
+		79F1B2A122848541006F10A6 /* WebViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1B2A022848541006F10A6 /* WebViewData.swift */; };
 		79F577212225864D001B0C81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F577202225864D001B0C81 /* AppDelegate.swift */; };
 		79F577232225864D001B0C81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F577222225864D001B0C81 /* ViewController.swift */; };
 		79F577252225864F001B0C81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F577242225864F001B0C81 /* Assets.xcassets */; };
@@ -53,8 +61,16 @@
 		79361197222EE44A0009D2AF /* AssessmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentModel.swift; sourceTree = "<group>"; };
 		79361198222EE44A0009D2AF /* Ellipsis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ellipsis.jpg; sourceTree = "<group>"; };
 		793611A1222EE9220009D2AF /* URLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		796F69542289CF0D007B615C /* WebMonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMonitoringView.swift; sourceTree = "<group>"; };
 		797C7D7022282C3300845C1F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		797C7D7222282E7700845C1F /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
+		79C0DEA0225CEC18002894FC /* Phone Message Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Phone Message Model.swift"; sourceTree = "<group>"; };
+		79C0DEA1225CEC18002894FC /* PMCurrentMedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMCurrentMedsController.swift; sourceTree = "<group>"; };
+		79C0DEA2225CEC18002894FC /* PM Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PM Constants.swift"; sourceTree = "<group>"; };
+		79C0DEA3225CEC18002894FC /* PhoneMessageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneMessageVC.swift; sourceTree = "<group>"; };
+		79C0DEA4225CEC18002894FC /* PMSymptomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMSymptomsController.swift; sourceTree = "<group>"; };
+		79C0DEA7225CEC18002894FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhoneMessage.storyboard; sourceTree = "<group>"; };
+		79F1B2A022848541006F10A6 /* WebViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewData.swift; sourceTree = "<group>"; };
 		79F5771D2225864D001B0C81 /* BrowserText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowserText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F577202225864D001B0C81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		79F577222225864D001B0C81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +126,19 @@
 			path = "PTVN Builder";
 			sourceTree = "<group>";
 		};
+		79C0DE9F225CEC18002894FC /* Phone Messages */ = {
+			isa = PBXGroup;
+			children = (
+				79C0DEA6225CEC18002894FC /* PhoneMessage.storyboard */,
+				79C0DEA3225CEC18002894FC /* PhoneMessageVC.swift */,
+				79C0DEA0225CEC18002894FC /* Phone Message Model.swift */,
+				79C0DEA1225CEC18002894FC /* PMCurrentMedsController.swift */,
+				79C0DEA2225CEC18002894FC /* PM Constants.swift */,
+				79C0DEA4225CEC18002894FC /* PMSymptomsController.swift */,
+			);
+			path = "Phone Messages";
+			sourceTree = "<group>";
+		};
 		79F577142225864D001B0C81 = {
 			isa = PBXGroup;
 			children = (
@@ -137,12 +166,15 @@
 				79F577222225864D001B0C81 /* ViewController.swift */,
 				79F577262225864F001B0C81 /* Main.storyboard */,
 				79361190222EE44A0009D2AF /* PTVN Builder */,
+				79C0DE9F225CEC18002894FC /* Phone Messages */,
 				79F577242225864F001B0C81 /* Assets.xcassets */,
 				79F577292225864F001B0C81 /* Info.plist */,
 				79F5772A2225864F001B0C81 /* BrowserText.entitlements */,
 				793611A1222EE9220009D2AF /* URLExtensions.swift */,
 				797C7D7022282C3300845C1F /* Extensions.swift */,
 				797C7D7222282E7700845C1F /* RegularExpressions.swift */,
+				79F1B2A022848541006F10A6 /* WebViewData.swift */,
+				796F69542289CF0D007B615C /* WebMonitoringView.swift */,
 			);
 			path = BrowserText;
 			sourceTree = "<group>";
@@ -275,6 +307,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7936119C222EE44A0009D2AF /* Builder.storyboard in Resources */,
+				79C0DEAD225CEC18002894FC /* PhoneMessage.storyboard in Resources */,
 				79F577252225864F001B0C81 /* Assets.xcassets in Resources */,
 				79F577282225864F001B0C81 /* Main.storyboard in Resources */,
 				79361199222EE44A0009D2AF /* PF Summary.png in Resources */,
@@ -303,16 +336,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */,
 				7936119B222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */,
+				79C0DEA9225CEC18002894FC /* PMCurrentMedsController.swift in Sources */,
+				79C0DEA8225CEC18002894FC /* Phone Message Model.swift in Sources */,
 				797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */,
 				79F577232225864D001B0C81 /* ViewController.swift in Sources */,
 				7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */,
 				797C7D7122282C3300845C1F /* Extensions.swift in Sources */,
+				79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */,
 				7936119D222EE44A0009D2AF /* ChartData.swift in Sources */,
+				79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */,
 				7936119E222EE44A0009D2AF /* BuilderConstants.swift in Sources */,
 				793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */,
 				7936119A222EE44A0009D2AF /* NoteMedsVC.swift in Sources */,
 				79F577212225864D001B0C81 /* AppDelegate.swift in Sources */,
+				79C0DEAB225CEC18002894FC /* PhoneMessageVC.swift in Sources */,
+				79F1B2A122848541006F10A6 /* WebViewData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +388,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		79C0DEA6225CEC18002894FC /* PhoneMessage.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79C0DEA7225CEC18002894FC /* Base */,
+			);
+			name = PhoneMessage.storyboard;
+			sourceTree = "<group>";
+		};
 		79F577262225864F001B0C81 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -410,7 +458,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -465,7 +513,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -486,6 +534,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fulgentwake.BrowserText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -504,6 +553,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fulgentwake.BrowserText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

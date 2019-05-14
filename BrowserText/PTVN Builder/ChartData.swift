@@ -9,9 +9,9 @@
 import Foundation
 
 //Struct to hold the data from the file
-struct ChartData {
+class ChartData {
     //This string will be populated later with data on the clipboard pulled from PF
-    var chartData = String()
+    var chartData:String
     
     
     //Use closures to populate the relevant vars with the desired data copied from PF
@@ -34,6 +34,102 @@ struct ChartData {
     var pmh: String {return chartData.simpleRegExMatch(Regexes.pmh.rawValue).cleanTheTextOf(pmhBadBits)}
     var lastCharges: String {return chartData.simpleRegExMatch(Regexes.lastCharge.rawValue).cleanTheTextOf(lastChargeBadBits)}
     var lastAppointment:String {return getLastAptInfoFrom(chartData)}
+    var aptTime:String
+    var aptDate:String
+    var saveLocation:SaveLocation = .dummyFiles
+    
+    init(chartData:String, aptTime:String, aptDate:String) {
+        self.chartData = chartData
+        self.aptTime = aptTime
+        self.aptDate = aptDate
+    }
+    
+    func ptvnOutPut() {
+        let finalResults = """
+        #PTVNFILE#
+        \(SectionDelimiters.planStart.rawValue)
+        
+        \(SectionDelimiters.planEnd.rawValue)
+        
+        \(SectionDelimiters.pharmacyStart.rawValue)
+        
+        \(SectionDelimiters.pharmacyEnd.rawValue)
+        
+        \(SectionDelimiters.assessmentStart.rawValue)
+        
+        \(SectionDelimiters.assessmentEND.rawValue)
+        
+        \(SectionDelimiters.objectiveStart.rawValue)
+        
+        \(SectionDelimiters.objectiveEnd.rawValue)
+        
+        \(SectionDelimiters.ccStart.rawValue)
+        
+        \(SectionDelimiters.ccEnd.rawValue)
+        
+        \(SectionDelimiters.subjectiveStart.rawValue)
+        Problems**
+        \(lastCharges)
+        *problems*
+        \(SectionDelimiters.subjectiveEnd.rawValue)
+        
+        \(SectionDelimiters.rosStart.rawValue)
+        
+        \(SectionDelimiters.rosEnd.rawValue)
+        
+        \(SectionDelimiters.medStart.rawValue)
+        
+        \(SectionDelimiters.medEnd.rawValue)
+        
+        \(SectionDelimiters.allergiesStart.rawValue)
+        \(allergies)
+        \(SectionDelimiters.allergiesEnd.rawValue)
+        
+        \(SectionDelimiters.preventiveStart.rawValue)
+        \(preventiveCare)
+        \(SectionDelimiters.preventiveEnd.rawValue)
+        
+        \(SectionDelimiters.pmhStart.rawValue)
+        \(pmh)
+        \(SectionDelimiters.pmhEnd.rawValue)
+        
+        \(SectionDelimiters.pshStart.rawValue)
+        \(psh)
+        \(SectionDelimiters.pshEnd.rawValue)
+        
+        \(SectionDelimiters.nutritionStart.rawValue)
+        \(nutritionalHistory)
+        \(SectionDelimiters.nutritionEnd.rawValue)
+        
+        \(SectionDelimiters.socialStart.rawValue)
+        \(socialHistory)
+        \(SectionDelimiters.socialEnd.rawValue)
+        
+        \(SectionDelimiters.familyStart.rawValue)
+        \(familyHistory)
+        \(SectionDelimiters.familyEnd.rawValue)
+        
+        \(SectionDelimiters.diagnosisStart.rawValue)
+        \(diagnoses)
+        \(SectionDelimiters.diagnosisEnd.rawValue)
+        
+        \(SectionDelimiters.patientNameStart.rawValue)
+        \(ptName)
+        \(SectionDelimiters.patientNameEnd.rawValue)
+        
+        \(SectionDelimiters.patientDOBStart.rawValue)
+        \(ptDOB)
+        \(SectionDelimiters.patientDOBEnd.rawValue)
+        
+        \(SectionDelimiters.patientAgeStart.rawValue)
+        \(ptAge)
+        \(SectionDelimiters.patientAgeEnd.rawValue)
+        
+        \(SectionDelimiters.visitDateStart.rawValue)
+        //Will need to bring the date calculation into this class
+        \(SectionDelimiters.visitDateEnd.rawValue)
+        """
+    }
     
     //The regular expressions used to define the desired sections of the text
     enum Regexes:String {
@@ -114,6 +210,11 @@ struct ChartData {
             return "Last apt not found"
         }
     }
+}
+
+enum SaveLocation {
+    case dummyFiles
+    case tomorrowFiles
 }
 
 //A struct to get and hold the assessment data from the patient last note

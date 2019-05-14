@@ -1,0 +1,1423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="eqh-Ls-QA5">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Phone Messages-->
+        <scene sceneID="fvL-ur-faK">
+            <objects>
+                <viewController title="Phone Messages" id="eqh-Ls-QA5" customClass="PhoneMessageVC" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="X3S-L9-mrS">
+                        <rect key="frame" x="0.0" y="0.0" width="1002" height="729"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4fX-rG-OCg">
+                                <rect key="frame" x="20" y="687" width="250" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Patient name" drawsBackground="YES" id="I4s-8t-NKZ">
+                                    <font key="font" metaFont="system" size="18"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bU5-nV-l1t">
+                                <rect key="frame" x="20" y="650" width="128" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="DOB" drawsBackground="YES" id="Gnb-Jd-6X9">
+                                    <font key="font" metaFont="system" size="18"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hSZ-vn-Ev6">
+                                <rect key="frame" x="20" y="613" width="442" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Patient phone" drawsBackground="YES" id="XuK-Iw-9rB">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t8M-Qk-CEb">
+                                <rect key="frame" x="913" y="13" width="70" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="scu-in-VUZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveFile:" target="eqh-Ls-QA5" id="wKY-EG-baY"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e2K-C6-kqQ">
+                                <rect key="frame" x="813" y="13" width="72" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Jsh-nN-FNW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearMessage:" target="eqh-Ls-QA5" id="Xki-Q1-Tx9"/>
+                                </connections>
+                            </button>
+                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqr-O3-Pms">
+                                <rect key="frame" x="20" y="63" width="686" height="464"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="f9O-93-e5t">
+                                    <rect key="frame" x="1" y="1" width="669" height="462"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="gOg-M1-cKL">
+                                            <rect key="frame" x="0.0" y="0.0" width="669" height="462"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="669" height="462"/>
+                                            <size key="maxSize" width="957" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="Ahg-oJ-FZK">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RC8-ZH-DwQ">
+                                    <rect key="frame" x="670" y="1" width="15" height="462"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W4m-Oa-eNk">
+                                <rect key="frame" x="499" y="552" width="478" height="143"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" id="OBI-1Q-wAN">
+                                    <rect key="frame" x="1" y="1" width="461" height="141"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="HHZ-e1-1vv">
+                                            <rect key="frame" x="0.0" y="0.0" width="461" height="141"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="461" height="141"/>
+                                            <size key="maxSize" width="478" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="QI3-hW-9mz">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ehE-WJ-ATm">
+                                    <rect key="frame" x="462" y="1" width="15" height="141"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oqi-qb-qYW" customClass="FlatButton" customModule="BrowserText" customModuleProvider="target">
+                                <rect key="frame" x="14" y="530" width="159" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Start New Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TOx-1O-NWw">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="buttonColor">
+                                        <color key="value" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="startNewMessage:" target="eqh-Ls-QA5" id="s2s-WC-n6a"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3aM-MC-7x6">
+                                <rect key="frame" x="173" y="530" width="99" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Get Meds" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ldC-Lc-UBo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="getMeds:" target="eqh-Ls-QA5" id="EuM-x4-bE8"/>
+                                    <segue destination="GWB-YU-ZLP" kind="sheet" identifier="showCurrentMeds" id="0rM-JE-9ra"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zas-0c-GiH">
+                                <rect key="frame" x="323" y="692" width="139" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Date" drawsBackground="YES" id="HhH-kE-KwJ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AiM-gy-1J5">
+                                <rect key="frame" x="497" y="696" width="53" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Allergies" id="KmR-kP-xmA">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Fd-gJ-azH">
+                                <rect key="frame" x="272" y="530" width="130" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Get Symptoms" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ube-N4-jYf">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="getMeds:" target="eqh-Ls-QA5" id="BOM-i9-dfS"/>
+                                    <segue destination="3Tk-Uc-4lG" kind="sheet" identifier="showSymptoms" id="cYE-vp-eJy"/>
+                                </connections>
+                            </button>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NcU-z6-Md6">
+                                <rect key="frame" x="714" y="501" width="266" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Phamacy" drawsBackground="YES" completes="NO" numberOfVisibleItems="20" id="mGp-dn-6nf">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <objectValues>
+                                        <string>Item 1</string>
+                                        <string>Item 2</string>
+                                        <string>Item 3</string>
+                                    </objectValues>
+                                </comboBoxCell>
+                            </comboBox>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="84Z-dM-apb">
+                                <rect key="frame" x="712" y="461" width="198" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Patient refused appointment." bezelStyle="regularSquare" imagePosition="left" inset="2" id="tbk-Eg-hMT">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addSymptom:" target="eqh-Ls-QA5" id="AVx-BZ-Azo"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hnl-Vp-JNh">
+                                <rect key="frame" x="712" y="441" width="215" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Patient scheduled appointment." bezelStyle="regularSquare" imagePosition="left" inset="2" id="qiZ-1W-1jC">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addSymptom:" target="eqh-Ls-QA5" id="rBV-sw-hkh"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iz8-LI-WP8">
+                                <rect key="frame" x="712" y="401" width="206" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Patient requesting early refills." bezelStyle="regularSquare" imagePosition="left" inset="2" id="fjk-ji-iFS">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addSymptom:" target="eqh-Ls-QA5" id="QGA-uO-Yi8"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iz8-kq-WOg">
+                                <rect key="frame" x="712" y="481" width="239" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Patient would like to be called back." bezelStyle="regularSquare" imagePosition="left" inset="2" id="mgh-6P-Rlo">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addSymptom:" target="eqh-Ls-QA5" id="j8q-7w-bR9"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hiJ-BQ-XLt">
+                                <rect key="frame" x="712" y="377" width="168" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Patient requesting results of:" id="uxY-cA-uhG">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="db8-Hj-7jA">
+                                <rect key="frame" x="713" y="320" width="243" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Patient asking for scheduling updated on: " id="BFR-6t-mA1">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C4i-MB-TSl">
+                                <rect key="frame" x="712" y="421" width="204" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Patient instructed to go to ER." bezelStyle="regularSquare" imagePosition="left" inset="2" id="LHL-Sj-vaO">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addSymptom:" target="eqh-Ls-QA5" id="7iO-FN-mIi"/>
+                                </connections>
+                            </button>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pZ-AL-z8K">
+                                <rect key="frame" x="715" y="342" width="209" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="10" id="dcf-al-WIy">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <objectValues>
+                                        <string>Item 1</string>
+                                        <string>Item 2</string>
+                                        <string>Item 3</string>
+                                    </objectValues>
+                                </comboBoxCell>
+                                <connections>
+                                    <action selector="addResultRequest:" target="eqh-Ls-QA5" id="LAf-tJ-P6W"/>
+                                </connections>
+                            </comboBox>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PQG-on-AHF">
+                                <rect key="frame" x="714" y="288" width="209" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="10" id="KUm-XI-cfx">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <objectValues>
+                                        <string>Item 1</string>
+                                        <string>Item 2</string>
+                                        <string>Item 3</string>
+                                    </objectValues>
+                                </comboBoxCell>
+                                <connections>
+                                    <action selector="addSchedulingRequest:" target="eqh-Ls-QA5" id="Oh3-yy-5Lm"/>
+                                </connections>
+                            </comboBox>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="27e-i6-ICe">
+                                <rect key="frame" x="20" y="576" width="442" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Calling on behalf of patient" drawsBackground="YES" id="nvd-O0-dZ0">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GMY-U2-QWB">
+                                <rect key="frame" x="14" y="13" width="75" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eb0-rw-KlF">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="closePMSGView:" target="eqh-Ls-QA5" id="uaB-tY-lbG"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vda-Y7-XbK">
+                                <rect key="frame" x="118" y="20" width="687" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="Last file saved" id="GWh-WF-WeW">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hZo-zu-tLf">
+                                <rect key="frame" x="786" y="50" width="193" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Include allergies in message" bezelStyle="regularSquare" imagePosition="right" inset="2" id="eMU-nR-W4V">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="allergiesScroll" destination="W4m-Oa-eNk" id="gw0-7q-10V"/>
+                        <outlet property="dateView" destination="zas-0c-GiH" id="vd5-nX-wCF"/>
+                        <outlet property="dobView" destination="bU5-nV-l1t" id="QJq-BK-ddY"/>
+                        <outlet property="includeAllergiesCheckbox" destination="hZo-zu-tLf" id="MBD-Wx-EE8"/>
+                        <outlet property="lastMessageView" destination="vda-Y7-XbK" id="F7p-ng-q8a"/>
+                        <outlet property="messageScroll" destination="Zqr-O3-Pms" id="NEC-VD-rbr"/>
+                        <outlet property="nameView" destination="4fX-rG-OCg" id="0h8-cD-whB"/>
+                        <outlet property="onBehalfView" destination="27e-i6-ICe" id="kN2-9j-YKl"/>
+                        <outlet property="pharmacyCombo" destination="NcU-z6-Md6" id="Od1-fE-PNF"/>
+                        <outlet property="phoneView" destination="hSZ-vn-Ev6" id="elZ-pw-38T"/>
+                        <outlet property="resultsCombo" destination="3pZ-AL-z8K" id="r5c-0s-KsP"/>
+                        <outlet property="schedulingCombo" destination="PQG-on-AHF" id="Vrt-LI-8pH"/>
+                        <outlet property="startNewMessageButton" destination="Oqi-qb-qYW" id="GJN-mF-WW3"/>
+                    </connections>
+                </viewController>
+                <customObject id="afm-BN-pIq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="941" y="605"/>
+        </scene>
+        <!--Symptoms Controller-->
+        <scene sceneID="kah-3F-cKH">
+            <objects>
+                <viewController id="3Tk-Uc-4lG" customClass="PMSymptomsController" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="v4A-K2-gW0">
+                        <rect key="frame" x="0.0" y="0.0" width="984" height="510"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NEs-mB-wuk">
+                                <rect key="frame" x="656" y="13" width="73" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="DJx-gq-c38">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clearSymptoms:" target="3Tk-Uc-4lG" id="X0x-wa-ORQ"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="57E-wf-ybs">
+                                <rect key="frame" x="828" y="13" width="132" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Add To Message" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JzQ-tK-qvr">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="processSymptoms:" target="3Tk-Uc-4lG" id="GgV-bs-lL1"/>
+                                </connections>
+                            </button>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P2D-BL-cyd">
+                                <rect key="frame" x="12" y="10" width="960" height="500"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tCI-w6-fnR">
+                                        <rect key="frame" x="375" y="145" width="120" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Cardiovascular" id="yGs-3P-j5u">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="kNO-xs-fcT">
+                                        <rect key="frame" x="375" y="121" width="91" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Chest pain" bezelStyle="regularSquare" imagePosition="left" inset="2" id="GCC-7u-1S1" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="IrW-s7-ioO">
+                                        <rect key="frame" x="375" y="102" width="98" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Palpitations" bezelStyle="regularSquare" imagePosition="left" inset="2" id="mFw-Gq-DqI" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="V37-Gc-8za">
+                                        <rect key="frame" x="375" y="83" width="152" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Palpitations - racing" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dGs-UG-D5o" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="HvM-11-MU0">
+                                        <rect key="frame" x="375" y="64" width="166" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Palpitations - skipping" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qec-mQ-RVw" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="5qn-it-713">
+                                        <rect key="frame" x="375" y="45" width="147" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Irregular heart beat" bezelStyle="regularSquare" imagePosition="left" inset="2" id="UFR-vL-jSd" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="hgq-hq-QG5">
+                                        <rect key="frame" x="375" y="26" width="98" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Leg cramps" bezelStyle="regularSquare" imagePosition="left" inset="2" id="J4d-eX-t3i" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSL-DM-NeS">
+                                        <rect key="frame" x="573" y="461" width="94" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Respiratory" id="VID-DQ-HtR">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button fixedFrame="YES" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="VDq-K4-W1u">
+                                        <rect key="frame" x="375" y="437" width="102" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Blurry vision" bezelStyle="regularSquare" imagePosition="left" inset="2" id="zLS-Yx-XdE" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="O4y-b4-1w4">
+                                        <rect key="frame" x="375" y="418" width="185" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Watery, itchy, or red eyes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Qg2-tl-SFq" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="OiE-ET-uvL">
+                                        <rect key="frame" x="375" y="399" width="77" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Eye pain" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nBn-37-sWD" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="0Y8-WQ-VkJ">
+                                        <rect key="frame" x="375" y="380" width="79" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Ear ache" bezelStyle="regularSquare" imagePosition="left" inset="2" id="4t2-wp-L7Y" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="zPt-md-lOs">
+                                        <rect key="frame" x="375" y="361" width="104" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Ear drainage" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ehn-CP-h2b" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rZO-HM-nsY">
+                                        <rect key="frame" x="375" y="341" width="75" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Runny nose" id="IWu-YG-nlr">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9vr-z3-yjv">
+                                        <rect key="frame" x="375" y="312" width="177" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Neb-n5-P2H" id="aJu-wJ-XNb">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="L3X-VG-3eq">
+                                                <items>
+                                                    <menuItem title="Item 1" state="on" id="Neb-n5-P2H"/>
+                                                    <menuItem title="Item 2" id="9Mm-2i-QEb"/>
+                                                    <menuItem title="Item 3" id="k6o-Iu-ITQ"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <action selector="addNoseSymptomWithMucusColor:" target="3Tk-Uc-4lG" id="Ukc-5R-CuD"/>
+                                        </connections>
+                                    </popUpButton>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="7rY-6X-cD3">
+                                        <rect key="frame" x="375" y="294" width="82" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Sneezing" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ZJf-P3-lsH" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="Whe-4l-IFS">
+                                        <rect key="frame" x="375" y="275" width="176" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Nasal-Sinus congestion" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vGf-ER-U0p" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="et3-FM-Fv9">
+                                        <rect key="frame" x="375" y="256" width="118" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Post nasal drip" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2oa-mk-NVd" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="em1-cp-Ypf">
+                                        <rect key="frame" x="375" y="237" width="96" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Nose bleed" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XpS-mo-E9v" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="31W-5N-YHz">
+                                        <rect key="frame" x="375" y="218" width="95" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Sore throat" bezelStyle="regularSquare" imagePosition="left" inset="2" id="wUm-ty-TWx" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="UgR-wU-8Pd">
+                                        <rect key="frame" x="375" y="199" width="106" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Hoarse voice" bezelStyle="regularSquare" imagePosition="left" inset="2" id="NJL-4D-ShY" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="PyH-iJ-ubG">
+                                        <rect key="frame" x="375" y="180" width="86" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Laryngitis" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Zcf-uX-sB3" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="gPN-cn-Zk4">
+                                        <rect key="frame" x="206" y="437" width="63" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Stress" bezelStyle="regularSquare" imagePosition="left" inset="2" id="afk-hN-c00" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="TCW-F8-ttX">
+                                        <rect key="frame" x="206" y="418" width="95" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Depression" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ChG-uD-TAE" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="EAP-1p-VlA">
+                                        <rect key="frame" x="206" y="399" width="122" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Anxiety-Nerves" bezelStyle="regularSquare" imagePosition="left" inset="2" id="kWD-70-mtK" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="edM-3C-J4x">
+                                        <rect key="frame" x="206" y="380" width="108" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Panic attacks" bezelStyle="regularSquare" imagePosition="left" inset="2" id="IAD-6Z-w1M" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="1WD-MU-VqC">
+                                        <rect key="frame" x="206" y="361" width="108" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Mood swings" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A8e-6m-isq" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="eA0-vl-qRe">
+                                        <rect key="frame" x="206" y="342" width="65" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Crying" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Sdy-21-dU7" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="tdW-mC-CYo">
+                                        <rect key="frame" x="206" y="323" width="146" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Poor concentration" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nKq-Ms-lOg" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="K8V-OX-R2y">
+                                        <rect key="frame" x="206" y="304" width="105" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Memory loss" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ANn-zC-swW" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="sch-De-ER6">
+                                        <rect key="frame" x="206" y="285" width="88" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Confusion" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DaA-Ty-yiB" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nZJ-Vw-ibm">
+                                        <rect key="frame" x="18" y="459" width="61" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="General" id="m5s-0S-1mW">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rbV-lC-vCL">
+                                        <rect key="frame" x="18" y="286" width="158" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Genital/Urinary/Endo" id="jcv-7O-U0X">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="usq-sH-STe">
+                                        <rect key="frame" x="375" y="459" width="56" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="HEENT" id="4Gb-sa-xbA">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="42h-SZ-xRg">
+                                        <rect key="frame" x="206" y="459" width="109" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Psychological" id="BQa-yf-Id0">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="rJS-7K-lKb">
+                                        <rect key="frame" x="206" y="213" width="122" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Abdominal pain" bezelStyle="regularSquare" imagePosition="left" inset="2" id="nf0-aQ-GWv" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="XvU-ab-dLI">
+                                        <rect key="frame" x="206" y="194" width="92" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Pelvic pain" bezelStyle="regularSquare" imagePosition="left" inset="2" id="81t-b3-qsE" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="OG0-Vu-yTP">
+                                        <rect key="frame" x="206" y="175" width="71" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Nausea" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XHW-di-5NL" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="qi1-9x-uYt">
+                                        <rect key="frame" x="206" y="156" width="79" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Vomiting" bezelStyle="regularSquare" imagePosition="left" inset="2" id="TLv-j9-3fk" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="b1G-Fj-vnM">
+                                        <rect key="frame" x="206" y="137" width="77" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Diarrhea" bezelStyle="regularSquare" imagePosition="left" inset="2" id="KRA-ZV-bBn" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="FBL-yH-SlM">
+                                        <rect key="frame" x="206" y="118" width="104" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Constipation" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qxC-FL-0Ia" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="ucf-RV-tBU">
+                                        <rect key="frame" x="206" y="99" width="106" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Hemorrhoids" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Kex-So-aTX" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="mwG-qh-ufI">
+                                        <rect key="frame" x="206" y="80" width="158" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Bloody or black stool" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9ec-5I-xLG" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="yVq-Uj-ODW">
+                                        <rect key="frame" x="206" y="61" width="106" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Bloody vomit" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Uqr-UE-sHk" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="LDe-yb-TVm">
+                                        <rect key="frame" x="206" y="42" width="48" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Gas" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1Af-aL-w5B" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="IIk-cu-rk6">
+                                        <rect key="frame" x="573" y="437" width="87" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Wheezing" bezelStyle="regularSquare" imagePosition="left" inset="2" id="HBI-2a-hxc" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="B0H-EY-dwi">
+                                        <rect key="frame" x="573" y="418" width="92" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Dry Cough" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6on-6h-htO" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vjP-Mc-dyj">
+                                        <rect key="frame" x="573" y="398" width="113" height="17"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Productive Cough" id="z60-js-8JC">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Sn-LR-LiA">
+                                        <rect key="frame" x="573" y="369" width="152" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="dLE-i0-qxl" id="vjY-uI-4mR">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="L32-mP-wHv">
+                                                <items>
+                                                    <menuItem title="Item 1" state="on" id="dLE-i0-qxl"/>
+                                                    <menuItem title="Item 2" id="YmH-0k-85x"/>
+                                                    <menuItem title="Item 3" id="9gG-gu-glH"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                        <connections>
+                                            <action selector="addCoughSymptomWithMucusColor:" target="3Tk-Uc-4lG" id="C6c-EK-eOT"/>
+                                        </connections>
+                                    </popUpButton>
+                                    <button fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wib-kf-CPM">
+                                        <rect key="frame" x="573" y="351" width="119" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Bloody sputum" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Iff-xO-zYL" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="KSE-uM-9MB">
+                                        <rect key="frame" x="573" y="332" width="151" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Shortness of breath" bezelStyle="regularSquare" imagePosition="left" inset="2" id="b4a-3X-dpr" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="cig-yF-2Z4">
+                                        <rect key="frame" x="573" y="313" width="155" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Dyspnea on Exertion" bezelStyle="regularSquare" imagePosition="left" inset="2" id="VSH-t4-8II" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="UoK-Sg-VHM">
+                                        <rect key="frame" x="573" y="294" width="119" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Painful breaths" bezelStyle="regularSquare" imagePosition="left" inset="2" id="De3-9p-bun" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="5ol-4E-toc">
+                                        <rect key="frame" x="18" y="265" width="126" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Painful urination" bezelStyle="regularSquare" imagePosition="left" inset="2" id="9mX-Jq-mE9" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="7Pb-JA-U8o">
+                                        <rect key="frame" x="18" y="246" width="111" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Blood in urine" bezelStyle="regularSquare" imagePosition="left" inset="2" id="lmt-Aj-lnF" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="WcS-Ys-pcf">
+                                        <rect key="frame" x="18" y="227" width="166" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Frequency in urination" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5i1-5Y-J7Z" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="eL0-bG-AH2">
+                                        <rect key="frame" x="18" y="208" width="153" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Urgency in urination" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8v7-3L-HVJ" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="S0E-1I-H5q">
+                                        <rect key="frame" x="18" y="189" width="156" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Urinary incontinence" bezelStyle="regularSquare" imagePosition="left" inset="2" id="c5p-Fc-gqb" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="3Yh-Ev-rhc">
+                                        <rect key="frame" x="18" y="170" width="142" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Stool incontinence" bezelStyle="regularSquare" imagePosition="left" inset="2" id="RHk-aN-wxq" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="kNH-Ez-4dx">
+                                        <rect key="frame" x="18" y="151" width="78" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Nocturia" bezelStyle="regularSquare" imagePosition="left" inset="2" id="vef-a8-oOx" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="kNT-WH-wrI">
+                                        <rect key="frame" x="18" y="132" width="165" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Hesitency or dribbling" bezelStyle="regularSquare" imagePosition="left" inset="2" id="IEL-5e-hzV" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="56G-1l-cmN">
+                                        <rect key="frame" x="18" y="113" width="137" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Vaginal discharge" bezelStyle="regularSquare" imagePosition="left" inset="2" id="FkE-j1-mn9" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="S4f-Bk-sh7">
+                                        <rect key="frame" x="18" y="94" width="131" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Breast discharge" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YSJ-se-1lz" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="drb-ZP-hUu">
+                                        <rect key="frame" x="18" y="75" width="96" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Hot flashes" bezelStyle="regularSquare" imagePosition="left" inset="2" id="5pm-Qn-kT9" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="d8M-qT-d1G">
+                                        <rect key="frame" x="18" y="56" width="77" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Flushing" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BTO-f0-xkm" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="PNQ-Wb-q83">
+                                        <rect key="frame" x="18" y="37" width="62" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Goiter" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Mcf-Dy-U3c" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="Z8X-AE-stI">
+                                        <rect key="frame" x="18" y="18" width="119" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Swollen glands" bezelStyle="regularSquare" imagePosition="left" inset="2" id="d8r-lS-32a" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mcg-I6-5gH">
+                                        <rect key="frame" x="206" y="235" width="128" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Gastrointestinal" id="Shq-sm-Cud">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="xzd-ai-OK3">
+                                        <rect key="frame" x="18" y="437" width="126" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Loss of appetite" bezelStyle="regularSquare" imagePosition="left" inset="2" id="7oR-98-xCQ" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="2lM-Cg-uRn">
+                                        <rect key="frame" x="18" y="418" width="58" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Fever" bezelStyle="regularSquare" imagePosition="left" inset="2" id="e1Y-9S-EMd" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="6Dj-dq-9Vd">
+                                        <rect key="frame" x="18" y="399" width="58" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Chills" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Fuc-Wd-bhc" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="uqD-IN-UBJ">
+                                        <rect key="frame" x="18" y="380" width="69" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Sweats" bezelStyle="regularSquare" imagePosition="left" inset="2" id="QRS-Qn-qUf" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="r1G-R2-f7V">
+                                        <rect key="frame" x="18" y="361" width="127" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Fatigue, Malaise" bezelStyle="regularSquare" imagePosition="left" inset="2" id="exz-NN-YiD" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="Yed-2W-c2b">
+                                        <rect key="frame" x="18" y="342" width="88" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Weakness" bezelStyle="regularSquare" imagePosition="left" inset="2" id="30R-HV-jjg" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="HGB-Cl-SXg">
+                                        <rect key="frame" x="18" y="323" width="80" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Insomnia" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Xgu-gc-pqP" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="WPA-Cz-fnt">
+                                        <rect key="frame" x="573" y="226" width="78" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Seizures" bezelStyle="regularSquare" imagePosition="left" inset="2" id="mQI-pS-joD" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="aX0-0V-d3b">
+                                        <rect key="frame" x="573" y="207" width="176" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="TIA or stroke symptoms" bezelStyle="regularSquare" imagePosition="left" inset="2" id="pcT-T7-Gya" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="2Jw-ni-csg">
+                                        <rect key="frame" x="573" y="188" width="95" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Headaches" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DzA-p9-kP5" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="oXk-3F-YI3">
+                                        <rect key="frame" x="573" y="169" width="91" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Numbness" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XQV-Pi-3Og" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="to1-Ti-3Ix">
+                                        <rect key="frame" x="573" y="150" width="74" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Tingling" bezelStyle="regularSquare" imagePosition="left" inset="2" id="gjz-vF-Hen" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="jmk-Em-pUc">
+                                        <rect key="frame" x="573" y="131" width="135" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Syncope, fainting" bezelStyle="regularSquare" imagePosition="left" inset="2" id="7WM-32-bbg" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="KXd-ep-iEG">
+                                        <rect key="frame" x="573" y="112" width="132" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Vertigo, spinning" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YL9-kS-zPP" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="LWd-Du-tRs">
+                                        <rect key="frame" x="573" y="93" width="84" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Dizziness" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qYj-BM-XTb" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="RBl-lG-ytW">
+                                        <rect key="frame" x="573" y="74" width="110" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Light-headed" bezelStyle="regularSquare" imagePosition="left" inset="2" id="oPo-0h-rlO" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="xnb-Dp-JIZ">
+                                        <rect key="frame" x="573" y="55" width="107" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Poor balance" bezelStyle="regularSquare" imagePosition="left" inset="2" id="WDl-pI-Cd4" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="1Kn-VH-e2W">
+                                        <rect key="frame" x="573" y="36" width="64" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Falling" bezelStyle="regularSquare" imagePosition="left" inset="2" id="HnR-q6-1Xe" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="COZ-SY-s6c">
+                                        <rect key="frame" x="573" y="250" width="102" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Neurological" id="QSD-FO-D8a">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button fixedFrame="YES" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="hi3-XK-E2O">
+                                        <rect key="frame" x="758" y="435" width="75" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Bruising" bezelStyle="regularSquare" imagePosition="left" inset="2" id="1mt-Rr-L35" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="e10-R8-h4k">
+                                        <rect key="frame" x="758" y="416" width="66" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Itching" bezelStyle="regularSquare" imagePosition="left" inset="2" id="QPg-ST-VsD" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="HyL-jb-vLu">
+                                        <rect key="frame" x="758" y="397" width="54" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Rash" bezelStyle="regularSquare" imagePosition="left" inset="2" id="RkB-F1-dIf" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="wkL-hA-UQS">
+                                        <rect key="frame" x="758" y="378" width="58" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Hives" bezelStyle="regularSquare" imagePosition="left" inset="2" id="B4n-Ha-98s" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="vAa-8L-VvI">
+                                        <rect key="frame" x="758" y="359" width="66" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Lumps" bezelStyle="regularSquare" imagePosition="left" inset="2" id="YOq-Gj-ZVi" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="fXl-98-Ic2">
+                                        <rect key="frame" x="758" y="340" width="119" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Swollen glands" bezelStyle="regularSquare" imagePosition="left" inset="2" id="xrE-N2-Q8S" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="zo1-Cz-k6P">
+                                        <rect key="frame" x="758" y="321" width="130" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Abscesses-Boils" bezelStyle="regularSquare" imagePosition="left" inset="2" id="itR-E8-uO0" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DDJ-sr-sJr">
+                                        <rect key="frame" x="758" y="459" width="122" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Dermetological" id="gqC-lZ-Ekd">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button fixedFrame="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="1c2-jg-OOb">
+                                        <rect key="frame" x="758" y="256" width="88" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Weakness" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dqT-Y8-ZUT" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="Ss6-o2-w9r">
+                                        <rect key="frame" x="758" y="237" width="79" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Stiffness" bezelStyle="regularSquare" imagePosition="left" inset="2" id="x8T-eu-Dfl" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="3YY-3F-9Ex">
+                                        <rect key="frame" x="758" y="218" width="76" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Swelling" bezelStyle="regularSquare" imagePosition="left" inset="2" id="KAI-5Z-vmL" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="P5v-P3-LBe">
+                                        <rect key="frame" x="758" y="199" width="89" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Joint ache" bezelStyle="regularSquare" imagePosition="left" inset="2" id="C8a-9C-pDL" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="Zrb-KO-KS5">
+                                        <rect key="frame" x="758" y="180" width="104" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Muscle ache" bezelStyle="regularSquare" imagePosition="left" inset="2" id="grn-Z9-LBv" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="X4d-Kw-O2h">
+                                        <rect key="frame" x="758" y="161" width="73" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Cramps" bezelStyle="regularSquare" imagePosition="left" inset="2" id="2pb-oe-sf4" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <button fixedFrame="YES" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="eo3-qi-tBr">
+                                        <rect key="frame" x="758" y="142" width="74" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="check" title="Spasms" bezelStyle="regularSquare" imagePosition="left" inset="2" id="l4x-jS-7vx" customClass="RedGreenCheckbox" customModule="BrowserText" customModuleProvider="target">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system" size="14"/>
+                                        </buttonCell>
+                                    </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6L-P4-H4l">
+                                        <rect key="frame" x="758" y="280" width="184" height="19"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Musculo-Skeletal/Hemo" id="ruu-Vc-YXo">
+                                            <font key="font" metaFont="systemBold" size="15"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                            </customView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ol-wX-0IY">
+                                <rect key="frame" x="746" y="13" width="82" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="p2v-lS-ISz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="3Tk-Uc-4lG" id="661-9v-yoj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="coughMucusPopup" destination="1Sn-LR-LiA" id="9Zn-Ep-aoM"/>
+                        <outlet property="noseMucusPopup" destination="9vr-z3-yjv" id="mjE-83-gFQ"/>
+                        <outlet property="symptomsButtonView" destination="P2D-BL-cyd" id="72I-0h-cC1"/>
+                    </connections>
+                </viewController>
+                <customObject id="93K-Rb-oQz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="905" y="1379"/>
+        </scene>
+        <!--Current Meds Controller-->
+        <scene sceneID="h3I-jD-PU8">
+            <objects>
+                <viewController id="GWB-YU-ZLP" customClass="PMCurrentMedsController" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ERM-Qv-78H">
+                        <rect key="frame" x="0.0" y="0.0" width="740" height="438"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d0w-O7-7PB">
+                                <rect key="frame" x="16" y="13" width="82" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Rt1-uO-Bl0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="GWB-YU-ZLP" id="e9p-Vb-Fb4"/>
+                                </connections>
+                            </button>
+                            <scrollView wantsLayer="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="22" horizontalPageScroll="10" verticalLineScroll="22" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdF-dM-JH3">
+                                <rect key="frame" x="20" y="61" width="700" height="357"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" ambiguous="YES" id="sjJ-LV-JnK">
+                                    <rect key="frame" x="1" y="0.0" width="698" height="356"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="20" rowSizeStyle="automatic" headerView="1zV-RG-NM9" viewBased="YES" id="dgy-sc-pE9">
+                                            <rect key="frame" x="0.0" y="0.0" width="698" height="331"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="44.5" minWidth="40" maxWidth="1000" id="vi6-YP-B3z">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="enb-AW-e4r">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="Ijh-ui-K5N">
+                                                            <rect key="frame" x="1" y="1" width="45" height="18"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xiU-Fu-eIp">
+                                                                    <rect key="frame" x="1" y="1" width="45" height="18"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" inset="2" id="VSG-fd-Dhy">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="getDataFromSelectedRowsText:" target="UQZ-Ca-Vxw" id="gQc-SW-nqw"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                                <tableColumn width="646.5" minWidth="40" maxWidth="1000" id="dQy-5J-FyW">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="OQw-1M-s6i">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="Sij-8I-bq1">
+                                                            <rect key="frame" x="48.5" y="1" width="646" height="20"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0fF-MU-73Z">
+                                                                    <rect key="frame" x="0.0" y="3" width="646" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="FGG-rh-fVT">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <connections>
+                                                                <outlet property="textField" destination="0fF-MU-73Z" id="xAZ-nM-pPZ"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="GWB-YU-ZLP" id="ue0-H3-kxh"/>
+                                                <outlet property="delegate" destination="GWB-YU-ZLP" id="6ho-Et-EPi"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="vdp-5R-QzW">
+                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="b9g-u8-KJr">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" id="1zV-RG-NM9">
+                                    <rect key="frame" x="0.0" y="0.0" width="698" height="25"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P7L-B5-fVv">
+                                <rect key="frame" x="618" y="13" width="108" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Add To List" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BIr-hn-eo0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="returnResults:" target="GWB-YU-ZLP" id="1Pg-X2-Ag6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="currentMedsTableView" destination="dgy-sc-pE9" id="0dU-zp-YXL"/>
+                    </connections>
+                </viewController>
+                <customObject id="UQZ-Ca-Vxw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="881" y="-78"/>
+        </scene>
+    </scenes>
+</document>
