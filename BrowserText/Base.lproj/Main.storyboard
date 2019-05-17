@@ -685,7 +685,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="BrowserWindowController" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Whelchel Primary Care Medicine" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -703,14 +703,6 @@
             </objects>
             <point key="canvasLocation" x="-199" y="203"/>
         </scene>
-        <!--Builder-->
-        <scene sceneID="nPS-fH-pzs">
-            <objects>
-                <controllerPlaceholder storyboardName="Builder" id="QWa-4C-Fut" sceneMemberID="viewController"/>
-                <customObject id="S3Z-sA-O8a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="587" y="343"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="QSp-Za-BLq">
             <objects>
@@ -722,63 +714,73 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="cDS-X6-dmg">
                                 <rect key="frame" x="854" y="0.0" width="153" height="861"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2u5-Ma-qar">
-                                        <rect key="frame" x="41" y="813" width="71" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Build" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bOb-LN-GQX">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <segue destination="QWa-4C-Fut" kind="show" identifier="showBuilder" id="7vT-6v-Xhh"/>
-                                        </connections>
-                                    </button>
+                                    <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M23-eg-t1s">
+                                        <rect key="frame" x="27" y="747" width="99" height="25"/>
+                                        <popUpButtonCell key="cell" type="push" title="Today" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="epb-1U-mvo" id="qQI-AB-xVn">
+                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="2bn-Ck-3vV">
+                                                <items>
+                                                    <menuItem title="Today" state="on" id="epb-1U-mvo"/>
+                                                    <menuItem title="Tomorrow" id="oMr-Ec-pM0"/>
+                                                    <menuItem title="2 Days" id="s6v-ze-qEi"/>
+                                                    <menuItem title="3 Days" id="9Y9-yp-ajU"/>
+                                                    <menuItem title="4 Days" id="J6d-Wd-G1o"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                    </popUpButton>
                                     <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="68" translatesAutoresizingMaskIntoConstraints="NO" id="y3z-WG-rdP">
-                                        <rect key="frame" x="43" y="790" width="67" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="y3z-WG-rdP" secondAttribute="height" multiplier="34:11" id="ziY-fj-hdh"/>
-                                        </constraints>
+                                        <rect key="frame" x="30" y="791" width="93" height="22"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="CD3-Ke-5Ox">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M23-eg-t1s">
-                                        <rect key="frame" x="39" y="746" width="77" height="25"/>
-                                        <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="epb-1U-mvo" id="qQI-AB-xVn">
-                                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
-                                            <menu key="menu" id="2bn-Ck-3vV">
-                                                <items>
-                                                    <menuItem title="Item 1" state="on" id="epb-1U-mvo"/>
-                                                    <menuItem title="Item 2" id="oMr-Ec-pM0"/>
-                                                    <menuItem title="Item 3" id="s6v-ze-qEi"/>
-                                                </items>
-                                            </menu>
-                                        </popUpButtonCell>
-                                    </popUpButton>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2u5-Ma-qar">
+                                        <rect key="frame" x="41" y="702" width="71" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Build" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bOb-LN-GQX">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="openPTVNBuilder:" target="gFC-E1-R4T" id="Ge6-7R-caB"/>
+                                        </connections>
+                                    </button>
                                     <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nSg-cn-a0O">
-                                        <rect key="frame" x="21" y="673" width="113" height="32"/>
+                                        <rect key="frame" x="20" y="605" width="113" height="32"/>
                                         <buttonCell key="cell" type="push" title="Phone Msg" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NeN-ve-AnA">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
                                             <action selector="openPhoneMessage:" target="gFC-E1-R4T" id="B8F-ZO-Y7G"/>
-                                            <segue destination="vfp-Hv-K5N" kind="show" identifier="showPhoneMessage" id="mxI-e2-TfY"/>
                                         </connections>
                                     </button>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2D0-A0-vbA">
+                                        <rect key="frame" x="33" y="824" width="85" height="17"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="PTVN Builder" id="d2f-02-rNK">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="nSg-cn-a0O" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="0me-Cp-iWe"/>
-                                    <constraint firstItem="2u5-Ma-qar" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="2Ms-Zk-Y0Y"/>
-                                    <constraint firstItem="y3z-WG-rdP" firstAttribute="top" secondItem="2u5-Ma-qar" secondAttribute="bottom" constant="8" id="4sR-Af-gPr"/>
-                                    <constraint firstItem="M23-eg-t1s" firstAttribute="top" secondItem="y3z-WG-rdP" secondAttribute="bottom" constant="20" id="7vn-yG-mS9"/>
+                                    <constraint firstItem="y3z-WG-rdP" firstAttribute="leading" secondItem="cDS-X6-dmg" secondAttribute="leading" constant="30" id="70l-SZ-RJW"/>
                                     <constraint firstAttribute="width" constant="153" id="9eh-x6-m3e"/>
-                                    <constraint firstItem="2u5-Ma-qar" firstAttribute="top" secondItem="cDS-X6-dmg" secondAttribute="top" constant="20" id="Shz-tB-zaJ"/>
-                                    <constraint firstItem="y3z-WG-rdP" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="Xz5-IF-xQu"/>
-                                    <constraint firstItem="M23-eg-t1s" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="c47-fF-vuC"/>
-                                    <constraint firstItem="nSg-cn-a0O" firstAttribute="top" secondItem="M23-eg-t1s" secondAttribute="bottom" constant="48" id="ghZ-mA-svm"/>
+                                    <constraint firstAttribute="trailing" secondItem="y3z-WG-rdP" secondAttribute="trailing" constant="30" id="DBe-D9-qQC"/>
+                                    <constraint firstItem="M23-eg-t1s" firstAttribute="top" secondItem="y3z-WG-rdP" secondAttribute="bottom" constant="20" id="Gff-tw-xec"/>
+                                    <constraint firstItem="nSg-cn-a0O" firstAttribute="top" secondItem="2u5-Ma-qar" secondAttribute="bottom" constant="76" id="LNd-zv-I96"/>
+                                    <constraint firstItem="y3z-WG-rdP" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="MU2-Fv-xoW"/>
+                                    <constraint firstItem="2u5-Ma-qar" firstAttribute="top" secondItem="M23-eg-t1s" secondAttribute="bottom" constant="20" id="MsA-f5-yrb"/>
+                                    <constraint firstItem="y3z-WG-rdP" firstAttribute="top" secondItem="2D0-A0-vbA" secondAttribute="bottom" constant="11" id="Yxd-zm-Rl6"/>
+                                    <constraint firstItem="2D0-A0-vbA" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="a5Y-FX-Ace"/>
+                                    <constraint firstItem="2u5-Ma-qar" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="hvd-69-C6y"/>
+                                    <constraint firstItem="M23-eg-t1s" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="jyh-Eb-HGS"/>
+                                    <constraint firstItem="2D0-A0-vbA" firstAttribute="top" secondItem="cDS-X6-dmg" secondAttribute="top" constant="20" id="yUK-XH-QuW"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Cgc-4S-hp4">
@@ -796,13 +798,17 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="daysUntilPopup" destination="M23-eg-t1s" id="vem-7U-d7I"/>
                         <outlet property="interfaceView" destination="cDS-X6-dmg" id="Fay-xE-jo0"/>
                         <outlet property="theWebView" destination="Cgc-4S-hp4" id="53c-GG-1P8"/>
+                        <outlet property="timeView" destination="y3z-WG-rdP" id="0rX-Ra-lnN"/>
+                        <segue destination="vfp-Hv-K5N" kind="show" identifier="showPhoneMessage" id="WuM-8Q-wLh"/>
+                        <segue destination="57f-a2-sLu" kind="show" identifier="showPTVNBuilder" id="cPZ-EX-Cs5"/>
                     </connections>
                 </viewController>
                 <customObject id="RfF-Xn-Y7Y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-550.5" y="1229.5"/>
+            <point key="canvasLocation" x="-412.5" y="1188.5"/>
         </scene>
         <!--PhoneMessage-->
         <scene sceneID="M3J-Se-Maz">
@@ -811,6 +817,56 @@
                 <customObject id="DE4-VT-LHn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="346" y="1098"/>
+        </scene>
+        <!--Builder InterfaceVC-->
+        <scene sceneID="B75-qr-BcX">
+            <objects>
+                <viewController id="57f-a2-sLu" customClass="BuilderInterfaceVC" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="f5j-Yf-g2D">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N6v-FS-Ejx">
+                                <rect key="frame" x="358" y="13" width="76" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Finish" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SIz-bp-Sr8">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="getLastNoteData:" target="57f-a2-sLu" id="9YU-XK-VIs"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="szj-Tv-naa">
+                                <rect key="frame" x="14" y="13" width="82" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cWk-Z4-tZU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="57f-a2-sLu" id="QBn-92-8Ee"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rw9-p6-4jo">
+                                <rect key="frame" x="18" y="73" width="412" height="207"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" id="Qlb-OP-jwn">
+                                    <font key="font" metaFont="system"/>
+                                    <string key="title">Select and load the last office not for the patient in Practice Fusion, then click the Finish button below to create the PTVN.  If there is no previous note, just click the Finish button.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="xDU-CF-5nR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="473" y="855"/>
         </scene>
     </scenes>
 </document>

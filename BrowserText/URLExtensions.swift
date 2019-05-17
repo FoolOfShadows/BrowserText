@@ -31,7 +31,7 @@ extension URL {
             //print(item)
             if let itemURL = item as? URL {
                 for crit in criteria {
-                    print(crit)
+                    //print(crit)
                     //Have to remove percent encoding to check for naming
                     //convention items with spaces on either side
                     if itemURL.absoluteString.removingPercentEncoding!.contains(crit) {

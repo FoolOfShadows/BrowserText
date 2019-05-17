@@ -1,41 +1,29 @@
 //
-//  BuilderInterfaceVC.swift
+//  NoteMedsVC.swift
 //  PTVN Builder
 //
-//  Created by Fool on 3/13/18.
+//  Created by Fool on 7/11/18.
 //  Copyright © 2018 Fool. All rights reserved.
 //
 
 import Cocoa
-import Quartz
 
-protocol ptvnDelegate: class {
-    var currentData:ChartData { get set }
-    var saveLocation:String { get set }
-    var ptVisitDate:Int { get }
-    var visitTime:String { get }
-}
+class BuilderInterfaceVC: NSViewController {
 
-class BuilderInterfaceVC: NSViewController, ptvnDelegate {
-
-    @IBOutlet weak var visitTimeView: NSTextField!
-    @IBOutlet weak var visitDayView: NSPopUpButton!
-    
+    weak var currentPTVNDelegate: ptvnDelegate?
+    //currentData gets passed the ChartData from the initial VC upon seque
+    var currentData = ChartData(chartData: "", aptTime: "", aptDate: 0)
     var saveLocation = "Desktop"
-    var ptVisitDate = 0
-    var currentData:ChartData = ChartData(chartData: "", aptTime: "", aptDate: "") {
-        didSet {
-            print("Updated data to: \(self.currentData.ptName)")
-        }
-    }
-    var visitTime = "00"
+    //var lastNoteData = String()
+//    var ptVisitDate = 0
+//    var visitTime = "00"
     
-    //weak var showWindowDelegate: ShowMainWindowDelegate?
+    weak var viewDataDelegate: webViewDataProtocol?
     
-    let nc = NotificationCenter.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //print("currentData inside Builder Module:\n\(currentData)")
     }
     
     override func viewDidAppear() {
@@ -46,104 +34,264 @@ class BuilderInterfaceVC: NSViewController, ptvnDelegate {
         //This removes the ability to resize the window of a view
         //opened by a segue
         self.view.window?.styleMask.remove(.resizable)
+        //This makes the window float at the front of the other windows
+        self.view.window?.level = .floating
     }
     
-    func processInitialData() {
-        //Get the clipboard to process
-        let pasteBoard = NSPasteboard.general
-        
-        //FIXME: Does this need actual error handling?
-        guard let theText = pasteBoard.string(forType: NSPasteboard.PasteboardType(rawValue: "public.utf8-plain-text")) else { return }
-        
-        //Make sure the clipboard contents are from PF, otherwise notify the user
-        if !theText.contains("Flowsheets") {
-            //Create an alert to let the user know the clipboard doesn't contain
-            //the correct PF data
-            //After notifying the user, break out of the program
-            let theAlert = NSAlert()
-            theAlert.messageText = "It doesn't look like you've copied the correct bits out of Practice Fusion.\nPlease try again or click the help button for complete instructions.\nIf the problem continues, please contact the administrator."
-            theAlert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
-                let returnCode = NSModalResponse
-                print(returnCode)}
-        }
-        
-        //Make sure the diagnosis are set to ICD-10 format - Don't need this anymore
-//        if !theText.contains("ICD-10") {
-//            //Create an alert to let the user know the diagnoses are not set to ICD10
-//            print("Not set to ICD10")
-//            //After notifying the user, break out of the program
-//            let theAlert = NSAlert()
-//            theAlert.messageText = "It appears Practice Fusion is not set to show ICD-10 diagnoses codes.  Please set the Show by option in the Diagnoses section to ICD-10 and try again."
-//            theAlert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
-//                _ = NSModalResponse
-//            }
-//        }
-        
-        //Create a ChartData struct with the clipboard data
-        currentData = ChartData(chartData: theText, aptTime: visitTimeView.stringValue, aptDate: "")
-        
-        //Get the info from the date scheduled popup menu
-        ptVisitDate = visitDayView.indexOfSelectedItem
-        //print("Day index selected: \(ptVisitDate)")
-        
-        //Set the files save location based on the users selection
-        //var saveLocation = "Desktop"
-        switch ptVisitDate {
-        case 0:
-            saveLocation = "WPCMSharedFiles/zDoctor Review/06 Dummy Files"
-        case 1...4:
-            saveLocation = "WPCMSharedFiles/zruss Review/Tomorrows Files"
-        default:
-            saveLocation = "Desktop"
-        }
-        
-        visitTime = visitTimeView.stringValue
-        
-//        //Search for PTVN from last visit
-//        //Set the search directory to the PTVN folder
-//        let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/WPCMSharedFiles/zDonna Review/01 PTVN Files")
-//        //Search for files with the same visit date
-//        let ptvnList = originFolderURL.getFilesInDirectoryWhereNameContains(["\(currentData.lastAppointment)"])
-//        //Create a the smallest likely unique version of the pt name
-//        //to search with
-//        let filterName = getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.firstLast)
-//        //Use that search name to filter the PTVNs whose date matched
-//        let shortList = ptvnList.filter { $0.absoluteString.removingPercentEncoding!.contains(filterName) }
-//        //Create an OldNoteData object from the text of the matching file
-//        //and pull out just the charge information to be inserted into
-//        //the saved file
-//        var lastCharge = "Last PTVN not found."
-//        var pharmacy = String()
-//        if shortList.count > 0 {
-//            lastCharge = OldNoteData(fileURL: shortList[0]).oldAssessment
-//            pharmacy = OldNoteData(fileURL: shortList[0]).pharmacy
-//        }
-        
-    }
 
+    @IBAction func getLastNoteData(_ sender: Any) {
+        //print("Starting getLastNoteData")
+        if let lastNoteData = viewDataDelegate?.getDataFromWebView(usingID: "ember311") {
+            //print("lastNoteData got good data")
+            finishCreatingPTVNWithNoteData(lastNoteData)
+        }
+        //print("Done with getLastNoteData")
+    }
     
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showNoteMeds" {
-            if let toViewController = segue.destinationController as? NoteMedsVC {
-                processInitialData()
-                toViewController.currentPTVNDelegate = self
-                toViewController.currentData = currentData
-                toViewController.ptVisitDate = ptVisitDate
-                toViewController.saveLocation = saveLocation
-                toViewController.visitTime = visitTime
+    func finishCreatingPTVNWithNoteData(_ noteData:String) {
+            saveLocation = currentData.saveLocation.rawValue
+            //Get note med data from the clipboard to process
+            //        let pasteBoard = NSPasteboard.general
+            //        guard let theText = pasteBoard.string(forType: NSPasteboard.PasteboardType(rawValue: "public.utf8-plain-text")) else { return }
+            var newMeds = noteData.simpleRegExMatch(ChartData.Regexes.newMeds.rawValue).cleanTheTextOf(newMedsBadBits)
+            newMeds = newMeds.replaceRegexPattern("(?m)\nEncounter Comments:\n", with: "Sig: ")
+            //print(newMeds)
+            //Get note assessment from the clipboard
+            let noteAssessment = noteData.simpleRegExMatch(ChartData.Regexes.pfNoteAssessment.rawValue).cleanTheTextOf(noteAssessmentBadBits)
+            
+            //Process note med data and replace existing med data
+            //Convert med list from PF Note into an array
+            let noteArray = newMeds.convertListToArray()
+            
+            //Convert med list from Summary tab into an array
+            var summary = currentData.currentMeds
+            summary = summary.replaceRegexPattern("Start: \\d\\d/\\d\\d/\\d\\d", with: "")
+            let summaryArray = summary.cleanTheTextOf(["- "]).convertListToArray()
+            
+            //Instantiate a new array to hold the results of comparing the two med arrays
+            var results = [String]()
+            
+            //Compair the two arrays to see if a given item with less data from the Summary array
+            //can be replaced with a more complete version (contains med sig) of the data from
+            //the Note array
+            for summaryItem in summaryArray {
+                var matched = false
+                innerLoop: for noteItem in noteArray {
+                    if noteItem.contains(summaryItem) {
+                        results.append(noteItem)
+                        matched = true
+                        break innerLoop
+                    }
+                }
+                //If there is no better version in the Note array, keep the Summary version
+                if matched == false {
+                    results.append(summaryItem)
+                }
             }
-        }
+            
+            //I think this bit ended up being redundant
+            //        print("Original Results array: \(results)")
+            //        let filteredArray = noteArray.filter{ !results.contains($0) }
+            //        results += filteredArray
+            //        print("Adjusted Results array: \(results)")
+            var finalMedList = currentData.currentMeds
+            if !results.isEmpty {
+                finalMedList = results.joined(separator: "\n").addCharacterToBeginningOfEachLine("-")
+            }
+            
+            
+            //Finish creating note
+            //Get current date and format it
+            let theCurrentDate = Date()
+            let formatter = DateFormatter()
+            formatter.dateStyle = DateFormatter.Style.short
+            
+            //Set the visit date
+            guard let visitDate = theCurrentDate.addingDays(currentData.aptDate) else { return }
+            //print("Days out: \(ptVisitDate)")
+            let internalVisitDate = formatter.string(from: visitDate)
+            let labelDateFormatter = DateFormatter()
+            labelDateFormatter.dateFormat = "yyMMdd"
+            let labelVisitDate = labelDateFormatter.string(from: visitDate)
+            
+            //Search for PTVN from last visit
+            //Set the search directory to the PTVN folder
+            let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/WPCMSharedFiles/zDonna Review/01 PTVN Files")
+            //Search for files with the same visit date
+            let ptvnList = originFolderURL.getFilesInDirectoryWhereNameContains(["\(currentData.lastAppointment)"])
+            //print(ptvnList)
+            //Create a the smallest likely unique version of the pt name
+            //to search with
+            let filterName = getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.firstLast)
+            //Use that search name to filter the PTVNs whose date matched
+            let shortList = ptvnList.filter { $0.absoluteString.removingPercentEncoding!.contains(filterName) }
+            //Create an OldNoteData object from the text of the matching file
+            //and pull out just the charge information to be inserted into
+            //the saved file
+            var lastCharge = "Last PTVN not found."
+            var pharmacy = String()
+            if shortList.count > 0 {
+                lastCharge = OldNoteData(fileURL: shortList[0]).oldAssessment
+                pharmacy = OldNoteData(fileURL: shortList[0]).pharmacy
+            }
+            //print("PTVN Assement is: \(lastCharge)")
+            //print("PF Note Assessment is: \(noteAssessment)")
+            
+            //If an assessment can be pulled from the last note in PF
+            //and there wasn't one in the PTVN, use the note
+            if !noteAssessment.isEmpty {
+                //print("Using Note Assessment")
+                lastCharge = noteAssessment
+            }
+            
+            let finalResults = """
+            #PTVNFILE#
+            \(SectionDelimiters.planStart.rawValue)
+            
+            \(SectionDelimiters.planEnd.rawValue)
+            
+            \(SectionDelimiters.pharmacyStart.rawValue)
+            \(pharmacy)
+            \(SectionDelimiters.pharmacyEnd.rawValue)
+            
+            \(SectionDelimiters.assessmentStart.rawValue)
+            
+            \(SectionDelimiters.assessmentEND.rawValue)
+            
+            \(SectionDelimiters.objectiveStart.rawValue)
+            
+            \(SectionDelimiters.objectiveEnd.rawValue)
+            
+            \(SectionDelimiters.ccStart.rawValue)
+            
+            \(SectionDelimiters.ccEnd.rawValue)
+            
+            \(SectionDelimiters.subjectiveStart.rawValue)
+            Problems**
+            \(lastCharge)
+            *problems*
+            \(SectionDelimiters.subjectiveEnd.rawValue)
+            
+            \(SectionDelimiters.rosStart.rawValue)
+            
+            \(SectionDelimiters.rosEnd.rawValue)
+            
+            \(SectionDelimiters.medStart.rawValue)
+            \(finalMedList)
+            \(SectionDelimiters.medEnd.rawValue)
+            
+            \(SectionDelimiters.allergiesStart.rawValue)
+            \(currentData.allergies)
+            \(SectionDelimiters.allergiesEnd.rawValue)
+            
+            \(SectionDelimiters.preventiveStart.rawValue)
+            \(currentData.preventiveCare)
+            \(SectionDelimiters.preventiveEnd.rawValue)
+            
+            \(SectionDelimiters.pmhStart.rawValue)
+            \(currentData.pmh)
+            \(SectionDelimiters.pmhEnd.rawValue)
+            
+            \(SectionDelimiters.pshStart.rawValue)
+            \(currentData.psh)
+            \(SectionDelimiters.pshEnd.rawValue)
+            
+            \(SectionDelimiters.nutritionStart.rawValue)
+            \(currentData.nutritionalHistory)
+            \(SectionDelimiters.nutritionEnd.rawValue)
+            
+            \(SectionDelimiters.socialStart.rawValue)
+            \(currentData.socialHistory)
+            \(SectionDelimiters.socialEnd.rawValue)
+            
+            \(SectionDelimiters.familyStart.rawValue)
+            \(currentData.familyHistory)
+            \(SectionDelimiters.familyEnd.rawValue)
+            
+            \(SectionDelimiters.diagnosisStart.rawValue)
+            \(currentData.diagnoses)
+            \(SectionDelimiters.diagnosisEnd.rawValue)
+            
+            \(SectionDelimiters.patientNameStart.rawValue)
+            \(currentData.ptName)
+            \(SectionDelimiters.patientNameEnd.rawValue)
+            
+            \(SectionDelimiters.patientDOBStart.rawValue)
+            \(currentData.ptDOB)
+            \(SectionDelimiters.patientDOBEnd.rawValue)
+            
+            \(SectionDelimiters.patientAgeStart.rawValue)
+            \(currentData.ptAge)
+            \(SectionDelimiters.patientAgeEnd.rawValue)
+            
+            \(SectionDelimiters.visitDateStart.rawValue)
+            \(internalVisitDate)
+            \(SectionDelimiters.visitDateEnd.rawValue)
+            """
+            
+            
+            //finalResults.copyToPasteboard()
+            //Generate a properly formated name for the file from exisiting data
+            let fileName = "\(currentData.aptTime) \(getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.full)) PTVN \(labelVisitDate).txt"
+            
+            //Creates a file with the final output to the chosen location
+            let ptvnData = finalResults.data(using: String.Encoding.utf8)
+            let newFileManager = FileManager.default
+            let savePath = NSHomeDirectory()
+            newFileManager.createFile(atPath: "\(savePath)/\(saveLocation)/\(fileName)", contents: ptvnData, attributes: nil)
+            
+            //self.dismiss(self)
+            self.view.window?.performClose(self)
     }
     
-    @IBAction func showMainWindow(_ sender: NSMenuItem) {
-        print("Calling showWindow from the delegate")
-        nc.post(Notification(name: Notification.Name(rawValue: "ShowMainWindow")))
-        //showWindowDelegate?.seriouslyShowTheWindow()
-    }
-
-    @IBAction func closeWindow(_ sender: Any) {
-        /*Because this view is presented using a Show segue it can't be dismissed with view.dismiss(self) I have to call back up to the window created to present it and tell that window to close*/
-        self.view.window?.close()
-    }
 }
 
+//The delimiters used to separate the data sections in the file
+enum SectionDelimiters:String {
+    case patientNameStart = "#PATIENTNAME"
+    case patientNameEnd = "PATIENTNAME#"
+    case patientDOBStart = "#PATIENTDOB"
+    case patientDOBEnd = "PATIENTDOB#"
+    case patientAgeStart = "#PATIENTAGE"
+    case patientAgeEnd = "PATIENTAGE#"
+    case ccStart = "#CC"
+    case ccEnd = "CC#"
+    case problemsStart = "#PROBLEMS"
+    case problemEnd = "PROBLEMS#"
+    case subjectiveStart = "#SUBJECTIVE"
+    case subjectiveEnd = "SUBJECTIVE#"
+    case newPMHStart = "#NEWPMH"
+    case newPMHEnd = "NEWPMH#"
+    case assessmentStart = "#ASSESSMENT"
+    case assessmentEND = "ASSESSMENT#"
+    case planStart = "#PLAN"
+    case planEnd = "PLAN#"
+    case objectiveStart = "#OBJECTIVE"
+    case objectiveEnd = "OBJECTIVE#"
+    case medStart = "#MEDICATIONS"
+    case medEnd = "MEDICATIONS#"
+    case allergiesStart = "#ALLERGIES"
+    case allergiesEnd = "ALLERGIES#"
+    case preventiveStart = "#PREVENTIVE"
+    case preventiveEnd = "PREVENTIVE#"
+    case pmhStart = "#PMH"
+    case pmhEnd = "PMH#"
+    case pshStart = "#PSH"
+    case pshEnd = "PSH#"
+    case nutritionStart = "#NUTRITION"
+    case nutritionEnd = "NUTRITION#"
+    case socialStart = "#SOCIAL"
+    case socialEnd = "SOCIAL#"
+    case familyStart = "#FAMILY"
+    case familyEnd = "FAMILY#"
+    case diagnosisStart = "#DIAGNOSIS"
+    case diagnosisEnd = "DIAGNOSIS#"
+    case rosStart = "#ROS"
+    case rosEnd = "ROS#"
+    case visitDateStart = "#VISITDATE"
+    case visitDateEnd = "VISITDATE#"
+    case pharmacyStart = "#PHARMACY"
+    case pharmacyEnd = "PHARMACY#"
+    case otherStart = "#OTHER"
+    case otherEnd = "OTHER#"
+}

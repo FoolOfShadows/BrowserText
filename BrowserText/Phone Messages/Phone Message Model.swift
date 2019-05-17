@@ -152,7 +152,7 @@ func getFileLabellingName(_ name: String) -> String {
     //Break the string apart into the various name bits, removing Practice Fusion's
     //'preferred' name in the process, identifying it by the parentheses
     let nameComponents = name.components(separatedBy: " ").filter {!$0.contains("(")}
-    print(nameComponents)
+    //print(nameComponents)
     
     
     let extraBitsCheck = checkForMatchInSets(nameComponents, arrayToCheckFor: extraNameBits)

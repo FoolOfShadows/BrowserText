@@ -56,22 +56,26 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     //the patientData var has been updated is the only way
     //I've yet figured out how to let the handler in the seque
     //finish and update the var in this vc before acting on that data.
-    var patientData:String = String() {
+    var patientData = String()/* = String() {
         didSet {
             startNewMessage(self)
         }
-    }
+    }*/
     var currentMessageText:Message = Message(theText: String())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("PM View loading")
+        //print("PM View loading")
         //clearMessage(self)
         allergiesView.font = NSFont.systemFont(ofSize: 18)
         messageView.font = NSFont.systemFont(ofSize: 18)
         self.resultsCombo.delegate = self
         self.schedulingCombo.delegate = self
-        
+    }
+    
+    //The call to startNewMessage needs to be here rather than viewDidLoad to work
+    override func viewDidAppear() {
+        startNewMessage(self)
     }
     
     @IBAction func startNewMessage(_ sender: Any) {

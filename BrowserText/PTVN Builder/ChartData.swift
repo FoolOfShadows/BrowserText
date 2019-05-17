@@ -35,10 +35,19 @@ class ChartData {
     var lastCharges: String {return chartData.simpleRegExMatch(Regexes.lastCharge.rawValue).cleanTheTextOf(lastChargeBadBits)}
     var lastAppointment:String {return getLastAptInfoFrom(chartData)}
     var aptTime:String
-    var aptDate:String
-    var saveLocation:SaveLocation = .dummyFiles
+    var aptDate:Int
+    var saveLocation:SaveLocation {
+        switch aptDate {
+        case 0:
+            return .dummyFiles
+        case 1...4:
+            return .tomorrowFiles
+        default:
+            return .desktop
+        }
+    }
     
-    init(chartData:String, aptTime:String, aptDate:String) {
+    init(chartData:String, aptTime:String, aptDate:Int) {
         self.chartData = chartData
         self.aptTime = aptTime
         self.aptDate = aptDate
@@ -198,7 +207,7 @@ class ChartData {
         let dateToDateRegex = "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)"
         let dateToEndOfCCLine = "(?m)(\\d./\\d./\\d*)(.*?)(\\n)(CC:.*)"
         let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded") && !$0.contains("CC: Epogen inj") && !$0.contains("CC: Testosterone inj") && !$0.contains("CC: Flu inj")}
-        print(activeEncounters)
+        //print(activeEncounters)
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
             let components = date.components(separatedBy: "/")
@@ -212,9 +221,10 @@ class ChartData {
     }
 }
 
-enum SaveLocation {
-    case dummyFiles
-    case tomorrowFiles
+enum SaveLocation:String {
+    case dummyFiles = "WPCMSharedFiles/zDoctor Review/06 Dummy Files"
+    case tomorrowFiles = "WPCMSharedFiles/zruss Review/Tomorrows Files"
+    case desktop = "Desktop"
 }
 
 //A struct to get and hold the assessment data from the patient last note

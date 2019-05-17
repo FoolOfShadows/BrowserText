@@ -86,7 +86,7 @@ struct PhysicalAssessment {
         
         let finalArray = orderedArray.filter { !$0.isEmpty }
         //print("Gen: \(genSection)\nExt: \(finalExt)\nNeuro: \(finalNeuro)")
-        print(finalArray.joined(separator: "\n"))
+        //print(finalArray.joined(separator: "\n"))
         return finalArray.joined(separator: "\n")
     }
     

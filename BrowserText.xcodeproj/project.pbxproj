@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		79361199222EE44A0009D2AF /* PF Summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 79361191222EE44A0009D2AF /* PF Summary.png */; };
-		7936119A222EE44A0009D2AF /* NoteMedsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361192222EE44A0009D2AF /* NoteMedsVC.swift */; };
-		7936119B222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361193222EE44A0009D2AF /* BuilderInterfaceVC.swift */; };
-		7936119C222EE44A0009D2AF /* Builder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79361194222EE44A0009D2AF /* Builder.storyboard */; };
+		7936119A222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361192222EE44A0009D2AF /* BuilderInterfaceVC.swift */; };
+		7936119B222EE44A0009D2AF /* zzBuilderInterfaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361193222EE44A0009D2AF /* zzBuilderInterfaceVC.swift */; };
 		7936119D222EE44A0009D2AF /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361195222EE44A0009D2AF /* ChartData.swift */; };
 		7936119E222EE44A0009D2AF /* BuilderConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361196222EE44A0009D2AF /* BuilderConstants.swift */; };
 		7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361197222EE44A0009D2AF /* AssessmentModel.swift */; };
@@ -25,6 +24,7 @@
 		79C0DEAB225CEC18002894FC /* PhoneMessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA3225CEC18002894FC /* PhoneMessageVC.swift */; };
 		79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA4225CEC18002894FC /* PMSymptomsController.swift */; };
 		79C0DEAD225CEC18002894FC /* PhoneMessage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C0DEA6225CEC18002894FC /* PhoneMessage.storyboard */; };
+		79D529C9228F06D9006A92A9 /* BrowserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D529C8228F06D9006A92A9 /* BrowserWindowController.swift */; };
 		79F1B2A122848541006F10A6 /* WebViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1B2A022848541006F10A6 /* WebViewData.swift */; };
 		79F577212225864D001B0C81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F577202225864D001B0C81 /* AppDelegate.swift */; };
 		79F577232225864D001B0C81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F577222225864D001B0C81 /* ViewController.swift */; };
@@ -53,9 +53,8 @@
 
 /* Begin PBXFileReference section */
 		79361191222EE44A0009D2AF /* PF Summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PF Summary.png"; sourceTree = "<group>"; };
-		79361192222EE44A0009D2AF /* NoteMedsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteMedsVC.swift; sourceTree = "<group>"; };
-		79361193222EE44A0009D2AF /* BuilderInterfaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderInterfaceVC.swift; sourceTree = "<group>"; };
-		79361194222EE44A0009D2AF /* Builder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Builder.storyboard; sourceTree = "<group>"; };
+		79361192222EE44A0009D2AF /* BuilderInterfaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderInterfaceVC.swift; sourceTree = "<group>"; };
+		79361193222EE44A0009D2AF /* zzBuilderInterfaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zzBuilderInterfaceVC.swift; sourceTree = "<group>"; };
 		79361195222EE44A0009D2AF /* ChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 		79361196222EE44A0009D2AF /* BuilderConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderConstants.swift; sourceTree = "<group>"; };
 		79361197222EE44A0009D2AF /* AssessmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentModel.swift; sourceTree = "<group>"; };
@@ -70,6 +69,7 @@
 		79C0DEA3225CEC18002894FC /* PhoneMessageVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneMessageVC.swift; sourceTree = "<group>"; };
 		79C0DEA4225CEC18002894FC /* PMSymptomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMSymptomsController.swift; sourceTree = "<group>"; };
 		79C0DEA7225CEC18002894FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhoneMessage.storyboard; sourceTree = "<group>"; };
+		79D529C8228F06D9006A92A9 /* BrowserWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserWindowController.swift; sourceTree = "<group>"; };
 		79F1B2A022848541006F10A6 /* WebViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewData.swift; sourceTree = "<group>"; };
 		79F5771D2225864D001B0C81 /* BrowserText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowserText.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F577202225864D001B0C81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -115,13 +115,12 @@
 			isa = PBXGroup;
 			children = (
 				79361191222EE44A0009D2AF /* PF Summary.png */,
-				79361192222EE44A0009D2AF /* NoteMedsVC.swift */,
-				79361193222EE44A0009D2AF /* BuilderInterfaceVC.swift */,
-				79361194222EE44A0009D2AF /* Builder.storyboard */,
+				79361192222EE44A0009D2AF /* BuilderInterfaceVC.swift */,
 				79361195222EE44A0009D2AF /* ChartData.swift */,
 				79361196222EE44A0009D2AF /* BuilderConstants.swift */,
 				79361197222EE44A0009D2AF /* AssessmentModel.swift */,
 				79361198222EE44A0009D2AF /* Ellipsis.jpg */,
+				79361193222EE44A0009D2AF /* zzBuilderInterfaceVC.swift */,
 			);
 			path = "PTVN Builder";
 			sourceTree = "<group>";
@@ -162,9 +161,10 @@
 		79F5771F2225864D001B0C81 /* BrowserText */ = {
 			isa = PBXGroup;
 			children = (
-				79F577202225864D001B0C81 /* AppDelegate.swift */,
-				79F577222225864D001B0C81 /* ViewController.swift */,
 				79F577262225864F001B0C81 /* Main.storyboard */,
+				79F577202225864D001B0C81 /* AppDelegate.swift */,
+				79D529C8228F06D9006A92A9 /* BrowserWindowController.swift */,
+				79F577222225864D001B0C81 /* ViewController.swift */,
 				79361190222EE44A0009D2AF /* PTVN Builder */,
 				79C0DE9F225CEC18002894FC /* Phone Messages */,
 				79F577242225864F001B0C81 /* Assets.xcassets */,
@@ -306,7 +306,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7936119C222EE44A0009D2AF /* Builder.storyboard in Resources */,
 				79C0DEAD225CEC18002894FC /* PhoneMessage.storyboard in Resources */,
 				79F577252225864F001B0C81 /* Assets.xcassets in Resources */,
 				79F577282225864F001B0C81 /* Main.storyboard in Resources */,
@@ -337,7 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */,
-				7936119B222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */,
+				7936119B222EE44A0009D2AF /* zzBuilderInterfaceVC.swift in Sources */,
 				79C0DEA9225CEC18002894FC /* PMCurrentMedsController.swift in Sources */,
 				79C0DEA8225CEC18002894FC /* Phone Message Model.swift in Sources */,
 				797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */,
@@ -349,9 +348,10 @@
 				79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */,
 				7936119E222EE44A0009D2AF /* BuilderConstants.swift in Sources */,
 				793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */,
-				7936119A222EE44A0009D2AF /* NoteMedsVC.swift in Sources */,
+				7936119A222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */,
 				79F577212225864D001B0C81 /* AppDelegate.swift in Sources */,
 				79C0DEAB225CEC18002894FC /* PhoneMessageVC.swift in Sources */,
+				79D529C9228F06D9006A92A9 /* BrowserWindowController.swift in Sources */,
 				79F1B2A122848541006F10A6 /* WebViewData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
