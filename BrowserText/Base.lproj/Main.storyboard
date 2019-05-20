@@ -714,8 +714,28 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="cDS-X6-dmg">
                                 <rect key="frame" x="854" y="0.0" width="153" height="861"/>
                                 <subviews>
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nSg-cn-a0O">
+                                        <rect key="frame" x="19" y="777" width="113" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Phone Msg" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NeN-ve-AnA">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="openPhoneMessage:" target="gFC-E1-R4T" id="B8F-ZO-Y7G"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KEY-Mw-9T1">
+                                        <rect key="frame" x="31" y="681" width="90" height="32"/>
+                                        <buttonCell key="cell" type="push" title="eScripts" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PUM-dp-lxu">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="openeScripts:" target="gFC-E1-R4T" id="ZKq-E9-Uhf"/>
+                                        </connections>
+                                    </button>
                                     <popUpButton verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M23-eg-t1s">
-                                        <rect key="frame" x="27" y="747" width="99" height="25"/>
+                                        <rect key="frame" x="27" y="473" width="99" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Today" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="epb-1U-mvo" id="qQI-AB-xVn">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="menu"/>
@@ -731,7 +751,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                     <textField verticalHuggingPriority="750" preferredMaxLayoutWidth="68" translatesAutoresizingMaskIntoConstraints="NO" id="y3z-WG-rdP">
-                                        <rect key="frame" x="30" y="791" width="93" height="22"/>
+                                        <rect key="frame" x="30" y="517" width="93" height="22"/>
                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="CD3-Ke-5Ox">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -739,7 +759,7 @@
                                         </textFieldCell>
                                     </textField>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2u5-Ma-qar">
-                                        <rect key="frame" x="41" y="702" width="71" height="32"/>
+                                        <rect key="frame" x="41" y="428" width="71" height="32"/>
                                         <buttonCell key="cell" type="push" title="Build" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bOb-LN-GQX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -748,18 +768,8 @@
                                             <action selector="openPTVNBuilder:" target="gFC-E1-R4T" id="Ge6-7R-caB"/>
                                         </connections>
                                     </button>
-                                    <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nSg-cn-a0O">
-                                        <rect key="frame" x="20" y="605" width="113" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Phone Msg" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NeN-ve-AnA">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="openPhoneMessage:" target="gFC-E1-R4T" id="B8F-ZO-Y7G"/>
-                                        </connections>
-                                    </button>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2D0-A0-vbA">
-                                        <rect key="frame" x="33" y="824" width="85" height="17"/>
+                                        <rect key="frame" x="33" y="550" width="85" height="17"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="PTVN Builder" id="d2f-02-rNK">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -769,18 +779,20 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="nSg-cn-a0O" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="0me-Cp-iWe"/>
+                                    <constraint firstItem="nSg-cn-a0O" firstAttribute="top" secondItem="cDS-X6-dmg" secondAttribute="top" constant="56" id="54Q-8t-FSV"/>
                                     <constraint firstItem="y3z-WG-rdP" firstAttribute="leading" secondItem="cDS-X6-dmg" secondAttribute="leading" constant="30" id="70l-SZ-RJW"/>
                                     <constraint firstAttribute="width" constant="153" id="9eh-x6-m3e"/>
                                     <constraint firstAttribute="trailing" secondItem="y3z-WG-rdP" secondAttribute="trailing" constant="30" id="DBe-D9-qQC"/>
                                     <constraint firstItem="M23-eg-t1s" firstAttribute="top" secondItem="y3z-WG-rdP" secondAttribute="bottom" constant="20" id="Gff-tw-xec"/>
-                                    <constraint firstItem="nSg-cn-a0O" firstAttribute="top" secondItem="2u5-Ma-qar" secondAttribute="bottom" constant="76" id="LNd-zv-I96"/>
                                     <constraint firstItem="y3z-WG-rdP" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="MU2-Fv-xoW"/>
                                     <constraint firstItem="2u5-Ma-qar" firstAttribute="top" secondItem="M23-eg-t1s" secondAttribute="bottom" constant="20" id="MsA-f5-yrb"/>
                                     <constraint firstItem="y3z-WG-rdP" firstAttribute="top" secondItem="2D0-A0-vbA" secondAttribute="bottom" constant="11" id="Yxd-zm-Rl6"/>
                                     <constraint firstItem="2D0-A0-vbA" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="a5Y-FX-Ace"/>
+                                    <constraint firstItem="KEY-Mw-9T1" firstAttribute="top" secondItem="nSg-cn-a0O" secondAttribute="bottom" constant="75" id="aiE-OD-4kB"/>
                                     <constraint firstItem="2u5-Ma-qar" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="hvd-69-C6y"/>
                                     <constraint firstItem="M23-eg-t1s" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="jyh-Eb-HGS"/>
-                                    <constraint firstItem="2D0-A0-vbA" firstAttribute="top" secondItem="cDS-X6-dmg" secondAttribute="top" constant="20" id="yUK-XH-QuW"/>
+                                    <constraint firstItem="2D0-A0-vbA" firstAttribute="top" secondItem="KEY-Mw-9T1" secondAttribute="bottom" constant="121" id="mPq-Ra-sor"/>
+                                    <constraint firstItem="KEY-Mw-9T1" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="rOc-PT-irk"/>
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Cgc-4S-hp4">
@@ -804,6 +816,7 @@
                         <outlet property="timeView" destination="y3z-WG-rdP" id="0rX-Ra-lnN"/>
                         <segue destination="vfp-Hv-K5N" kind="show" identifier="showPhoneMessage" id="WuM-8Q-wLh"/>
                         <segue destination="57f-a2-sLu" kind="show" identifier="showPTVNBuilder" id="cPZ-EX-Cs5"/>
+                        <segue destination="MpH-ZO-gcJ" kind="show" identifier="showeScript" id="381-Ed-DGU"/>
                     </connections>
                 </viewController>
                 <customObject id="RfF-Xn-Y7Y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -867,6 +880,89 @@ Gw
                 <customObject id="xDU-CF-5nR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="473" y="855"/>
+        </scene>
+        <!--eScripts-->
+        <scene sceneID="V6a-it-NqZ">
+            <objects>
+                <viewController title="eScripts" id="MpH-ZO-gcJ" customClass="eScriptVC" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="F4l-Dm-vV6">
+                        <rect key="frame" x="0.0" y="0.0" width="453" height="524"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-Gx-uc6">
+                                <rect key="frame" x="20" y="61" width="413" height="443"/>
+                                <clipView key="contentView" drawsBackground="NO" id="oOr-dv-zNy">
+                                    <rect key="frame" x="1" y="1" width="396" height="441"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="yJC-JA-tbU">
+                                            <rect key="frame" x="0.0" y="0.0" width="396" height="441"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="396" height="441"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1za-OZ-8pk">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="3Oh-Jc-Gh0">
+                                    <rect key="frame" x="397" y="1" width="15" height="441"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YA3-MY-AYC">
+                                <rect key="frame" x="345" y="13" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save File" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qMp-KZ-j7K">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveFile:" target="MpH-ZO-gcJ" id="L0S-El-G8s"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H23-Wa-3SR">
+                                <rect key="frame" x="14" y="13" width="156" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Add Another Script" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6p9-fJ-LUW">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addScript:" target="MpH-ZO-gcJ" id="aQx-YL-jgU"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bs4-za-V8B">
+                                <rect key="frame" x="193" y="13" width="133" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Add Visit Dates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iqB-II-Ch6">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addVisitDates:" target="MpH-ZO-gcJ" id="Of5-Mb-LxN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="a6a-Gx-uc6" firstAttribute="top" secondItem="F4l-Dm-vV6" secondAttribute="top" constant="20" id="Lsp-6C-2Nu"/>
+                            <constraint firstAttribute="trailing" secondItem="a6a-Gx-uc6" secondAttribute="trailing" constant="20" id="Zb4-pA-xmp"/>
+                            <constraint firstItem="a6a-Gx-uc6" firstAttribute="leading" secondItem="F4l-Dm-vV6" secondAttribute="leading" constant="20" id="mUv-Tf-ghw"/>
+                            <constraint firstAttribute="bottom" secondItem="a6a-Gx-uc6" secondAttribute="bottom" constant="61" id="pX3-Zy-XE8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scriptText" destination="yJC-JA-tbU" id="Jgv-wi-5zd"/>
+                    </connections>
+                </viewController>
+                <customObject id="EU8-j3-41L" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="532.5" y="1474"/>
         </scene>
     </scenes>
 </document>

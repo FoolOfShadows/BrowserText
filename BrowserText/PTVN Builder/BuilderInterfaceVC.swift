@@ -41,11 +41,11 @@ class BuilderInterfaceVC: NSViewController {
 
     @IBAction func getLastNoteData(_ sender: Any) {
         //print("Starting getLastNoteData")
-        if let lastNoteData = viewDataDelegate?.getDataFromWebView(usingID: "ember311") {
-            //print("lastNoteData got good data")
-            finishCreatingPTVNWithNoteData(lastNoteData)
+        let lastNoteHandler: () -> Void = {
+            print("Inside lastNoteHandler")
+            self.finishCreatingPTVNWithNoteData(self.viewDataDelegate!.viewContent)
         }
-        //print("Done with getLastNoteData")
+        viewDataDelegate?.getWebViewDataByID("ember311", completion: lastNoteHandler)
     }
     
     func finishCreatingPTVNWithNoteData(_ noteData:String) {

@@ -15,6 +15,9 @@
 		7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361197222EE44A0009D2AF /* AssessmentModel.swift */; };
 		793611A0222EE44A0009D2AF /* Ellipsis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 79361198222EE44A0009D2AF /* Ellipsis.jpg */; };
 		793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793611A1222EE9220009D2AF /* URLExtensions.swift */; };
+		79425B5A2292EDD20097CC88 /* eScriptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79425B572292EDD20097CC88 /* eScriptVC.swift */; };
+		79425B5B2292EDD20097CC88 /* eSFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79425B582292EDD20097CC88 /* eSFunctions.swift */; };
+		79425B5C2292EDD20097CC88 /* eSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79425B592292EDD20097CC88 /* eSConstants.swift */; };
 		796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F69542289CF0D007B615C /* WebMonitoringView.swift */; };
 		797C7D7122282C3300845C1F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7022282C3300845C1F /* Extensions.swift */; };
 		797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7222282E7700845C1F /* RegularExpressions.swift */; };
@@ -60,6 +63,9 @@
 		79361197222EE44A0009D2AF /* AssessmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentModel.swift; sourceTree = "<group>"; };
 		79361198222EE44A0009D2AF /* Ellipsis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ellipsis.jpg; sourceTree = "<group>"; };
 		793611A1222EE9220009D2AF /* URLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		79425B572292EDD20097CC88 /* eScriptVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eScriptVC.swift; sourceTree = "<group>"; };
+		79425B582292EDD20097CC88 /* eSFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eSFunctions.swift; sourceTree = "<group>"; };
+		79425B592292EDD20097CC88 /* eSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eSConstants.swift; sourceTree = "<group>"; };
 		796F69542289CF0D007B615C /* WebMonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMonitoringView.swift; sourceTree = "<group>"; };
 		797C7D7022282C3300845C1F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		797C7D7222282E7700845C1F /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
@@ -125,6 +131,16 @@
 			path = "PTVN Builder";
 			sourceTree = "<group>";
 		};
+		79425B5D2292EDE70097CC88 /* eScript */ = {
+			isa = PBXGroup;
+			children = (
+				79425B572292EDD20097CC88 /* eScriptVC.swift */,
+				79425B592292EDD20097CC88 /* eSConstants.swift */,
+				79425B582292EDD20097CC88 /* eSFunctions.swift */,
+			);
+			path = eScript;
+			sourceTree = "<group>";
+		};
 		79C0DE9F225CEC18002894FC /* Phone Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +191,7 @@
 				797C7D7222282E7700845C1F /* RegularExpressions.swift */,
 				79F1B2A022848541006F10A6 /* WebViewData.swift */,
 				796F69542289CF0D007B615C /* WebMonitoringView.swift */,
+				79425B5D2292EDE70097CC88 /* eScript */,
 			);
 			path = BrowserText;
 			sourceTree = "<group>";
@@ -336,13 +353,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */,
+				79425B5C2292EDD20097CC88 /* eSConstants.swift in Sources */,
 				7936119B222EE44A0009D2AF /* zzBuilderInterfaceVC.swift in Sources */,
 				79C0DEA9225CEC18002894FC /* PMCurrentMedsController.swift in Sources */,
+				79425B5A2292EDD20097CC88 /* eScriptVC.swift in Sources */,
 				79C0DEA8225CEC18002894FC /* Phone Message Model.swift in Sources */,
 				797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */,
 				79F577232225864D001B0C81 /* ViewController.swift in Sources */,
 				7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */,
 				797C7D7122282C3300845C1F /* Extensions.swift in Sources */,
+				79425B5B2292EDD20097CC88 /* eSFunctions.swift in Sources */,
 				79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */,
 				7936119D222EE44A0009D2AF /* ChartData.swift in Sources */,
 				79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */,

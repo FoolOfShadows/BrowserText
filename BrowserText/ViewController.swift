@@ -10,7 +10,9 @@ import Cocoa
 import WebKit
 
 protocol webViewDataProtocol: class {
+    var viewContent:String { get set }
     func getDataFromWebView(usingID id: String) -> String
+    func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
 }
 
 class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtocol {
@@ -48,30 +50,21 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
         pfView.trailingAnchor.constraint(equalTo: interfaceView.leadingAnchor).isActive = true
         pfView.topAnchor.constraint(equalTo: theWebView.topAnchor).isActive = true
         pfView.bottomAnchor.constraint(equalTo: theWebView.bottomAnchor).isActive = true
-        
-        //Set an observer on the pfView to watch its estimatedProgress value and report back the new value as it changes
-        //pfView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
     }
     
     //Function for other views to call back and get data out of the web view
     func getDataFromWebView(usingID id: String) -> String {
         var results = String()
-        //print("Calling getDataFromWebView via protocol and delegation")
+        print("Calling getDataFromWebView via protocol and delegation")
         let dataHandler: () -> Void = {
-            //print("Inside the protocol dataHandler")
+            print("Inside the protocol dataHandler")
             results = self.viewContent
         }
         
         getWebViewDataByID(id, completion: dataHandler)
+        print("Returning results from getDataFromWebView")
         return results
     }
-
-    
-    //Can tell if the main page has loaded but not if a frame in the page has loaded new content
-//    func webView(_ webView: WKWebView,
-//                 didFinish navigation: WKNavigation!){
-//        //print("loaded")
-//    }
     
     
     @IBAction func openPhoneMessage(_ sender: Any?) {
@@ -93,6 +86,14 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
         }
         getWebViewDataByID("ember311", completion: pmHandler)
 
+    }
+    
+    @IBAction func openeScripts(_ sender: Any?) {
+        let eScriptHandler: () -> Void = {
+            self.performSegue(withIdentifier: "showeScript", sender: nil)
+        }
+        
+        getWebViewDataByID("ember311", completion: eScriptHandler)
     }
     
     @IBAction func openPTVNBuilder(_ sender: Any?) {
@@ -133,7 +134,11 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
                 toViewController.viewDataDelegate = self
                 toViewController.currentData = self.currentData
             }
-            
+        case "showeScript":
+            if let toViewController = segue.destinationController as? eScriptVC {
+                toViewController.viewDataDelegate = self
+                toViewController.theText = self.viewContent
+            }
         default:
             return
         }
@@ -167,7 +172,7 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
     
     
     //Gets the underlying text for the Patient Summary page in Practice Fusion
-    private func getWebViewDataByID(_ id: String, completion: @escaping () -> Void) {
+    func getWebViewDataByID(_ id: String, completion: @escaping () -> Void) {
         //print("Getting summary data")
         //Using ID 'ember311' I get the same text as I do by selecting all and copying
         (pfView as! WKWebView).evaluateJavaScript("document.getElementById('\(id)').innerText",
@@ -187,4 +192,8 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
 
 
 
+}
+
+enum EmberID:String {
+    case ember311
 }
