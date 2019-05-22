@@ -776,6 +776,26 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0BV-bI-fFl">
+                                        <rect key="frame" x="12" y="245" width="129" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Print Selection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LQv-Qe-0aS">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="printSelection:" target="gFC-E1-R4T" id="JJj-a1-2TU"/>
+                                        </connections>
+                                    </button>
+                                    <textField verticalHuggingPriority="750" fixedFrame="YES" preferredMaxLayoutWidth="68" translatesAutoresizingMaskIntoConstraints="NO" id="Kvy-wG-igd">
+                                        <rect key="frame" x="0.0" y="222" width="153" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="NC1-aR-8JA">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="nSg-cn-a0O" firstAttribute="centerX" secondItem="cDS-X6-dmg" secondAttribute="centerX" id="0me-Cp-iWe"/>
@@ -811,6 +831,7 @@
                     </view>
                     <connections>
                         <outlet property="daysUntilPopup" destination="M23-eg-t1s" id="vem-7U-d7I"/>
+                        <outlet property="idView" destination="Kvy-wG-igd" id="kvm-TH-R0W"/>
                         <outlet property="interfaceView" destination="cDS-X6-dmg" id="Fay-xE-jo0"/>
                         <outlet property="theWebView" destination="Cgc-4S-hp4" id="53c-GG-1P8"/>
                         <outlet property="timeView" destination="y3z-WG-rdP" id="0rX-Ra-lnN"/>
@@ -884,7 +905,7 @@ Gw
         <!--eScripts-->
         <scene sceneID="V6a-it-NqZ">
             <objects>
-                <viewController title="eScripts" id="MpH-ZO-gcJ" customClass="eScriptVC" customModule="Hydra" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="eScripts" id="MpH-ZO-gcJ" customClass="eScriptVC" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="F4l-Dm-vV6">
                         <rect key="frame" x="0.0" y="0.0" width="453" height="524"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -957,6 +978,7 @@ Gw
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="scriptScroll" destination="a6a-Gx-uc6" id="GrV-RL-3wf"/>
                         <outlet property="scriptText" destination="yJC-JA-tbU" id="Jgv-wi-5zd"/>
                     </connections>
                 </viewController>

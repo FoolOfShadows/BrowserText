@@ -11,11 +11,30 @@ import WebKit
 
 protocol webViewDataProtocol: class {
     var viewContent:String { get set }
-    func getDataFromWebView(usingID id: String) -> String
+    //func getDataFromWebView(usingID id: String) -> String
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
 }
 
-class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtocol {
+class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtocol, WKScriptMessageHandler {
+    
+    //Trying to figure out printing
+    //This is a required function of conforming to the WKScriptMessageHandler protocol
+    //and it receives the messages send by the web page . . . but what to do with them?
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            print("Received \(message.name) message from page.")
+//        (pfView as! WKWebView).evaluateJavaScript("document.documentElement.outerHTML.toString()", completionHandler: { (html: Any?, error: Error?) in
+//            print(html)
+//        })
+    }
+    
+    /// Handle javascript:confirm(...)
+//    func webView(webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: (Bool) -> Void) {
+//
+//        let printAction = UIAlertAction(title: Okay, style: .Default) { _ in
+//            completionHandler(true)
+//        }
+//
+//    }
     
     
     @IBOutlet weak var theWebView: NSView!
@@ -23,6 +42,8 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
     @IBOutlet weak var daysUntilPopup: NSPopUpButton!
     @IBOutlet var followupView: NSView!
     @IBOutlet weak var interfaceView: NSView!
+    
+    @IBOutlet weak var idView: NSTextField!
     
     var pfView:NSView!
     
@@ -39,12 +60,20 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        let configuration = WKWebViewConfiguration()
+//        let script = WKUserScript(source: "window.print = function() { window.webkit.messageHandlers.print.postMessage('print') }", injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: true)
+//        configuration.userContentController.addUserScript(script)
+//        configuration.userContentController.add(self, name: "print")
+//        self.webView = WKWebView(frame: CGRectZero, configuration: configuration)
+        
         //Open default web page into the browser view
         //Create a browser view
         pfView = makeWebView()
         pfView.translatesAutoresizingMaskIntoConstraints = false
+
         //Add the browser view to it's storyboard created container view
         theWebView.addSubview(pfView)
+        
         //Set the browser views constraints withing it's container view
         pfView.leadingAnchor.constraint(equalTo: theWebView.leadingAnchor).isActive = true
         pfView.trailingAnchor.constraint(equalTo: interfaceView.leadingAnchor).isActive = true
@@ -145,12 +174,32 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
     }
     
     private func makeWebView() -> NSView {
-        let webView = WKWebView()
+        
+        //Creates a script then injects it into each frame of the web page when it's done loading
+        let configuration = WKWebViewConfiguration()
+            //Not sure what this 'source' is or how it works
+        let script = WKUserScript(source: "window.print = function() { window.webkit.messageHandlers.print.postMessage('print') }", injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: false)
+        configuration.userContentController.addUserScript(script)
+        configuration.userContentController.add(self, name: "print")
+        //None of these preferences fix the printing from PF issue
+//        configuration.preferences.javaScriptEnabled = true
+//        configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
+//        configuration.preferences.javaEnabled = true
+//        configuration.preferences.plugInsEnabled = true
+        //let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Safari/605.1.15"
+        let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
+        //webView.customUserAgent = userAgent
+        
+        //let webView = WKWebView()
         webView.navigationDelegate = self
         webView.wantsLayer = true
         webView.load(URLRequest(url: URL(string: myPage)!))
         
         return webView
+    }
+    
+    func _webView(webView: WKWebView!, printFrame: WKFrameInfo) {
+        print("JS: window.print()")
     }
     
     @IBAction func getDataFromBrowser(_ sender: Any) {
@@ -190,7 +239,45 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
         
     }
 
-
+    @IBAction func printSelection(_ sender: Any) {
+        print("In printSelection")
+        let printHandler: () -> Void = {
+            print("In printHandler")
+//            let pasteBoard = NSPasteboard.general
+//            pasteBoard.clearContents()
+//            pasteBoard.setString(self.viewContent, forType: .string)
+            print("viewContent contains:\n \(self.viewContent)")
+        }
+        
+        getWebViewDataByID(idView.stringValue, completion: printHandler)
+    }
+    
+//    func printCurrentPage() {
+//
+//
+//        let printController = UIPrintInteractionController.sharedPrintController()
+//        let printFormatter = self.webView.viewPrintFormatter()
+//        printController?.printFormatter = printFormatter
+//
+//        let completionHandler: UIPrintInteractionCompletionHandler = { (printController, completed, error) in
+//            if !completed {
+//                if let e = error? {
+//                    println("[PRINT] Failed: \(e.domain) (\(e.code))")
+//                } else {
+//                    println("[PRINT] Canceled")
+//                }
+//            }
+//        }
+//
+//        if let controller = printController? {
+//            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+//                controller.presentFromBarButtonItem(someBarButtonItem, animated: true, completionHandler: completionHandler)
+//            } else {
+//                controller.presentAnimated(true, completionHandler: completionHandler)
+//            }
+//        }
+//    }
+    
 
 }
 

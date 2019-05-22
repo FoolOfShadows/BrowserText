@@ -183,6 +183,7 @@
 				79F577222225864D001B0C81 /* ViewController.swift */,
 				79361190222EE44A0009D2AF /* PTVN Builder */,
 				79C0DE9F225CEC18002894FC /* Phone Messages */,
+				79425B5D2292EDE70097CC88 /* eScript */,
 				79F577242225864F001B0C81 /* Assets.xcassets */,
 				79F577292225864F001B0C81 /* Info.plist */,
 				79F5772A2225864F001B0C81 /* BrowserText.entitlements */,
@@ -191,7 +192,6 @@
 				797C7D7222282E7700845C1F /* RegularExpressions.swift */,
 				79F1B2A022848541006F10A6 /* WebViewData.swift */,
 				796F69542289CF0D007B615C /* WebMonitoringView.swift */,
-				79425B5D2292EDE70097CC88 /* eScript */,
 			);
 			path = BrowserText;
 			sourceTree = "<group>";

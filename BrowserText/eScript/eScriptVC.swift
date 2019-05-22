@@ -10,7 +10,8 @@ import Cocoa
 
 class eScriptVC: NSViewController {
 
-	@IBOutlet var scriptText: NSTextView!
+	//@IBOutlet var scriptText: NSTextView!
+    @IBOutlet var scriptScroll: NSScrollView!
 	
 	var fileLabelName = String()
 	var patientName = String()
@@ -18,6 +19,11 @@ class eScriptVC: NSViewController {
     
     weak var viewDataDelegate: webViewDataProtocol?
     
+    var scriptText: NSTextView {
+        get {
+            return scriptScroll.contentView.documentView as! NSTextView
+        }
+    }
 	var _undoManager = UndoManager()
 	override var undoManager: UndoManager? {
 		return _undoManager
@@ -28,18 +34,24 @@ class eScriptVC: NSViewController {
         //Until I figure out how to handle macOS Dark Mode
         //forcing the background of the scriptText view to stay white is a functional fix
         scriptText.backgroundColor = .white
+        scriptText.font = NSFont.systemFont(ofSize: 16)
         //scriptUndoManager = scriptText.undoManager
         processPFData(self)
+        
     }
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        self.view.window?.title = "eScript"
-        //This removes the ability to resize the window of a view
-        //opened by a segue
-        self.view.window?.styleMask.remove(.resizable)
-        //This makes the window float at the front of the other windows
-        self.view.window?.level = .floating
+        if let theWindow = self.view.window {
+            theWindow.title = "eScript"
+            //This removes the ability to resize the window of a view
+            //opened by a segue
+            theWindow.styleMask.remove(.resizable)
+            //This makes the window float at the front of the other windows
+            theWindow.level = .floating
+            theWindow.setFrameUsingName("eScriptWindow")
+            theWindow.windowController!.windowFrameAutosaveName = "eScriptWindow"
+        }
     }
 
 	@IBAction func processPFData(_ sender: Any) {

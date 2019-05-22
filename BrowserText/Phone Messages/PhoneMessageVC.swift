@@ -52,15 +52,9 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     var medicationString = String()
     var wantedMeds = [String]()
     var notedSymptoms = [String]()
-    //Setting a property oberserver on this var to act only after
-    //the patientData var has been updated is the only way
-    //I've yet figured out how to let the handler in the seque
-    //finish and update the var in this vc before acting on that data.
-    var patientData = String()/* = String() {
-        didSet {
-            startNewMessage(self)
-        }
-    }*/
+    
+    var patientData = String()
+    
     var currentMessageText:Message = Message(theText: String())
     
     override func viewDidLoad() {
@@ -75,6 +69,18 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     
     //The call to startNewMessage needs to be here rather than viewDidLoad to work
     override func viewDidAppear() {
+        super.viewDidAppear()
+        if let theWindow = self.view.window {
+            theWindow.title = "Phone Message"
+            //This removes the ability to resize the window of a view
+            //opened by a segue
+            theWindow.styleMask.remove(.resizable)
+            //This makes the window float at the front of the other windows
+            //FIXME: Does the staff want this window to float?
+            theWindow.level = .floating
+            theWindow.setFrameUsingName("phoneMessageWindow")
+            theWindow.windowController!.windowFrameAutosaveName = "phonemessageWindow"
+        }
         startNewMessage(self)
     }
     

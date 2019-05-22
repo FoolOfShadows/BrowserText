@@ -28,14 +28,16 @@ class BuilderInterfaceVC: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        //This is where and how to give the window of a view
-        //opened by a segue a title
-        self.view.window?.title = "PTVN Builder"
-        //This removes the ability to resize the window of a view
-        //opened by a segue
-        self.view.window?.styleMask.remove(.resizable)
-        //This makes the window float at the front of the other windows
-        self.view.window?.level = .floating
+        if let theWindow = self.view.window {
+            theWindow.title = "PTVN Builder"
+            //This removes the ability to resize the window of a view
+            //opened by a segue
+            theWindow.styleMask.remove(.resizable)
+            //This makes the window float at the front of the other windows
+            theWindow.level = .floating
+            theWindow.setFrameUsingName("builderWindow")
+            theWindow.windowController!.windowFrameAutosaveName = "builderWindow"
+        }
     }
     
 
