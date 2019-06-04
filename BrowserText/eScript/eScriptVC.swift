@@ -17,6 +17,8 @@ class eScriptVC: NSViewController {
 	var patientName = String()
     var theText = String()
     
+    var saveSuccessful = false
+    
     weak var viewDataDelegate: webViewDataProtocol?
     
     var scriptText: NSTextView {
@@ -85,11 +87,13 @@ class eScriptVC: NSViewController {
 	
 	@IBAction func saveFile(_ sender: Any) {
 		guard let fileTextData = scriptText.string.data(using: String.Encoding.utf8) else { return }
-		saveExportDialogWithData(fileTextData, andFileExtension: ".txt")
+        
+        saveExportDialogWithData(fileTextData, andFileExtension: ".txt")
+        //self.view.window?.performClose(self)
 	}
 	
 	
-	func saveExportDialogWithData(_ data: Data, andFileExtension ext: String) {
+    func saveExportDialogWithData(_ data: Data, andFileExtension ext: String) {
 		//Get the visit date
 		let requestDate = Date()
 		let labelDateFormatter = DateFormatter()
@@ -108,12 +112,14 @@ class eScriptVC: NSViewController {
 					if let path = URL(string: String(describing: filePath) + ext) {
 						do {
 							try data.write(to: path, options: .withoutOverwriting)
+                            self.saveSuccessful = true
 						} catch {
 							let alert = NSAlert()
 							alert.messageText = "There is already a file with this name.\n Please choose a different name."
 							alert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
 								let returnCode = NSModalResponse
 								print(returnCode)
+                                self.saveSuccessful = false
 							}
 						}
 					}

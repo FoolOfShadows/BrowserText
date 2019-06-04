@@ -76,8 +76,8 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
             //opened by a segue
             theWindow.styleMask.remove(.resizable)
             //This makes the window float at the front of the other windows
-            //FIXME: Does the staff want this window to float?
-            theWindow.level = .floating
+            //Does the staff want this window to float? - no 5/23/19
+            //theWindow.level = .floating
             theWindow.setFrameUsingName("phoneMessageWindow")
             theWindow.windowController!.windowFrameAutosaveName = "phonemessageWindow"
         }
@@ -148,6 +148,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         guard let fileTextData = messageText.data(using: String.Encoding.utf8) else { return }
         saveExportDialogWithData(fileTextData, andFileExtension: ".txt")
         //lastMessageView.stringValue = currentMessageText.ptLabelName
+        self.view.window?.performClose(self)
     }
     
     

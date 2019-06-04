@@ -8,6 +8,8 @@
 
 import Cocoa
 import WebKit
+//Quartz is required to access the PDFKit framework
+import Quartz
 
 protocol webViewDataProtocol: class {
     var viewContent:String { get set }
@@ -15,27 +17,7 @@ protocol webViewDataProtocol: class {
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
 }
 
-class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtocol, WKScriptMessageHandler {
-    
-    //Trying to figure out printing
-    //This is a required function of conforming to the WKScriptMessageHandler protocol
-    //and it receives the messages send by the web page . . . but what to do with them?
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            print("Received \(message.name) message from page.")
-//        (pfView as! WKWebView).evaluateJavaScript("document.documentElement.outerHTML.toString()", completionHandler: { (html: Any?, error: Error?) in
-//            print(html)
-//        })
-    }
-    
-    /// Handle javascript:confirm(...)
-//    func webView(webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: (Bool) -> Void) {
-//
-//        let printAction = UIAlertAction(title: Okay, style: .Default) { _ in
-//            completionHandler(true)
-//        }
-//
-//    }
-    
+class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webViewDataProtocol, WKScriptMessageHandler {
     
     @IBOutlet weak var theWebView: NSView!
     @IBOutlet weak var timeView: NSTextField!
@@ -55,16 +37,12 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
     
     let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/login"
     
+    @IBOutlet weak var webPrintView: NSView!
+    @IBOutlet weak var webViewForPrint: WKWebView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        let configuration = WKWebViewConfiguration()
-//        let script = WKUserScript(source: "window.print = function() { window.webkit.messageHandlers.print.postMessage('print') }", injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: true)
-//        configuration.userContentController.addUserScript(script)
-//        configuration.userContentController.add(self, name: "print")
-//        self.webView = WKWebView(frame: CGRectZero, configuration: configuration)
         
         //Open default web page into the browser view
         //Create a browser view
@@ -79,7 +57,65 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
         pfView.trailingAnchor.constraint(equalTo: interfaceView.leadingAnchor).isActive = true
         pfView.topAnchor.constraint(equalTo: theWebView.topAnchor).isActive = true
         pfView.bottomAnchor.constraint(equalTo: theWebView.bottomAnchor).isActive = true
+        
+        (pfView as! WKWebView).uiDelegate = self
+        (pfView as! WKWebView).navigationDelegate = self
     }
+    
+//    func webView(_: WKWebView, decidePolicyFor: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+//
+//    }
+    
+    //Trying to figure out printing
+    //This is a required function of conforming to the WKScriptMessageHandler protocol
+    //and it receives the messages sent by the web page . . . but what to do with them?
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print("Received \(message.name) message from frame with tag\n: \(message.frameInfo)")
+//        let theWebView = message.webView!
+        //printWebView()
+        
+        //"document.getElementById('print-chart-modal-content').innerHTML"
+        
+        //Using .innerText will grab the text from the PF generated report and pass it to the printer, though it does NOT pass on the formatting and returns something ugly and mostly unuseable in its current form.  I either need to figure out how to include the PF formatting, or do my own post retrieval formatting.  Using .innerHTML will grab the same data with all it's HTML tags.
+        (pfView as! WKWebView).evaluateJavaScript("document.getElementById('print-chart-modal-content').innerHTML",
+                                                  completionHandler: { (html: Any?, error: Error?) in
+                                                    //Check if an error's been returned, if not, continue
+                                                    if error == nil {
+                                                        print("No error in retrieving object")
+                                                        
+                                                        //Create a view to hold the final text so it can be passed to the NSPrintOperation
+                                                        let printView = NSTextView()
+                                                        //Set the size of the view or the text won't appear on the page
+                                                        printView.setFrameSize(NSSize(width: 680, height: 0))
+                                                        //Transfer the final string to the TextView's string property
+                                                        printView.string = html as! String
+                                                        let printInfo = NSPrintInfo.shared
+                                                        printInfo.leftMargin = 40
+                                                        printInfo.isVerticallyCentered = false
+                                                        printInfo.bottomMargin = 40
+                                                        let operation: NSPrintOperation = NSPrintOperation(view: printView, printInfo: printInfo)
+                                                        operation.run()
+                                                        
+                                                        let pasteBoard = NSPasteboard.general
+                                                        pasteBoard.clearContents()
+                                                        pasteBoard.setString(html as! String, forType: .string)
+                                                        
+                                                        //self.printWebView(html as! WKWebView)
+                                                        //(self.pfView as! WKWebView).loadHTMLString(html as! String, baseURL: nil)
+                                                        
+                                                        //Set the viewContent var to the data retrieved from the webview
+                                                        //if that retrieval fails, set the var to a default value
+                                                        //self.viewContent = (html as? String) ?? "No string"
+                                                        
+                                                        
+                                                    } else {
+                                                        print("Error: \(error)")
+                                                    }
+        })
+    }
+    
+    //Click an button with JavaScript
+   //document.getElementById('htmlbutton').click()
     
     //Function for other views to call back and get data out of the web view
     func getDataFromWebView(usingID id: String) -> String {
@@ -143,6 +179,7 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
                 theAlert.beginSheetModal(for: theWindow) { (NSModalResponse) -> Void in
                     let returnCode = NSModalResponse
                     print(returnCode)}
+                //FIXME: Need to add a "Continue" button to the dialog and if it's pressed the program should continue to the phone message view with an empty ChartData object so a message can be taken for a non-patient.
             }
         }
         
@@ -187,6 +224,7 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
 //        configuration.preferences.javaEnabled = true
 //        configuration.preferences.plugInsEnabled = true
         //let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Safari/605.1.15"
+
         let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
         //webView.customUserAgent = userAgent
         
@@ -198,9 +236,9 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
         return webView
     }
     
-    func _webView(webView: WKWebView!, printFrame: WKFrameInfo) {
-        print("JS: window.print()")
-    }
+//    func _webView(webView: WKWebView!, printFrame: WKFrameInfo) {
+//        print("JS: window.print()")
+//    }
     
     @IBAction func getDataFromBrowser(_ sender: Any) {
         //Create a completion handler to deal with the results of the JS call to the webView
@@ -243,19 +281,62 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
         print("In printSelection")
         let printHandler: () -> Void = {
             print("In printHandler")
-//            let pasteBoard = NSPasteboard.general
-//            pasteBoard.clearContents()
-//            pasteBoard.setString(self.viewContent, forType: .string)
+            let pasteBoard = NSPasteboard.general
+            pasteBoard.clearContents()
+            pasteBoard.setString(self.viewContent, forType: .string)
             print("viewContent contains:\n \(self.viewContent)")
         }
         
         getWebViewDataByID(idView.stringValue, completion: printHandler)
     }
     
+    func /*webView(_ sender: WebView!, didFinishLoadFor frame: WebFrame!)*/ printWebView(_ view: WKWebView) {
+
+        let printInfo = NSPrintInfo.shared
+        printInfo.paperSize = NSMakeSize(595.22, 841.85)
+        printInfo.isHorizontallyCentered = true
+        printInfo.isVerticallyCentered = true
+        printInfo.orientation = .portrait
+        printInfo.topMargin = 50
+        printInfo.rightMargin = 0
+        printInfo.bottomMargin = 50
+        printInfo.leftMargin = 0
+        printInfo.verticalPagination = .automatic
+        printInfo.horizontalPagination = .fit
+        //webView.mainFrame.frameView.printOperation(with: printInfo).run()
+        let printOp: NSPrintOperation = NSPrintOperation(view: view, printInfo: printInfo)
+        //let printOp: NSPrintOperation = NSPrintOperation(view: (pfView as! WKWebView).mainFrame.frameView.documentView, printInfo: printInfo)
+        printOp.showsPrintPanel = true
+        printOp.showsProgressPanel = false
+        printOp.run()
+    }
+    
+//    func makePDF(at url: URL, for webView: WKWebView, printInfo: NSPrintInfo) throws {
+//        webView.preferences.shouldPrintBackgrounds = true
+//
+//        guard let printOp = webView.mainFrame.frameView.printOperation(with: printInfo) else {
+//            throw MyPrintError.couldntGetPrintOperation // or something like this
+//        }
+//
+//        let session = PMPrintSession(printOp.printInfo.pmPrintSession())
+//        let settings = PMPrintSettings(printOp.printInfo.pmPrintSettings())
+//
+//        if PMSessionSetDestination(session,
+//                                   settings,
+//                                   PMDestinationType(kPMDestinationFile),
+//                                   kPMDocumentFormatPDF as CFString,
+//                                   url as CFURL) != noErr {
+//            throw MyPrintError.couldntSetDestination // or something like this
+//        }
+//
+//        printOp.showsPrintPanel = false
+//        printOp.run()
+//    }
+    
 //    func printCurrentPage() {
 //
 //
-//        let printController = UIPrintInteractionController.sharedPrintController()
+//        let printController = print
 //        let printFormatter = self.webView.viewPrintFormatter()
 //        printController?.printFormatter = printFormatter
 //
@@ -277,10 +358,16 @@ class ViewController: NSViewController, WKNavigationDelegate, webViewDataProtoco
 //            }
 //        }
 //    }
-    
+
 
 }
 
 enum EmberID:String {
     case ember311
+    case printView = "print-chart-modal-content"
+}
+
+enum MyPrintError:Error {
+    case couldntGetPrintOperation
+    case couldntSetDestination
 }
