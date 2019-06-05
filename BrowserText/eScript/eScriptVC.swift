@@ -17,7 +17,7 @@ class eScriptVC: NSViewController {
 	var patientName = String()
     var theText = String()
     
-    var saveSuccessful = false
+    //var saveSuccessful = false
     
     weak var viewDataDelegate: webViewDataProtocol?
     
@@ -87,13 +87,12 @@ class eScriptVC: NSViewController {
 	
 	@IBAction func saveFile(_ sender: Any) {
 		guard let fileTextData = scriptText.string.data(using: String.Encoding.utf8) else { return }
-        
-        saveExportDialogWithData(fileTextData, andFileExtension: ".txt")
-        //self.view.window?.performClose(self)
+        saveExportDialogWithData(fileTextData, andFileExtension: ".txt", closingWindow: self.view.window!)
+
 	}
 	
 	
-    func saveExportDialogWithData(_ data: Data, andFileExtension ext: String) {
+    func saveExportDialogWithData(_ data: Data, andFileExtension ext: String, closingWindow: NSWindow) {
 		//Get the visit date
 		let requestDate = Date()
 		let labelDateFormatter = DateFormatter()
@@ -102,30 +101,34 @@ class eScriptVC: NSViewController {
 		
 		let savePath = NSHomeDirectory()
 		let saveLocation = "WPCMSharedFiles/zBertha Review/01 The Script Corral"
+        
+        //var saveSuccessful = false
 		
 		let saveDialog = NSSavePanel()
+        
 		saveDialog.nameFieldStringValue = "\(fileLabelName) RXCOM \(labelRequestDate)"
 		saveDialog.directoryURL = NSURL.fileURL(withPath: "\(savePath)/\(saveLocation)")
-		saveDialog.begin(completionHandler: {(result: NSApplication.ModalResponse) -> Void in
+        saveDialog.beginSheetModal(for: closingWindow,completionHandler: {(result: NSApplication.ModalResponse) -> Void in
 			if result.rawValue == NSFileHandlingPanelOKButton {
 				if let filePath = saveDialog.url {
 					if let path = URL(string: String(describing: filePath) + ext) {
 						do {
 							try data.write(to: path, options: .withoutOverwriting)
-                            self.saveSuccessful = true
+                            print("Should be closing the window")
+                            //closingWindow.performClose(self)
 						} catch {
 							let alert = NSAlert()
 							alert.messageText = "There is already a file with this name.\n Please choose a different name."
 							alert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
 								let returnCode = NSModalResponse
 								print(returnCode)
-                                self.saveSuccessful = false
 							}
 						}
 					}
 				}
-
+                
 			}})
+        //closingWindow.performClose(self)
 	}
     
     @IBAction func addVisitDates(_ sender: Any) {

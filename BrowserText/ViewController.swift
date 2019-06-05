@@ -186,6 +186,15 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         getWebViewDataByID("ember311", completion: assignmentHandler)
     }
     
+    @IBAction func openLabLetter(_ sender: Any?) {
+        //FIXME: Need to check the text to make sure we're showing lab results before continuing
+        
+        let assignmentHandler: () -> Void = {
+            self.performSegue(withIdentifier: "showLabLetter", sender: self)
+        }
+        
+        getWebViewDataByID("ember311", completion: assignmentHandler)
+    }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         switch segue.identifier {
@@ -204,6 +213,11 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             if let toViewController = segue.destinationController as? eScriptVC {
                 toViewController.viewDataDelegate = self
                 toViewController.theText = self.viewContent
+            }
+        case "showLabLetter":
+            if let toViewController = segue.destinationController as? LabViewController {
+                toViewController.viewDataDelegate = self
+                toViewController.rawLabData = self.viewContent
             }
         default:
             return
