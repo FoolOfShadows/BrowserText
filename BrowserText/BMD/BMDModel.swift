@@ -51,7 +51,7 @@ Dear \(ptName),
 
 """
         let maintainDensity = """
-To continue preserving your bone mass and strength I recommend weight bearing exercises and a calcium supplement such as Citrical, Oscal, etc. in the amount of 500 mg or 600 mg of calcium once a day and Vitamin D3, 1,000 IU daily.
+To continue preserving your bone mass and strength I recommend weight bearing exercises and a calcium supplement such as Citrical, Caltrate, etc. in the amount of 500 mg or 600 mg of calcium once a day and Vitamin D3, 1,000 IU daily.
 
 If you have any further questions regarding the results of this test, please call my office to make an appointment to discuss them.
 
@@ -62,9 +62,9 @@ Sincerely,
 Dawn R. Whelchel, M.D.
 """
         let increaseDensity = """
-To increase your bone mass and strength and reduce fracture risk I recommend weight bearing exercises and a calcium supplement such as Citrical, Oscal, etc. in the amount of 500 mg or 600 mg once or twice a day.  Vitamin D has also been shown to decrease falls, improve strength and decrease fracture risk by 20%.  I suggest Vitamin D3, 1,000 to 2,000 IU daily.
+To increase your bone mass and strength and reduce fracture risk I recommend weight bearing exercises and a calcium supplement such as Citrical, Caltrate, etc. in the amount of 500 mg or 600 mg once or twice a day.  Vitamin D has also been shown to decrease falls, improve strength and decrease fracture risk by 20%.  I suggest Vitamin D3, 1,000 to 2,000 IU daily.
 
-We will discuss prescription treatment options at your next appointment to decide which is best for you.  Please call for an appointment if you do not already have one scheduled.
+We can discuss prescription treatment options at your next appointment to decide which is best for you.  Please call for an appointment if you do not already have one scheduled.
 Sincerely,
 
 
