@@ -279,37 +279,8 @@ class LabViewController: NSViewController {
     
     @IBAction func showLabPrintView(_ sender: Any?) {
         processToClipboard(self)
-        //FIXME: The Cropped version fits.  Need to add a text view inside the the imageView to load with the lab data
-        guard let img = NSImage(named: NSImage.Name("WPCM Letterhead Blank Cropped")) else { return }
-        let imageView = NSImageView(frame: NSRect(origin: .zero, size: img.size))
-        imageView.image = img
-        
-        let labDataView = NSTextView()
-        labDataView.setFrameSize(NSSize(width: imageView.frame.width - 100, height: imageView.frame.height - 400))
-        let theUserFont = NSFont(name: "Times New Roman", size: 10.0)
-        let fontAttributes = NSDictionary(object: theUserFont!, forKey: NSAttributedString.Key.font as NSCopying)
-        labDataView.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
-        
-//        let attributedString = NSAttributedString(string:finalLabData,
-//                                                  attributes:[NSAttributedString.Key.foregroundColor: NSColor.black,
-//                                                              NSAttributedString.Key.font: NSFont(name: "Arial", size: 16.0) as Any])
+        printLetterheadWithText(finalLabData, fontSize: 10.0)
 
-        labDataView.string = finalLabData
-        
-        imageView.addSubview(labDataView)
-        labDataView.setFrameOrigin(NSPoint(x: imageView.frame.maxX - 575, y: imageView.frame.maxY - 125))
-        
-        let printInfo = NSPrintInfo.shared
-        //This gets really close to fitting
-        printInfo.leftMargin = 0
-        printInfo.rightMargin = 0
-        printInfo.isHorizontallyCentered = false
-        printInfo.topMargin = -600
-        printInfo.bottomMargin = -100
-
-        let operation:NSPrintOperation = NSPrintOperation(view:imageView, printInfo: printInfo)
-        operation.run()
-        
     }
 
 }

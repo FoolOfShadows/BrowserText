@@ -151,8 +151,21 @@ extension String {
         myPasteboard.clearContents()
         myPasteboard.setString(self, forType: NSPasteboard.PasteboardType.string)
     }
+    
+    /// stringToFind must be at least 1 character.
+    func countInstances(of stringToFind: String) -> Int {
+        assert(!stringToFind.isEmpty)
+        var count = 0
+        var searchRange: Range<String.Index>?
+        while let foundRange = range(of: stringToFind, options: [], range: searchRange) {
+            count += 1
+            searchRange = Range(uncheckedBounds: (lower: foundRange.upperBound, upper: endIndex))
+        }
+        return count
+    }
 }
 
+//MARK: Date Extensions
 extension Date {
     func addingDays(_ daysToAdd: Int) -> Date? {
         var components = DateComponents()
@@ -168,6 +181,7 @@ extension Date {
     }
 }
 
+//MARK: NSView Extensions
 extension NSView {
     func clearControllers() {
         func clearChecksTextfields(theView: NSView) {
@@ -199,6 +213,7 @@ extension NSView {
     }
 }
 
+//MARK: NSComboBox Extensions
 extension NSComboBox {
     func clearComboBox(menuItems: [String]) {
         self.removeAllItems()

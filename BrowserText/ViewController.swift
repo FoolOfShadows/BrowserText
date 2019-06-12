@@ -15,6 +15,7 @@ protocol webViewDataProtocol: class {
     var viewContent:String { get set }
     //func getDataFromWebView(usingID id: String) -> String
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
+    func getWebViewValueByID(_ id: String, dataType:String, completion: @escaping () -> Void)
 }
 
 class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webViewDataProtocol, WKScriptMessageHandler {
@@ -196,6 +197,14 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         getWebViewDataByID("ember311", completion: assignmentHandler)
     }
     
+    @IBAction func openFormLetters(_sender: Any?) {
+        let assignmentHandler: () -> Void = {
+            self.performSegue(withIdentifier: "showFormLetters", sender: self)
+        }
+        
+        getWebViewDataByID("ember311", completion: assignmentHandler)
+    }
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showPhoneMessage":
@@ -218,6 +227,11 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             if let toViewController = segue.destinationController as? LabViewController {
                 toViewController.viewDataDelegate = self
                 toViewController.rawLabData = self.viewContent
+            }
+        case "showFormLetters":
+            if let toViewController = segue.destinationController as? FormLettersVC {
+                toViewController.viewDataDelegate = self
+                toViewController.theText = self.viewContent
             }
         default:
             return
@@ -301,7 +315,29 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             print("viewContent contains:\n \(self.viewContent)")
         }
         
-        getWebViewDataByID(idView.stringValue, completion: printHandler)
+        getWebViewValueByID(idView.stringValue, completion: printHandler)
+    }
+    
+    //Gets the underlying values for the Patient Profile page in Practice Fusion (use .value to get the value after getElementById())
+    func getWebViewValueByID(_ id: String, dataType:String = "value", completion: @escaping () -> Void) {
+        //print("Getting summary data")
+        //Using .value I can retrieve the data from a form field if I know it's ID
+        (pfView as! WKWebView).evaluateJavaScript("document.getElementById('\(id)').\(dataType)",
+            completionHandler: { (html: Any?, error: Error?) in
+                //Check if an error's been returned, if not, continue
+                if error == nil {
+                    print("Assigning data to viewContent")
+                    //Set the viewContent var to the data retrieved from the webview
+                    //if that retrieval fails, set the var to a default value
+                    
+                    self.viewContent = (html as? String) ?? "No string"
+                    //Run the completion handler passed in as a parameter
+                    completion()
+                } else {
+                    print("Error: \(error)")
+                }
+        })
+        
     }
     
     func /*webView(_ sender: WebView!, didFinishLoadFor frame: WebFrame!)*/ printWebView(_ view: WKWebView) {
@@ -384,4 +420,20 @@ enum EmberID:String {
 enum MyPrintError:Error {
     case couldntGetPrintOperation
     case couldntSetDestination
+}
+
+func getEmberIDFromScrapedString(_ data:String) -> String {
+    var result = String()
+    let dataArray = data.split(separator: "\n")
+    var theLine = String()
+    mainLoop: for line in dataArray {
+        if line.contains("data-element=\"last-name\"") {
+            theLine = String(line)
+            break mainLoop
+        }
+    }
+    
+    result = theLine.simpleRegExMatch("ember\\d{4,7}")
+    print(result)
+    return result
 }

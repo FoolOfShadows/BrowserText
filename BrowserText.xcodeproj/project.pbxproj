@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79013F6422A96CFE005CC358 /* LetterheadPrinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79013F6322A96CFE005CC358 /* LetterheadPrinting.swift */; };
 		79361199222EE44A0009D2AF /* PF Summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 79361191222EE44A0009D2AF /* PF Summary.png */; };
 		7936119A222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361192222EE44A0009D2AF /* BuilderInterfaceVC.swift */; };
 		7936119B222EE44A0009D2AF /* zzBuilderInterfaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361193222EE44A0009D2AF /* zzBuilderInterfaceVC.swift */; };
@@ -19,8 +20,13 @@
 		79425B5B2292EDD20097CC88 /* eSFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79425B582292EDD20097CC88 /* eSFunctions.swift */; };
 		79425B5C2292EDD20097CC88 /* eSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79425B592292EDD20097CC88 /* eSConstants.swift */; };
 		796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F69542289CF0D007B615C /* WebMonitoringView.swift */; };
+		797B66D322AFF8B500688C65 /* PatientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797B66D222AFF8B500688C65 /* PatientData.swift */; };
 		797C7D7122282C3300845C1F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7022282C3300845C1F /* Extensions.swift */; };
 		797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7222282E7700845C1F /* RegularExpressions.swift */; };
+		79A92BED22AAC6E300C103DB /* BMDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BEB22AAC6E300C103DB /* BMDModel.swift */; };
+		79A92BEE22AAC6E300C103DB /* BMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BEC22AAC6E300C103DB /* BMDViewController.swift */; };
+		79A92BF022AAC80600C103DB /* FormLettersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BEF22AAC80600C103DB /* FormLettersVC.swift */; };
+		79A92BF222AAD4C800C103DB /* FormLettersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BF122AAD4C800C103DB /* FormLettersModel.swift */; };
 		79C0DEA8225CEC18002894FC /* Phone Message Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA0225CEC18002894FC /* Phone Message Model.swift */; };
 		79C0DEA9225CEC18002894FC /* PMCurrentMedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA1225CEC18002894FC /* PMCurrentMedsController.swift */; };
 		79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA2225CEC18002894FC /* PM Constants.swift */; };
@@ -41,7 +47,6 @@
 		79F8DB8722A6C69B0018F21A /* LabValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F8DB8122A6C69B0018F21A /* LabValues.swift */; };
 		79F8DB8822A6C69B0018F21A /* LabValuePrefrencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F8DB8222A6C69B0018F21A /* LabValuePrefrencesController.swift */; };
 		79F8DB8922A6C69B0018F21A /* PopulateFormModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F8DB8322A6C69B0018F21A /* PopulateFormModel.swift */; };
-		79F8DB8C22A6CF0B0018F21A /* WPCM Letterhead Blank.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 79F8DB8B22A6CF0B0018F21A /* WPCM Letterhead Blank.pdf */; };
 		79F8DB8E22A6EB740018F21A /* WPCM Letterhead Blank Cropped.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 79F8DB8D22A6EB740018F21A /* WPCM Letterhead Blank Cropped.pdf */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79013F6322A96CFE005CC358 /* LetterheadPrinting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LetterheadPrinting.swift; path = "BrowserText/Printing To Letterhead/LetterheadPrinting.swift"; sourceTree = SOURCE_ROOT; };
 		79361191222EE44A0009D2AF /* PF Summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PF Summary.png"; sourceTree = "<group>"; };
 		79361192222EE44A0009D2AF /* BuilderInterfaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuilderInterfaceVC.swift; sourceTree = "<group>"; };
 		79361193222EE44A0009D2AF /* zzBuilderInterfaceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zzBuilderInterfaceVC.swift; sourceTree = "<group>"; };
@@ -75,8 +81,13 @@
 		79425B582292EDD20097CC88 /* eSFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eSFunctions.swift; sourceTree = "<group>"; };
 		79425B592292EDD20097CC88 /* eSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eSConstants.swift; sourceTree = "<group>"; };
 		796F69542289CF0D007B615C /* WebMonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMonitoringView.swift; sourceTree = "<group>"; };
+		797B66D222AFF8B500688C65 /* PatientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientData.swift; sourceTree = "<group>"; };
 		797C7D7022282C3300845C1F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		797C7D7222282E7700845C1F /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
+		79A92BEB22AAC6E300C103DB /* BMDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMDModel.swift; sourceTree = "<group>"; };
+		79A92BEC22AAC6E300C103DB /* BMDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMDViewController.swift; sourceTree = "<group>"; };
+		79A92BEF22AAC80600C103DB /* FormLettersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLettersVC.swift; sourceTree = "<group>"; };
+		79A92BF122AAD4C800C103DB /* FormLettersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLettersModel.swift; sourceTree = "<group>"; };
 		79C0DEA0225CEC18002894FC /* Phone Message Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Phone Message Model.swift"; sourceTree = "<group>"; };
 		79C0DEA1225CEC18002894FC /* PMCurrentMedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMCurrentMedsController.swift; sourceTree = "<group>"; };
 		79C0DEA2225CEC18002894FC /* PM Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PM Constants.swift"; sourceTree = "<group>"; };
@@ -104,7 +115,6 @@
 		79F8DB8122A6C69B0018F21A /* LabValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabValues.swift; sourceTree = "<group>"; };
 		79F8DB8222A6C69B0018F21A /* LabValuePrefrencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabValuePrefrencesController.swift; sourceTree = "<group>"; };
 		79F8DB8322A6C69B0018F21A /* PopulateFormModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopulateFormModel.swift; sourceTree = "<group>"; };
-		79F8DB8B22A6CF0B0018F21A /* WPCM Letterhead Blank.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "WPCM Letterhead Blank.pdf"; sourceTree = "<group>"; };
 		79F8DB8D22A6EB740018F21A /* WPCM Letterhead Blank Cropped.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "WPCM Letterhead Blank Cropped.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +167,34 @@
 			path = eScript;
 			sourceTree = "<group>";
 		};
+		79A92BE422AAB6F100C103DB /* Printing To Letterhead */ = {
+			isa = PBXGroup;
+			children = (
+				79F8DB8D22A6EB740018F21A /* WPCM Letterhead Blank Cropped.pdf */,
+				79013F6322A96CFE005CC358 /* LetterheadPrinting.swift */,
+			);
+			path = "Printing To Letterhead";
+			sourceTree = "<group>";
+		};
+		79A92BEA22AAC6E300C103DB /* BMD */ = {
+			isa = PBXGroup;
+			children = (
+				79A92BEC22AAC6E300C103DB /* BMDViewController.swift */,
+				79A92BEB22AAC6E300C103DB /* BMDModel.swift */,
+			);
+			path = BMD;
+			sourceTree = "<group>";
+		};
+		79A92BF322AAD4CF00C103DB /* Form Letters */ = {
+			isa = PBXGroup;
+			children = (
+				79A92BEF22AAC80600C103DB /* FormLettersVC.swift */,
+				797B66D222AFF8B500688C65 /* PatientData.swift */,
+				79A92BF122AAD4C800C103DB /* FormLettersModel.swift */,
+			);
+			path = "Form Letters";
+			sourceTree = "<group>";
+		};
 		79C0DE9F225CEC18002894FC /* Phone Messages */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,8 +215,6 @@
 				79F577322225864F001B0C81 /* BrowserTextTests */,
 				79F5773D22258650001B0C81 /* BrowserTextUITests */,
 				79F5771E2225864D001B0C81 /* Products */,
-				79F8DB8B22A6CF0B0018F21A /* WPCM Letterhead Blank.pdf */,
-				79F8DB8D22A6EB740018F21A /* WPCM Letterhead Blank Cropped.pdf */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,7 +239,9 @@
 				79C0DE9F225CEC18002894FC /* Phone Messages */,
 				79425B5D2292EDE70097CC88 /* eScript */,
 				79F8DB8A22A6C6AB0018F21A /* Lab Letters */,
-				79F577242225864F001B0C81 /* Assets.xcassets */,
+				79A92BF322AAD4CF00C103DB /* Form Letters */,
+				79A92BEA22AAC6E300C103DB /* BMD */,
+				79A92BE422AAB6F100C103DB /* Printing To Letterhead */,
 				79F577292225864F001B0C81 /* Info.plist */,
 				79F5772A2225864F001B0C81 /* BrowserText.entitlements */,
 				793611A1222EE9220009D2AF /* URLExtensions.swift */,
@@ -212,6 +250,7 @@
 				79F1B2A022848541006F10A6 /* WebViewData.swift */,
 				796F69542289CF0D007B615C /* WebMonitoringView.swift */,
 				79F8DB7F22A6C69A0018F21A /* GeneralBits.swift */,
+				79F577242225864F001B0C81 /* Assets.xcassets */,
 			);
 			path = BrowserText;
 			sourceTree = "<group>";
@@ -358,7 +397,6 @@
 				79F8DB8E22A6EB740018F21A /* WPCM Letterhead Blank Cropped.pdf in Resources */,
 				79C0DEAD225CEC18002894FC /* PhoneMessage.storyboard in Resources */,
 				79F577252225864F001B0C81 /* Assets.xcassets in Resources */,
-				79F8DB8C22A6CF0B0018F21A /* WPCM Letterhead Blank.pdf in Resources */,
 				79F577282225864F001B0C81 /* Main.storyboard in Resources */,
 				79361199222EE44A0009D2AF /* PF Summary.png in Resources */,
 				793611A0222EE44A0009D2AF /* Ellipsis.jpg in Resources */,
@@ -388,8 +426,11 @@
 			files = (
 				79F8DB8422A6C69B0018F21A /* LabViewController.swift in Sources */,
 				796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */,
+				79A92BF022AAC80600C103DB /* FormLettersVC.swift in Sources */,
+				797B66D322AFF8B500688C65 /* PatientData.swift in Sources */,
 				79425B5C2292EDD20097CC88 /* eSConstants.swift in Sources */,
 				7936119B222EE44A0009D2AF /* zzBuilderInterfaceVC.swift in Sources */,
+				79A92BEE22AAC6E300C103DB /* BMDViewController.swift in Sources */,
 				79C0DEA9225CEC18002894FC /* PMCurrentMedsController.swift in Sources */,
 				79425B5A2292EDD20097CC88 /* eScriptVC.swift in Sources */,
 				79F8DB8622A6C69B0018F21A /* LabDataClasses.swift in Sources */,
@@ -398,6 +439,7 @@
 				797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */,
 				79F577232225864D001B0C81 /* ViewController.swift in Sources */,
 				7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */,
+				79013F6422A96CFE005CC358 /* LetterheadPrinting.swift in Sources */,
 				797C7D7122282C3300845C1F /* Extensions.swift in Sources */,
 				79425B5B2292EDD20097CC88 /* eSFunctions.swift in Sources */,
 				79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */,
@@ -408,7 +450,9 @@
 				79F8DB8922A6C69B0018F21A /* PopulateFormModel.swift in Sources */,
 				793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */,
 				7936119A222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */,
+				79A92BF222AAD4C800C103DB /* FormLettersModel.swift in Sources */,
 				79F577212225864D001B0C81 /* AppDelegate.swift in Sources */,
+				79A92BED22AAC6E300C103DB /* BMDModel.swift in Sources */,
 				79C0DEAB225CEC18002894FC /* PhoneMessageVC.swift in Sources */,
 				79F8DB8722A6C69B0018F21A /* LabValues.swift in Sources */,
 				79D529C9228F06D9006A92A9 /* BrowserWindowController.swift in Sources */,

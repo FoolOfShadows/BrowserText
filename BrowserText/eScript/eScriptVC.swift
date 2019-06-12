@@ -87,6 +87,7 @@ class eScriptVC: NSViewController {
 	
 	@IBAction func saveFile(_ sender: Any) {
 		guard let fileTextData = scriptText.string.data(using: String.Encoding.utf8) else { return }
+        
         saveExportDialogWithData(fileTextData, andFileExtension: ".txt", closingWindow: self.view.window!)
 
 	}
@@ -115,7 +116,8 @@ class eScriptVC: NSViewController {
 						do {
 							try data.write(to: path, options: .withoutOverwriting)
                             print("Should be closing the window")
-                            //closingWindow.performClose(self)
+                            closingWindow.performClose(self)
+                            print("Window should have closed")
 						} catch {
 							let alert = NSAlert()
 							alert.messageText = "There is already a file with this name.\n Please choose a different name."
@@ -128,6 +130,7 @@ class eScriptVC: NSViewController {
 				}
                 
 			}})
+        
         //closingWindow.performClose(self)
 	}
     
