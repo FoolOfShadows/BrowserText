@@ -87,6 +87,8 @@ class LabViewController: NSViewController {
     var rawLabData = String()
     var finalLabData = String()
     
+    var fileLabelName = String()
+    
     weak var viewDataDelegate: webViewDataProtocol?
     
     
@@ -186,6 +188,26 @@ class LabViewController: NSViewController {
 		reticulocyteView.stringValue = extractedLabData.reticulocyteString ?? ""
 		antiNuclearView.stringValue = extractedLabData.antiNuclearString ?? ""
 		
+        //FIXME: This bit for creating a file name needs to be moved to its own function and cleaned up
+        let dateComponents = extractedLabData.labDateString?.split(separator: "/").reversed() ?? [""]
+        var paddedComponents = [String]()
+        for item in dateComponents {
+            if item.count < 2 {
+                paddedComponents.append("0\(item)")
+            } else {
+                paddedComponents.append(String(item))
+            }
+        }
+        var finalComponents = [String]()
+        for item in paddedComponents {
+            if item.count == 4 {
+                finalComponents.append(String(item.suffix(2)))
+            } else {
+                finalComponents.append(item)
+            }
+        }
+        
+        fileLabelName = "\(extractedLabData.patientLabelNameString) LL \(finalComponents.joined(separator: ""))"
 		//Detect the values which are out of range and color them red
 		//so they're easier to detect during the check process
 		labLetterMainView.highlightOutOfRangeResults()
@@ -218,7 +240,8 @@ class LabViewController: NSViewController {
 		//Pass the final letter string to the clipboard
 		let pasteBoard = NSPasteboard.general
 		pasteBoard.clearContents()
-		pasteBoard.setString(finalLetter, forType: NSPasteboard.PasteboardType.string)
+		//pasteBoard.setString(finalLetter, forType: NSPasteboard.PasteboardType.string)
+        pasteBoard.setString(fileLabelName, forType: NSPasteboard.PasteboardType.string)
         finalLabData = finalLetter
         self.view.window?.performClose(self)
 	}

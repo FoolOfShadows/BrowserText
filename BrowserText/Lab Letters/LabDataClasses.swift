@@ -12,6 +12,7 @@ struct RawLabData {
 	//Patient Data
 	var letterDateString: String?
 	var patientNameString: String?
+    var patientLabelNameString:String { return getFileLabellingNameFrom(patientNameString ?? "No Patient Name", ofType: .full)}
 	var patientGenderString: String?
 	var labDateString: String?
 	//Blood Count

@@ -16,6 +16,7 @@
 		7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79361197222EE44A0009D2AF /* AssessmentModel.swift */; };
 		793611A0222EE44A0009D2AF /* Ellipsis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 79361198222EE44A0009D2AF /* Ellipsis.jpg */; };
 		793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793611A1222EE9220009D2AF /* URLExtensions.swift */; };
+		7937735C22B16E0B001B04A7 /* FormLetterVerbiage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7937735B22B16E0B001B04A7 /* FormLetterVerbiage.swift */; };
 		79425B5A2292EDD20097CC88 /* eScriptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79425B572292EDD20097CC88 /* eScriptVC.swift */; };
 		79425B5B2292EDD20097CC88 /* eSFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79425B582292EDD20097CC88 /* eSFunctions.swift */; };
 		79425B5C2292EDD20097CC88 /* eSConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79425B592292EDD20097CC88 /* eSConstants.swift */; };
@@ -77,6 +78,7 @@
 		79361197222EE44A0009D2AF /* AssessmentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssessmentModel.swift; sourceTree = "<group>"; };
 		79361198222EE44A0009D2AF /* Ellipsis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ellipsis.jpg; sourceTree = "<group>"; };
 		793611A1222EE9220009D2AF /* URLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		7937735B22B16E0B001B04A7 /* FormLetterVerbiage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLetterVerbiage.swift; sourceTree = "<group>"; };
 		79425B572292EDD20097CC88 /* eScriptVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eScriptVC.swift; sourceTree = "<group>"; };
 		79425B582292EDD20097CC88 /* eSFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eSFunctions.swift; sourceTree = "<group>"; };
 		79425B592292EDD20097CC88 /* eSConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = eSConstants.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				79A92BEF22AAC80600C103DB /* FormLettersVC.swift */,
 				797B66D222AFF8B500688C65 /* PatientData.swift */,
 				79A92BF122AAD4C800C103DB /* FormLettersModel.swift */,
+				7937735B22B16E0B001B04A7 /* FormLetterVerbiage.swift */,
 			);
 			path = "Form Letters";
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				79425B5A2292EDD20097CC88 /* eScriptVC.swift in Sources */,
 				79F8DB8622A6C69B0018F21A /* LabDataClasses.swift in Sources */,
 				79C0DEA8225CEC18002894FC /* Phone Message Model.swift in Sources */,
+				7937735C22B16E0B001B04A7 /* FormLetterVerbiage.swift in Sources */,
 				79F8DB8822A6C69B0018F21A /* LabValuePrefrencesController.swift in Sources */,
 				797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */,
 				79F577232225864D001B0C81 /* ViewController.swift in Sources */,

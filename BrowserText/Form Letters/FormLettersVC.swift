@@ -25,6 +25,28 @@ class FormLettersVC: NSViewController {
        
     }
     
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        if let theWindow = self.view.window {
+            theWindow.title = "Form Letters"
+            //This removes the ability to resize the window of a view
+            //opened by a segue
+            theWindow.styleMask.remove(.resizable)
+            //This makes the window float at the front of the other windows
+            theWindow.level = .floating
+            theWindow.setFrameUsingName("formLetterWindow")
+            theWindow.windowController!.windowFrameAutosaveName = "formLetterWindow"
+        }
+    }
+    
+    @IBAction func printNoShowLetter(_ sender: Any?) {
+        let creationHandler = {
+            printLetterheadWithText(createNoShowLetter(self.currentPatient), fontSize: 14.0)
+        }
+        
+        createPatientObject(withHandler: creationHandler)
+    }
+    
     @IBAction func openBMDLetter(_ sender: Any?) {
         let creationHandler = {
             print(self.currentPatient.firstName)

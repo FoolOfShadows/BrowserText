@@ -53,3 +53,26 @@ struct PatientDataForLetters {
     }
     
 }
+
+func createNoShowLetter(_ patient:PatientDataProfile) -> String {
+    let currentDate = currentDateLong()
+    let letter = """
+    
+    
+    \(currentDate)
+    
+    
+    
+    \(patient.fullName)
+    \(patient.fullAddress)
+    
+    
+    
+    
+    Dear \(patient.fullName),
+    
+    \(noShowVerbiage)
+    """
+    
+    return letter
+}

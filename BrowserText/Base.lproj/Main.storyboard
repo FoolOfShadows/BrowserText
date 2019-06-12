@@ -2400,6 +2400,9 @@ Gw
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="printNoShowLetter:" target="5So-wv-YiE" id="Lc4-un-6kY"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="35k-gO-FF2">
                                 <rect key="frame" x="14" y="123" width="115" height="32"/>
