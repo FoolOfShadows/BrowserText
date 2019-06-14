@@ -61,6 +61,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         
         (pfView as! WKWebView).uiDelegate = self
         (pfView as! WKWebView).navigationDelegate = self
+        
     }
     
 //    func webView(_: WKWebView, decidePolicyFor: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {

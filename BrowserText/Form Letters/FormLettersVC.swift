@@ -41,7 +41,15 @@ class FormLettersVC: NSViewController {
     
     @IBAction func printNoShowLetter(_ sender: Any?) {
         let creationHandler = {
-            printLetterheadWithText(createNoShowLetter(self.currentPatient), fontSize: 14.0)
+        printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:noShowVerbiage), fontSize: 14.0)
+        }
+        
+        createPatientObject(withHandler: creationHandler)
+    }
+    
+    @IBAction func printNeedAptLetter(_ sender: Any?) {
+        let creationHandler = {
+           printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:needAptVerbiage), fontSize: 14.0)
         }
         
         createPatientObject(withHandler: creationHandler)

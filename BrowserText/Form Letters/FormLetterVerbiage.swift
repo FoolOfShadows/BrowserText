@@ -21,3 +21,11 @@ Sincerely,
 russ whelchel
 Administrator
 """
+
+let needAptVerbiage = """
+According to our records it is time for a follow up appointment with Dr. Dawn Whelchel.
+
+The nature of some medications used in your treatment make it important to keep regularly scheduled appointments to insure effectiveness, reduce possible risks, and avoid compliance related prescription delays.
+
+Please call our office at (903) 935-7101 to schedule an appointment at your earliest convenience.
+"""

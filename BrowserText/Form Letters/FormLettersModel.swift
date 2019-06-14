@@ -54,7 +54,7 @@ struct PatientDataForLetters {
     
 }
 
-func createNoShowLetter(_ patient:PatientDataProfile) -> String {
+func createBasicLetterForPatient(_ patient:PatientDataProfile, withVerbiage verbiage:String) -> String {
     let currentDate = currentDateLong()
     let letter = """
     
@@ -71,7 +71,30 @@ func createNoShowLetter(_ patient:PatientDataProfile) -> String {
     
     Dear \(patient.fullName),
     
-    \(noShowVerbiage)
+    \(verbiage)
+    """
+    
+    return letter
+}
+
+func createNeedAptLetter(_ patient:PatientDataProfile) -> String {
+    let currentDate = currentDateLong()
+    let letter = """
+    
+    
+    \(currentDate)
+    
+    
+    
+    \(patient.fullName)
+    \(patient.fullAddress)
+    
+    
+    
+    
+    Dear \(patient.fullName),
+    
+    \(needAptVerbiage)
     """
     
     return letter

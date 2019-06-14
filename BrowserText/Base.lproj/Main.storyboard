@@ -2419,6 +2419,9 @@ Gw
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="printNeedAptLetter:" target="5So-wv-YiE" id="UoB-PD-y1a"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
