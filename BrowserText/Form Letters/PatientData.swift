@@ -20,6 +20,7 @@ public struct PatientDataProfile {
     var mobilePhone = String()
     var homePhone = String()
     var email = String()
+    var insurances = [String]()
     
     var fullName:String {
         let nameArray:[String] = [self.firstName, self.middleName, self.lastName]

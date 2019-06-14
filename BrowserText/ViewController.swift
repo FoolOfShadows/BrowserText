@@ -316,7 +316,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             print("viewContent contains:\n \(self.viewContent)")
         }
         
-        getWebViewValueByID(idView.stringValue, completion: printHandler)
+        getWebViewValueByID(idView.stringValue, dataType: "innerHTML", completion: printHandler)
     }
     
     //Gets the underlying values for the Patient Profile page in Practice Fusion (use .value to get the value after getElementById())
@@ -425,15 +425,7 @@ enum MyPrintError:Error {
 
 func getEmberIDFromScrapedString(_ data:String) -> String {
     var result = String()
-    let dataArray = data.split(separator: "\n")
-    var theLine = String()
-    mainLoop: for line in dataArray {
-        if line.contains("data-element=\"last-name\"") {
-            theLine = String(line)
-            break mainLoop
-        }
-    }
-    
+    let theLine = data.simpleRegExMatch("data-element=\"last-name\".*?shorter ember-view\">")
     result = theLine.simpleRegExMatch("ember\\d{4,7}")
     print(result)
     return result

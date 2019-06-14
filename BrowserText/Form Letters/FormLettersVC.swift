@@ -79,6 +79,7 @@ class FormLettersVC: NSViewController {
     
     func createPatientObject(withHandler handler: @escaping () -> Void) {
         //Get all the pieces of a patient's address
+        //Field values don't get scraped when grabbing the text/HTML on a page and have to be accessed by the .value property
         let streetHandler: () -> Void = {
             self.currentPatient.street = self.viewDataDelegate!.viewContent
         }
@@ -122,8 +123,26 @@ class FormLettersVC: NSViewController {
         
         let lastNameIDHandler: () -> Void = {
             self.lastNameID = getEmberIDFromScrapedString(self.viewDataDelegate!.viewContent)
+            self.currentPatient.insurances = getInsData(self.viewDataDelegate!.viewContent)
             finishThisHandler()
         }
         viewDataDelegate?.getWebViewValueByID("ember311", dataType: "innerHTML", completion: lastNameIDHandler)
     }
+}
+
+func getInsData(_ data:String) -> [String] {
+    //print("Data:  \(data)")
+    var insData = [String]()
+    var allIns = data.allRegexMatchesFor("\"payer-name\">.*?</a>")
+    var allIDs = data.allRegexMatchesFor("md ember-view\">\\s.*?<p.*?</p>")
+    
+    allIns = allIns.map { $0.findRegexMatchBetween("\"payer-name\">", and: "</a>")!}
+    allIDs = allIDs.map { $0.findRegexMatchBetween("-active\">", and: "</p>")!}
+    print("Insurances: \(allIns)")
+    print("ID Numbers: \(allIDs)")
+    for (count, item) in allIns.enumerated() {
+        insData.append("\(item) - \(allIDs[count])")
+    }
+    print(insData)
+    return insData
 }
