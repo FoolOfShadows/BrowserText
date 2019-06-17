@@ -99,3 +99,24 @@ func createNeedAptLetter(_ patient:PatientDataProfile) -> String {
     
     return letter
 }
+
+
+func createReferral(_ patient:PatientDataProfile) -> String {
+    let currentDate = currentDateLong()
+    let letter = """
+    
+    
+    \(currentDate)
+    
+    \(patient.fullName)
+    \(patient.fullAddress)
+
+    Home Phone: \(patient.homePhone)
+    Mobile Phone: \(patient.mobilePhone)
+    Primary Ins: \(patient.insurances[0])
+    Other Ins: \(patient.insurances.dropFirst().joined(separator: "\n\t"))
+    
+    """
+    
+    return letter
+}

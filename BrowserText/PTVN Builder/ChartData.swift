@@ -282,7 +282,7 @@ func getFileLabellingNameFrom(_ name: String, ofType type: FileLabelType) -> Str
         return result
     }
     
-    let nameComponents = name.components(separatedBy: " ")
+    let nameComponents = name.components(separatedBy: " ").filter {!$0.contains("(")}
     
     let extraBitsCheck = checkForMatchInSets(nameComponents, arrayToCheckFor: extraNameBits)
     

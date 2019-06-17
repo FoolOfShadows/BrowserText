@@ -2405,7 +2405,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="35k-gO-FF2">
-                                <rect key="frame" x="14" y="123" width="115" height="32"/>
+                                <rect key="frame" x="14" y="156" width="115" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Collections?" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K53-mk-Fse">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2421,6 +2421,17 @@ Gw
                                 </buttonCell>
                                 <connections>
                                     <action selector="printNeedAptLetter:" target="5So-wv-YiE" id="UoB-PD-y1a"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ouq-Gz-Mxu">
+                                <rect key="frame" x="14" y="123" width="95" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Referrals" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5jo-gj-s3p">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="printReferral:" target="5So-wv-YiE" id="dVq-zs-ACE"/>
                                 </connections>
                             </button>
                         </subviews>

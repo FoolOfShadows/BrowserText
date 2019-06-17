@@ -64,6 +64,14 @@ class FormLettersVC: NSViewController {
         
     }
     
+    @IBAction func printReferral(_ sender: Any?) {
+        let creationHandler = {
+            printLetterheadWithText(createReferral(self.currentPatient), fontSize: 14.0)
+        }
+        
+        createPatientObject(withHandler: creationHandler)
+    }
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         print("Trying to segue")
         switch segue.identifier {
@@ -99,6 +107,16 @@ class FormLettersVC: NSViewController {
             self.currentPatient.zip = self.viewDataDelegate!.viewContent
         }
         viewDataDelegate?.getWebViewValueByID("zip-code", dataType: "value", completion: zipHandler)
+        
+        let mobilePhoneHandler: () -> Void = {
+            self.currentPatient.mobilePhone = self.viewDataDelegate!.viewContent
+        }
+        viewDataDelegate?.getWebViewValueByID("mobile-phone", dataType: "value", completion: mobilePhoneHandler)
+        
+        let homePhoneHandler: () -> Void = {
+            self.currentPatient.homePhone = self.viewDataDelegate!.viewContent
+        }
+        viewDataDelegate?.getWebViewValueByID("home-phone", dataType: "value", completion: homePhoneHandler)
         
         //Get all the pieces of a patient's name
         let firstNameHandler: () -> Void = {
