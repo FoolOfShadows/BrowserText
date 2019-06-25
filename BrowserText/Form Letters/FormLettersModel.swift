@@ -108,7 +108,7 @@ func createReferral(_ patient:PatientDataProfile) -> String {
     
     \(currentDate)
     
-    \(patient.fullName)
+    \(patient.fullName)     DOB: \(patient.dob)     AGE: \(patient.age)
     \(patient.fullAddress)
 
     Home Phone: \(patient.homePhone)
@@ -116,6 +116,34 @@ func createReferral(_ patient:PatientDataProfile) -> String {
     Primary Ins: \(patient.insurances[0])
     Other Ins: \(patient.insurances.dropFirst().joined(separator: "\n\t"))
     
+    
+    
+    Dr/Clinic Name:
+    
+    Specialty:
+    NPI:
+    Address:
+    
+    Phone:                          Fax:
+    
+    
+    Test Ordered:
+    
+    DX:
+    
+    INFO NEEDED
+    Demo    ML    Dx    Rad    Labs    Ins    ONs
+    
+    
+    PA Needed:  Y    N
+    Ins Name:
+    Phone:                      Fax:
+    
+    
+    
+    Declined:
+    
+    Pt Notified:
     """
     
     return letter

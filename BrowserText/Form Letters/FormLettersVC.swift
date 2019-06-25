@@ -66,7 +66,7 @@ class FormLettersVC: NSViewController {
     
     @IBAction func printReferral(_ sender: Any?) {
         let creationHandler = {
-            printLetterheadWithText(createReferral(self.currentPatient), fontSize: 14.0)
+            printBlankPageWithText(createReferral(self.currentPatient), fontSize: 14.0)
         }
         
         createPatientObject(withHandler: creationHandler)
@@ -107,6 +107,11 @@ class FormLettersVC: NSViewController {
             self.currentPatient.zip = self.viewDataDelegate!.viewContent
         }
         viewDataDelegate?.getWebViewValueByID("zip-code", dataType: "value", completion: zipHandler)
+        
+        let dobHandler: () -> Void = {
+            self.currentPatient.dob = self.viewDataDelegate!.viewContent
+        }
+        viewDataDelegate?.getWebViewValueByID("birth-date", dataType: "value", completion: dobHandler)
         
         let mobilePhoneHandler: () -> Void = {
             self.currentPatient.mobilePhone = self.viewDataDelegate!.viewContent

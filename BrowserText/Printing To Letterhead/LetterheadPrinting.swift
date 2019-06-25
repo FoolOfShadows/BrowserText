@@ -38,3 +38,26 @@ func printLetterheadWithText(_ text:String, fontName:String = "Times New Roman",
     operation.run()
     
 }
+
+func printBlankPageWithText(_ text:String, fontName:String = "Times New Roman", fontSize: CGFloat = 12.0) {
+    let textView = NSTextView(frame: NSRect(origin: .zero, size: CGSize(width: 612, height: 734)))
+    
+    
+    let theUserFont = NSFont(name: fontName, size: fontSize)
+    let fontAttributes = NSDictionary(object: theUserFont!, forKey: NSAttributedString.Key.font as NSCopying)
+    textView.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
+    
+    textView.string = text
+    
+    let printInfo = NSPrintInfo.shared
+    //This gets really close to fitting
+    printInfo.leftMargin = 0
+    printInfo.rightMargin = 0
+    printInfo.isHorizontallyCentered = false
+    printInfo.topMargin = -600
+    printInfo.bottomMargin = -100
+    
+    let operation:NSPrintOperation = NSPrintOperation(view: textView, printInfo: printInfo)
+    operation.run()
+    
+}
