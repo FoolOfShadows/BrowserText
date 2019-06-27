@@ -103,28 +103,30 @@ func createNeedAptLetter(_ patient:PatientDataProfile) -> String {
 
 func createReferral(_ patient:PatientDataProfile) -> String {
     let currentDate = currentDateLong()
+    let nonPrimeIns = patient.insurances.dropFirst()
+    
     let letter = """
     
     
     \(currentDate)
     
-    \(patient.fullName)     DOB: \(patient.dob)     AGE: \(patient.age)
+    \(patient.fullName)          DOB: \(patient.dob) (\(patient.age))
     \(patient.fullAddress)
 
     Home Phone: \(patient.homePhone)
     Mobile Phone: \(patient.mobilePhone)
-    Primary Ins: \(patient.insurances[0])
-    Other Ins: \(patient.insurances.dropFirst().joined(separator: "\n\t"))
+    
+    Primary Ins: \(patient.insurances[0].0) - \(patient.insurances[0].1)
+    Other Ins: \(nonPrimeIns.map { "\($0.0) - \($0.1)"}.joined(separator: "\n\t"))
     
     
     
     Dr/Clinic Name:
     
-    Specialty:
-    NPI:
+    Specialty:                                     NPI:
     Address:
     
-    Phone:                          Fax:
+    Phone:                                    Fax:
     
     
     Test Ordered:
@@ -136,7 +138,7 @@ func createReferral(_ patient:PatientDataProfile) -> String {
     
     
     PA Needed:  Y    N
-    Ins Name:
+    Ins Name: \(patient.insurances[0].0)
     Phone:                      Fax:
     
     

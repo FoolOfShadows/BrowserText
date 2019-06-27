@@ -153,9 +153,10 @@ class FormLettersVC: NSViewController {
     }
 }
 
-func getInsData(_ data:String) -> [String] {
+func getInsData(_ data:String) -> [(String, String)] {
     //print("Data:  \(data)")
     var insData = [String]()
+    var insTup = [(String, String)]()
     var allIns = data.allRegexMatchesFor("\"payer-name\">.*?</a>")
     var allIDs = data.allRegexMatchesFor("md ember-view\">\\s.*?<p.*?</p>")
     
@@ -165,7 +166,8 @@ func getInsData(_ data:String) -> [String] {
     print("ID Numbers: \(allIDs)")
     for (count, item) in allIns.enumerated() {
         insData.append("\(item) - \(allIDs[count])")
+        insTup.append((item, allIDs[count]))
     }
-    print(insData)
-    return insData
+    print(insTup)
+    return insTup
 }
