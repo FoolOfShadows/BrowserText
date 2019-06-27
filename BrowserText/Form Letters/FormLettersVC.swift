@@ -41,7 +41,7 @@ class FormLettersVC: NSViewController {
     
     @IBAction func printNoShowLetter(_ sender: Any?) {
         let creationHandler = {
-        printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:noShowVerbiage), fontSize: 14.0)
+        printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:noShowVerbiage), fontSize: 14.0, window: self.view.window!)
         }
         
         createPatientObject(withHandler: creationHandler)
@@ -49,7 +49,7 @@ class FormLettersVC: NSViewController {
     
     @IBAction func printNeedAptLetter(_ sender: Any?) {
         let creationHandler = {
-           printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:needAptVerbiage), fontSize: 14.0)
+           printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:needAptVerbiage), fontSize: 14.0, window: self.view.window!)
         }
         
         createPatientObject(withHandler: creationHandler)
@@ -66,7 +66,7 @@ class FormLettersVC: NSViewController {
     
     @IBAction func printReferral(_ sender: Any?) {
         let creationHandler = {
-            printBlankPageWithText(createReferral(self.currentPatient), fontSize: 14.0)
+            printBlankPageWithText(createReferral(self.currentPatient), fontSize: 14.0, window: self.view.window!)
         }
         
         createPatientObject(withHandler: creationHandler)

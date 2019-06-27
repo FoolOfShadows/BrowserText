@@ -302,7 +302,7 @@ class LabViewController: NSViewController {
     
     @IBAction func showLabPrintView(_ sender: Any?) {
         processToClipboard(self)
-        printLetterheadWithText(finalLabData, fontSize: 10.0)
+        printLetterheadWithText(finalLabData, fontSize: 10.0, window: self.view.window!)
 
     }
 

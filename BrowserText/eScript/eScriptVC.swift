@@ -8,11 +8,12 @@
 
 import Cocoa
 
-class eScriptVC: NSViewController {
+class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
 
 	//@IBOutlet var scriptText: NSTextView!
     @IBOutlet var scriptScroll: NSScrollView!
-	
+    @IBOutlet weak var eScriptView: NSView!
+    
 	var fileLabelName = String()
 	var patientName = String()
     var theText = String()
@@ -55,6 +56,7 @@ class eScriptVC: NSViewController {
             theWindow.windowController!.windowFrameAutosaveName = "eScriptWindow"
         }
     }
+    
 
 	@IBAction func processPFData(_ sender: Any) {
 		
@@ -88,12 +90,11 @@ class eScriptVC: NSViewController {
 	@IBAction func saveFile(_ sender: Any) {
 		guard let fileTextData = scriptText.string.data(using: String.Encoding.utf8) else { return }
         
-        saveExportDialogWithData(fileTextData, andFileExtension: ".txt", closingWindow: self.view.window!)
-
+        saveExportDialogWithData(fileTextData, andFileExtension: ".txt")
 	}
 	
 	
-    func saveExportDialogWithData(_ data: Data, andFileExtension ext: String, closingWindow: NSWindow) {
+    func saveExportDialogWithData(_ data: Data, andFileExtension ext: String) {
 		//Get the visit date
 		let requestDate = Date()
 		let labelDateFormatter = DateFormatter()
@@ -109,15 +110,14 @@ class eScriptVC: NSViewController {
         
 		saveDialog.nameFieldStringValue = "\(fileLabelName) RXCOM \(labelRequestDate)"
 		saveDialog.directoryURL = NSURL.fileURL(withPath: "\(savePath)/\(saveLocation)")
-        saveDialog.beginSheetModal(for: closingWindow,completionHandler: {(result: NSApplication.ModalResponse) -> Void in
+        saveDialog.beginSheetModal(for: self.view.window!,completionHandler: {(result: NSApplication.ModalResponse) -> Void in
 			if result.rawValue == NSFileHandlingPanelOKButton {
 				if let filePath = saveDialog.url {
 					if let path = URL(string: String(describing: filePath) + ext) {
 						do {
-							try data.write(to: path, options: .withoutOverwriting)
-                            print("Should be closing the window")
-                            closingWindow.performClose(self)
-                            print("Window should have closed")
+                            try data.write(to: path, options: .withoutOverwriting)
+                            //This is where we can close the spawning window if the save is successful
+                            self.closeTheWindow()
 						} catch {
 							let alert = NSAlert()
 							alert.messageText = "There is already a file with this name.\n Please choose a different name."
@@ -129,10 +129,14 @@ class eScriptVC: NSViewController {
 					}
 				}
                 
-			}})
-        
-        //closingWindow.performClose(self)
+			}
+        })
 	}
+    
+    func closeTheWindow() {
+        //To close the window with the current design, I needed a specific outlet to the view so I could track back to it's window and tell it to close
+        eScriptView.window!.close()
+    }
     
     @IBAction func addVisitDates(_ sender: Any) {
         

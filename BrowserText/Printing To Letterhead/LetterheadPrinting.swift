@@ -9,7 +9,7 @@
 import Foundation
 import Quartz
 
-func printLetterheadWithText(_ text:String, fontName:String = "Times New Roman", fontSize: CGFloat = 12.0) {
+func printLetterheadWithText(_ text:String, fontName:String = "Times New Roman", fontSize: CGFloat = 12.0, window: NSWindow) {
     
     guard let img = NSImage(named: NSImage.Name("WPCM Letterhead Blank Cropped")) else { return }
     let imageView = NSImageView(frame: NSRect(origin: .zero, size: img.size))
@@ -35,11 +35,12 @@ func printLetterheadWithText(_ text:String, fontName:String = "Times New Roman",
     printInfo.bottomMargin = -100
     
     let operation:NSPrintOperation = NSPrintOperation(view:imageView, printInfo: printInfo)
-    operation.run()
+    operation.runModal(for: window, delegate: nil, didRun: nil, contextInfo: nil)
+    //operation.run()
     
 }
 
-func printBlankPageWithText(_ text:String, fontName:String = "Times New Roman", fontSize: CGFloat = 12.0) {
+func printBlankPageWithText(_ text:String, fontName:String = "Times New Roman", fontSize: CGFloat = 12.0, window: NSWindow) {
     let textView = NSTextView(frame: NSRect(origin: .zero, size: CGSize(width: 612, height: 734)))
     
     
@@ -58,6 +59,7 @@ func printBlankPageWithText(_ text:String, fontName:String = "Times New Roman", 
     printInfo.bottomMargin = -100
     
     let operation:NSPrintOperation = NSPrintOperation(view: textView, printInfo: printInfo)
-    operation.run()
+    operation.runModal(for: window, delegate: nil, didRun: nil, contextInfo: nil)
+    //operation.run()
     
 }
