@@ -58,10 +58,6 @@ struct PhysicalAssessment {
         switch header {
         case SectionHeadings.VIBE.rawValue, SectionHeadings.MONO.rawValue:
             return objectiveText.simpleRegExMatch("(?s)\(header).*?(\\n\\n|[A-Z]{2,}?:|,|\\z)").removeWhiteSpace().cleanTheTextOf(bitsToClean + [","])
-//        case SectionHeadings.GI.rawValue:
-//            return objectiveText.simpleRegExMatch("(?s)\(header).*?(\\n\\n|[A-Z]{2,}?:|\\z)(?<!ABDOMEN:)").removeWhiteSpace().cleanTheTextOf(bitsToClean)
-//        case SectionHeadings.ENT.rawValue:
-//            return objectiveText.simpleRegExMatch("(?s)\(header).*?(\\n\\n|[A-Z]{2,}?:|\\z)(?<!EARS:)(?<!EAC:)").removeWhiteSpace().cleanTheTextOf(bitsToClean + [", "])
         default:
         //The regex here looks for text matching between the section heading value and either
         //two returns, two or more capital letters together with a colon (the next heading)
@@ -85,15 +81,12 @@ struct PhysicalAssessment {
         let orderedArray = [nonPEObjective, genSection, psySection, headSection, eyeSection, entSection, noseSection, throatSection, neckSection, cvSection, chestSection, giSection, lymphSection, finalExt, finalNeuro, mskSection, skinSection]
         
         let finalArray = orderedArray.filter { !$0.isEmpty }
-        //print("Gen: \(genSection)\nExt: \(finalExt)\nNeuro: \(finalNeuro)")
-        //print(finalArray.joined(separator: "\n"))
         return finalArray.joined(separator: "\n")
     }
     
     //
     func cleanObjectiveOfAssessment() -> String {
         var localObjective = objectiveText
-        //print("extSection: \(extSection)")
         for section in allPASections {
             localObjective = localObjective.replacingOccurrences(of: section, with: "")
         }

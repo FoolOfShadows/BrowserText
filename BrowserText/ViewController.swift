@@ -11,9 +11,10 @@ import WebKit
 //Quartz is required to access the PDFKit framework
 import Quartz
 
+//Protocol for getting data out of the webview
 protocol webViewDataProtocol: class {
     var viewContent:String { get set }
-    //func getDataFromWebView(usingID id: String) -> String
+    //FIXME: See about making just one function here and giving it a more useful name
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
     func getWebViewValueByID(_ id: String, dataType:String, completion: @escaping () -> Void)
 }
@@ -36,8 +37,10 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     var currentData = ChartData(chartData: "", aptTime: "", aptDate: 0)
     var visitTime = "00"
     
+    //The URL of the Practice Fusion login page as opposed to their main page
     let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/login"
     
+    //FIXME: Give these more useful names based on what they actually do
     @IBOutlet weak var webPrintView: NSView!
     @IBOutlet weak var webViewForPrint: WKWebView!
     
@@ -45,7 +48,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Open default web page into the browser view
+    //Open default web page into the browser view
         //Create a browser view
         pfView = makeWebView()
         pfView.translatesAutoresizingMaskIntoConstraints = false
@@ -53,22 +56,20 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         //Add the browser view to it's storyboard created container view
         theWebView.addSubview(pfView)
         
-        //Set the browser views constraints withing it's container view
+        //Set the browser views constraints within it's container view
         pfView.leadingAnchor.constraint(equalTo: theWebView.leadingAnchor).isActive = true
         pfView.trailingAnchor.constraint(equalTo: interfaceView.leadingAnchor).isActive = true
         pfView.topAnchor.constraint(equalTo: theWebView.topAnchor).isActive = true
         pfView.bottomAnchor.constraint(equalTo: theWebView.bottomAnchor).isActive = true
         
+        //FIXME: I'm not sure I need the UI Delegation
         (pfView as! WKWebView).uiDelegate = self
         (pfView as! WKWebView).navigationDelegate = self
         
     }
     
-//    func webView(_: WKWebView, decidePolicyFor: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
-//
-//    }
     
-    //Trying to figure out printing
+//Trying to figure out printing
     //This is a required function of conforming to the WKScriptMessageHandler protocol
     //and it receives the messages sent by the web page . . . but what to do with them?
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
@@ -116,7 +117,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         })
     }
     
-    //Click an button with JavaScript
+    //Click a button with JavaScript
    //document.getElementById('htmlbutton').click()
     
     //Function for other views to call back and get data out of the web view
@@ -265,9 +266,6 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         return webView
     }
     
-//    func _webView(webView: WKWebView!, printFrame: WKFrameInfo) {
-//        print("JS: window.print()")
-//    }
     
     @IBAction func getDataFromBrowser(_ sender: Any) {
         //Create a completion handler to deal with the results of the JS call to the webView
@@ -279,11 +277,6 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         }
         
         getWebViewDataByID("ember311", completion: assignmentHandler)
-        
-        //print("Data: \(viewContent)")
-        //currentData = ChartData(chartData: viewContent)
-        
-        
     }
     
     
@@ -341,7 +334,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         
     }
     
-    func /*webView(_ sender: WebView!, didFinishLoadFor frame: WebFrame!)*/ printWebView(_ view: WKWebView) {
+    func printWebView(_ view: WKWebView) {
 
         let printInfo = NSPrintInfo.shared
         printInfo.paperSize = NSMakeSize(595.22, 841.85)

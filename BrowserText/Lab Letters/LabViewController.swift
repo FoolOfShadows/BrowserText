@@ -243,7 +243,9 @@ class LabViewController: NSViewController {
 		//pasteBoard.setString(finalLetter, forType: NSPasteboard.PasteboardType.string)
         pasteBoard.setString(fileLabelName, forType: NSPasteboard.PasteboardType.string)
         finalLabData = finalLetter
-        self.view.window?.performClose(self)
+        
+        //This seems to have stopped working and then throws an error
+        //self.view.window?.performClose(self)
 	}
 	
 	func generateDiabticLabSection() -> String {
@@ -302,8 +304,11 @@ class LabViewController: NSViewController {
     
     @IBAction func showLabPrintView(_ sender: Any?) {
         processToClipboard(self)
-        printLetterheadWithText(finalLabData, fontSize: 10.0, window: self.view.window!)
-
+        let windowCloseHandler = {
+            self.view.window?.performClose(self)
+        }
+        printLetterheadWithText(finalLabData, fontSize: 10.0, window: self.view.window!, andCloseWindow: true)
+        //self.view.window?.performClose(self)
     }
 
 }

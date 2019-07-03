@@ -186,9 +186,7 @@ class ChartData {
     
     //Clean extraneous text from the sections
     private func cleanTheSections(_ theSection:String, badBits:[String]) -> String {
-        //var cleanedText = theSection.removeWhiteSpace()
         let textArray = theSection.split(separator: "\n")
-        //print(textArray)
         var cleanedText = textArray.filter {$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) != ""}.joined(separator: "\n")
         
         for theBit in badBits {
@@ -201,13 +199,10 @@ class ChartData {
     //Get the date of the patients last appointment
     private func getLastAptInfoFrom(_ theText: String) -> String {
         guard let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments") else {return ""}
-        //print(baseSection)
         guard let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages") else {return ""}
-        //print(encountersSection)
-        let dateToDateRegex = "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)"
+        //let dateToDateRegex = "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)"
         let dateToEndOfCCLine = "(?m)(\\d./\\d./\\d*)(.*?)(\\n)(CC:.*)"
         let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded") && !$0.contains("CC: Epogen inj") && !$0.contains("CC: Testosterone inj") && !$0.contains("CC: Flu inj")}
-        //print(activeEncounters)
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
             let components = date.components(separatedBy: "/")
@@ -233,18 +228,13 @@ struct OldNoteData {
     private var theText:String { return fileURL.getTextFromFile() }
     private let lastChargeOld = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
     private let lastChargeNew = "(?s)#ASSESSMENT.*ASSESSMENT#"
-    //private let lastChargeNew = "(?s)(Problems\\*\\*).*(\\*problems\\*)"
     var pharmacy:String { return theText.simpleRegExMatch(ChartData.Regexes.pharmacy.rawValue).cleanTheTextOf(["#PHARMACY", "PHARMACY#"])}
     var oldAssessment:String {
         var problem = String()
         if theText.contains("#PTVNFILE#") {
             problem = theText.simpleRegExMatch(lastChargeNew).cleanTheTextOf(lastChargeBadBits)
-//            let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
-//            problem = problem.replacingOccurrences(of: levelBit, with: "")
         } else {
         problem = theText.simpleRegExMatch(lastChargeOld).cleanTheTextOf(lastChargeBadBits)
-//        let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
-//        problem = problem.replacingOccurrences(of: levelBit, with: "")
         }
         let levelBit = problem.simpleRegExMatch("(?s)Lvl.*\\(done dmw\\)")
         problem = problem.replacingOccurrences(of: levelBit, with: "")

@@ -11,19 +11,15 @@ import Cocoa
 class BuilderInterfaceVC: NSViewController {
 
     weak var currentPTVNDelegate: ptvnDelegate?
-    //currentData gets passed the ChartData from the initial VC upon seque
+    //currentData gets passed the ChartData from the initial VC upon segue
     var currentData = ChartData(chartData: "", aptTime: "", aptDate: 0)
     var saveLocation = "Desktop"
-    //var lastNoteData = String()
-//    var ptVisitDate = 0
-//    var visitTime = "00"
     
     weak var viewDataDelegate: webViewDataProtocol?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print("currentData inside Builder Module:\n\(currentData)")
     }
     
     override func viewDidAppear() {
@@ -42,9 +38,7 @@ class BuilderInterfaceVC: NSViewController {
     
 
     @IBAction func getLastNoteData(_ sender: Any) {
-        //print("Starting getLastNoteData")
         let lastNoteHandler: () -> Void = {
-            print("Inside lastNoteHandler")
             self.finishCreatingPTVNWithNoteData(self.viewDataDelegate!.viewContent)
         }
         viewDataDelegate?.getWebViewDataByID("ember311", completion: lastNoteHandler)
@@ -52,13 +46,10 @@ class BuilderInterfaceVC: NSViewController {
     
     func finishCreatingPTVNWithNoteData(_ noteData:String) {
             saveLocation = currentData.saveLocation.rawValue
-            //Get note med data from the clipboard to process
-            //        let pasteBoard = NSPasteboard.general
-            //        guard let theText = pasteBoard.string(forType: NSPasteboard.PasteboardType(rawValue: "public.utf8-plain-text")) else { return }
+
             var newMeds = noteData.simpleRegExMatch(ChartData.Regexes.newMeds.rawValue).cleanTheTextOf(newMedsBadBits)
             newMeds = newMeds.replaceRegexPattern("(?m)\nEncounter Comments:\n", with: "Sig: ")
-            //print(newMeds)
-            //Get note assessment from the clipboard
+        
             let noteAssessment = noteData.simpleRegExMatch(ChartData.Regexes.pfNoteAssessment.rawValue).cleanTheTextOf(noteAssessmentBadBits)
             
             //Process note med data and replace existing med data
@@ -90,19 +81,14 @@ class BuilderInterfaceVC: NSViewController {
                     results.append(summaryItem)
                 }
             }
-            
-            //I think this bit ended up being redundant
-            //        print("Original Results array: \(results)")
-            //        let filteredArray = noteArray.filter{ !results.contains($0) }
-            //        results += filteredArray
-            //        print("Adjusted Results array: \(results)")
+        
             var finalMedList = currentData.currentMeds
             if !results.isEmpty {
                 finalMedList = results.joined(separator: "\n").addCharacterToBeginningOfEachLine("-")
             }
             
             
-            //Finish creating note
+        //Finish creating note
             //Get current date and format it
             let theCurrentDate = Date()
             let formatter = DateFormatter()
@@ -110,7 +96,6 @@ class BuilderInterfaceVC: NSViewController {
             
             //Set the visit date
             guard let visitDate = theCurrentDate.addingDays(currentData.aptDate) else { return }
-            //print("Days out: \(ptVisitDate)")
             let internalVisitDate = formatter.string(from: visitDate)
             let labelDateFormatter = DateFormatter()
             labelDateFormatter.dateFormat = "yyMMdd"
@@ -136,13 +121,10 @@ class BuilderInterfaceVC: NSViewController {
                 lastCharge = OldNoteData(fileURL: shortList[0]).oldAssessment
                 pharmacy = OldNoteData(fileURL: shortList[0]).pharmacy
             }
-            //print("PTVN Assement is: \(lastCharge)")
-            //print("PF Note Assessment is: \(noteAssessment)")
             
             //If an assessment can be pulled from the last note in PF
             //and there wasn't one in the PTVN, use the note
             if !noteAssessment.isEmpty {
-                //print("Using Note Assessment")
                 lastCharge = noteAssessment
             }
             
@@ -231,8 +213,7 @@ class BuilderInterfaceVC: NSViewController {
             \(SectionDelimiters.visitDateEnd.rawValue)
             """
             
-            
-            //finalResults.copyToPasteboard()
+        
             //Generate a properly formated name for the file from exisiting data
             let fileName = "\(currentData.aptTime) \(getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.full)) PTVN \(labelVisitDate).txt"
             
@@ -242,7 +223,6 @@ class BuilderInterfaceVC: NSViewController {
             let savePath = NSHomeDirectory()
             newFileManager.createFile(atPath: "\(savePath)/\(saveLocation)/\(fileName)", contents: ptvnData, attributes: nil)
             
-            //self.dismiss(self)
             self.view.window?.performClose(self)
     }
     

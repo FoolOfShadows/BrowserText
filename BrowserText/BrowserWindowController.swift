@@ -13,7 +13,7 @@ class BrowserWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        let theWindow = window as! NSWindow
+        guard let theWindow = window else { return }
         
         //restore position
         theWindow.setFrameUsingName("BrowserWindow")
