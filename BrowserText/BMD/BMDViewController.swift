@@ -44,8 +44,8 @@ class BMDViewController: NSViewController {
         pasteBoard.clearContents()
         pasteBoard.setString(currentBMD.generateOutput(), forType: NSPasteboard.PasteboardType.string)
         
-        printLetterheadWithText(currentBMD.generateOutput(), fontSize: 14.0, window: self.view.window!)
-        dismiss(self)
+        printLetterheadWithText(currentBMD.generateOutput(), fontSize: 14.0, window: self.view.window!, andCloseWindow: true)
+        //dismiss(self)
         
     }
     

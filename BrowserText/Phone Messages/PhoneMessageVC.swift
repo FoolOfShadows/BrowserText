@@ -79,7 +79,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
             //Does the staff want this window to float? - no 5/23/19
             //theWindow.level = .floating
             theWindow.setFrameUsingName("phoneMessageWindow")
-            theWindow.windowController!.windowFrameAutosaveName = "phonemessageWindow"
+            theWindow.windowController!.windowFrameAutosaveName = "phoneMessageWindow"
         }
         startNewMessage(self)
     }

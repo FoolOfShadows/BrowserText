@@ -156,6 +156,13 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
 
     }
     
+    @IBAction func openReceipt(_ sender:Any?) {
+        let receiptHandler: () -> Void = {
+            self.performSegue(withIdentifier: "showReceipt", sender: nil)
+        }
+        getWebViewDataByID("ember311", completion: receiptHandler)
+    }
+    
     @IBAction func openeScripts(_ sender: Any?) {
         let eScriptHandler: () -> Void = {
             self.performSegue(withIdentifier: "showeScript", sender: nil)
@@ -212,6 +219,10 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         case "showPhoneMessage":
             if let toViewController = segue.destinationController as? PhoneMessageVC {
                 //print("opening new Phone Message")
+                toViewController.patientData = self.viewContent
+            }
+        case "showReceipt":
+            if let toViewController = segue.destinationController as? ReceiptVC {
                 toViewController.patientData = self.viewContent
             }
         case "showPTVNBuilder":
