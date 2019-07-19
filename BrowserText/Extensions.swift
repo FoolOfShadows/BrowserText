@@ -211,7 +211,46 @@ extension NSView {
         }
         clearChecksTextfields(theView: self)
     }
+    
+    func turnButtonsInViewOff() {
+        for item in self.subviews {
+            if let isButton = item as? NSButton {
+                isButton.state = .off
+            } else {
+                item.turnButtonsInViewOff()
+            }
+        }
+    }
+    
+    func getButtonsInView() -> [NSButton] {
+        var results = [NSButton]()
+        for item in self.subviews {
+            if let button = item as? NSButton {
+                results.append(button)
+            } else {
+                results += item.getButtonsInView()
+            }
+        }
+        return results
+    }
+    
+    func getActiveButtonInView() -> String {
+        let activeButtons = self.getActiveButtonsInView()
+        if !activeButtons.isEmpty {
+            return activeButtons[0]
+        }
+        return ""
+    }
+    
+    func getActiveButtonsInView() -> [String] {
+        let allButtons = self.getButtonsInView()
+        let activeButtons = allButtons.filter { $0.state == .on }
+        return activeButtons.map { $0.title }
+    }
+    
 }
+
+
 
 //MARK: NSComboBox Extensions
 extension NSComboBox {

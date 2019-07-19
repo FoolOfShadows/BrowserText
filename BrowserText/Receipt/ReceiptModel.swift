@@ -22,6 +22,12 @@ struct Receipt {
         return formatter.string(from: currentDate)
     }
     
+    private let timeFormatter = DateFormatter()
+    var labelTime:String {
+        timeFormatter.dateFormat = "HHmmss"
+        return timeFormatter.string(from: currentDate)
+    }
+    
     var ptInnerName:String {return nameAgeDOB(theText).0}
     var ptLabelName:String {return getFileLabellingName(ptInnerName)}
 //    var paymentType = String()
@@ -29,6 +35,9 @@ struct Receipt {
 //    var checkNumber = String()
 //    var note = String()
 //    var receiver = String()
+    
+    let reasonChoices = ["", "Co-pay", "Labs", "Injections", "Procedure", "Bill"]
+    let processorChoices = ["", "Nikki I.", "Bertha C.", "Tina I."]
     
     private func nameAgeDOB(_ theText: String) -> (String, String, String, String){
         var ptName = ""
