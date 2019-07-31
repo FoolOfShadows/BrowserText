@@ -100,52 +100,224 @@ func createNeedAptLetter(_ patient:PatientDataProfile) -> String {
     return letter
 }
 
+enum ReferralSectionDelimiters:String {
+    //    case ptNameFirstStart = "#NAMEFIRST"
+    //    case ptNameFirstEnd = "NAMEFIRST#"
+    //
+    //    case ptNameLastStart = "#NAMELAST"
+    //    case ptNameLastEnd = "NAMELAST#"
+    //
+    //    case ptNameMiddleStart = "#NAMEMIDDLE"
+    //    case ptNameMiddleEnd = "NAMEMIDDLE#"
+    
+    case ptNameStart = "#PATIENTNAME"
+    case ptNameEnd = "PATIENTNAME#"
+    
+    case ptDOBStart = "#DOB"
+    case ptDOBEnd = "DOB#"
+    
+    case ptAgeStart = "#AGE"
+    case ptAgeEnd = "AGE#"
+    
+    case ptMobileStart = "#MOBILEPHONE"
+    case ptMobileEnd = "MOBILEPHONE#"
+    
+    case ptHomeStart = "#HOMEPHONE"
+    case ptHomeEnd = "HOMEPHONE#"
+    
+    case ptAddressStart = "#PATIENTADDRESS"
+    case ptAddressEnd = "PATIENTADDRESS#"
+    
+    case activityTypeStart = "#ACTIVITYTYPE"
+    case activityTypeEnd = "ACTIVITYTYPE#"
+    
+    case paNeededStart = "#PANEEDED"
+    case paNeededEnd = "PANEEDED#"
+    
+    case insuranceStart = "#ALLINSURANCE"
+    case insuranceEnd = "ALLINSURANCE#"
+    
+    case specNameStart = "#SPECNAME"
+    case specNameEnd = "SPECNAME#"
+    
+    case specAddressStart = "#SPECADDRESS"
+    case specAddressEnd = "SPECADDRESS#"
+    
+    case specPhoneStart = "#SPECPHONE"
+    case specPhoneEnd = "SPECPHONE#"
+    
+    case specFaxStart = "#SPECFAX"
+    case specFaxEnd = "SPECFAX#"
+    
+    case specialtyStart = "#SPECIALTY"
+    case specialtyEnd = "SPECIALTY#"
+    
+    case specNPIStart = "#NPI"
+    case specNPIEnd = "NPI#"
+    
+    case specContactStart = "#CONTACT"
+    case specContactEnd = "CONTACT#"
+    
+    case testTypeStart = "#TESTTYPE"
+    case testTypeEnd = "TESTTYPE#"
+    
+    case paInsNameStart = "#PAINSNAME"
+    case paInsNameEnd = "PAINSNAME#"
+    
+    case paInsPhoneStart = "#PAINSPHONE"
+    case paInsPhoneEnd = "PAINSPHONE#"
+    
+    case paInsFaxStart = "#PAINSFAX"
+    case paInsFaxEnd = "PAINSFAX#"
+    
+    case infoNeededStart = "#INFONEEDED"
+    case infoNeededEnd = "INFONEEDED#"
+    
+    case infoSentStart = "#INFOSENT"
+    case infoSentEnd = "INFOSENT#"
+    
+    case paDeclinedStart = "#PADECLINED"
+    case paDeclinedEnd = "PADECLINED#"
+    
+    case ptNotifiedStart = "#NOTIFIED"
+    case ptNotifiedEnd = "NOTIFIED#"
+    
+    case notesStart = "#NOTES"
+    case notesEnd = "NOTES#"
+}
 
 func createReferral(_ patient:PatientDataProfile) -> String {
     let currentDate = currentDateLong()
     let nonPrimeIns = patient.insurances.dropFirst()
     
+//    let letter = """
+//
+//
+//    \(currentDate)
+//
+//    \(patient.fullName)          DOB: \(patient.dob) (\(patient.age))
+//    \(patient.fullAddress)
+//
+//    Home Phone: \(patient.homePhone)
+//    Mobile Phone: \(patient.mobilePhone)
+//
+//    Primary Ins: \(patient.insurances[0].0) - \(patient.insurances[0].1)
+//    Other Ins: \(nonPrimeIns.map { "\($0.0) - \($0.1)"}.joined(separator: "\n\t"))
+//
+//
+//
+//    Dr/Clinic Name:
+//
+//    Specialty:                                     NPI:
+//    Address:
+//
+//    Phone:                                    Fax:
+//
+//
+//    Test Ordered:
+//
+//    DX:
+//
+//    INFO NEEDED
+//    Demo    ML    Dx    Rad    Labs    Ins    ONs
+//
+//
+//    PA Needed:  Y    N
+//    Ins Name: \(patient.insurances[0].0)
+//    Phone:                      Fax:
+//
+//
+//
+//    Declined:
+//
+//    Pt Notified:
+//    """
+    
+    let formattedInsurance = patient.insurances.map { "\($0.0) - \($0.1)"}.joined(separator: "\n")
     let letter = """
+    #REFERRALFILE#
     
+    \(ReferralSectionDelimiters.ptNameStart.rawValue)
+    \(patient.fullName)
+    \(ReferralSectionDelimiters.ptNameEnd.rawValue)
     
-    \(currentDate)
+    \(ReferralSectionDelimiters.ptDOBStart.rawValue)
+    \(patient.dob)
+    \(ReferralSectionDelimiters.ptDOBEnd.rawValue)
     
-    \(patient.fullName)          DOB: \(patient.dob) (\(patient.age))
+    \(ReferralSectionDelimiters.ptAgeStart.rawValue)
+    \(patient.age)
+    \(ReferralSectionDelimiters.ptAgeEnd.rawValue)
+    
+    \(ReferralSectionDelimiters.ptMobileStart.rawValue)
+    \(patient.mobilePhone)
+    \(ReferralSectionDelimiters.ptMobileEnd.rawValue)
+    
+    \(ReferralSectionDelimiters.ptHomeStart.rawValue)
+    \(patient.homePhone)
+    \(ReferralSectionDelimiters.ptHomeEnd.rawValue)
+    
+    \(ReferralSectionDelimiters.ptAddressStart.rawValue)
     \(patient.fullAddress)
-
-    Home Phone: \(patient.homePhone)
-    Mobile Phone: \(patient.mobilePhone)
+    \(ReferralSectionDelimiters.ptAddressEnd.rawValue)
     
-    Primary Ins: \(patient.insurances[0].0) - \(patient.insurances[0].1)
-    Other Ins: \(nonPrimeIns.map { "\($0.0) - \($0.1)"}.joined(separator: "\n\t"))
+    \(ReferralSectionDelimiters.activityTypeStart.rawValue)
+    \(ReferralSectionDelimiters.activityTypeEnd.rawValue)
     
+    \(ReferralSectionDelimiters.paNeededStart.rawValue)
+    \(ReferralSectionDelimiters.paNeededEnd.rawValue)
     
+    \(ReferralSectionDelimiters.insuranceStart.rawValue)
+    \(formattedInsurance)
+    \(ReferralSectionDelimiters.insuranceEnd.rawValue)
     
-    Dr/Clinic Name:
+    \(ReferralSectionDelimiters.specNameStart.rawValue)
+    \(ReferralSectionDelimiters.specNameEnd.rawValue)
     
-    Specialty:                                     NPI:
-    Address:
+    \(ReferralSectionDelimiters.specAddressStart.rawValue)
+    \(ReferralSectionDelimiters.specAddressEnd.rawValue)
     
-    Phone:                                    Fax:
+    \(ReferralSectionDelimiters.specPhoneStart.rawValue)
+    \(ReferralSectionDelimiters.specPhoneEnd.rawValue)
     
+    \(ReferralSectionDelimiters.specFaxStart.rawValue)
+    \(ReferralSectionDelimiters.specFaxEnd.rawValue)
     
-    Test Ordered:
+    \(ReferralSectionDelimiters.specialtyStart.rawValue)
+    \(ReferralSectionDelimiters.specialtyEnd.rawValue)
     
-    DX:
+    \(ReferralSectionDelimiters.specNPIStart.rawValue)
+    \(ReferralSectionDelimiters.specNPIEnd.rawValue)
     
-    INFO NEEDED
-    Demo    ML    Dx    Rad    Labs    Ins    ONs
+    \(ReferralSectionDelimiters.specContactStart.rawValue)
+    \(ReferralSectionDelimiters.specContactEnd.rawValue)
     
+    \(ReferralSectionDelimiters.testTypeStart.rawValue)
+    \(ReferralSectionDelimiters.testTypeEnd.rawValue)
     
-    PA Needed:  Y    N
-    Ins Name: \(patient.insurances[0].0)
-    Phone:                      Fax:
+    \(ReferralSectionDelimiters.paInsNameStart.rawValue)
+    \(ReferralSectionDelimiters.paInsNameEnd.rawValue)
     
+    \(ReferralSectionDelimiters.paInsPhoneStart.rawValue)
+    \(ReferralSectionDelimiters.paInsPhoneEnd.rawValue)
     
+    \(ReferralSectionDelimiters.paInsFaxStart.rawValue)
+    \(ReferralSectionDelimiters.paInsFaxEnd.rawValue)
     
-    Declined:
+    \(ReferralSectionDelimiters.infoNeededStart.rawValue)
+    \(ReferralSectionDelimiters.infoNeededEnd.rawValue)
     
-    Pt Notified:
+    \(ReferralSectionDelimiters.infoSentStart.rawValue)
+    \(ReferralSectionDelimiters.infoSentEnd.rawValue)
+    
+    \(ReferralSectionDelimiters.paDeclinedStart.rawValue)
+    \(ReferralSectionDelimiters.paDeclinedEnd.rawValue)
+    
+    \(ReferralSectionDelimiters.ptNotifiedStart.rawValue)
+    \(ReferralSectionDelimiters.ptNotifiedEnd.rawValue)
+    
+    \(ReferralSectionDelimiters.notesStart.rawValue)
+    \(ReferralSectionDelimiters.notesEnd.rawValue)
     """
     
     return letter

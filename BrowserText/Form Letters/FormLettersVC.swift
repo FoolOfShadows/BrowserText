@@ -65,8 +65,19 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func printReferral(_ sender: Any?) {
+        let theCurrentDate = Date()
+        let labelDateFormatter = DateFormatter()
+        labelDateFormatter.dateFormat = "yyMMdd"
+        let labelVisitDate = labelDateFormatter.string(from: theCurrentDate)
         let creationHandler = {
-            printBlankPageWithText(createReferral(self.currentPatient), fontSize: 14.0, window: self.view.window!)
+            //printBlankPageWithText(createReferral(self.currentPatient), fontSize: 14.0, window: self.view.window!)
+            //let saveLocation = ""
+            let fileName = "\(self.currentPatient.fullName) REFFERAL \(labelVisitDate).txt"
+            let referralData = createReferral(self.currentPatient)
+            let referralFile = referralData.data(using: String.Encoding.utf8)
+            let newFileManager = FileManager.default
+            let savePath = NSHomeDirectory()
+            newFileManager.createFile(atPath: "\(savePath)/Desktop/\(fileName)", contents: referralFile, attributes: nil)
         }
         
         createPatientObject(withHandler: creationHandler)

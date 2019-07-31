@@ -189,7 +189,10 @@ class LabViewController: NSViewController {
 		antiNuclearView.stringValue = extractedLabData.antiNuclearString ?? ""
 		
         //FIXME: This bit for creating a file name needs to be moved to its own function and cleaned up
-        let dateComponents = extractedLabData.labDateString?.split(separator: "/").reversed() ?? [""]
+        var dateComponents = extractedLabData.labDateString?.split(separator: "/") ?? [""]
+        if dateComponents.count == 3 {
+            dateComponents = [dateComponents[2], dateComponents[0], dateComponents[1]]
+        }
         var paddedComponents = [String]()
         for item in dateComponents {
             if item.count < 2 {
