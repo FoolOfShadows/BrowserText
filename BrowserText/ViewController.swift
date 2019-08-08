@@ -152,7 +152,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                     print(returnCode)}
             }
         }
-        getWebViewDataByID("ember311", completion: pmHandler)
+        getWebViewDataByID("ember3", completion: pmHandler)
 
     }
     
@@ -160,7 +160,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         let receiptHandler: () -> Void = {
             self.performSegue(withIdentifier: "showReceipt", sender: nil)
         }
-        getWebViewDataByID("ember311", completion: receiptHandler)
+        getWebViewDataByID("ember3", completion: receiptHandler)
     }
     
     @IBAction func openeScripts(_ sender: Any?) {
@@ -168,14 +168,15 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             self.performSegue(withIdentifier: "showeScript", sender: nil)
         }
         
-        getWebViewDataByID("ember311", completion: eScriptHandler)
+        getWebViewDataByID("ember3", completion: eScriptHandler)
     }
     
     @IBAction func openPTVNBuilder(_ sender: Any?) {
-        //print("Opening the PTVN Building module")
+        var emberID = String()
+        print("Opening the PTVN Building module")
         //Create a completion handler to deal with the results of the JS call to the webView
         let assignmentHandler: () -> Void = {
-            //print("In the PTVN Builder assignmentHandler")
+            print("In the PTVN Builder assignmentHandler")
             if self.viewContent.contains("DOB: ") {
             self.currentData = ChartData(chartData: self.viewContent, aptTime: self.timeView.stringValue, aptDate: self.daysUntilPopup.indexOfSelectedItem)
             self.performSegue(withIdentifier: "showPTVNBuilder", sender: self)
@@ -193,7 +194,17 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             }
         }
         
-        getWebViewDataByID("ember311", completion: assignmentHandler)
+//        let emberIDHandler: () -> Void = {
+//            print("Running emberIDHandler")
+//            (self.pfView as! WKWebView).evaluateJavaScript("document.getElementById('ember3').innerText", completionHandler: { (html: Any?, error: Error?) in
+//                emberID = getEmberIDForPtOutlet(html as! String)
+//                print(emberID)
+//                (html as! String).copyToPasteboard()
+//                //self.getWebViewDataByID(emberID, completion: assignmentHandler)
+//            })
+//        }
+//        emberIDHandler()
+        getWebViewDataByID("ember3", completion: assignmentHandler)
     }
     
     @IBAction func openLabLetter(_ sender: Any?) {
@@ -203,7 +214,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             self.performSegue(withIdentifier: "showLabLetter", sender: self)
         }
         
-        getWebViewDataByID("ember311", completion: assignmentHandler)
+        getWebViewDataByID("ember3", completion: assignmentHandler)
     }
     
     @IBAction func openFormLetters(_sender: Any?) {
@@ -211,7 +222,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             self.performSegue(withIdentifier: "showFormLetters", sender: self)
         }
         
-        getWebViewDataByID("ember311", completion: assignmentHandler)
+        //getWebViewValueByID("ember3", dataType: "innerHTML", completion: assignmentHandler)
+        getWebViewDataByID("ember3", completion: assignmentHandler)
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -287,13 +299,13 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             
         }
         
-        getWebViewDataByID("ember311", completion: assignmentHandler)
+        getWebViewDataByID("ember3", completion: assignmentHandler)
     }
     
     
     //Gets the underlying text for the Patient Summary page in Practice Fusion
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void) {
-        //print("Getting summary data")
+        print("Getting summary data")
         //Using ID 'ember311' I get the same text as I do by selecting all and copying
         (pfView as! WKWebView).evaluateJavaScript("document.getElementById('\(id)').innerText",
                                    completionHandler: { (html: Any?, error: Error?) in
@@ -304,6 +316,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                                         //if that retrieval fails, set the var to a default value
                                         self.viewContent = (html as? String) ?? "No string"
                                         //Run the completion handler passed in as a parameter
+                                        (html as? String)?.copyToPasteboard()
                                         completion()
                                     }
         })
@@ -325,7 +338,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     
     //Gets the underlying values for the Patient Profile page in Practice Fusion (use .value to get the value after getElementById())
     func getWebViewValueByID(_ id: String, dataType:String = "value", completion: @escaping () -> Void) {
-        //print("Getting summary data")
+        print("Getting ID data")
         //Using .value I can retrieve the data from a form field if I know it's ID
         (pfView as! WKWebView).evaluateJavaScript("document.getElementById('\(id)').\(dataType)",
             completionHandler: { (html: Any?, error: Error?) in
@@ -429,8 +442,17 @@ enum MyPrintError:Error {
 
 func getEmberIDFromScrapedString(_ data:String) -> String {
     var result = String()
-    let theLine = data.simpleRegExMatch("data-element=\"last-name\".*?shorter ember-view\">")
+    let theLine = data.simpleRegExMatch("data-element=\"last-name\".*?shorter ember-view\"")
     result = theLine.simpleRegExMatch("ember\\d{4,7}")
     print(result)
     return result
 }
+
+//func getEmberIDForPtOutlet(_ data:String) -> String {
+//    var result = String()
+//    let theLine = data.simpleRegExMatch("div id=​\"ember\\d{4,7}\" class=​\"patient-summary flex-column flex-grow view-spinner ember-view\">")
+//    result = theLine.simpleRegExMatch("ember\\d{4,7}")
+//    print("The regex match is: \(result)")
+//    return result
+//}
+

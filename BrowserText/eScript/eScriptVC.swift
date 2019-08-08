@@ -141,24 +141,24 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
     @IBAction func addVisitDates(_ sender: Any) {
         
         let visitDateHandler: () -> Void = {
-        let theText = self.viewDataDelegate!.viewContent
-        
-        var lastAppointment:String {return getLastAptInfoFrom(theText)}
-        var nextAppointment:String {return getNextAptInfoFrom(theText)}
-        
+            let theText = self.viewDataDelegate!.viewContent
+            
+            var lastAppointment:String {return getLastAptInfoFrom(theText)}
+            var nextAppointment:String {return getNextAptInfoFrom(theText)}
+            
             let currentResults = self.scriptText.string
-        let finalScriptData = currentResults.replacingOccurrences(of: "\n\nRESPONSE:", with: "\n\nLast Apt: \(lastAppointment)\nNext Apt: \(nextAppointment)")
-        
-        let theUserFont:NSFont = NSFont.systemFont(ofSize: 18)
-        let fontAttributes = NSDictionary(object: theUserFont, forKey: NSAttributedString.Key.font as NSCopying)
+            let finalScriptData = currentResults.replacingOccurrences(of: "\n\nRESPONSE:", with: "\n\nLast Apt: \(lastAppointment)\nNext Apt: \(nextAppointment)")
+            
+            let theUserFont:NSFont = NSFont.systemFont(ofSize: 18)
+            let fontAttributes = NSDictionary(object: theUserFont, forKey: NSAttributedString.Key.font as NSCopying)
             self.scriptText.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
-        //let count = Int(scriptText.string.count)
-        //scriptText.shouldChangeText(in: NSMakeRange(0, count), replacementString: "\(finalScriptData)\n\nRESPONSE:\n")
+            //let count = Int(scriptText.string.count)
+            //scriptText.shouldChangeText(in: NSMakeRange(0, count), replacementString: "\(finalScriptData)\n\nRESPONSE:\n")
             self.scriptText.string = "\(finalScriptData)\n\nRESPONSE:\n"
             self.scriptText.didChangeText()
         }
         
-        viewDataDelegate?.getWebViewDataByID("ember311", completion: visitDateHandler)
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: visitDateHandler)
     }
 	
     @IBAction func addScript(_ sender: Any) {
@@ -201,7 +201,7 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
             self.scriptText.didChangeText()
         }
         
-        viewDataDelegate?.getWebViewDataByID("ember311", completion: addScriptHandler)
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: addScriptHandler)
         
     }
 	
