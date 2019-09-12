@@ -78,3 +78,32 @@ func getDateRegEx(_ dateLine: String) -> String {
 	
 	return theMatch
 }
+
+
+func createFileLabelFrom(PatientName name:String, FileType type:String, date:String) -> String {
+    //Format Date
+    var dateComponents = date.split(separator: "/")//extractedLabData.labDateString?.split(separator: "/") ?? [""]
+    if dateComponents.count == 3 {
+        dateComponents = [dateComponents[2], dateComponents[0], dateComponents[1]]
+    }
+    var paddedComponents = [String]()
+    for item in dateComponents {
+        if item.count < 2 {
+            paddedComponents.append("0\(item)")
+        } else {
+            paddedComponents.append(String(item))
+        }
+    }
+    var finalComponents = [String]()
+    for item in paddedComponents {
+        if item.count == 4 {
+            finalComponents.append(String(item.suffix(2)))
+        } else {
+            finalComponents.append(item)
+        }
+    }
+    
+    let results = [name, type, finalComponents.joined(separator: "")]
+    
+    return results.joined(separator: " ")
+}

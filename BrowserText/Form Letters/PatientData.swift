@@ -27,6 +27,12 @@ public struct PatientDataProfile {
         let cleanArray = nameArray.filter {!$0.isEmpty}
         return cleanArray.joined(separator: " ")
     }
+    
+    var labelName:String {
+        let nameArray:[String] = [self.lastName, self.firstName, self.middleName]
+        let cleanArray = nameArray.filter {!$0.isEmpty}
+        return cleanArray.joined(separator: "")
+    }
     var fullAddress:String {
         return """
 \(street)

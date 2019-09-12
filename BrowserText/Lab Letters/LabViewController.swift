@@ -210,7 +210,9 @@ class LabViewController: NSViewController {
             }
         }
         
-        fileLabelName = "\(extractedLabData.patientLabelNameString) LL \(finalComponents.joined(separator: ""))"
+        fileLabelName = createFileLabelFrom(PatientName: extractedLabData.patientLabelNameString, FileType: "LL", date: extractedLabData.labDateString ?? "")
+        //fileLabelName = "\(extractedLabData.patientLabelNameString) LL \(finalComponents.joined(separator: ""))"
+        
 		//Detect the values which are out of range and color them red
 		//so they're easier to detect during the check process
 		labLetterMainView.highlightOutOfRangeResults()

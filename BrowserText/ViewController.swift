@@ -78,43 +78,49 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         //printWebView()
         
         //"document.getElementById('print-chart-modal-content').innerHTML"
-        
+//        (pfView as! WKWebView).evaluateJavaScript("window.print()", completionHandler: { (html: Any?, error: Error?) in
+//            if error == nil {
+//                print("No error in dealing with the object")
+//            } else {
+//                print("Error: \(error)")
+//            }
+//        })
         //Using .innerText will grab the text from the PF generated report and pass it to the printer, though it does NOT pass on the formatting and returns something ugly and mostly unuseable in its current form.  I either need to figure out how to include the PF formatting, or do my own post retrieval formatting.  Using .innerHTML will grab the same data with all it's HTML tags.
-        (pfView as! WKWebView).evaluateJavaScript("document.getElementById('print-chart-modal-content').innerHTML",
-                                                  completionHandler: { (html: Any?, error: Error?) in
-                                                    //Check if an error's been returned, if not, continue
-                                                    if error == nil {
-                                                        print("No error in retrieving object")
-                                                        
-                                                        //Create a view to hold the final text so it can be passed to the NSPrintOperation
-                                                        let printView = NSTextView()
-                                                        //Set the size of the view or the text won't appear on the page
-                                                        printView.setFrameSize(NSSize(width: 680, height: 0))
-                                                        //Transfer the final string to the TextView's string property
-                                                        printView.string = html as! String
-                                                        let printInfo = NSPrintInfo.shared
-                                                        printInfo.leftMargin = 40
-                                                        printInfo.isVerticallyCentered = false
-                                                        printInfo.bottomMargin = 40
-                                                        let operation: NSPrintOperation = NSPrintOperation(view: printView, printInfo: printInfo)
-                                                        operation.run()
-                                                        
-                                                        let pasteBoard = NSPasteboard.general
-                                                        pasteBoard.clearContents()
-                                                        pasteBoard.setString(html as! String, forType: .string)
-                                                        
-                                                        //self.printWebView(html as! WKWebView)
-                                                        //(self.pfView as! WKWebView).loadHTMLString(html as! String, baseURL: nil)
-                                                        
-                                                        //Set the viewContent var to the data retrieved from the webview
-                                                        //if that retrieval fails, set the var to a default value
-                                                        //self.viewContent = (html as? String) ?? "No string"
-                                                        
-                                                        
-                                                    } else {
-                                                        print("Error: \(error)")
-                                                    }
-        })
+//        (pfView as! WKWebView).evaluateJavaScript("document.getElementById('print-chart-modal-content').innerHTML",
+//                                                  completionHandler: { (html: Any?, error: Error?) in
+//                                                    //Check if an error's been returned, if not, continue
+//                                                    if error == nil {
+//                                                        print("No error in retrieving object")
+//
+//                                                        //Create a view to hold the final text so it can be passed to the NSPrintOperation
+//                                                        let printView = NSTextView()
+//                                                        //Set the size of the view or the text won't appear on the page
+//                                                        printView.setFrameSize(NSSize(width: 680, height: 0))
+//                                                        //Transfer the final string to the TextView's string property
+//                                                        printView.string = html as! String
+//                                                        let printInfo = NSPrintInfo.shared
+//                                                        printInfo.leftMargin = 40
+//                                                        printInfo.isVerticallyCentered = false
+//                                                        printInfo.bottomMargin = 40
+//                                                        let operation: NSPrintOperation = NSPrintOperation(view: printView, printInfo: printInfo)
+//                                                        operation.run()
+//
+//                                                        let pasteBoard = NSPasteboard.general
+//                                                        pasteBoard.clearContents()
+//                                                        pasteBoard.setString(html as! String, forType: .string)
+//
+//                                                        //self.printWebView(html as! WKWebView)
+//                                                        //(self.pfView as! WKWebView).loadHTMLString(html as! String, baseURL: nil)
+//
+//                                                        //Set the viewContent var to the data retrieved from the webview
+//                                                        //if that retrieval fails, set the var to a default value
+//                                                        //self.viewContent = (html as? String) ?? "No string"
+//
+//
+//                                                    } else {
+//                                                        print("Error: \(error)")
+//                                                    }
+//        })
     }
     
     //Click a button with JavaScript

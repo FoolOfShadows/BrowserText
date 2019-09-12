@@ -39,12 +39,17 @@ class BMDViewController: NSViewController {
         
         let currentBMD = BMDData(ptName:ptNameView.stringValue, ltrDate:currentDateView.stringValue, testDate:testDateView.stringValue, tScore:tScoreView.doubleValue, location:locationView.stringValue, address: currentPatient.fullAddress)
         
+        let fileName = createFileLabelFrom(PatientName: currentPatient.labelName, FileType: "BMD", date: currentDateView.stringValue)
+        
         //Pass the final letter string to the clipboard
         let pasteBoard = NSPasteboard.general
         pasteBoard.clearContents()
-        pasteBoard.setString(currentBMD.generateOutput(), forType: NSPasteboard.PasteboardType.string)
+        pasteBoard.setString(fileName, forType: NSPasteboard.PasteboardType.string)
+        //pasteBoard.setString(currentBMD.generateOutput(), forType: NSPasteboard.PasteboardType.string)
         
         printLetterheadWithText(currentBMD.generateOutput(), fontSize: 14.0, window: self.view.window!, andCloseWindow: true)
+        
+        
         //dismiss(self)
         
     }

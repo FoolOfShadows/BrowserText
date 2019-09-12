@@ -46,6 +46,10 @@ class FormLettersVC: NSViewController {
     @IBAction func printNoShowLetter(_ sender: Any?) {
         let creationHandler = {
             printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:noShowVerbiage), fontSize: 14.0, window: self.view.window!)
+            let fileName = createFileLabelFrom(PatientName: getFileLabellingNameFrom(self.currentPatient.fullName, ofType: FileLabelType.full), FileType: "NSRMNDR", date: String(Date().shortDate()))
+            let pasteBoard = NSPasteboard.general
+            pasteBoard.clearContents()
+            pasteBoard.setString(fileName, forType: NSPasteboard.PasteboardType.string)
         }
         
         createPatientObject(withHandler: creationHandler)
@@ -54,6 +58,10 @@ class FormLettersVC: NSViewController {
     @IBAction func printNeedAptLetter(_ sender: Any?) {
         let creationHandler = {
             printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:needAptVerbiage), fontSize: 14.0, window: self.view.window!)
+            let fileName = createFileLabelFrom(PatientName: getFileLabellingNameFrom(self.currentPatient.fullName, ofType: FileLabelType.full), FileType: "LTRT", date: String(Date().shortDate()))
+            let pasteBoard = NSPasteboard.general
+            pasteBoard.clearContents()
+            pasteBoard.setString(fileName, forType: NSPasteboard.PasteboardType.string)
         }
         
         createPatientObject(withHandler: creationHandler)
@@ -69,14 +77,15 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func printReferral(_ sender: Any?) {
-        let theCurrentDate = Date()
-        let labelDateFormatter = DateFormatter()
-        labelDateFormatter.dateFormat = "yyMMdd"
-        let labelVisitDate = labelDateFormatter.string(from: theCurrentDate)
+        //let theCurrentDate = Date()
+        //let labelDateFormatter = DateFormatter()
+        //labelDateFormatter.dateFormat = "yyMMdd"
+        //let labelVisitDate = labelDateFormatter.string(from: theCurrentDate)
         let creationHandler = {
             //printBlankPageWithText(createReferral(self.currentPatient), fontSize: 14.0, window: self.view.window!)
             //let saveLocation = ""
-            let fileName = "\(self.currentPatient.fullName) REFFERAL \(labelVisitDate).txt"
+            var fileName = createFileLabelFrom(PatientName: getFileLabellingNameFrom(self.currentPatient.fullName, ofType: FileLabelType.full), FileType: "REFERRAL", date: String(Date().shortDate()))
+            fileName = "\(fileName).txt"
             let referralData = createReferral(self.currentPatient)
             let referralFile = referralData.data(using: String.Encoding.utf8)
             let newFileManager = FileManager.default
