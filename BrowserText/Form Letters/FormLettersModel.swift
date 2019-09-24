@@ -158,6 +158,12 @@ enum ReferralSectionDelimiters:String {
     case specContactStart = "#CONTACT"
     case specContactEnd = "CONTACT#"
     
+    case testLocationStart = "#LOCATION"
+    case testLocationEnd = "LOCATION#"
+    
+    case testTimeStart = "#TIME"
+    case testTimeEnd = "TIME#"
+    
     case testTypeStart = "#TESTTYPE"
     case testTypeEnd = "TESTTYPE#"
     
@@ -291,6 +297,12 @@ func createReferral(_ patient:PatientDataProfile) -> String {
     
     \(ReferralSectionDelimiters.specContactStart.rawValue)
     \(ReferralSectionDelimiters.specContactEnd.rawValue)
+    
+    \(ReferralSectionDelimiters.testLocationStart.rawValue)
+    \(ReferralSectionDelimiters.testLocationEnd.rawValue)
+    
+    \(ReferralSectionDelimiters.testTimeStart.rawValue)
+    \(ReferralSectionDelimiters.testTimeEnd.rawValue)
     
     \(ReferralSectionDelimiters.testTypeStart.rawValue)
     \(ReferralSectionDelimiters.testTypeEnd.rawValue)
