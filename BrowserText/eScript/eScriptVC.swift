@@ -133,7 +133,7 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
         })
 	}
     
-    func closeTheWindow() {
+    private func closeTheWindow() {
         //To close the window with the current design, I needed a specific outlet to the view so I could track back to it's window and tell it to close
         eScriptView.window!.close()
     }

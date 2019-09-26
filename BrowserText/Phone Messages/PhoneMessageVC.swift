@@ -35,6 +35,8 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     
     @IBOutlet weak var startNewMessageButton: NSButton!
     
+    @IBOutlet weak var pmsgView: NSView!
+    
     //For some reason the program crashes on B's MacBook if I try to connect
     //these NSTextViews direct to their outlets in IB
     var allergiesView: NSTextView {
@@ -159,12 +161,15 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         let saveDialog = NSSavePanel()
         saveDialog.nameFieldStringValue = "\(currentMessageText.ptLabelName) PMSG \(currentMessageText.labelDate)"
         saveDialog.directoryURL = NSURL.fileURL(withPath: "\(savePath)/\(saveLocation)")
-        saveDialog.begin(completionHandler: {(result: NSApplication.ModalResponse) -> Void in
+        //saveDialog.begin(completionHandler: {(result: NSApplication.ModalResponse) -> Void in
+        saveDialog.beginSheetModal(for: self.view.window!, completionHandler: {(result: NSApplication.ModalResponse) -> Void in
             if result.rawValue == NSFileHandlingPanelOKButton {
                 if let filePath = saveDialog.url {
                     if let path = URL(string: String(describing: filePath) + ext) {
                         do {
                             try data.write(to: path, options: .withoutOverwriting)
+                            //This is where we can close the spawning window if the save is successful
+                            self.closeTheWindow()
                         } catch {
                             let alert = NSAlert()
                             alert.messageText = "There is already a file with this name.\n Please choose a different name."
@@ -180,6 +185,11 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
                 }
                 
             }})
+    }
+    
+    private func closeTheWindow() {
+        //To close the window with the current design, I needed a specific outlet to the view so I could track back to it's window and tell it to close
+        pmsgView.window!.close()
     }
     
     @IBAction func clearMessage(_ sender: Any) {
