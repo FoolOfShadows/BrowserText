@@ -78,13 +78,20 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         //printWebView()
         
         //"document.getElementById('print-chart-modal-content').innerHTML"
-//        (pfView as! WKWebView).evaluateJavaScript("window.print()", completionHandler: { (html: Any?, error: Error?) in
+        (pfView as! WKWebView).evaluateJavaScript("window.print()", completionHandler: { (html: Any?, error: Error?) in
+            let alert = NSAlert()
+            alert.messageText = "You cannot yet print Practice Fusion data from this program.  Please use Practice Fusion from your regular browser to print."
+            alert.beginSheetModal(for: self.view.window!, completionHandler: { (NSModalResponse) -> Void in
+                let returnCode = NSModalResponse
+                print(returnCode)
+                return
+            })
 //            if error == nil {
 //                print("No error in dealing with the object")
 //            } else {
 //                print("Error: \(error)")
 //            }
-//        })
+        })
         //Using .innerText will grab the text from the PF generated report and pass it to the printer, though it does NOT pass on the formatting and returns something ugly and mostly unuseable in its current form.  I either need to figure out how to include the PF formatting, or do my own post retrieval formatting.  Using .innerHTML will grab the same data with all it's HTML tags.
 //        (pfView as! WKWebView).evaluateJavaScript("document.getElementById('print-chart-modal-content').innerHTML",
 //                                                  completionHandler: { (html: Any?, error: Error?) in
@@ -274,7 +281,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         //Creates a script then injects it into each frame of the web page when it's done loading
         let configuration = WKWebViewConfiguration()
             //Not sure what this 'source' is or how it works
-        let script = WKUserScript(source: "window.print = function() { window.webkit.messageHandlers.print.postMessage('print') }", injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: false)
+        let script = WKUserScript(source: "window.print = function() { window.webkit.messageHandlers.print.postMessage('print') }", injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: true)
         configuration.userContentController.addUserScript(script)
         configuration.userContentController.add(self, name: "print")
         //None of these preferences fix the printing from PF issue
