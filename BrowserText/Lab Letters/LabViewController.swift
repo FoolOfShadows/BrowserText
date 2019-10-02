@@ -124,7 +124,7 @@ class LabViewController: NSViewController {
         guard let extractedLabData = processRawData(rawLabData) else { return }
 		
 		//Populate the TextFields of the form with the data from the processed lab object
-		patientNameView.stringValue = extractedLabData.patientNameString ?? ""
+        patientNameView.stringValue = extractedLabData.patientNameString?.components(separatedBy: " ").filter {!$0.contains("(")}.joined(separator: " ") ?? ""
 		labDateView.stringValue = extractedLabData.labDateString ?? ""
 		
 		wbcView.stringValue = extractedLabData.wbcString ?? ""
