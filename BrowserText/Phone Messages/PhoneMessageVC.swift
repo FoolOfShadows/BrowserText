@@ -154,7 +154,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     }
     
     
-    func saveExportDialogWithData(_ data: Data, andFileExtension ext: String) {
+    private func saveExportDialogWithData(_ data: Data, andFileExtension ext: String) {
         let savePath = NSHomeDirectory()
         let saveLocation = "WPCMSharedFiles"
         

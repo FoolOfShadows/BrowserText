@@ -87,10 +87,12 @@ class FormLettersVC: NSViewController {
             var fileName = createFileLabelFrom(PatientName: getFileLabellingNameFrom(self.currentPatient.fullName, ofType: FileLabelType.full), FileType: "REFERRAL", date: String(Date().shortDate()))
             fileName = "\(fileName).txt"
             let referralData = createReferral(self.currentPatient)
-            let referralFile = referralData.data(using: String.Encoding.utf8)
-            let newFileManager = FileManager.default
-            let savePath = NSHomeDirectory()
-            newFileManager.createFile(atPath: "\(savePath)/Desktop/\(fileName)", contents: referralFile, attributes: nil)
+            if let referralFile = referralData.data(using: String.Encoding.utf8) {
+                self.saveExportDialogWithData(referralFile, andFileName: fileName)
+            }
+//            let newFileManager = FileManager.default
+//            let savePath = NSHomeDirectory()
+//            newFileManager.createFile(atPath: "\(savePath)/Desktop/\(fileName)", contents: referralFile, attributes: nil)
         }
         
         createPatientObject(withHandler: creationHandler)
@@ -184,6 +186,36 @@ class FormLettersVC: NSViewController {
             finishThisHandler()
         }
         viewDataDelegate?.getWebViewValueByID("ember3", dataType: "innerHTML", completion: lastNameIDHandler)
+    }
+    
+    private func saveExportDialogWithData(_ data: Data, andFileName fileName: String) {
+        let savePath = NSHomeDirectory()
+        let saveLocation = "WPCMSharedFiles/zBertha Review/Referrals"
+        
+        let saveDialog = NSSavePanel()
+        saveDialog.nameFieldStringValue = fileName
+        saveDialog.directoryURL = NSURL.fileURL(withPath: "\(savePath)/\(saveLocation)")
+        //saveDialog.begin(completionHandler: {(result: NSApplication.ModalResponse) -> Void in
+        saveDialog.beginSheetModal(for: self.view.window!, completionHandler: {(result: NSApplication.ModalResponse) -> Void in
+            if result.rawValue == NSFileHandlingPanelOKButton {
+                if let filePath = saveDialog.url {
+                    if let path = URL(string: String(describing: filePath)) {
+                        do {
+                            try data.write(to: path, options: .withoutOverwriting)
+                            //This is where we can close the spawning window if the save is successful
+                            //self.closeTheWindow()
+                        } catch {
+                            let alert = NSAlert()
+                            alert.messageText = "There is already a file with this name.\n Please choose a different name."
+                            alert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
+                                let returnCode = NSModalResponse
+                                print(returnCode)
+                            }
+                        }
+                    }
+                }
+                
+            }})
     }
 }
 
