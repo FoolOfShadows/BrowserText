@@ -84,7 +84,7 @@ class ReceiptVC: NSViewController {
         newFileManager.createFile(atPath: "\(savePath)/WPCMSharedFiles/zDonna Review/02 RECEIPTS/\(fileName)", contents: receiptData, attributes: nil)
         
         //Print receipt on letter head for patient
-        printLetterheadWithText(receiptText, window: self.view.window!, andCloseWindow: true)
+            printLetterheadWithText(receiptText, window: self.view.window!, andCloseWindow: true, defaultCopies: 2)
         }
     }
     
@@ -149,6 +149,17 @@ class ReceiptVC: NSViewController {
         } else {
             reasonText.stringValue = String()
             reasonText.isEnabled = false
+        }
+    }
+    
+    @IBAction func selectAmount(_ sender: NSButton) {
+        amount.stringValue = "\(sender.title).00"
+        if let buttons = sender.superview?.subviews as? [NSButton] {
+            for button in buttons {
+                if button.title != sender.title {
+                    button.state = .off
+                }
+            }
         }
     }
     

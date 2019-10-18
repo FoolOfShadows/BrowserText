@@ -36,7 +36,7 @@ struct Receipt {
 //    var note = String()
 //    var receiver = String()
     
-    let reasonChoices = ["", "Co-pay", "Labs", "Injections", "Procedure", "Bill"]
+    let reasonChoices = ["", "Co-pay", "Labs", "Injections", "Procedure", "Bill", "Visit"]
     let processorChoices = ["", "Nikki I.", "Bertha C.", "Tina I."]
     
     private func nameAgeDOB(_ theText: String) -> (String, String, String, String){
