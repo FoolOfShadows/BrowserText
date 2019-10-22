@@ -65,7 +65,7 @@ class ReceiptVC: NSViewController {
             errorNotification(self.view, withMessage: "Failed to select the method of payment")
         } else if checkCheckBox.state == .on && checkNumberView.stringValue.isEmpty {
             errorNotification(self.view, withMessage: "Check number cannot be blank when accepting a check")
-        } else if reasonStack.getActiveButtonsInView().count == 0 {
+        } else if reasonStack.getActiveButtonsInView().count == 0 && reasonText.stringValue.isEmpty {
             errorNotification(self.view, withMessage: "Failed to select the reason for payment")
         } else if amount.stringValue.isEmpty {
             errorNotification(self.view, withMessage: "Failed to enter the amount of the payment")
@@ -107,10 +107,14 @@ class ReceiptVC: NSViewController {
             checkNumber = " (#\(checkNumberView.stringValue))"
         }
         
-        
         let methodOfPayment = methodStack.getActiveButtonInView()
-        let reasonForPayment = reasonStack.getActiveButtonsInView().joined(separator: ", ").replacingOccurrences(of: "Other", with: reasonText.stringValue)
-        //let reasonForPayment = reasonStack.getActiveButtonsInView().joined(separator: ", ")
+        
+        var paymentReasons = reasonStack.getActiveButtonsInView()
+        if !reasonText.stringValue.isEmpty {
+            paymentReasons.append(reasonText.stringValue)
+        }
+        
+        let reasonForPayment = paymentReasons.joined(separator: ", ")
         
         receiptText = """
         
@@ -120,7 +124,7 @@ class ReceiptVC: NSViewController {
 
         \(ptName.stringValue)
         
-        $\(amount.stringValue)     \(methodOfPayment)\(checkNumber)
+        $\(amount.stringValue.replacingOccurrences(of: "$", with: ""))     \(methodOfPayment)\(checkNumber)
         
         Paying for: \(reasonForPayment)
         
