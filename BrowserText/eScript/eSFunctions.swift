@@ -23,16 +23,7 @@ func getLastAptInfoFrom(_ theText: String) -> String {
     }
 }
 
-func getNextAptInfoFrom(_ theText: String) -> String {
-    guard let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments") else {return ""}
-    //print(nextAppointments)
-    let activeEncounters = nextAppointments.ranges(of: "(?s)(\\w\\w\\w \\d\\d, \\d\\d\\d\\d)(.*?)(\\n)(?=\\w\\w\\w \\d\\d, \\d\\d\\d\\d)", options: .regularExpression).map{nextAppointments[$0]}.map{String($0)}.filter {$0.contains("Pending arrival")}
-    if activeEncounters.count > 0 {
-        return activeEncounters[0].simpleRegExMatch("\\w\\w\\w \\d\\d, \\d\\d\\d\\d - \\d\\d:\\d\\d \\w\\w")
-    } else {
-        return "Next apt not found"
-    }
-}
+
 
 
 

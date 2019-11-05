@@ -653,7 +653,7 @@
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b13;
+				CURRENT_PROJECT_VERSION = b1;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -661,7 +661,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 0.8;
+				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fulgentwake.BrowserText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -675,7 +675,7 @@
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b13;
+				CURRENT_PROJECT_VERSION = b1;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -683,7 +683,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 0.8;
+				MARKETING_VERSION = 0.9;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fulgentwake.BrowserText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -14,6 +14,7 @@ class BuilderInterfaceVC: NSViewController {
     //currentData gets passed the ChartData from the initial VC upon segue
     var currentData = ChartData(chartData: "", aptTime: "", aptDate: 0)
     var saveLocation = "Desktop"
+    var nextApt = ""
     
     weak var viewDataDelegate: webViewDataProtocol?
     
@@ -131,7 +132,7 @@ class BuilderInterfaceVC: NSViewController {
             let finalResults = """
             #PTVNFILE#
             \(SectionDelimiters.planStart.rawValue)
-            
+            Next apt: \(currentData.nextAppointment)
             \(SectionDelimiters.planEnd.rawValue)
             
             \(SectionDelimiters.pharmacyStart.rawValue)

@@ -34,6 +34,7 @@ class ChartData {
     var pmh: String {return chartData.simpleRegExMatch(Regexes.pmh.rawValue).cleanTheTextOf(pmhBadBits)}
     var lastCharges: String {return chartData.simpleRegExMatch(Regexes.lastCharge.rawValue).cleanTheTextOf(lastChargeBadBits)}
     var lastAppointment:String {return getLastAptInfoFrom(chartData)}
+    var nextAppointment:String {return getNextAptInfoFrom(chartData)}
     var aptTime:String
     var aptDate:Int
     var saveLocation:SaveLocation {
@@ -57,7 +58,7 @@ class ChartData {
         let finalResults = """
         #PTVNFILE#
         \(SectionDelimiters.planStart.rawValue)
-        
+        Next apt: \(nextAppointment)
         \(SectionDelimiters.planEnd.rawValue)
         
         \(SectionDelimiters.pharmacyStart.rawValue)
@@ -214,6 +215,17 @@ class ChartData {
             return "Last apt not found"
         }
     }
+    
+    private func getNextAptInfoFrom(_ theText: String) -> String {
+        guard let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments") else {return ""}
+        print(nextAppointments)
+        let activeEncounters = nextAppointments.ranges(of: "(?s)(\\w\\w\\w \\d\\d, \\d\\d\\d\\d)(.*?)(\\n)(?=\\w\\w\\w \\d\\d, \\d\\d\\d\\d)", options: .regularExpression).map{nextAppointments[$0]}.map{String($0)}.filter {$0.contains("Pending arrival")}
+        if activeEncounters.count > 1 {
+            return activeEncounters[1].simpleRegExMatch("\\w\\w\\w \\d\\d, \\d\\d\\d\\d - \\d\\d:\\d\\d \\w\\w")
+        } else {
+            return "Next apt not found"
+        }
+    }
 }
 
 enum SaveLocation:String {
@@ -273,7 +285,7 @@ func getFileLabellingNameFrom(_ name: String, ofType type: FileLabelType) -> Str
     }
     
     let nameComponents = name.components(separatedBy: " ").filter {!$0.contains("(")}
-    
+    print("Name components: \(nameComponents)")
     let extraBitsCheck = checkForMatchInSets(nameComponents, arrayToCheckFor: extraNameBits)
     
     if extraBitsCheck == true {
