@@ -199,11 +199,21 @@ class ChartData {
     
     //Get the date of the patients last appointment
     private func getLastAptInfoFrom(_ theText: String) -> String {
+        //let unwantedDxs = ["No chief complaint recorded", "CC: Epogen inj", "CC: Testosterone inj", "CC: Flu inj", "CC: Flu Inj", "CC: Udip", "CC: B12 inj", "CC: B12 Inj"]
         guard let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments") else {return ""}
         guard let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages") else {return ""}
         //let dateToDateRegex = "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)"
         let dateToEndOfCCLine = "(?m)(\\d./\\d./\\d*)(.*?)(\\n)(CC:.*)"
-        let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded") && !$0.contains("CC: Epogen inj") && !$0.contains("CC: Testosterone inj") && !$0.contains("CC: Flu inj")}
+        
+        //If I don't include the map{String($0)} I end up with an array of substrings which can't be used by simpleRegExMatch in the next step
+        let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded") &&
+            !$0.contains("CC: Epogen inj") &&
+            !$0.contains("CC: Testosterone inj") &&
+            !$0.contains("CC: Flu inj") &&
+            !$0.contains("CC: Flu Inj") &&
+            !$0.contains("CC: Udip") &&
+            !$0.contains("CC: B12 inj") &&
+            !$0.contains("CC: B12 Inj")}
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
             let components = date.components(separatedBy: "/")
