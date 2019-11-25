@@ -49,4 +49,12 @@ public struct PatientDataProfile {
         let ageComponents = calendar.dateComponents([.year], from: birth, to: now)
         return String(ageComponents.year!)
     }
+    
+    var insuranceList:String {
+        if insurances.count > 0 {
+            let rawList = insurances.map { "\($0.0)  -  \($0.1)" }
+            return (rawList.joined(separator: "\n"))
+        }
+        return "No insurances listed"
+    }
 }

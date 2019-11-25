@@ -73,6 +73,7 @@ func nameAgeDOB(_ theText: String?) -> (String, String, String)? {
 //			lineCount += 1
 		}
 	}
+    print(ptName, ptPharmacy, ptDOB)
 	return (ptName, ptPharmacy, ptDOB)
 	
 }

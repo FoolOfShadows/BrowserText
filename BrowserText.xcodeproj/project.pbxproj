@@ -26,6 +26,10 @@
 		797B66D322AFF8B500688C65 /* PatientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797B66D222AFF8B500688C65 /* PatientData.swift */; };
 		797C7D7122282C3300845C1F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7022282C3300845C1F /* Extensions.swift */; };
 		797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7222282E7700845C1F /* RegularExpressions.swift */; };
+		7990E40323883690000D2648 /* LabsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990E3FD23883690000D2648 /* LabsModel.swift */; };
+		7990E40423883690000D2648 /* Labs.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7990E3FF23883690000D2648 /* Labs.storyboard */; };
+		7990E40523883690000D2648 /* LabSetUpPrintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990E40123883690000D2648 /* LabSetUpPrintViewController.swift */; };
+		7990E40623883690000D2648 /* LabsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7990E40223883690000D2648 /* LabsViewController.swift */; };
 		79A92BED22AAC6E300C103DB /* BMDModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BEB22AAC6E300C103DB /* BMDModel.swift */; };
 		79A92BEE22AAC6E300C103DB /* BMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BEC22AAC6E300C103DB /* BMDViewController.swift */; };
 		79A92BF022AAC80600C103DB /* FormLettersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BEF22AAC80600C103DB /* FormLettersVC.swift */; };
@@ -90,6 +94,10 @@
 		797B66D222AFF8B500688C65 /* PatientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientData.swift; sourceTree = "<group>"; };
 		797C7D7022282C3300845C1F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		797C7D7222282E7700845C1F /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
+		7990E3FD23883690000D2648 /* LabsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabsModel.swift; sourceTree = "<group>"; };
+		7990E40023883690000D2648 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Labs.storyboard; sourceTree = "<group>"; };
+		7990E40123883690000D2648 /* LabSetUpPrintViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabSetUpPrintViewController.swift; sourceTree = "<group>"; };
+		7990E40223883690000D2648 /* LabsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabsViewController.swift; sourceTree = "<group>"; };
 		79A92BEB22AAC6E300C103DB /* BMDModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMDModel.swift; sourceTree = "<group>"; };
 		79A92BEC22AAC6E300C103DB /* BMDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMDViewController.swift; sourceTree = "<group>"; };
 		79A92BEF22AAC80600C103DB /* FormLettersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLettersVC.swift; sourceTree = "<group>"; };
@@ -182,6 +190,17 @@
 			path = Receipt;
 			sourceTree = "<group>";
 		};
+		7990E3FC23883690000D2648 /* Lab */ = {
+			isa = PBXGroup;
+			children = (
+				7990E3FF23883690000D2648 /* Labs.storyboard */,
+				7990E3FD23883690000D2648 /* LabsModel.swift */,
+				7990E40223883690000D2648 /* LabsViewController.swift */,
+				7990E40123883690000D2648 /* LabSetUpPrintViewController.swift */,
+			);
+			path = Lab;
+			sourceTree = "<group>";
+		};
 		79A92BE422AAB6F100C103DB /* Printing To Letterhead */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +278,7 @@
 				79A92BEA22AAC6E300C103DB /* BMD */,
 				79A92BE422AAB6F100C103DB /* Printing To Letterhead */,
 				7953F00B22DCE4B000207E71 /* Receipt */,
+				7990E3FC23883690000D2648 /* Lab */,
 				79F577292225864F001B0C81 /* Info.plist */,
 				79F5772A2225864F001B0C81 /* BrowserText.entitlements */,
 				793611A1222EE9220009D2AF /* URLExtensions.swift */,
@@ -411,6 +431,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7990E40423883690000D2648 /* Labs.storyboard in Resources */,
 				79F8DB8E22A6EB740018F21A /* WPCM Letterhead Blank Cropped.pdf in Resources */,
 				79C0DEAD225CEC18002894FC /* PhoneMessage.storyboard in Resources */,
 				79F577252225864F001B0C81 /* Assets.xcassets in Resources */,
@@ -442,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				79F8DB8422A6C69B0018F21A /* LabViewController.swift in Sources */,
+				7990E40323883690000D2648 /* LabsModel.swift in Sources */,
 				796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */,
 				79A92BF022AAC80600C103DB /* FormLettersVC.swift in Sources */,
 				797B66D322AFF8B500688C65 /* PatientData.swift in Sources */,
@@ -458,8 +480,10 @@
 				7953F00A22DCE4AA00207E71 /* ReceiptModel.swift in Sources */,
 				7953F00822DCE49000207E71 /* ReceiptVC.swift in Sources */,
 				79F577232225864D001B0C81 /* ViewController.swift in Sources */,
+				7990E40623883690000D2648 /* LabsViewController.swift in Sources */,
 				7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */,
 				79013F6422A96CFE005CC358 /* LetterheadPrinting.swift in Sources */,
+				7990E40523883690000D2648 /* LabSetUpPrintViewController.swift in Sources */,
 				797C7D7122282C3300845C1F /* Extensions.swift in Sources */,
 				79425B5B2292EDD20097CC88 /* eSFunctions.swift in Sources */,
 				79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */,
@@ -512,6 +536,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		7990E3FF23883690000D2648 /* Labs.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7990E40023883690000D2648 /* Base */,
+			);
+			name = Labs.storyboard;
+			sourceTree = "<group>";
+		};
 		79C0DEA6225CEC18002894FC /* PhoneMessage.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -653,7 +685,7 @@
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b2;
+				CURRENT_PROJECT_VERSION = b4;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -675,7 +707,7 @@
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b2;
+				CURRENT_PROJECT_VERSION = b4;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

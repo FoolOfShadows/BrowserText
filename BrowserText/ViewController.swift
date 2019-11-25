@@ -239,6 +239,14 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         getWebViewDataByID("ember3", completion: assignmentHandler)
     }
     
+    @IBAction func openLabs(_sender: Any?) {
+        let assignmentHandler: () -> Void = {
+            self.performSegue(withIdentifier: "showLabs", sender: self)
+        }
+        
+        getWebViewDataByID("ember3", completion: assignmentHandler)
+    }
+    
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showPhoneMessage":
@@ -268,6 +276,11 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             }
         case "showFormLetters":
             if let toViewController = segue.destinationController as? FormLettersVC {
+                toViewController.viewDataDelegate = self
+                toViewController.theText = self.viewContent
+            }
+        case "showLabs":
+            if let toViewController = segue.destinationController as? LabsViewController {
                 toViewController.viewDataDelegate = self
                 toViewController.theText = self.viewContent
             }

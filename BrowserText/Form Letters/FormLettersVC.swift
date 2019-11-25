@@ -111,7 +111,7 @@ class FormLettersVC: NSViewController {
         }
     }
     
-    func createPatientObject(withHandler handler: @escaping () -> Void) {
+    private func createPatientObject(withHandler handler: @escaping () -> Void) {
         //Get all the pieces of a patient's address
         //Field values don't get scraped when grabbing the text/HTML on a page and have to be accessed by the .value property
         let streetHandler: () -> Void = {

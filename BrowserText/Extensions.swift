@@ -248,6 +248,18 @@ extension NSView {
         return activeButtons.map { $0.title }
     }
     
+    func getListOfButtons() -> [NSButton] {
+        var results = [NSButton]()
+        for item in self.subviews {
+            if let item = item as? NSButton {
+                results.append(item)
+            } else {
+                results += item.getListOfButtons()
+            }
+        }
+        return results
+    }
+    
 }
 
 
