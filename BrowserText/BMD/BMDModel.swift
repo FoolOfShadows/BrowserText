@@ -68,7 +68,7 @@ struct BMDData {
 //Dear \(ptName),
 //
 //"""
-        let header = NSAttributedString(string: "\n\n\(ltrDate)\n\n\n\(ptName)\n\(address)\n\n\n\n\nDear \(ptName),\n\n")
+        let header = NSAttributedString(string: "\n\n\(ltrDate)\n\n\n\(ptName)\n\(address)\n\n\nDear \(ptName),\n\n")
 //        let maintainDensity = """
 //To continue preserving your bone mass and strength I recommend weight bearing exercises and a calcium supplement such as Citrical, Caltrate, etc. in the amount of 500 mg or 600 mg of calcium once a day and Vitamin D3, 1,000 IU daily.
 //
@@ -127,6 +127,7 @@ struct BMDData {
             baseString.append(increastDensity)
             baseString.append(sigString)
             baseString.append(signature)
+            baseString.addAttributes(stringAttributes, range: NSRange(location: 0, length: baseString.string.count))
             return baseString
         case BMDDx.osteoporosis.rawValue:
 //            return NSAttributedString(string:
@@ -146,6 +147,7 @@ struct BMDData {
             baseString.append(increastDensity)
             baseString.append(sigString)
             baseString.append(signature)
+            baseString.addAttributes(stringAttributes, range: NSRange(location: 0, length: baseString.string.count))
             return baseString
         default:
             //return NSAttributedString(string: "Failed to generate proper output.")
