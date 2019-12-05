@@ -69,11 +69,27 @@ class FormLettersVC: NSViewController {
     
     @IBAction func openBMDLetter(_ sender: Any?) {
         let creationHandler = {
-            print(self.currentPatient.firstName)
+            //print(self.currentPatient.firstName)
             self.performSegue(withIdentifier: "showBMDLetter", sender: self)
         }
         createPatientObject(withHandler: creationHandler)
         
+    }
+    
+    @IBAction func openDismissalLetter(_ sender: Any?) {
+        print("Opening dismissal letters")
+        let creationHandler = {
+            self.performSegue(withIdentifier: "showDismissals", sender: self)
+        }
+        createPatientObject(withHandler: creationHandler)
+    }
+    
+    @IBAction func openCollectionLetters(_ sender: Any?) {
+        print("Opening collection letters")
+        let creationHandler = {
+            self.performSegue(withIdentifier: "showCollectionLetters", sender: self)
+        }
+        createPatientObject(withHandler: creationHandler)
     }
     
     @IBAction func printReferral(_ sender: Any?) {
@@ -102,8 +118,19 @@ class FormLettersVC: NSViewController {
         print("Trying to segue")
         switch segue.identifier {
         case "showBMDLetter":
-            print("Opening BMD view?")
+            //print("Opening BMD view?")
             if let toViewController = segue.destinationController as? BMDViewController {
+                print("Sending data: \(self.currentPatient.fullName)")
+                toViewController.currentPatient = self.currentPatient
+            }
+        case "showCollectionLetters":
+            //print("Opening Collection Letters")
+            if let toViewController = segue.destinationController as? CollectionLetterVC {
+                //print("Sending data: \(self.currentPatient.fullName)")
+                toViewController.currentPatient = self.currentPatient
+            }
+        case "showDismissals":
+            if let toViewController = segue.destinationController as? DismissalLettersVC {
                 print("Sending data: \(self.currentPatient.fullName)")
                 toViewController.currentPatient = self.currentPatient
             }

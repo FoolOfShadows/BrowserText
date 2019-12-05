@@ -34,6 +34,7 @@
 		79A92BEE22AAC6E300C103DB /* BMDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BEC22AAC6E300C103DB /* BMDViewController.swift */; };
 		79A92BF022AAC80600C103DB /* FormLettersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BEF22AAC80600C103DB /* FormLettersVC.swift */; };
 		79A92BF222AAD4C800C103DB /* FormLettersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A92BF122AAD4C800C103DB /* FormLettersModel.swift */; };
+		79BD145F2399530D0090F7DA /* FormLetters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79BD145D2399530D0090F7DA /* FormLetters.storyboard */; };
 		79C0DEA8225CEC18002894FC /* Phone Message Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA0225CEC18002894FC /* Phone Message Model.swift */; };
 		79C0DEA9225CEC18002894FC /* PMCurrentMedsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA1225CEC18002894FC /* PMCurrentMedsController.swift */; };
 		79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA2225CEC18002894FC /* PM Constants.swift */; };
@@ -48,6 +49,8 @@
 		79F577282225864F001B0C81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79F577262225864F001B0C81 /* Main.storyboard */; };
 		79F577342225864F001B0C81 /* BrowserTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F577332225864F001B0C81 /* BrowserTextTests.swift */; };
 		79F5773F22258650001B0C81 /* BrowserTextUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5773E22258650001B0C81 /* BrowserTextUITests.swift */; };
+		79F72D8A2399549D0090E8C3 /* CollectionLetterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F72D892399549D0090E8C3 /* CollectionLetterVC.swift */; };
+		79F72D8E23995AB50090E8C3 /* DismissalLettersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F72D8D23995AB50090E8C3 /* DismissalLettersVC.swift */; };
 		79F8DB8422A6C69B0018F21A /* LabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F8DB7E22A6C69A0018F21A /* LabViewController.swift */; };
 		79F8DB8522A6C69B0018F21A /* GeneralBits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F8DB7F22A6C69A0018F21A /* GeneralBits.swift */; };
 		79F8DB8622A6C69B0018F21A /* LabDataClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F8DB8022A6C69A0018F21A /* LabDataClasses.swift */; };
@@ -102,6 +105,7 @@
 		79A92BEC22AAC6E300C103DB /* BMDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMDViewController.swift; sourceTree = "<group>"; };
 		79A92BEF22AAC80600C103DB /* FormLettersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLettersVC.swift; sourceTree = "<group>"; };
 		79A92BF122AAD4C800C103DB /* FormLettersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLettersModel.swift; sourceTree = "<group>"; };
+		79BD145E2399530D0090F7DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = BrowserText/Base.lproj/FormLetters.storyboard; sourceTree = "<group>"; };
 		79C0DEA0225CEC18002894FC /* Phone Message Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Phone Message Model.swift"; sourceTree = "<group>"; };
 		79C0DEA1225CEC18002894FC /* PMCurrentMedsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMCurrentMedsController.swift; sourceTree = "<group>"; };
 		79C0DEA2225CEC18002894FC /* PM Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PM Constants.swift"; sourceTree = "<group>"; };
@@ -123,6 +127,8 @@
 		79F5773A22258650001B0C81 /* BrowserTextUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrowserTextUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F5773E22258650001B0C81 /* BrowserTextUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserTextUITests.swift; sourceTree = "<group>"; };
 		79F5774022258650001B0C81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79F72D892399549D0090E8C3 /* CollectionLetterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionLetterVC.swift; sourceTree = "<group>"; };
+		79F72D8D23995AB50090E8C3 /* DismissalLettersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissalLettersVC.swift; sourceTree = "<group>"; };
 		79F8DB7E22A6C69A0018F21A /* LabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabViewController.swift; sourceTree = "<group>"; };
 		79F8DB7F22A6C69A0018F21A /* GeneralBits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralBits.swift; sourceTree = "<group>"; };
 		79F8DB8022A6C69A0018F21A /* LabDataClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabDataClasses.swift; sourceTree = "<group>"; };
@@ -222,10 +228,13 @@
 		79A92BF322AAD4CF00C103DB /* Form Letters */ = {
 			isa = PBXGroup;
 			children = (
+				79BD145D2399530D0090F7DA /* FormLetters.storyboard */,
 				79A92BEF22AAC80600C103DB /* FormLettersVC.swift */,
 				797B66D222AFF8B500688C65 /* PatientData.swift */,
 				79A92BF122AAD4C800C103DB /* FormLettersModel.swift */,
 				7937735B22B16E0B001B04A7 /* FormLetterVerbiage.swift */,
+				79F72D892399549D0090E8C3 /* CollectionLetterVC.swift */,
+				79F72D8D23995AB50090E8C3 /* DismissalLettersVC.swift */,
 			);
 			path = "Form Letters";
 			sourceTree = "<group>";
@@ -435,6 +444,7 @@
 				79F8DB8E22A6EB740018F21A /* WPCM Letterhead Blank Cropped.pdf in Resources */,
 				79C0DEAD225CEC18002894FC /* PhoneMessage.storyboard in Resources */,
 				79F577252225864F001B0C81 /* Assets.xcassets in Resources */,
+				79BD145F2399530D0090F7DA /* FormLetters.storyboard in Resources */,
 				79F577282225864F001B0C81 /* Main.storyboard in Resources */,
 				79361199222EE44A0009D2AF /* PF Summary.png in Resources */,
 				793611A0222EE44A0009D2AF /* Ellipsis.jpg in Resources */,
@@ -491,9 +501,11 @@
 				79F8DB8522A6C69B0018F21A /* GeneralBits.swift in Sources */,
 				79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */,
 				7936119E222EE44A0009D2AF /* BuilderConstants.swift in Sources */,
+				79F72D8E23995AB50090E8C3 /* DismissalLettersVC.swift in Sources */,
 				79F8DB8922A6C69B0018F21A /* PopulateFormModel.swift in Sources */,
 				793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */,
 				7936119A222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */,
+				79F72D8A2399549D0090E8C3 /* CollectionLetterVC.swift in Sources */,
 				79A92BF222AAD4C800C103DB /* FormLettersModel.swift in Sources */,
 				79F577212225864D001B0C81 /* AppDelegate.swift in Sources */,
 				79A92BED22AAC6E300C103DB /* BMDModel.swift in Sources */,
@@ -542,6 +554,14 @@
 				7990E40023883690000D2648 /* Base */,
 			);
 			name = Labs.storyboard;
+			sourceTree = "<group>";
+		};
+		79BD145D2399530D0090F7DA /* FormLetters.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79BD145E2399530D0090F7DA /* Base */,
+			);
+			name = FormLetters.storyboard;
 			sourceTree = "<group>";
 		};
 		79C0DEA6225CEC18002894FC /* PhoneMessage.storyboard */ = {
@@ -685,7 +705,7 @@
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b5;
+				CURRENT_PROJECT_VERSION = b6;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -707,7 +727,7 @@
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b5;
+				CURRENT_PROJECT_VERSION = b6;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
