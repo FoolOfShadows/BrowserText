@@ -30,6 +30,7 @@ class ChartData {
     var socialHistory: String {return chartData.simpleRegExMatch(Regexes.social.rawValue).cleanTheTextOf(socialBadBits)}
     var familyHistory: String {return chartData.simpleRegExMatch(Regexes.family1.rawValue).cleanTheTextOf(fmhBadBits)}
     var preventiveCare: String {return chartData.simpleRegExMatch(Regexes.preventive.rawValue).cleanTheTextOf(preventiveBadBits)}
+     var preventiveCare2: String { return chartData.simpleRegExMatch(Regexes.preventive2.rawValue).cleanTheTextOf(preventive2BadBits)}
     var psh: String {return chartData.simpleRegExMatch(Regexes.psh.rawValue).cleanTheTextOf(pshBadBits)}
     var pmh: String {return chartData.simpleRegExMatch(Regexes.pmh.rawValue).cleanTheTextOf(pmhBadBits)}
     var lastCharges: String {return chartData.simpleRegExMatch(Regexes.lastCharge.rawValue).cleanTheTextOf(lastChargeBadBits)}
@@ -97,6 +98,7 @@ class ChartData {
         
         \(SectionDelimiters.preventiveStart.rawValue)
         \(preventiveCare)
+        \(preventiveCare2)
         \(SectionDelimiters.preventiveEnd.rawValue)
         
         \(SectionDelimiters.pmhStart.rawValue)
@@ -154,6 +156,7 @@ class ChartData {
         case pmh = "(?s)(Ongoing medical problems).*(Preventive care)" /*"(?s)(Ongoing medical problems).*(Family health history)"*/
         case psh = "(?s)(Major events).*(Ongoing medical problems)"
         case preventive = "(?s)(Preventive care).*Social history" /*"(?s)(Preventive care).*((?<=)Social history)"*/
+        case preventive2 = "(?s)Screenings/ Interventions/ Assessments.*Encounters"
         case lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
         case pharmacy = "(?s)#PHARMACY.*PHARMACY#"
         case newMeds = "(?s)Medications attached to this encounter:.*Orders Print"

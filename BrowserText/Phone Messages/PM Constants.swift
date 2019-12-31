@@ -23,6 +23,7 @@ let basicAllergyBadBits = ["Drug allergies\n", "Environmental allergies\n", "No 
 let freeAllergyBadBits = ["Allergies (free text)\n", "ALLERGIES:", "ALLERGIES", "Use structured allergies to receive interaction alerts\n", "Food allergies:", "Food Allergies:", "Food Allergies", "Food allergies\n", "Food Allergies\n", "Environmental allergies:\n", "Environmental allergies: ", "Environmental allergies\n", "Environmental Allergies\n", "Drug allergies:", "Drug allergies-", "Drug allergies", "No Known Drug Allergies", "No Known", "Drug Allergies:", "Drug Allergies", "Family health history", "Preventive care", "No food allergies recorded\n", "Allergies\n"]
 
 let preventiveBadBits = ["Preventive care\n", "Social history", "Advance directives"]
+let preventive2BadBits = ["Screenings/ Interventions/ Assessments", "Encounters", "Start date: ", "Status: Performed"]
 
 let pshBadBits = ["Major events\n", "Ongoing medical problems", "PSH:\n", "PHS:\n"]
 

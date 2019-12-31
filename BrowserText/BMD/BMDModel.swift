@@ -39,7 +39,7 @@ struct BMDData {
             return BMDDx.normal.rawValue
         case (-2.5)..<(-1.0):
             return BMDDx.osteopenia.rawValue
-        case (-5.0)..<(-2.5):
+        case _ where score < (-2.5):
             return BMDDx.osteoporosis.rawValue
         default:
             return "No score given, or score out of range."

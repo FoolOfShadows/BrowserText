@@ -171,6 +171,7 @@ class BuilderInterfaceVC: NSViewController {
             
             \(SectionDelimiters.preventiveStart.rawValue)
             \(currentData.preventiveCare)
+            \(currentData.preventiveCare2)
             \(SectionDelimiters.preventiveEnd.rawValue)
             
             \(SectionDelimiters.pmhStart.rawValue)

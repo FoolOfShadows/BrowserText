@@ -10,9 +10,8 @@ import Cocoa
 
 func currentDateLong() -> String {
 	let formatter = DateFormatter()
-	formatter.dateFormat = "MMMM d, YYYY"
-	let todaysDate: String = formatter.string(from: Date())
-	return todaysDate
+	formatter.dateFormat = "MMMM d, yyyy"
+	return formatter.string(from: Date())
 }
 
 

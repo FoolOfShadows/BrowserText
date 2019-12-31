@@ -56,10 +56,12 @@ class DismissalLettersVC: NSViewController {
         
         let dismissalLetter = """
 
-\(currentDateLong())
-       
-       
-       
+\(dateView.stringValue)
+     
+        
+CERTIFIED MAIL - RETURN RECEIPT REQUESTED
+     
+        
 \(currentPatient.fullName)
 \(currentPatient.fullAddress)
        
