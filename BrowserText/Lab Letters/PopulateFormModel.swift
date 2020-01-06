@@ -44,7 +44,7 @@ func processRawData(_ rawData:String) -> RawLabData? {
 		if currentLine.range(of: "COLLECTED") != nil {
 			currentPatient.labDateString = getDateRegEx(currentLine)
 		}
-		if currentLine.range(of: "yrs") != nil {
+        if currentLine.range(of: "yrs F") != nil || currentLine.range(of: "yrs M") != nil {
 			currentPatient.patientNameString = textArray[lineNumber - 2]
 		}
 		if currentLine.range(of: "yrs F") != nil {
