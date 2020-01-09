@@ -62,6 +62,7 @@ class LabSetUpPrintViewController: NSViewController {
         
         let labOrderOutputText = """
 \(headerInfo)
+Date: \(currentDateView.stringValue)
             
 \(patientNameView.stringValue)     DOB: \(patientDOBView.stringValue) (\(currentPatient.age))
 \(currentPatient.fullAddress)

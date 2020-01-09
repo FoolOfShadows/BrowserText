@@ -196,7 +196,7 @@
 			path = Receipt;
 			sourceTree = "<group>";
 		};
-		7990E3FC23883690000D2648 /* Lab */ = {
+		7990E3FC23883690000D2648 /* Lab Orders */ = {
 			isa = PBXGroup;
 			children = (
 				7990E3FF23883690000D2648 /* Labs.storyboard */,
@@ -204,7 +204,7 @@
 				7990E40223883690000D2648 /* LabsViewController.swift */,
 				7990E40123883690000D2648 /* LabSetUpPrintViewController.swift */,
 			);
-			path = Lab;
+			path = "Lab Orders";
 			sourceTree = "<group>";
 		};
 		79A92BE422AAB6F100C103DB /* Printing To Letterhead */ = {
@@ -287,7 +287,7 @@
 				79A92BEA22AAC6E300C103DB /* BMD */,
 				79A92BE422AAB6F100C103DB /* Printing To Letterhead */,
 				7953F00B22DCE4B000207E71 /* Receipt */,
-				7990E3FC23883690000D2648 /* Lab */,
+				7990E3FC23883690000D2648 /* Lab Orders */,
 				79F577292225864F001B0C81 /* Info.plist */,
 				79F5772A2225864F001B0C81 /* BrowserText.entitlements */,
 				793611A1222EE9220009D2AF /* URLExtensions.swift */,
@@ -705,7 +705,7 @@
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b9;
+				CURRENT_PROJECT_VERSION = b10;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -727,7 +727,7 @@
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b9;
+				CURRENT_PROJECT_VERSION = b10;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
