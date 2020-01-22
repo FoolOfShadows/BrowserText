@@ -8,7 +8,7 @@
 
 import Foundation
 
-let headerInfo = (/*"Whelchel Primary Care Medicine" + "\n" + "401 East Pinecrest, Marshall, TX  75670" + */"\n" + "CPL Client #: 36686"/* + "\n" + "Phone: 903-935-7101     Fax: 903-935-7043"*/)
+let headerInfo = (/*"Whelchel Primary Care Medicine" + "\n" + "401 East Pinecrest, Marshall, TX  75670" + "\n" + */"CPL Client #: 36686"/* + "\n" + "Phone: 903-935-7101     Fax: 903-935-7043"*/)
 
 var whereFlu = [""]
 var declinesFlu = [""]

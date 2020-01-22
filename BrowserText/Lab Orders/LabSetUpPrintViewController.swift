@@ -83,7 +83,7 @@ Dawn Whelchel, MD
 \(labNoteVersion)
 """
         
-        printLetterheadWithText(labOrderOutputText, fontSize: 14, window: self.view.window!, andCloseWindow: true)
+        printLetterheadWithText(labOrderOutputText, fontSize: 11, window: self.view.window!, andCloseWindow: true)
 //        //Create a view to hold the final text so it can be passed to the NSPrintOperation
 //        let printView = NSTextView()
 //        //Set the size of the view or the text won't appear on the page

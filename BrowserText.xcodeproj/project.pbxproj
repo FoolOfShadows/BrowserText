@@ -23,6 +23,7 @@
 		7953F00822DCE49000207E71 /* ReceiptVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7953F00622DCE49000207E71 /* ReceiptVC.swift */; };
 		7953F00A22DCE4AA00207E71 /* ReceiptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7953F00922DCE4AA00207E71 /* ReceiptModel.swift */; };
 		796F69552289CF0D007B615C /* WebMonitoringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796F69542289CF0D007B615C /* WebMonitoringView.swift */; };
+		797560B723C79133007D8B96 /* NHAdmitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797560B623C79133007D8B96 /* NHAdmitVC.swift */; };
 		797B66D322AFF8B500688C65 /* PatientData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797B66D222AFF8B500688C65 /* PatientData.swift */; };
 		797C7D7122282C3300845C1F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7022282C3300845C1F /* Extensions.swift */; };
 		797C7D7322282E7700845C1F /* RegularExpressions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797C7D7222282E7700845C1F /* RegularExpressions.swift */; };
@@ -94,6 +95,7 @@
 		7953F00622DCE49000207E71 /* ReceiptVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptVC.swift; sourceTree = "<group>"; };
 		7953F00922DCE4AA00207E71 /* ReceiptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptModel.swift; sourceTree = "<group>"; };
 		796F69542289CF0D007B615C /* WebMonitoringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebMonitoringView.swift; sourceTree = "<group>"; };
+		797560B623C79133007D8B96 /* NHAdmitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NHAdmitVC.swift; sourceTree = "<group>"; };
 		797B66D222AFF8B500688C65 /* PatientData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientData.swift; sourceTree = "<group>"; };
 		797C7D7022282C3300845C1F /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		797C7D7222282E7700845C1F /* RegularExpressions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressions.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 				7937735B22B16E0B001B04A7 /* FormLetterVerbiage.swift */,
 				79F72D892399549D0090E8C3 /* CollectionLetterVC.swift */,
 				79F72D8D23995AB50090E8C3 /* DismissalLettersVC.swift */,
+				797560B623C79133007D8B96 /* NHAdmitVC.swift */,
 			);
 			path = "Form Letters";
 			sourceTree = "<group>";
@@ -394,7 +397,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = Fool;
 				TargetAttributes = {
 					79F5771C2225864D001B0C81 = {
@@ -490,6 +493,7 @@
 				7953F00A22DCE4AA00207E71 /* ReceiptModel.swift in Sources */,
 				7953F00822DCE49000207E71 /* ReceiptVC.swift in Sources */,
 				79F577232225864D001B0C81 /* ViewController.swift in Sources */,
+				797560B723C79133007D8B96 /* NHAdmitVC.swift in Sources */,
 				7990E40623883690000D2648 /* LabsViewController.swift in Sources */,
 				7936119F222EE44A0009D2AF /* AssessmentModel.swift in Sources */,
 				79013F6422A96CFE005CC358 /* LetterheadPrinting.swift in Sources */,
@@ -703,9 +707,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b10;
+				CURRENT_PROJECT_VERSION = b12;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -725,9 +730,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BrowserText/BrowserText.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b10;
+				CURRENT_PROJECT_VERSION = b12;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

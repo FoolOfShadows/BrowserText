@@ -12,6 +12,11 @@ protocol LetterDataProtocol: class {
     var patientData:PatientDataProfile { get set }
 }
 
+protocol MedAndDiagnosisProtocol: class {
+    var meds:[String] { get set }
+    var diagnosis:[String] { get set }
+}
+
 class FormLettersVC: NSViewController {
     
     var theText = String()
@@ -76,6 +81,13 @@ class FormLettersVC: NSViewController {
         
     }
     
+    @IBAction func openNHAdmitForm(_ sender: Any?) {
+        let creationHandler = {
+            self.performSegue(withIdentifier: "showNHAdmit", sender: self)
+        }
+        
+    }
+    
     @IBAction func openDismissalLetter(_ sender: Any?) {
         print("Opening dismissal letters")
         let creationHandler = {
@@ -122,6 +134,10 @@ class FormLettersVC: NSViewController {
             if let toViewController = segue.destinationController as? BMDViewController {
                 print("Sending data: \(self.currentPatient.fullName)")
                 toViewController.currentPatient = self.currentPatient
+            }
+        case "showNHAdmit":
+            if let toViewController = segue.destinationController as? NHAdmitVC {
+                toViewController.currentPatientData = ChartData(chartData: theText, aptTime: "", aptDate: 00)
             }
         case "showCollectionLetters":
             //print("Opening Collection Letters")
