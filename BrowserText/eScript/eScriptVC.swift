@@ -119,12 +119,7 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
                             //This is where we can close the spawning window if the save is successful
                             self.closeTheWindow()
 						} catch {
-							let alert = NSAlert()
-							alert.messageText = "There is already a file with this name.\n Please choose a different name."
-							alert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
-								let returnCode = NSModalResponse
-								print(returnCode)
-							}
+                            MissingData().alertToMissingDataWithMessage(.existingFile, inWindow: self.view.window!)
 						}
 					}
 				}

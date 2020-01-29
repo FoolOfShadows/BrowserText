@@ -158,11 +158,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                 guard let theWindow = self.view.window else { return }
                 print("No DOB")
                 //After notifying the user, break out of the program
-                let theAlert = NSAlert()
-                theAlert.messageText = "It looks like you haven't clicked the elipses to reveal the patients date of birth.  Give it another shot."
-                theAlert.beginSheetModal(for: theWindow) { (NSModalResponse) -> Void in
-                    let returnCode = NSModalResponse
-                    print(returnCode)}
+                MissingData().alertToMissingDataWithMessage(.clickElipsis, inWindow: theWindow)
             }
         }
         getWebViewDataByID("ember3", completion: pmHandler)
@@ -185,8 +181,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     }
     
     @IBAction func openPTVNBuilder(_ sender: Any?) {
-        var emberID = String()
-        print("Opening the PTVN Building module")
+        //print("Opening the PTVN Building module")
         //Create a completion handler to deal with the results of the JS call to the webView
         let assignmentHandler: () -> Void = {
             print("In the PTVN Builder assignmentHandler")
@@ -198,25 +193,10 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                 guard let theWindow = self.view.window else { return }
                 print("No DOB")
                 //After notifying the user, break out of the program
-                let theAlert = NSAlert()
-                theAlert.messageText = "It looks like you haven't clicked the elipses to reveal the patients date of birth.  Give it another shot."
-                theAlert.beginSheetModal(for: theWindow) { (NSModalResponse) -> Void in
-                    let returnCode = NSModalResponse
-                    print(returnCode)}
+                MissingData().alertToMissingDataWithMessage(.clickElipsis, inWindow: theWindow)
                 //FIXME: Need to add a "Continue" button to the dialog and if it's pressed the program should continue to the phone message view with an empty ChartData object so a message can be taken for a non-patient.
             }
         }
-        
-//        let emberIDHandler: () -> Void = {
-//            print("Running emberIDHandler")
-//            (self.pfView as! WKWebView).evaluateJavaScript("document.getElementById('ember3').innerText", completionHandler: { (html: Any?, error: Error?) in
-//                emberID = getEmberIDForPtOutlet(html as! String)
-//                print(emberID)
-//                (html as! String).copyToPasteboard()
-//                //self.getWebViewDataByID(emberID, completion: assignmentHandler)
-//            })
-//        }
-//        emberIDHandler()
         getWebViewDataByID("ember3", completion: assignmentHandler)
     }
     

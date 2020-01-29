@@ -98,11 +98,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
                 //the correct PF data
                 print("You broke it!")
                 //After notifying the user, break out of the program
-                let theAlert = NSAlert()
-                theAlert.messageText = "It doesn't look like you've copied the correct bits out of Practice Fusion.\nPlease try again or click the help button for complete instructions.\nIf the problem continues, please contact the administrator."
-                theAlert.beginSheetModal(for: theWindow) { (NSModalResponse) -> Void in
-                    let returnCode = NSModalResponse
-                    print(returnCode)}
+                MissingData().alertToMissingDataWithMessage(.correctBits, inWindow: theWindow)
             }
         }
         
@@ -171,12 +167,13 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
                             //This is where we can close the spawning window if the save is successful
                             self.closeTheWindow()
                         } catch {
-                            let alert = NSAlert()
-                            alert.messageText = "There is already a file with this name.\n Please choose a different name."
-                            alert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
-                                let returnCode = NSModalResponse
-                                print(returnCode)
-                            }
+                            MissingData().alertToMissingDataWithMessage(.existingFile, inWindow: self.view.window!)
+//                            let alert = NSAlert()
+//                            alert.messageText = "There is already a file with this name.\n Please choose a different name."
+//                            alert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
+//                                let returnCode = NSModalResponse
+//                                print(returnCode)
+//                            }
                         }
                         if let thePath = path.absoluteString.removingPercentEncoding {
                             self.lastMessageView.stringValue = thePath
@@ -194,6 +191,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     
     @IBAction func clearMessage(_ sender: Any) {
         self.view.clearControllers()
+        includeAllergiesCheckbox.state = .on
         currentMessageText = Message(theText: String())
         wantedMeds = [String]()
         schedulingCombo.clearComboBox(menuItems: resultsList)

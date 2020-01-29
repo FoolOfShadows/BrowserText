@@ -15,6 +15,9 @@ class BrowserWindowController: NSWindowController {
         
         guard let theWindow = window else { return }
         
+        theWindow.titlebarAppearsTransparent = true // gives it "flat" look
+        theWindow.backgroundColor = .darkGray // set the background color
+        
         //restore position
         theWindow.setFrameUsingName("BrowserWindow")
         self.windowFrameAutosaveName = "BrowserWindow"

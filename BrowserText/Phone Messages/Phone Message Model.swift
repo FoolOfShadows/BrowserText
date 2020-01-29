@@ -117,11 +117,7 @@ func checkForICD10(_ theText: String, window: NSWindow) -> Bool {
             //Create an alert to let the user know the diagnoses are not set to ICD10
             print("Not set to ICD10")
             //After notifying the user, break out of the program
-            let theAlert = NSAlert()
-            theAlert.messageText = "It appears Practice Fusion is not set to show ICD-10 diagnoses codes.  Please set the Show by option in the Diagnoses section to ICD-10 and try again."
-            theAlert.beginSheetModal(for: window) { (NSModalResponse) -> Void in
-                let returnCode = NSModalResponse
-                print(returnCode)}
+            MissingData().alertToMissingDataWithMessage(.notICD10, inWindow: window)
         }
     }
     return icd10bool

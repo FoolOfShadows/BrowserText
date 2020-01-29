@@ -30,6 +30,15 @@ class FormLettersVC: NSViewController {
        
     }
     
+    var textHandler: () -> Void { return
+    {
+        self.theText = self.viewDataDelegate!.viewContent
+        if !self.theText.contains(MissingData.MissingDataErrorMessage.ssn.rawValue) {
+            MissingData().alertToMissingDataWithMessage(.needProfileTab, inWindow: self.view.window!)
+        }
+        }
+    }
+    
     override func viewDidAppear() {
         super.viewDidAppear()
         if let theWindow = self.view.window {
@@ -41,14 +50,16 @@ class FormLettersVC: NSViewController {
             theWindow.level = .floating
             theWindow.setFrameUsingName("formLetterWindow")
             theWindow.windowController!.windowFrameAutosaveName = "formLetterWindow"
-            let printHandler: ()->Void = {
-                print("Current patient: \(self.viewDataDelegate?.viewContent)")
-            }
+//            let printHandler: ()->Void = {
+//                print("Current patient: \(self.viewDataDelegate?.viewContent)")
+//            }
             //viewDataDelegate?.getWebViewValueByID("ember3", dataType: "innerHTML", completion: printHandler)
         }
     }
     
     @IBAction func printNoShowLetter(_ sender: Any?) {
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        
         let creationHandler = {
             printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:noShowVerbiage), fontSize: 14.0, window: self.view.window!)
             let fileName = createFileLabelFrom(PatientName: getFileLabellingNameFrom(self.currentPatient.fullName, ofType: FileLabelType.full), FileType: "NSRMNDR", date: String(Date().shortDate()))
@@ -56,11 +67,12 @@ class FormLettersVC: NSViewController {
             pasteBoard.clearContents()
             pasteBoard.setString(fileName, forType: NSPasteboard.PasteboardType.string)
         }
-        
         createPatientObject(withHandler: creationHandler)
     }
     
     @IBAction func printNeedAptLetter(_ sender: Any?) {
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        
         let creationHandler = {
             printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:needAptVerbiage), fontSize: 14.0, window: self.view.window!)
             let fileName = createFileLabelFrom(PatientName: getFileLabellingNameFrom(self.currentPatient.fullName, ofType: FileLabelType.full), FileType: "LTRT", date: String(Date().shortDate()))
@@ -73,15 +85,17 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openBMDLetter(_ sender: Any?) {
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        
         let creationHandler = {
             //print(self.currentPatient.firstName)
             self.performSegue(withIdentifier: "showBMDLetter", sender: self)
         }
         createPatientObject(withHandler: creationHandler)
-        
     }
     
     @IBAction func openNHAdmitForm(_ sender: Any?) {
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
         let creationHandler = {
             self.performSegue(withIdentifier: "showNHAdmit", sender: self)
         }
@@ -89,7 +103,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openDismissalLetter(_ sender: Any?) {
-        print("Opening dismissal letters")
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //print("Opening dismissal letters")
         let creationHandler = {
             self.performSegue(withIdentifier: "showDismissals", sender: self)
         }
@@ -97,7 +112,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openCollectionLetters(_ sender: Any?) {
-        print("Opening collection letters")
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //print("Opening collection letters")
         let creationHandler = {
             self.performSegue(withIdentifier: "showCollectionLetters", sender: self)
         }
@@ -105,6 +121,7 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func printReferral(_ sender: Any?) {
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
         //let theCurrentDate = Date()
         //let labelDateFormatter = DateFormatter()
         //labelDateFormatter.dateFormat = "yyMMdd"
