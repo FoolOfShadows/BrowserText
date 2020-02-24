@@ -15,6 +15,7 @@ class BrowserWindowController: NSWindowController {
         
         guard let theWindow = window else { return }
         
+        //theWindow.appearance = NSAppearance(named: .vibrantDark)
         theWindow.titlebarAppearsTransparent = true // gives it "flat" look
         theWindow.backgroundColor = .darkGray // set the background color
         

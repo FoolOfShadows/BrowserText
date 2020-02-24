@@ -12,13 +12,13 @@ let dxBadBits = ["Chronic diagnoses\n", "No active Acute diagnoses.\n", "Acute d
 
 let medBadBits = ["Medications", "Encounters", "Show historical \\(\\d.*\\)", "Screenings/ Interventions/", "Start: \\d\\d/\\d\\d/\\d\\d", "Screenings/ Interventions"]
 
-let nutritionBadBits = ["Nutrition history\n", "Advanced directives", "Developmental history/n"]
+let nutritionBadBits = ["Nutrition history\n", "Advanced directives", "Developmental history/n", "Family health history"]
 
 let socialBadBits = ["Past medical history", "Social history (free text) \n", "Social history \n", "Smoking status \n", "Gender identity \n", "Gender identity", "No gender identity recorded\n", "Sexual orientation \n", "No sexual orientation recorded\n"]
 
-let fmhBadBits = ["Family health history\n", "Preventive care", "Social history"]
+let fmhBadBits = ["Family health history\n", "Family health history \n", "Preventive care", "Social history", "Past medical history"]
 
-let basicAllergyBadBits = ["Drug allergies\n", "Environmental allergies\n", "No environmental allergies recorded\n", "Food allergies\n", "Allergies\n", "Medications", "You have previously recorded allergies in a free-text note", "To receive interaction alerts, record the note in a structured format here. Record",  "(free-text note) Delete", "Developmental history\\n", "Developmental history\\s+\\n", "No developmental history recorded"]
+let basicAllergyBadBits = ["Drug allergies\n", "Environmental allergies\n", "No environmental allergies recorded\n", "No Environmental Allergies Recorded", "No Food Allergies Recorded", "Food allergies\n", "Allergies\n", "Medications", "You have previously recorded allergies in a free-text note", "To receive interaction alerts, record the note in a structured format here. Record",  "(free-text note)", "Delete", "Developmental history\\n", "Developmental history\\s+\\n", "No developmental history recorded", "Food\\nNo food allergies recorded\\nEnvironmental\\nNo environmental allergies recorded", "Food\\nNo food allergies recorded\\nEnvironmental"]
 
 let freeAllergyBadBits = ["Allergies (free text)\n", "ALLERGIES:", "ALLERGIES", "Use structured allergies to receive interaction alerts\n", "Food allergies:", "Food Allergies:", "Food Allergies", "Food allergies\n", "Food Allergies\n", "Environmental allergies:\n", "Environmental allergies: ", "Environmental allergies\n", "Environmental Allergies\n", "Drug allergies:", "Drug allergies-", "Drug allergies", "No Known Drug Allergies", "No Known", "Drug Allergies:", "Drug Allergies", "Family health history", "Preventive care", "No food allergies recorded\n", "Allergies\n"]
 

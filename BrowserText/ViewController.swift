@@ -68,6 +68,10 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         
     }
     
+    override func viewDidAppear() {
+        
+    }
+    
     
 //Trying to figure out printing
     //This is a required function of conforming to the WKScriptMessageHandler protocol

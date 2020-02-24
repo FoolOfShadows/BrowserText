@@ -300,9 +300,9 @@
 				797C7D7222282E7700845C1F /* RegularExpressions.swift */,
 				79F1B2A022848541006F10A6 /* WebViewData.swift */,
 				796F69542289CF0D007B615C /* WebMonitoringView.swift */,
+				7900395123E073F7006EA6B7 /* MissingDataErrorDialogue.swift */,
 				79F8DB7F22A6C69A0018F21A /* GeneralBits.swift */,
 				79F577242225864F001B0C81 /* Assets.xcassets */,
-				7900395123E073F7006EA6B7 /* MissingDataErrorDialogue.swift */,
 			);
 			path = BrowserText;
 			sourceTree = "<group>";
@@ -714,7 +714,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b13;
+				CURRENT_PROJECT_VERSION = b15;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -737,7 +737,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = b13;
+				CURRENT_PROJECT_VERSION = b15;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

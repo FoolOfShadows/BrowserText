@@ -103,6 +103,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         }
         
         currentMessageText = Message(theText: patientData)
+        print(currentMessageText.allergies)
         dateView.stringValue = currentMessageText.messageDate
         nameView.stringValue = currentMessageText.ptInnerName
         dobView.stringValue = currentMessageText.ptDOB

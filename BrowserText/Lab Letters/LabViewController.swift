@@ -312,7 +312,25 @@ class LabViewController: NSViewController {
         let windowCloseHandler = {
             self.view.window?.performClose(self)
         }
-        printLetterheadWithText(finalLabData, fontSize: 10.0, window: self.view.window!, andCloseWindow: true)
+        //font size 10
+        let lineCount = finalLabData.components(separatedBy: "\n").count
+        var fontSize:CGFloat
+        switch lineCount {
+//        case 47...51:
+//            fontSize = 9.0
+        case 43...46:
+            fontSize = 10.0
+        case 39...42:
+            fontSize = 11
+        case 33...38:
+            fontSize = 12.0
+        case 1...32:
+            fontSize = 13
+        default:
+            fontSize = 9.0
+        }
+        print("Number of lines: \(lineCount). Font size: \(fontSize)")
+        printLetterheadWithText(finalLabData, fontSize: fontSize, window: self.view.window!, andCloseWindow: true)
         //self.view.window?.performClose(self)
     }
 
