@@ -33,6 +33,10 @@ class NHAdmitVC: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
         super.viewDidLoad()
         medListArray = getMedArrayFrom(currentPatientData.currentMeds)
         //dxListArray = and array returned from currentPatienData.diagnosis
+        nhNameCombo.clearComboBox(menuItems: NursingHome.nursingHomes)
+        conditionCombo.clearComboBox(menuItems: Condition.conditions)
+        vitalsCombo.clearComboBox(menuItems: Vitals.vitals)
+        labsCombo.clearComboBox(menuItems: Lab.labs)
     }
     
     func getMedArrayFrom(_ medsString:String) -> [String] {

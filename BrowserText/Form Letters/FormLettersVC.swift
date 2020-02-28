@@ -120,6 +120,15 @@ class FormLettersVC: NSViewController {
         createPatientObject(withHandler: creationHandler)
     }
     
+    @IBAction func openInsuranceProblemLetters(_ sender: Any?) {
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //print("Opening insurance problem letters")
+        let creationHandler = {
+            self.performSegue(withIdentifier: "showInsuranceProblemSegue", sender: self)
+        }
+        createPatientObject(withHandler: creationHandler)
+    }
+    
     @IBAction func printReferral(_ sender: Any?) {
         viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
         //let theCurrentDate = Date()
@@ -149,7 +158,7 @@ class FormLettersVC: NSViewController {
         case "showBMDLetter":
             //print("Opening BMD view?")
             if let toViewController = segue.destinationController as? BMDViewController {
-                print("Sending data: \(self.currentPatient.fullName)")
+                //print("Sending data: \(self.currentPatient.fullName)")
                 toViewController.currentPatient = self.currentPatient
             }
         case "showNHAdmit":
@@ -164,7 +173,12 @@ class FormLettersVC: NSViewController {
             }
         case "showDismissals":
             if let toViewController = segue.destinationController as? DismissalLettersVC {
-                print("Sending data: \(self.currentPatient.fullName)")
+                //print("Sending data: \(self.currentPatient.fullName)")
+                toViewController.currentPatient = self.currentPatient
+            }
+        case "showInsuranceProblemSegue":
+            if let toViewController = segue.destinationController as? InsuranceProblemVC {
+                //print("Sending data: \(self.currentPatient.fullName)")
                 toViewController.currentPatient = self.currentPatient
             }
         default: return
