@@ -76,9 +76,9 @@ struct Message {
     }
     
     private func getLastAptInfoFrom(_ theText: String) -> String {
-        guard let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments") else {return ""}
+        let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments")
         //print(baseSection)
-        guard let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages") else {return ""}
+        let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages")
         //print(encountersSection)
         let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded")}
         //print(activeEncounters)
@@ -90,7 +90,7 @@ struct Message {
     }
     
     private func getNextAptInfoFrom(_ theText: String) -> String {
-        guard let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments") else {return ""}
+        let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments")
         //print(nextAppointments)
         let activeEncounters = nextAppointments.ranges(of: "(?s)(\\w\\w\\w \\d\\d, \\d\\d\\d\\d)(.*?)(\\n)(?=\\w\\w\\w \\d\\d, \\d\\d\\d\\d)", options: .regularExpression).map{nextAppointments[$0]}.map{String($0)}.filter {$0.contains("Pending arrival")}
         if activeEncounters.count > 0 {

@@ -45,6 +45,7 @@
 		79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C0DEA4225CEC18002894FC /* PMSymptomsController.swift */; };
 		79C0DEAD225CEC18002894FC /* PhoneMessage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79C0DEA6225CEC18002894FC /* PhoneMessage.storyboard */; };
 		79D529C9228F06D9006A92A9 /* BrowserWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D529C8228F06D9006A92A9 /* BrowserWindowController.swift */; };
+		79E30454243F7066002571CC /* eScriptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E30453243F7066002571CC /* eScriptModel.swift */; };
 		79E35BC124096F5B00705B4F /* InsuranceProblemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E35BC024096F5B00705B4F /* InsuranceProblemVC.swift */; };
 		79F1B2A122848541006F10A6 /* WebViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F1B2A022848541006F10A6 /* WebViewData.swift */; };
 		79F577212225864D001B0C81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F577202225864D001B0C81 /* AppDelegate.swift */; };
@@ -120,6 +121,7 @@
 		79C0DEA4225CEC18002894FC /* PMSymptomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PMSymptomsController.swift; sourceTree = "<group>"; };
 		79C0DEA7225CEC18002894FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PhoneMessage.storyboard; sourceTree = "<group>"; };
 		79D529C8228F06D9006A92A9 /* BrowserWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserWindowController.swift; sourceTree = "<group>"; };
+		79E30453243F7066002571CC /* eScriptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = eScriptModel.swift; sourceTree = "<group>"; };
 		79E35BC024096F5B00705B4F /* InsuranceProblemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceProblemVC.swift; sourceTree = "<group>"; };
 		79F1B2A022848541006F10A6 /* WebViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewData.swift; sourceTree = "<group>"; };
 		79F5771D2225864D001B0C81 /* BrowserText.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrowserText.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,7 @@
 				79425B572292EDD20097CC88 /* eScriptVC.swift */,
 				79425B592292EDD20097CC88 /* eSConstants.swift */,
 				79425B582292EDD20097CC88 /* eSFunctions.swift */,
+				79E30453243F7066002571CC /* eScriptModel.swift */,
 			);
 			path = eScript;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				79425B5B2292EDD20097CC88 /* eSFunctions.swift in Sources */,
 				79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */,
 				7936119D222EE44A0009D2AF /* ChartData.swift in Sources */,
+				79E30454243F7066002571CC /* eScriptModel.swift in Sources */,
 				79F8DB8522A6C69B0018F21A /* GeneralBits.swift in Sources */,
 				79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */,
 				7936119E222EE44A0009D2AF /* BuilderConstants.swift in Sources */,

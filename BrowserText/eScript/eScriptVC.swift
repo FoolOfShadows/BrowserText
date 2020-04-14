@@ -27,6 +27,8 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
             return scriptScroll.contentView.documentView as! NSTextView
         }
     }
+    
+    var scriptData = eScript(theText: "")
 	var _undoManager = UndoManager()
 	override var undoManager: UndoManager? {
 		return _undoManager
@@ -59,22 +61,20 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
     
 
 	@IBAction func processPFData(_ sender: Any) {
-		
-		//Get the clipboard to process
-//        let pasteBoard = NSPasteboard.general
-//        let theText = pasteBoard.string(forType: NSPasteboard.PasteboardType(rawValue: "public.utf8-plain-text"))
+		scriptData = eScript(theText: theText)
 		
 		//Get name and DOB
-		guard let ptNameAgeDOB = nameAgeDOB(theText) else { return }
-		patientName = ptNameAgeDOB.0.capitalized
-		let ptPharmacy = ptNameAgeDOB.1
-		let pharmWithLocation = checkPharmacyLocationFrom(ptPharmacy)
-		let ptDOB = ptNameAgeDOB.2
-		fileLabelName = getFileLabellingName(patientName)
+//		guard let ptNameAgeDOB = nameAgeDOB(theText) else { return }
+//		patientName = ptNameAgeDOB.0.capitalized
+//		let ptPharmacy = ptNameAgeDOB.1
+//		let pharmWithLocation = checkPharmacyLocationFrom(ptPharmacy)
+//		let ptDOB = ptNameAgeDOB.2
+        fileLabelName = getFileLabellingName(scriptData.ptName)
 		//print(fileLabelName)
 		
 		//Get script data
-		let finalScriptData = getScriptDataFrom(theText)
+		//let finalScriptData = getScriptDataFrom(theText)
+        let finalScriptData = scriptData.reportOutput()
         
         let processDate = Date()
         let processDateFormatter = DateFormatter()
@@ -84,7 +84,25 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
 		let theUserFont:NSFont = NSFont.systemFont(ofSize: 18)
 		let fontAttributes = NSDictionary(object: theUserFont, forKey: NSAttributedString.Key.font as NSCopying)
 		scriptText.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
-		scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(patientName)          DOB: \(ptDOB)\n\n\(pharmWithLocation)\n\(finalScriptData)\n\nRESPONSE:\n"
+		//scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(patientName)          DOB: \(ptDOB)\n\n\(pharmWithLocation)\n\(finalScriptData)\n\nRESPONSE:\n"
+        scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(scriptData.ptName)          DOB: \(scriptData.ptDOB) (\(scriptData.ptAge))\n\n\(scriptData.pharmacy)\n\(finalScriptData)\n\nRESPONSE:\n"
+        
+        print(theText)
+//        print("""
+//            Name: \(scriptData.ptName)
+//            DOB: \(scriptData.ptDOB) (\(scriptData.ptAge))
+//            Pharm: \(scriptData.pharmacy)
+//            Med: \(scriptData.scriptMed.removeWhiteSpace())
+//            Qty: \(scriptData.scriptQty)
+//            Units: \(scriptData.scriptUnit)
+//            Days: \(scriptData.daysSupply)
+//            Substitutions: \(scriptData.substitutions)
+//            SIG: \(scriptData.scriptSig)
+//            Date: \(scriptData.scriptDate)
+//            Last: \(scriptData.lastFillDate)
+//            Dx: \(scriptData.dx)
+//
+//""")
 	}
 	
 	@IBAction func saveFile(_ sender: Any) {
@@ -163,30 +181,36 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
             
             let currentResults = self.scriptText.string
             
-            guard let ptNameAgeDOB = nameAgeDOB(theText) else { return }
-            /*if ptNameAgeDOB.0.capitalized != patientName*/
-            let newNameComponents = Set(ptNameAgeDOB.0.capitalized.components(separatedBy: " "))
-            let oldNameComponents = Set(self.patientName.components(separatedBy: " "))
-            //print("New Set: \(newNameComponents)\nOldSet: \(oldNameComponents)\n\(newNameComponents.isSubset(of: oldNameComponents))\n\(oldNameComponents.isSubset(of: newNameComponents))")
+            let newScript = eScript(theText: theText)
             
+            let newNameComponents = Set(newScript.ptName.components(separatedBy: " "))
+            let oldNameComponents = Set(self.scriptData.ptName.components(separatedBy: " "))
+            
+//            guard let ptNameAgeDOB = nameAgeDOB(theText) else { return }
+//            /*if ptNameAgeDOB.0.capitalized != patientName*/
+//            let newNameComponents = Set(ptNameAgeDOB.0.capitalized.components(separatedBy: " "))
+//            let oldNameComponents = Set(self.patientName.components(separatedBy: " "))
+//            //print("New Set: \(newNameComponents)\nOldSet: \(oldNameComponents)\n\(newNameComponents.isSubset(of: oldNameComponents))\n\(oldNameComponents.isSubset(of: newNameComponents))")
+//
             if !newNameComponents.isSubset(of: oldNameComponents) && !oldNameComponents.isSubset(of: newNameComponents) {
                 //print("\(ptNameAgeDOB.0.capitalized) :: \(patientName)")
                 //After notifying the user, break out of the program
                 let theAlert = NSAlert()
-                theAlert.messageText = "The refill information you're trying to add is for \(ptNameAgeDOB.0.capitalized) rather than \(self.patientName)."
+                theAlert.messageText = "The refill information you're trying to add is for \(/*ptNameAgeDOB.0.capitalized*/newScript.ptName) rather than \(self.scriptData.ptName)."
                 theAlert.beginSheetModal(for: NSApplication.shared.mainWindow!) { (NSModalResponse) -> Void in
                     let returnCode = NSModalResponse
                     print(returnCode)
                 }
                 return
             }
-            
-            //Get script data
-            var finalScriptData = "\n\n\(ptNameAgeDOB.1)\n\(getScriptDataFrom(theText))"
-            //print(finalScriptData)
-            
+//
+//            //Get script data
+            var finalScriptData = "\n\n\(newScript.pharmacy)\n\(newScript.reportOutput())"
+//            var finalScriptData = "\n\n\(ptNameAgeDOB.1)\n\(getScriptDataFrom(theText))"
+//            //print(finalScriptData)
+//
             finalScriptData = currentResults.replacingOccurrences(of: "\n\nRESPONSE:", with: finalScriptData)
-            
+
             let theUserFont:NSFont = NSFont.systemFont(ofSize: 18)
             let fontAttributes = NSDictionary(object: theUserFont, forKey: NSAttributedString.Key.font as NSCopying)
             self.scriptText.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
@@ -206,7 +230,7 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
 	}
     
     private func getNextAptInfoFrom(_ theText: String) -> String {
-        guard let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments") else {return ""}
+        let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments")
         print(nextAppointments)
         let activeEncounters = nextAppointments.ranges(of: "(?s)(\\w\\w\\w \\d\\d, \\d\\d\\d\\d)(.*?)(\\n)(?=\\w\\w\\w \\d\\d, \\d\\d\\d\\d)", options: .regularExpression).map{nextAppointments[$0]}.map{String($0)}.filter {$0.contains("Pending arrival")}
         if activeEncounters.count > 0 {

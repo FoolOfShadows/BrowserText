@@ -72,10 +72,10 @@ extension String {
         return baseArray
     }
     
-    func findRegexMatchFrom(_ start: String, to end:String) -> String? {
+    func findRegexMatchFrom(_ start: String, to end:String) -> String {
         if self.contains(start) && self.contains(end) {
-            guard let startRegex = try? NSRegularExpression(pattern: start, options: []) else { return nil }
-            guard let endRegex = try? NSRegularExpression(pattern: end, options: []) else {return nil }
+            guard let startRegex = try? NSRegularExpression(pattern: start, options: []) else { return "" }
+            guard let endRegex = try? NSRegularExpression(pattern: end, options: []) else {return "" }
             let startMatch = startRegex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
             let endMatch = endRegex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
             
@@ -90,14 +90,14 @@ extension String {
         }
     }
     
-    func findRegexMatchBetween(_ start: String, and end: String) -> String? {
+    func findRegexMatchBetween(_ start: String, and end: String) -> String {
         let startStripped = start.removeRegexCharactersFromString()
         let endStripped = end.removeRegexCharactersFromString()
         //print("Stripped start is: \(startStripped)\nand stripped end is: \(endStripped)")
         if self.contains(startStripped) && self.contains(endStripped) {
             //print("Starting text: \(start), Ending text: \(end)")
-            guard let startRegex = try? NSRegularExpression(pattern: start, options: []) else { return nil }
-            guard let endRegex = try? NSRegularExpression(pattern: end, options: []) else {return nil }
+            guard let startRegex = try? NSRegularExpression(pattern: start, options: []) else { return "" }
+            guard let endRegex = try? NSRegularExpression(pattern: end, options: []) else {return "" }
             
             let startMatch = startRegex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
             let endMatch = endRegex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))

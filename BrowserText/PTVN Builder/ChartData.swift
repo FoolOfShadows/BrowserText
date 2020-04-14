@@ -203,8 +203,8 @@ class ChartData {
     //Get the date of the patients last appointment
     private func getLastAptInfoFrom(_ theText: String) -> String {
         //let unwantedDxs = ["No chief complaint recorded", "CC: Epogen inj", "CC: Testosterone inj", "CC: Flu inj", "CC: Flu Inj", "CC: Udip", "CC: B12 inj", "CC: B12 Inj"]
-        guard let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments") else {return ""}
-        guard let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages") else {return ""}
+        let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments")
+        let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages")
         //let dateToDateRegex = "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)"
         let dateToEndOfCCLine = "(?m)(\\d./\\d./\\d*)(.*?)(\\n)(CC:.*)"
         
@@ -230,7 +230,7 @@ class ChartData {
     }
     
     private func getNextAptInfoFrom(_ theText: String) -> String {
-        guard let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments") else {return ""}
+        let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments")
         print(nextAppointments)
         let activeEncounters = nextAppointments.ranges(of: "(?s)(\\w\\w\\w \\d\\d, \\d\\d\\d\\d)(.*?)(\\n)(?=\\w\\w\\w \\d\\d, \\d\\d\\d\\d)", options: .regularExpression).map{nextAppointments[$0]}.map{String($0)}.filter {$0.contains("Pending arrival")}
         if activeEncounters.count > 1 {

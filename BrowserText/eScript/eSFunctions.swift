@@ -10,9 +10,9 @@ import Cocoa
 import Foundation
 
 func getLastAptInfoFrom(_ theText: String) -> String {
-    guard let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments") else {return ""}
+    let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments")
     //print(baseSection)
-    guard let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages") else {return ""}
+    let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages")
     //print(encountersSection)
     let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded")}
     //print(activeEncounters)
@@ -124,7 +124,11 @@ func replaceLabelsOf(_ array: inout [String], with subs:[(String, String)]) -> [
 func getScriptDataFrom(_ text:String?) -> String {
 	var finalScriptData = "Program failed to find script data."
 	if let scriptData = text?.simpleRegExMatch("(?s)Prescribed.*?ASSOCIATED DIAGNOSIS")/*text?.findRegexMatchFrom("Prescribed", to: "ASSOCIATED DIAGNOSIS")*/ {
+    //if let scriptData = text?.simpleRegExMatch("(?s)Dispensed medication.*?ASSOCIATED DIAGNOSIS") {
         //print("Script Data: \(scriptData)")
+//        let extraneousData = scriptData.simpleRegExMatch("(?s)MATCHING MEDICATION.*Select override reason")
+//        print(extraneousData)
+//        var dataArray:[String] = scriptData.replacingOccurrences(of: extraneousData, with: "").components(separatedBy: "\n")
 		var dataArray:[String] = scriptData.components(separatedBy: "\n")
 		dataArray = dataArray.filter {!$0.isEmpty}
 		//print(dataArray)

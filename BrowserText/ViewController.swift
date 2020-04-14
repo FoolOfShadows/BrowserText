@@ -17,6 +17,7 @@ protocol webViewDataProtocol: class {
     //FIXME: See about making just one function here and giving it a more useful name
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
     func getWebViewValueByID(_ id: String, dataType:String, completion: @escaping () -> Void)
+    //func getWebViewValueByDataName(_ name: String, completion: @escaping () -> Void)
 }
 
 class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webViewDataProtocol, WKScriptMessageHandler {
@@ -348,13 +349,13 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     
     //Gets the underlying values for the Patient Profile page in Practice Fusion (use .value to get the value after getElementById())
     func getWebViewValueByID(_ id: String, dataType:String = "value", completion: @escaping () -> Void) {
-        print("Getting ID data")
+        //print("Getting ID data")
         //Using .value I can retrieve the data from a form field if I know it's ID
         (pfView as! WKWebView).evaluateJavaScript("document.getElementById('\(id)').\(dataType)",
             completionHandler: { (html: Any?, error: Error?) in
                 //Check if an error's been returned, if not, continue
                 if error == nil {
-                    print("Assigning data to viewContent")
+                    //print("Assigning data to viewContent")
                     //Set the viewContent var to the data retrieved from the webview
                     //if that retrieval fails, set the var to a default value
                     
@@ -367,6 +368,19 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         })
         
     }
+    
+//    func getWebViewValueByDataName(_ name:String, completion: @escaping () -> Void) {
+//        (pfView as! WKWebView).evaluateJavaScript("document.querySelectorAll('[data-\(name)]')", completionHandler: { (html: Any?, error: Error?) in
+//            if error == nil {
+//                print ("Assining data to viewContent")
+//
+//                self.viewContent = (html as? String) ?? "No string"
+//                completion()
+//            } else {
+//                print("Error: \(error)")
+//            }
+//        })
+//    }
     
     func printWebView(_ view: WKWebView) {
 
