@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="130-Si-RIL">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="130-Si-RIL">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,11 +11,11 @@
             <objects>
                 <viewController title="Labs" id="130-Si-RIL" customClass="LabsViewController" customModule="BrowserText" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Z0f-Vy-Ztq">
-                        <rect key="frame" x="0.0" y="0.0" width="1002" height="525"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1002" height="672"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="spT-tr-hgZ">
-                                <rect key="frame" x="843" y="-179" width="145" height="32"/>
+                                <rect key="frame" x="843" y="-32" width="145" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Process For Note" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G48-Wz-wrt">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -26,7 +26,7 @@
                                 </connections>
                             </button>
                             <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="Tri-qX-BXK">
-                                <rect key="frame" x="65" y="279" width="125" height="228"/>
+                                <rect key="frame" x="65" y="426" width="125" height="228"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="2zl-tx-a74">
                                     <rect key="frame" x="3" y="3" width="119" height="222"/>
@@ -105,7 +105,7 @@
                                 </view>
                             </box>
                             <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="76N-oQ-2yb">
-                                <rect key="frame" x="192" y="57" width="745" height="450"/>
+                                <rect key="frame" x="192" y="204" width="745" height="450"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="jGc-jC-EHg">
                                     <rect key="frame" x="3" y="3" width="739" height="444"/>
@@ -997,7 +997,7 @@
                                 </view>
                             </box>
                             <box autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Quick Lab Orders" translatesAutoresizingMaskIntoConstraints="NO" id="0Ul-ev-8jC">
-                                <rect key="frame" x="65" y="84" width="125" height="191"/>
+                                <rect key="frame" x="65" y="231" width="125" height="191"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Xh0-QX-CHV">
                                     <rect key="frame" x="3" y="3" width="119" height="173"/>
@@ -1073,7 +1073,7 @@
                                 </view>
                             </box>
                             <box hidden="YES" autoresizesSubviews="NO" fixedFrame="YES" borderType="line" title="Flu" translatesAutoresizingMaskIntoConstraints="NO" id="m0a-Xt-jo2">
-                                <rect key="frame" x="192" y="-120" width="489" height="173"/>
+                                <rect key="frame" x="192" y="27" width="489" height="173"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="Tuq-Px-Qfs">
                                     <rect key="frame" x="3" y="3" width="483" height="155"/>
@@ -1187,7 +1187,7 @@
                                 </view>
                             </box>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3pL-0N-UiU">
-                                <rect key="frame" x="747" y="13" width="73" height="32"/>
+                                <rect key="frame" x="747" y="160" width="73" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Clear" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kyr-Y5-nQm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1201,7 +1201,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W60-EV-LP8">
-                                <rect key="frame" x="62" y="13" width="75" height="32"/>
+                                <rect key="frame" x="62" y="160" width="75" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mVg-VO-oO8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1215,7 +1215,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zxn-P2-ZRw">
-                                <rect key="frame" x="837" y="13" width="103" height="32"/>
+                                <rect key="frame" x="837" y="160" width="103" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Print/Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="x8b-58-1DE">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1244,7 +1244,7 @@ Gw
                 </viewController>
                 <customObject id="xyE-8Y-3MF" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="907" y="844.5"/>
+            <point key="canvasLocation" x="907" y="918"/>
         </scene>
         <!--Lab Printing Controller-->
         <scene sceneID="Ken-IC-7RD">

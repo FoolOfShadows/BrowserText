@@ -39,7 +39,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     var visitTime = "00"
     
     //The URL of the Practice Fusion login page as opposed to their main page
-    let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/login"
+    //let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/login"
+    let myPage = "https://static.practicefusion.com"
     
     //FIXME: Give these more useful names based on what they actually do
     @IBOutlet weak var webPrintView: NSView!
@@ -51,7 +52,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         
     //Open default web page into the browser view
         //Create a browser view
-        pfView = makeWebView()
+        pfView = makeWebViewWithURL(myPage)
         pfView.translatesAutoresizingMaskIntoConstraints = false
 
         //Add the browser view to it's storyboard created container view
@@ -274,14 +275,14 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         }
     }
     
-    private func makeWebView() -> NSView {
+    private func makeWebViewWithURL(_ address:String) -> NSView {
         
         //Creates a script then injects it into each frame of the web page when it's done loading
-        let configuration = WKWebViewConfiguration()
+        //let configuration = WKWebViewConfiguration()
             //Not sure what this 'source' is or how it works
-        let script = WKUserScript(source: "window.print = function() { window.webkit.messageHandlers.print.postMessage('print') }", injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: true)
-        configuration.userContentController.addUserScript(script)
-        configuration.userContentController.add(self, name: "print")
+//        let script = WKUserScript(source: "window.print = function() { window.webkit.messageHandlers.print.postMessage('print') }", injectionTime: WKUserScriptInjectionTime.atDocumentEnd, forMainFrameOnly: true)
+//        configuration.userContentController.addUserScript(script)
+//        configuration.userContentController.add(self, name: "print")
         //None of these preferences fix the printing from PF issue
 //        configuration.preferences.javaScriptEnabled = true
 //        configuration.preferences.javaScriptCanOpenWindowsAutomatically = true
@@ -289,13 +290,13 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
 //        configuration.preferences.plugInsEnabled = true
         //let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_5) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.1.1 Safari/605.1.15"
 
-        let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
+        //let webView = WKWebView(frame: CGRect.zero, configuration: configuration)
         //webView.customUserAgent = userAgent
         
-        //let webView = WKWebView()
+        let webView = WKWebView()
         webView.navigationDelegate = self
         webView.wantsLayer = true
-        webView.load(URLRequest(url: URL(string: myPage)!))
+        webView.load(URLRequest(url: URL(string: address)!))
         
         return webView
     }
@@ -450,6 +451,42 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
 //            }
 //        }
 //    }
+    
+    @IBAction func upDatePage(_ sender:NSButton) {
+        let newPage = idView.stringValue
+        
+        pfView = makeWebViewWithURL(newPage)
+        pfView.translatesAutoresizingMaskIntoConstraints = false
+
+        //Add the browser view to it's storyboard created container view
+        theWebView.addSubview(pfView)
+        
+        //Set the browser views constraints within it's container view
+        pfView.leadingAnchor.constraint(equalTo: theWebView.leadingAnchor).isActive = true
+        pfView.trailingAnchor.constraint(equalTo: interfaceView.leadingAnchor).isActive = true
+        pfView.topAnchor.constraint(equalTo: theWebView.topAnchor).isActive = true
+        pfView.bottomAnchor.constraint(equalTo: theWebView.bottomAnchor).isActive = true
+        
+        //FIXME: I'm not sure I need the UI Delegation
+        (pfView as! WKWebView).uiDelegate = self
+        (pfView as! WKWebView).navigationDelegate = self
+        
+        func webView(_ webView: WKWebView,
+            didReceive challenge: URLAuthenticationChallenge,
+            completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
+        {
+            if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust)
+            {
+                let cred = URLCredential(trust: challenge.protectionSpace.serverTrust!)
+                completionHandler(.useCredential, cred)
+            }
+            else
+            {
+                completionHandler(.performDefaultHandling, nil)
+            }
+        }
+        
+    }
 
 
 }
