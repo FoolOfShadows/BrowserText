@@ -504,7 +504,7 @@ enum MyPrintError:Error {
 func getEmberIDFromScrapedString(_ data:String) -> String {
     var result = String()
     let theLine = data.simpleRegExMatch("data-element=\"last-name\".*?shorter ember-view\"")
-    result = theLine.simpleRegExMatch("ember\\d{4,7}")
+    result = theLine.simpleRegExMatch("ember\\d{3,7}")
     print(result)
     return result
 }
