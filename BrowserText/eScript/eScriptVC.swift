@@ -29,6 +29,8 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
     }
     
     var scriptData = eScript(theText: "")
+    var refillID = ""
+    
 	var _undoManager = UndoManager()
 	override var undoManager: UndoManager? {
 		return _undoManager
@@ -62,47 +64,33 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
 
 	@IBAction func processPFData(_ sender: Any) {
 		scriptData = eScript(theText: theText)
-		
-		//Get name and DOB
-//		guard let ptNameAgeDOB = nameAgeDOB(theText) else { return }
-//		patientName = ptNameAgeDOB.0.capitalized
-//		let ptPharmacy = ptNameAgeDOB.1
-//		let pharmWithLocation = checkPharmacyLocationFrom(ptPharmacy)
-//		let ptDOB = ptNameAgeDOB.2
-        fileLabelName = getFileLabellingName(scriptData.ptName)
-		//print(fileLabelName)
-		
-		//Get script data
-		//let finalScriptData = getScriptDataFrom(theText)
-        let finalScriptData = scriptData.reportOutput()
         
-        let processDate = Date()
-        let processDateFormatter = DateFormatter()
-        processDateFormatter.dateFormat = "MM/dd/yy"
-        let processRequestDate = processDateFormatter.string(from: processDate)
+        let eScriptHandler = {
+            //Get name and DOB
+            self.fileLabelName = getFileLabellingName(self.scriptData.ptName)
+            //print(self.fileLabelName)
+            
+            //Get script data
+            let finalScriptData = self.scriptData.reportOutput()
+            
+            let processDate = Date()
+            let processDateFormatter = DateFormatter()
+            processDateFormatter.dateFormat = "MM/dd/yy"
+            let processRequestDate = processDateFormatter.string(from: processDate)
+            
+            let theUserFont:NSFont = NSFont.systemFont(ofSize: 18)
+            let fontAttributes = NSDictionary(object: theUserFont, forKey: NSAttributedString.Key.font as NSCopying)
+            self.scriptText.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
+            //scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(patientName)          DOB: \(ptDOB)\n\n\(pharmWithLocation)\n\(finalScriptData)\n\nRESPONSE:\n"
+            self.scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(self.scriptData.ptName)          DOB: \(self.scriptData.ptDOB) (\(self.scriptData.ptAge))\n\n\(self.scriptData.pharmacy)\n\(finalScriptData)\n\nRESPONSE:\n"
+        }
 		
-		let theUserFont:NSFont = NSFont.systemFont(ofSize: 18)
-		let fontAttributes = NSDictionary(object: theUserFont, forKey: NSAttributedString.Key.font as NSCopying)
-		scriptText.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
-		//scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(patientName)          DOB: \(ptDOB)\n\n\(pharmWithLocation)\n\(finalScriptData)\n\nRESPONSE:\n"
-        scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(scriptData.ptName)          DOB: \(scriptData.ptDOB) (\(scriptData.ptAge))\n\n\(scriptData.pharmacy)\n\(finalScriptData)\n\nRESPONSE:\n"
+        createeScriptObjectWithHandler(eScriptHandler)
+		
+		
+		
         
-        print(theText)
-//        print("""
-//            Name: \(scriptData.ptName)
-//            DOB: \(scriptData.ptDOB) (\(scriptData.ptAge))
-//            Pharm: \(scriptData.pharmacy)
-//            Med: \(scriptData.scriptMed.removeWhiteSpace())
-//            Qty: \(scriptData.scriptQty)
-//            Units: \(scriptData.scriptUnit)
-//            Days: \(scriptData.daysSupply)
-//            Substitutions: \(scriptData.substitutions)
-//            SIG: \(scriptData.scriptSig)
-//            Date: \(scriptData.scriptDate)
-//            Last: \(scriptData.lastFillDate)
-//            Dx: \(scriptData.dx)
-//
-//""")
+        //print(theText)
 	}
 	
 	@IBAction func saveFile(_ sender: Any) {
@@ -246,6 +234,33 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
 		}
 	}
 
+    private func createeScriptObjectWithHandler(_ handler: @escaping () -> Void) {
+        
+        let finishThisHandler: () -> Void = {
+            let refillHandler: () -> Void = {
+                self.scriptData.refills = self.viewDataDelegate!.viewContent
+                print("Refill Data: \(self.viewDataDelegate!.viewContent)")
+                handler()
+            }
+            self.viewDataDelegate?.getWebViewValueByID(self.refillID, dataType: "value", completion: refillHandler)
+        }
+
+        let refillIDHandler: () -> Void = {
+            self.refillID = self.getRefillEmberIDFrom(self.viewDataDelegate!.viewContent)
+            print("Refill ID: \(self.viewDataDelegate!.viewContent)")
+            // self.eScript.refill = getInsData(self.viewDataDelegate!.viewContent)
+            finishThisHandler()
+        }
+        viewDataDelegate?.getWebViewValueByID("ember3", dataType: "innerHTML", completion: refillIDHandler)
+        
+    }
+    
+    func getRefillEmberIDFrom(_ data:String) -> String {
+        var result = String()
+        let theLine = data.simpleRegExMatch("data-element=\"number-of-refills\".*?\"ember-text-field")
+        result = theLine.simpleRegExMatch("ember\\d{3,7}")
+        return result
+    }
 
 }
 

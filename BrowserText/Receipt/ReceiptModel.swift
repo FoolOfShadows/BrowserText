@@ -67,7 +67,7 @@ struct Receipt {
         
     }
     
-    func getFileLabellingName(_ name: String) -> String {
+    private func getFileLabellingName(_ name: String) -> String {
         var fileLabellingName = String()
         var ptFirstName = ""
         var ptLastName = ""

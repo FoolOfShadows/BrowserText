@@ -24,7 +24,8 @@ struct eScript {
     var daysSupply: String {return simpleRegExMatch(theText, theExpression: "(?m)DAYS SUPPLY\\s+?\\d.*\\s+?SUBSTITUTIONS").cleanTheTextOf(["DAYS SUPPLY", "SUBSTITUTIONS"]).removeWhiteSpace()}
     var substitutions: String {return simpleRegExMatch(theText, theExpression: "(?m)SUBSTITUTIONS\\s+?.*\\s+?NUMBER OF DISPENSINGS").cleanTheTextOf(["SUBSTITUTIONS", "NUMBER OF DISPENSINGS"]).removeWhiteSpace()}
     var dx: String {return simpleRegExMatch(theText, theExpression: "(?m)ASSOCIATED DIAGNOSIS\\s+?.*\\s+?NOTE TO PHARMACY").cleanTheTextOf(["ASSOCIATED DIAGNOSIS", "NOTE TO PHARMACY"]).removeWhiteSpace()}
-    var refills: String { return simpleRegExMatch(theText, theExpression: "(?m)NUMBER OF REFILLS\\s+?.*\\s+?SUBSTITUTIONS").cleanTheTextOf(["NUMBER OF REFILLS", "SUBSTITUTIONS"]).removeWhiteSpace()}
+    //var refills: String { return simpleRegExMatch(theText, theExpression: "(?m)NUMBER OF REFILLS\\s+?.*\\s+?SUBSTITUTIONS").cleanTheTextOf(["NUMBER OF REFILLS", "SUBSTITUTIONS"]).removeWhiteSpace()}
+    var refills = ""
     
     var pharmacy: String {return ptDemo.pharm}
     
@@ -36,6 +37,8 @@ Days Supply: \(daysSupply)
 Substitutions: \(substitutions)
 
 SIG: \(scriptSig)
+        
+Total Fills Requested: \(refills)
         
 Script Date: \(scriptDate)     Last Filled: \(lastFillDate)
 
