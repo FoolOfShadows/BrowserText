@@ -136,7 +136,7 @@ class LabsViewController: NSViewController {
         //print("Opening Lab Printing Setup")
         //Make sure the user is on the Profile tab
         guard let profileViewData = viewDataDelegate?.viewContent else { return }
-        if !profileViewData.contains("SOCIAL SECURITY NUMBER") {
+        if !profileViewData.contains("SSN") {
             //Create an alert to let the user know they aren't on the Profile tab
             //After notifying the user, break out of the program
             let theAlert = NSAlert()

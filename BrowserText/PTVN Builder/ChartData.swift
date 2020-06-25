@@ -216,7 +216,8 @@ class ChartData {
             !$0.contains("CC: Flu Inj") &&
             !$0.contains("CC: Udip") &&
             !$0.contains("CC: B12 inj") &&
-            !$0.contains("CC: B12 Inj")}
+            !$0.contains("CC: B12 Inj") &&
+            !$0.contains("CC: Lab Draw")}
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
             let components = date.components(separatedBy: "/")

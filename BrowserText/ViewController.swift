@@ -17,6 +17,7 @@ protocol webViewDataProtocol: class {
     //FIXME: See about making just one function here and giving it a more useful name
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
     func getWebViewValueByID(_ id: String, dataType:String, completion: @escaping () -> Void)
+    func getWebViewValueByClassName(_ name: String, completion: @escaping () -> Void)
     //func getWebViewValueByDataName(_ name: String, completion: @escaping () -> Void)
 }
 
@@ -40,7 +41,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     
     //The URL of the Practice Fusion login page as opposed to their main page
     //let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/login"
-    let myPage = "https://static.practicefusion.com"
+    let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/PF/home/main"
     
     //FIXME: Give these more useful names based on what they actually do
     @IBOutlet weak var webPrintView: NSView!
@@ -296,6 +297,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         let webView = WKWebView()
         webView.navigationDelegate = self
         webView.wantsLayer = true
+        //Trying to figure out how to get Practice Fusion to interact with the program in a more normal way by assigning a user agent.  This did not fix the general problem loading on older systems or with printing, but it may have dealt with some of the cookie issues.  Will need to figure out how to get and present the user agent most accurate to the system the probram is running on.
+        webView.customUserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15"
         webView.load(URLRequest(url: URL(string: address)!))
         
         return webView
@@ -364,11 +367,23 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                     //Run the completion handler passed in as a parameter
                     completion()
                 } else {
-                    print("Error: \(error)")
+                    print("Error: \(String(describing: error))")
                 }
         })
         
     }
+//"document.getElementsByClassName('\(name)')[0].innerHTML"
+    func getWebViewValueByClassName(_ name:String, completion: @escaping () -> Void) {
+        (pfView as! WKWebView).evaluateJavaScript("document.getElementById('data-element').dataset.fullName.innerHTML", completionHandler: { (html: Any?, error: Error?) in
+            if error == nil {
+                self.viewContent = (html as? String) ?? "No string"
+                completion()
+            } else {
+                print("Error: \(String(describing: error))")
+            }
+        })
+    }
+    
     
 //    func getWebViewValueByDataName(_ name:String, completion: @escaping () -> Void) {
 //        (pfView as! WKWebView).evaluateJavaScript("document.querySelectorAll('[data-\(name)]')", completionHandler: { (html: Any?, error: Error?) in

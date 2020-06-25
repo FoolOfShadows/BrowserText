@@ -163,6 +163,54 @@ extension String {
         }
         return count
     }
+    
+    func nameComponentsFromFullName() -> (first:String, middle:String, last:String, extra:String) {
+        var ptFirstName = ""
+           var ptLastName = ""
+           var ptMiddleName = ""
+           var ptExtraName = ""
+           let extraNameBits = ["Sr", "Jr", "II", "III", "IV", "MD"]
+           
+           func checkForMatchInSets(_ arrayToCheckIn: [String], arrayToCheckFor: [String]) -> Bool {
+               var result = false
+               for item in arrayToCheckIn {
+                   if arrayToCheckFor.contains(item) {
+                       result = true
+                       break
+                   }
+               }
+               return result
+           }
+           
+           let nameComponents = self.components(separatedBy: " ").filter {!$0.contains("(")}
+           print("Name components: \(nameComponents)")
+           let extraBitsCheck = checkForMatchInSets(nameComponents, arrayToCheckFor: extraNameBits)
+           
+           if extraBitsCheck == true {
+               ptLastName = nameComponents[nameComponents.count-2]
+               ptExtraName = nameComponents[nameComponents.count-1]
+           } else {
+               ptLastName = nameComponents[nameComponents.count-1]
+               ptExtraName = ""
+           }
+           
+           if nameComponents.count > 2 {
+               if nameComponents[nameComponents.count - 2] == "Van" {
+                   ptLastName = "Van " + ptLastName
+               }
+           }
+           
+           //Get first name
+           ptFirstName = nameComponents[0]
+           
+           //Get middle name
+           if (nameComponents.count == 3 && extraBitsCheck == true) || nameComponents.count < 3 {
+               ptMiddleName = ""
+           } else {
+               ptMiddleName = nameComponents[1]
+           }
+        return (first:ptFirstName, middle:ptMiddleName, last:ptLastName, extra:ptExtraName)
+    }
 }
 
 //MARK: Date Extensions

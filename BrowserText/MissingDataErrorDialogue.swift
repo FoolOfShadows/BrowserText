@@ -15,7 +15,7 @@ struct MissingData {
         case existingFile = "There is already a file with this name.\n Please choose a different name."
         case notICD10 = "It appears Practice Fusion is not set to show ICD-10 diagnoses codes.  Please set the Show by option in the Diagnoses section to ICD-10 and try again."
         case needProfileTab = "You need to be on the Profile tab in the patient's chart to run this process.  Please switch to the Profile tab and try again."
-        case ssn = "SOCIAL SECURITY NUMBER"
+        case ssn = "SSN"
     }
     
 
