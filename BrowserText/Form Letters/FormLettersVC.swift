@@ -186,23 +186,19 @@ class FormLettersVC: NSViewController {
     }
     
     private func createPatientObject(withHandler handler: @escaping () -> Void) {
-        let rawPtDataHandler: () -> Void = {
-            print("\n\nRAW PT DATA:\n \(self.viewDataDelegate!.viewContent)")
-        }
-        viewDataDelegate?.getWebViewValueByClassName("fullName", completion: rawPtDataHandler)
         //Get all the pieces of a patient's address
         //Field values don't get scraped when grabbing the text/HTML on a page and have to be accessed by the .value property
-        //let streetHandler: () -> Void = {
+        let streetHandler: () -> Void = {
             //print("Street Data: \(self.viewDataDelegate!.viewContent)")
-            //self.currentPatient.street = self.viewDataDelegate!.viewContent
-        //}
-        //viewDataDelegate?.getWebViewValueByID("data-element.address1", dataType: "value", completion: streetHandler)
+            self.currentPatient.street = self.viewDataDelegate!.viewContent
+        }
+        viewDataDelegate?.getWebViewValueByClassName("address1", index: 0, completion: streetHandler)
         
         let cityStateZipHandler: () -> Void = {
             self.currentPatient.city = self.viewDataDelegate!.viewContent.components(separatedBy: ",")[0]
             self.currentPatient.zip = self.viewDataDelegate!.viewContent.components(separatedBy: " ").last!
         }
-        //viewDataDelegate?.getWebViewValueByID("data-element.city-state-zip", dataType: "value", completion: cityStateZipHandler)
+        viewDataDelegate?.getWebViewValueByClassName("city-state-zip", index: 0, completion: cityStateZipHandler)
 //        let cityHandler: () -> Void = {
 //            self.currentPatient.city = self.viewDataDelegate!.viewContent
 //            //print("City Data: \(self.viewDataDelegate!.viewContent)")
@@ -224,19 +220,19 @@ class FormLettersVC: NSViewController {
             self.currentPatient.dob = self.viewDataDelegate!.viewContent
             //print("DOB Data: \(self.viewDataDelegate!.viewContent)")
         }
-        //viewDataDelegate?.getWebViewValueByID("data-element.birth-date-text", dataType: "value", completion: dobHandler)
+        viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: dobHandler)
         
         let mobilePhoneHandler: () -> Void = {
             self.currentPatient.mobilePhone = self.viewDataDelegate!.viewContent
             //print("Mobile Data: \(self.viewDataDelegate!.viewContent)")
         }
-        //viewDataDelegate?.getWebViewValueByID("phone-mobile", dataType: "value", completion: mobilePhoneHandler)
+        viewDataDelegate?.getWebViewValueByClassName("phone-mobile", index: 0, completion: mobilePhoneHandler)
         
         let homePhoneHandler: () -> Void = {
             self.currentPatient.homePhone = self.viewDataDelegate!.viewContent
             //print("Home Data: \(self.viewDataDelegate!.viewContent)")
         }
-        //viewDataDelegate?.getWebViewValueByID("phone-home", dataType: "value", completion: homePhoneHandler)
+        viewDataDelegate?.getWebViewValueByClassName("phone-home", index: 0, completion: homePhoneHandler)
         
         //Get all the pieces of a patient's name
         let fullNameHandler: () -> Void = {
@@ -245,8 +241,9 @@ class FormLettersVC: NSViewController {
             self.currentPatient.firstName = ptNameComponents.first
             self.currentPatient.lastName = ptNameComponents.last
             self.currentPatient.middleName = ptNameComponents.middle
+            
         }
-        //viewDataDelegate?.getWebViewValueByID("full-name", dataType: "value", completion: fullNameHandler)
+        viewDataDelegate?.getWebViewValueByClassName("full-name", index: 0, completion: fullNameHandler)
 //        let firstNameHandler: () -> Void = {
 //            self.currentPatient.firstName = self.viewDataDelegate!.viewContent
 //            //print("First Name Data: \(self.viewDataDelegate!.viewContent)")
@@ -270,11 +267,26 @@ class FormLettersVC: NSViewController {
 //            self.viewDataDelegate?.getWebViewValueByID(self.lastNameID, dataType: "value", completion: lastNameHandler)
 //        }
 //
+        let firstInsuranceHandler: () -> Void = {
+            
+        }
+        for index in 1...3 {
+        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 0, completion: firstInsuranceHandler)
+        }
+        let secondInsuranceHandler: () -> Void = {
+            
+        }
+        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 0, completion: secondInsuranceHandler)
+        let thirdInsuranceHandler: () -> Void = {
+            
+            handler()
+        }
+        viewDataDelegate?.getWebViewValueByClassName("full-name", index: 0, completion: thirdInsuranceHandler)
 //        let lastNameIDHandler: () -> Void = {
-//            self.lastNameID = getEmberIDFromScrapedString(self.viewDataDelegate!.viewContent)
+//            //self.lastNameID = getEmberIDFromScrapedString(self.viewDataDelegate!.viewContent)
 //            //print("Last Name ID: \(self.viewDataDelegate!.viewContent)")
 //            self.currentPatient.insurances = getInsData(self.viewDataDelegate!.viewContent)
-//            finishThisHandler()
+//            //finishThisHandler()
 //        }
 //        viewDataDelegate?.getWebViewValueByID("ember3", dataType: "innerHTML", completion: lastNameIDHandler)
     }

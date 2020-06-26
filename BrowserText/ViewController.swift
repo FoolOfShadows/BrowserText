@@ -17,7 +17,7 @@ protocol webViewDataProtocol: class {
     //FIXME: See about making just one function here and giving it a more useful name
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
     func getWebViewValueByID(_ id: String, dataType:String, completion: @escaping () -> Void)
-    func getWebViewValueByClassName(_ name: String, completion: @escaping () -> Void)
+    func getWebViewValueByClassName(_ name: String, index: Int,  completion: @escaping () -> Void)
     //func getWebViewValueByDataName(_ name: String, completion: @escaping () -> Void)
 }
 
@@ -373,10 +373,13 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         
     }
 //"document.getElementsByClassName('\(name)')[0].innerHTML"
-    func getWebViewValueByClassName(_ name:String, completion: @escaping () -> Void) {
-        (pfView as! WKWebView).evaluateJavaScript("document.getElementById('data-element').dataset.fullName.innerHTML", completionHandler: { (html: Any?, error: Error?) in
+    func getWebViewValueByClassName(_ name:String, index:Int = 0, completion: @escaping () -> Void) {
+        let js = """
+document.querySelectorAll('[data-element=\(name)]')[\(index)].innerHTML
+"""
+        (pfView as! WKWebView).evaluateJavaScript(js, completionHandler: { (html: Any?, error: Error?) in
             if error == nil {
-                self.viewContent = (html as? String) ?? "No string"
+                self.viewContent = html as? String ?? "No string"
                 completion()
             } else {
                 print("Error: \(String(describing: error))")
