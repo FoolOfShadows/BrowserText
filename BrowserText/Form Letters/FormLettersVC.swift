@@ -186,6 +186,8 @@ class FormLettersVC: NSViewController {
     }
     
     private func createPatientObject(withHandler handler: @escaping () -> Void) {
+        var insNames = [String]()
+        var insNumbers = [String]()
         //Get all the pieces of a patient's address
         //Field values don't get scraped when grabbing the text/HTML on a page and have to be accessed by the .value property
         let streetHandler: () -> Void = {
@@ -267,21 +269,46 @@ class FormLettersVC: NSViewController {
 //            self.viewDataDelegate?.getWebViewValueByID(self.lastNameID, dataType: "value", completion: lastNameHandler)
 //        }
 //
-        let firstInsuranceHandler: () -> Void = {
-            
+        //The insurances object is an array of tuples [(insName, insNumber)], ordered from primary to tertiary.  There are not more than three active ins at a time
+        let insuranceNameHandler: () -> Void = {
+            if let insuranceName = self.viewDataDelegate?.viewContent {
+                print(insuranceName)
+                if !insuranceName.removeWhiteSpace().isEmpty {
+                    insNames.append(self.viewDataDelegate!.viewContent.replacingOccurrences(of: "|", with: ""))
+                }
+            }
         }
-        for index in 1...3 {
-        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 0, completion: firstInsuranceHandler)
+//        for index in 0...2 {
+        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 0, completion: insuranceNameHandler)
+        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 1, completion: insuranceNameHandler)
+        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 2, completion: insuranceNameHandler)
+//        }
+        let insuranceNumberHandler: () -> Void = {
+            if let insuranceNumber = self.viewDataDelegate?.viewContent {
+                print(insuranceNumber)
+                if !insuranceNumber.removeWhiteSpace().isEmpty {
+                    insNumbers.append(self.viewDataDelegate!.viewContent.replacingOccurrences(of: "|", with: ""))
+                }
+            }
         }
-        let secondInsuranceHandler: () -> Void = {
-            
-        }
-        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 0, completion: secondInsuranceHandler)
-        let thirdInsuranceHandler: () -> Void = {
-            
+//        for index in 0...2 {
+        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 0, completion: insuranceNumberHandler)
+        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 1, completion: insuranceNumberHandler)
+        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 2, completion: insuranceNumberHandler)
+//        }
+        let finalHandler: () -> Void = {
+            if insNumbers.count == insNames.count {
+                var currentInsurances = [(String, String)]()
+                for (count, item) in insNames.enumerated() {
+                    currentInsurances.append((item.removeWhiteSpace(), insNumbers[count].removeWhiteSpace()))
+                }
+                self.currentPatient.insurances = currentInsurances
+            }
+            print(self.currentPatient.insurances)
             handler()
         }
-        viewDataDelegate?.getWebViewValueByClassName("full-name", index: 0, completion: thirdInsuranceHandler)
+        viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: finalHandler)
+
 //        let lastNameIDHandler: () -> Void = {
 //            //self.lastNameID = getEmberIDFromScrapedString(self.viewDataDelegate!.viewContent)
 //            //print("Last Name ID: \(self.viewDataDelegate!.viewContent)")
