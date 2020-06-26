@@ -223,78 +223,213 @@ class LabsViewController: NSViewController {
     }
     
         private func createPatientObject(withHandler handler: @escaping () -> Void) {
-            
+            var insNames = [String]()
+            var insNumbers = [String]()
             //Get all the pieces of a patient's address
             //Field values don't get scraped when grabbing the text/HTML on a page and have to be accessed by the .value property
             let streetHandler: () -> Void = {
                 //print("Street Data: \(self.viewDataDelegate!.viewContent)")
                 self.currentPatient.street = self.viewDataDelegate!.viewContent
             }
-            viewDataDelegate?.getWebViewValueByID("address-1", dataType: "value", completion: streetHandler)
+            viewDataDelegate?.getWebViewValueByClassName("address1", index: 0, completion: streetHandler)
             
-            let cityHandler: () -> Void = {
-                self.currentPatient.city = self.viewDataDelegate!.viewContent
-                //print("City Data: \(self.viewDataDelegate!.viewContent)")
+            let cityStateZipHandler: () -> Void = {
+                self.currentPatient.city = self.viewDataDelegate!.viewContent.components(separatedBy: ",")[0]
+                self.currentPatient.zip = self.viewDataDelegate!.viewContent.components(separatedBy: " ").last!
             }
-            viewDataDelegate?.getWebViewValueByID("city", dataType: "value", completion: cityHandler)
-            
-            
-            let zipHandler: () -> Void = {
-                self.currentPatient.zip = self.viewDataDelegate!.viewContent
-                //print("Zip Data: \(self.viewDataDelegate!.viewContent)")
-            }
-            viewDataDelegate?.getWebViewValueByID("zip-code", dataType: "value", completion: zipHandler)
+            viewDataDelegate?.getWebViewValueByClassName("city-state-zip", index: 0, completion: cityStateZipHandler)
+    //        let cityHandler: () -> Void = {
+    //            self.currentPatient.city = self.viewDataDelegate!.viewContent
+    //            //print("City Data: \(self.viewDataDelegate!.viewContent)")
+    //        }
+    //        viewDataDelegate?.getWebViewValueByID("city", dataType: "value", completion: cityHandler)
+    //
+    ////        let stateHandler: () -> Void = {
+    ////            self.currentPatient.state = self.viewDataDelegate!.viewContent
+    ////        }
+    ////        viewDataDelegate?.getWebViewValueByID("ember61922", dataType: "value", completion: stateHandler)
+    //
+    //        let zipHandler: () -> Void = {
+    //            self.currentPatient.zip = self.viewDataDelegate!.viewContent
+    //            //print("Zip Data: \(self.viewDataDelegate!.viewContent)")
+    //        }
+    //        viewDataDelegate?.getWebViewValueByID("zip-code", dataType: "value", completion: zipHandler)
             
             let dobHandler: () -> Void = {
                 self.currentPatient.dob = self.viewDataDelegate!.viewContent
                 //print("DOB Data: \(self.viewDataDelegate!.viewContent)")
             }
-            viewDataDelegate?.getWebViewValueByID("birth-date", dataType: "value", completion: dobHandler)
+            viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: dobHandler)
             
             let mobilePhoneHandler: () -> Void = {
                 self.currentPatient.mobilePhone = self.viewDataDelegate!.viewContent
                 //print("Mobile Data: \(self.viewDataDelegate!.viewContent)")
             }
-            viewDataDelegate?.getWebViewValueByID("mobile-phone", dataType: "value", completion: mobilePhoneHandler)
+            viewDataDelegate?.getWebViewValueByClassName("phone-mobile", index: 0, completion: mobilePhoneHandler)
             
             let homePhoneHandler: () -> Void = {
                 self.currentPatient.homePhone = self.viewDataDelegate!.viewContent
                 //print("Home Data: \(self.viewDataDelegate!.viewContent)")
             }
-            viewDataDelegate?.getWebViewValueByID("home-phone", dataType: "value", completion: homePhoneHandler)
+            viewDataDelegate?.getWebViewValueByClassName("phone-home", index: 0, completion: homePhoneHandler)
             
             //Get all the pieces of a patient's name
-            let firstNameHandler: () -> Void = {
-                self.currentPatient.firstName = self.viewDataDelegate!.viewContent
-                //print("First Name Data: \(self.viewDataDelegate!.viewContent)")
-            }
-            viewDataDelegate?.getWebViewValueByID("first-name", dataType: "value", completion: firstNameHandler)
-            
-            let middleNameHandler: () -> Void = {
-                self.currentPatient.middleName = self.viewDataDelegate!.viewContent
-                //print("Middle Name Data: \(self.viewDataDelegate!.viewContent)")
-            }
-            viewDataDelegate?.getWebViewValueByID("middle-name", dataType: "value", completion: middleNameHandler)
-            
-            //Getting the last name first requires getting the variable ID Practice Fusion is using for this value in the HTML, then getting the value based on that ID
-            let finishThisHandler: () -> Void = {
-                let lastNameHandler: () -> Void = {
-                    self.currentPatient.lastName = self.viewDataDelegate!.viewContent
-                    //print("Last Name Data: \(self.viewDataDelegate!.viewContent)")
-                    handler()
-                }
+            let fullNameHandler: () -> Void = {
+                let patientFullName = self.viewDataDelegate!.viewContent
+                let ptNameComponents = patientFullName.nameComponentsFromFullName()
+                self.currentPatient.firstName = ptNameComponents.first
+                self.currentPatient.lastName = ptNameComponents.last
+                self.currentPatient.middleName = ptNameComponents.middle
                 
-                self.viewDataDelegate?.getWebViewValueByID(self.lastNameID, dataType: "value", completion: lastNameHandler)
             }
+            viewDataDelegate?.getWebViewValueByClassName("full-name", index: 0, completion: fullNameHandler)
             
-            let lastNameIDHandler: () -> Void = {
-                self.lastNameID = getEmberIDFromScrapedString(self.viewDataDelegate!.viewContent)
-                //print("Last Name ID: \(self.viewDataDelegate!.viewContent)")
-                self.currentPatient.insurances = getInsData(self.viewDataDelegate!.viewContent)
-                finishThisHandler()
+            
+    //        let firstNameHandler: () -> Void = {
+    //            self.currentPatient.firstName = self.viewDataDelegate!.viewContent
+    //            //print("First Name Data: \(self.viewDataDelegate!.viewContent)")
+    //        }
+    //        viewDataDelegate?.getWebViewValueByID("first-name", dataType: "value", completion: firstNameHandler)
+    //
+    //        let middleNameHandler: () -> Void = {
+    //            self.currentPatient.middleName = self.viewDataDelegate!.viewContent
+    //            //print("Middle Name Data: \(self.viewDataDelegate!.viewContent)")
+    //        }
+    //        viewDataDelegate?.getWebViewValueByID("middle-name", dataType: "value", completion: middleNameHandler)
+    //
+    //        //Getting the last name first requires getting the variable ID Practice Fusion is using for this value in the HTML, then getting the value based on that ID
+    //        let finishThisHandler: () -> Void = {
+    //            let lastNameHandler: () -> Void = {
+    //                self.currentPatient.lastName = self.viewDataDelegate!.viewContent
+    //                //print("Last Name Data: \(self.viewDataDelegate!.viewContent)")
+    //                handler()
+    //            }
+    //
+    //            self.viewDataDelegate?.getWebViewValueByID(self.lastNameID, dataType: "value", completion: lastNameHandler)
+    //        }
+    //
+            //The insurances object is an array of tuples [(insName, insNumber)], ordered from primary to tertiary.  There are not more than three active ins at a time
+            let insuranceNameHandler: () -> Void = {
+                if let insuranceName = self.viewDataDelegate?.viewContent {
+                    print(insuranceName)
+                    if !insuranceName.removeWhiteSpace().isEmpty {
+                        insNames.append(self.viewDataDelegate!.viewContent.replacingOccurrences(of: "|", with: ""))
+                    }
+                }
             }
-            viewDataDelegate?.getWebViewValueByID("ember3", dataType: "innerHTML", completion: lastNameIDHandler)
+    //        for index in 0...2 {
+            viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 0, completion: insuranceNameHandler)
+            viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 1, completion: insuranceNameHandler)
+            viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 2, completion: insuranceNameHandler)
+    //        }
+            let insuranceNumberHandler: () -> Void = {
+                if let insuranceNumber = self.viewDataDelegate?.viewContent {
+                    print(insuranceNumber)
+                    if !insuranceNumber.removeWhiteSpace().isEmpty {
+                        insNumbers.append(self.viewDataDelegate!.viewContent.replacingOccurrences(of: "|", with: ""))
+                    }
+                }
+            }
+    //        for index in 0...2 {
+            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 0, completion: insuranceNumberHandler)
+            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 1, completion: insuranceNumberHandler)
+            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 2, completion: insuranceNumberHandler)
+    //        }
+            let finalHandler: () -> Void = {
+                if insNumbers.count == insNames.count {
+                    var currentInsurances = [(String, String)]()
+                    for (count, item) in insNames.enumerated() {
+                        currentInsurances.append((item.removeWhiteSpace(), insNumbers[count].removeWhiteSpace()))
+                    }
+                    self.currentPatient.insurances = currentInsurances
+                }
+                print(self.currentPatient.insurances)
+                handler()
+            }
+            viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: finalHandler)
+
+    //        let lastNameIDHandler: () -> Void = {
+    //            //self.lastNameID = getEmberIDFromScrapedString(self.viewDataDelegate!.viewContent)
+    //            //print("Last Name ID: \(self.viewDataDelegate!.viewContent)")
+    //            self.currentPatient.insurances = getInsData(self.viewDataDelegate!.viewContent)
+    //            //finishThisHandler()
+    //        }
+    //        viewDataDelegate?.getWebViewValueByID("ember3", dataType: "innerHTML", completion: lastNameIDHandler)
         }
+    
+//        private func createPatientObject(withHandler handler: @escaping () -> Void) {
+//
+//            //Get all the pieces of a patient's address
+//            //Field values don't get scraped when grabbing the text/HTML on a page and have to be accessed by the .value property
+//            let streetHandler: () -> Void = {
+//                //print("Street Data: \(self.viewDataDelegate!.viewContent)")
+//                self.currentPatient.street = self.viewDataDelegate!.viewContent
+//            }
+//            viewDataDelegate?.getWebViewValueByID("address-1", dataType: "value", completion: streetHandler)
+//
+//            let cityHandler: () -> Void = {
+//                self.currentPatient.city = self.viewDataDelegate!.viewContent
+//                //print("City Data: \(self.viewDataDelegate!.viewContent)")
+//            }
+//            viewDataDelegate?.getWebViewValueByID("city", dataType: "value", completion: cityHandler)
+//
+//
+//            let zipHandler: () -> Void = {
+//                self.currentPatient.zip = self.viewDataDelegate!.viewContent
+//                //print("Zip Data: \(self.viewDataDelegate!.viewContent)")
+//            }
+//            viewDataDelegate?.getWebViewValueByID("zip-code", dataType: "value", completion: zipHandler)
+//
+//            let dobHandler: () -> Void = {
+//                self.currentPatient.dob = self.viewDataDelegate!.viewContent
+//                //print("DOB Data: \(self.viewDataDelegate!.viewContent)")
+//            }
+//            viewDataDelegate?.getWebViewValueByID("birth-date", dataType: "value", completion: dobHandler)
+//
+//            let mobilePhoneHandler: () -> Void = {
+//                self.currentPatient.mobilePhone = self.viewDataDelegate!.viewContent
+//                //print("Mobile Data: \(self.viewDataDelegate!.viewContent)")
+//            }
+//            viewDataDelegate?.getWebViewValueByID("mobile-phone", dataType: "value", completion: mobilePhoneHandler)
+//
+//            let homePhoneHandler: () -> Void = {
+//                self.currentPatient.homePhone = self.viewDataDelegate!.viewContent
+//                //print("Home Data: \(self.viewDataDelegate!.viewContent)")
+//            }
+//            viewDataDelegate?.getWebViewValueByID("home-phone", dataType: "value", completion: homePhoneHandler)
+//
+//            //Get all the pieces of a patient's name
+//            let firstNameHandler: () -> Void = {
+//                self.currentPatient.firstName = self.viewDataDelegate!.viewContent
+//                //print("First Name Data: \(self.viewDataDelegate!.viewContent)")
+//            }
+//            viewDataDelegate?.getWebViewValueByID("first-name", dataType: "value", completion: firstNameHandler)
+//
+//            let middleNameHandler: () -> Void = {
+//                self.currentPatient.middleName = self.viewDataDelegate!.viewContent
+//                //print("Middle Name Data: \(self.viewDataDelegate!.viewContent)")
+//            }
+//            viewDataDelegate?.getWebViewValueByID("middle-name", dataType: "value", completion: middleNameHandler)
+//
+//            //Getting the last name first requires getting the variable ID Practice Fusion is using for this value in the HTML, then getting the value based on that ID
+//            let finishThisHandler: () -> Void = {
+//                let lastNameHandler: () -> Void = {
+//                    self.currentPatient.lastName = self.viewDataDelegate!.viewContent
+//                    //print("Last Name Data: \(self.viewDataDelegate!.viewContent)")
+//                    handler()
+//                }
+//
+//                self.viewDataDelegate?.getWebViewValueByID(self.lastNameID, dataType: "value", completion: lastNameHandler)
+//            }
+//
+//            let lastNameIDHandler: () -> Void = {
+//                self.lastNameID = getEmberIDFromScrapedString(self.viewDataDelegate!.viewContent)
+//                //print("Last Name ID: \(self.viewDataDelegate!.viewContent)")
+//                self.currentPatient.insurances = getInsData(self.viewDataDelegate!.viewContent)
+//                finishThisHandler()
+//            }
+//            viewDataDelegate?.getWebViewValueByID("ember3", dataType: "innerHTML", completion: lastNameIDHandler)
+//        }
 	
 
 }
