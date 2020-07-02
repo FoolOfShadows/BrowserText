@@ -43,19 +43,34 @@ class BuilderInterfaceVC: NSViewController {
             self.finishCreatingPTVNWithNoteData(self.viewDataDelegate!.viewContent)
         }
         viewDataDelegate?.getWebViewDataByID("ember3", completion: lastNoteHandler)
+        //viewDataDelegate?.getWebViewValueByJSFunction("edit-medication-", completion: lastNoteHandler)
     }
     
     func finishCreatingPTVNWithNoteData(_ noteData:String) {
             saveLocation = currentData.saveLocation.rawValue
+        
+        //print("MED INFO\n\(noteData)")
 
             var newMeds = noteData.simpleRegExMatch(ChartData.Regexes.newMeds.rawValue).cleanTheTextOf(newMedsBadBits)
             newMeds = newMeds.replaceRegexPattern("(?m)\nEncounter Comments:\n", with: "Sig: ")
-        
+ 
             let noteAssessment = noteData.simpleRegExMatch(ChartData.Regexes.pfNoteAssessment.rawValue).cleanTheTextOf(noteAssessmentBadBits)
             
             //Process note med data and replace existing med data
             //Convert med list from PF Note into an array
             let noteArray = newMeds.convertListToArray()
+        //To get the sig in line with the medication, concatenate line x with line x+1 if line x+1 begins with "Sig:"
+        var medSigArray = [String]()
+        for (index, item) in noteArray.enumerated() {
+            if index != (noteArray.count - 1) && noteArray[index + 1].contains("Sig:") {
+                medSigArray.append("\(item), \(noteArray[index + 1])")
+            } else if item.contains("Sig:") {
+                continue
+            } else {
+                medSigArray.append(item)
+            }
+        }
+        print(medSigArray)
             
             //Convert med list from Summary tab into an array
             var summary = currentData.currentMeds
@@ -70,7 +85,7 @@ class BuilderInterfaceVC: NSViewController {
             //the Note array
             for summaryItem in summaryArray {
                 var matched = false
-                innerLoop: for noteItem in noteArray {
+                innerLoop: for noteItem in medSigArray {
                     if noteItem.contains(summaryItem) {
                         results.append(noteItem)
                         matched = true

@@ -10,6 +10,7 @@ import Cocoa
 import WebKit
 //Quartz is required to access the PDFKit framework
 import Quartz
+import JavaScriptCore
 
 //Protocol for getting data out of the webview
 protocol webViewDataProtocol: class {
@@ -18,7 +19,7 @@ protocol webViewDataProtocol: class {
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
     func getWebViewValueByID(_ id: String, dataType:String, completion: @escaping () -> Void)
     func getWebViewValueByClassName(_ name: String, index: Int,  completion: @escaping () -> Void)
-    //func getWebViewValueByDataName(_ name: String, completion: @escaping () -> Void)
+    func getWebViewValueByJSFunction(_ name: String, completion: @escaping () -> Void)
 }
 
 class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webViewDataProtocol, WKScriptMessageHandler {
@@ -42,6 +43,10 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     //The URL of the Practice Fusion login page as opposed to their main page
     //let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/login"
     let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/PF/home/main"
+    
+    //JavaScript bits
+    let context = JSContext()
+    
     
     //FIXME: Give these more useful names based on what they actually do
     @IBOutlet weak var webPrintView: NSView!
@@ -375,9 +380,25 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
 //"document.getElementsByClassName('\(name)')[0].innerHTML"
     func getWebViewValueByClassName(_ name:String, index:Int = 0, completion: @escaping () -> Void) {
         let js = """
-document.querySelectorAll('[data-element=\(name)]')[\(index)].innerHTML
+document.querySelectorAll('[data-element*=\(name)]')[\(index)].innerHTML
 """
         (pfView as! WKWebView).evaluateJavaScript(js, completionHandler: { (html: Any?, error: Error?) in
+            if error == nil {
+                self.viewContent = html as? String ?? "No string"
+                completion()
+            } else {
+                print("Error: \(String(describing: error))")
+            }
+        })
+    }
+    
+    func getWebViewValueByJSFunction(_ function:String, completion: @escaping () -> Void) {
+        let js = """
+Array.from(document.querySelectorAll('[class*=data-grid-cell]')).map(med => med.innerText).join(' * ');
+
+"""
+        //[data-element*=\(function)]
+   (pfView as! WKWebView).evaluateJavaScript(js, completionHandler: { (html: Any?, error: Error?) in
             if error == nil {
                 self.viewContent = html as? String ?? "No string"
                 completion()

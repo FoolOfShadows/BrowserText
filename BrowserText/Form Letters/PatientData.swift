@@ -22,6 +22,8 @@ public struct PatientDataProfile {
     var email = String()
     var insurances = [(String, String)]()
     
+    weak var viewDataDelegate: webViewDataProtocol?
+    
     var fullName:String {
         let nameArray:[String] = [self.firstName, self.middleName, self.lastName]
         let cleanArray = nameArray.filter {!$0.isEmpty}
@@ -57,4 +59,5 @@ public struct PatientDataProfile {
         }
         return "No insurances listed"
     }
+
 }

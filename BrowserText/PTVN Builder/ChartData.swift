@@ -159,7 +159,7 @@ class ChartData {
         case preventive2 = "(?s)Screenings/ Interventions/ Assessments.*Encounters"
         case lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
         case pharmacy = "(?s)#PHARMACY.*PHARMACY#"
-        case newMeds = "(?s)Medications attached to this encounter:.*Orders Print"
+        case newMeds = "(?s)MEDICATIONS ATTACHED TO THIS ENCOUNTER.*Orders Print"
         case oldWeight = "Wt:.*lb;\\s*Ht:"
         case pfNoteAssessment = "(?s)(Assessment\\sEdit|[A]ssessment\n-).*Diagnoses attached to this encounter:"
     }
