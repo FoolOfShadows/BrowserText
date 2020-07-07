@@ -80,7 +80,15 @@ struct Message {
         //print(baseSection)
         let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages")
         //print(encountersSection)
-        let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded")}
+        let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.lowercased().contains("No chief complaint recorded") &&
+            !$0.lowercased().contains("cc: epogen inj") &&
+            !$0.lowercased().contains("cc: testosterone inj") &&
+            !$0.lowercased().contains("cc: flu inj") &&
+            !$0.lowercased().contains("cc: udip") &&
+            !$0.lowercased().contains("cc: b12 inj") &&
+            !$0.lowercased().contains("cc: lab draw")
+        }
+        //let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded")}
         //print(activeEncounters)
         if activeEncounters.count > 0 {
             return activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
