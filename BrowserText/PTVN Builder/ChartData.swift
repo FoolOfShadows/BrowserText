@@ -215,7 +215,9 @@ class ChartData {
             !$0.lowercased().contains("cc: flu inj") &&
             !$0.lowercased().contains("cc: udip") &&
             !$0.lowercased().contains("cc: b12 inj") &&
-            !$0.lowercased().contains("cc: lab draw")
+            !$0.lowercased().contains("cc: lab draw") &&
+            !$0.lowercased().contains("cc: uds") &&
+            !$0.lowercased().contains("cc: weight check")
         }
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
@@ -223,6 +225,7 @@ class ChartData {
             let month = components[0]
             let day = components[1]
             let year = components[2].suffix(2)
+            print("Looking for PTVN: \(year)\(month)\(day)")
             return "\(year)\(month)\(day)"
         } else {
             return "Last apt not found"
