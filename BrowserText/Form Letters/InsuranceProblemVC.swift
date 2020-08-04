@@ -24,7 +24,11 @@ class InsuranceProblemVC: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         patientNameView.stringValue = currentPatient.fullName
-        insuranceView.stringValue = currentPatient.insurances[0].0
+        if currentPatient.insurances.count < 0 {
+            insuranceView.stringValue = currentPatient.insurances[0].0
+        } else {
+            insuranceView.stringValue = "No insurances currently active."
+        }
         daysTilDue.stringValue = "14"
     }
     
