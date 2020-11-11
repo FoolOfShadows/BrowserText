@@ -218,7 +218,8 @@ class ChartData {
             !$0.lowercased().contains("cc: lab draw") &&
             !$0.lowercased().contains("cc: uds") &&
             !$0.lowercased().contains("cc: weight check") &&
-            !$0.lowercased().contains("cc: dk injection")
+            !$0.lowercased().contains("cc: dk injection")  &&
+            !$0.lowercased().contains("cc: flu shot")
         }
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
