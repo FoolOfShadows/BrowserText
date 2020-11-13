@@ -210,16 +210,19 @@ class ChartData {
         
         //If I don't include the map{String($0)} I end up with an array of substrings which can't be used by simpleRegExMatch in the next step
         let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.lowercased().contains("No chief complaint recorded") &&
-            !$0.lowercased().contains("cc: epogen inj") &&
-            !$0.lowercased().contains("cc: testosterone inj") &&
-            !$0.lowercased().contains("cc: flu inj") &&
-            !$0.lowercased().contains("cc: udip") &&
-            !$0.lowercased().contains("cc: b12 inj") &&
-            !$0.lowercased().contains("cc: lab draw") &&
-            !$0.lowercased().contains("cc: uds") &&
-            !$0.lowercased().contains("cc: weight check") &&
-            !$0.lowercased().contains("cc: dk injection")  &&
-            !$0.lowercased().contains("cc: flu shot")
+//            !$0.lowercased().contains("cc: epogen inj") &&
+//            !$0.lowercased().contains("cc: testosterone inj") &&
+//            !$0.lowercased().contains("cc: flu inj") &&
+//            !$0.lowercased().contains("cc: udip") &&
+//            !$0.lowercased().contains("cc: b12 inj") &&
+//            !$0.lowercased().contains("cc: lab draw") &&
+//            !$0.lowercased().contains("cc: uds") &&
+//            !$0.lowercased().contains("cc: weight check") &&
+//            !$0.lowercased().contains("cc: dk injection")  &&
+//            !$0.lowercased().contains("cc: flu shot") &&
+//            !$0.lowercased().contains("cc: hi dose flu inj") &&
+//            !$0.lowercased().contains("cc: covid swab")  &&
+            !$0.lowercased().contains("nurse visit (soap note)")
         }
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
