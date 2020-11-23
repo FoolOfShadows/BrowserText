@@ -89,7 +89,8 @@ struct Message {
             !$0.lowercased().contains("cc: lab draw") &&
             !$0.lowercased().contains("cc: uds") &&
             !$0.lowercased().contains("cc: weight check") &&
-            !$0.lowercased().contains("cc: dk injection")
+            !$0.lowercased().contains("cc: dk injection") &&
+            !$0.lowercased().contains("nurse visit (soap note)")
         }
         //let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded")}
         //print(activeEncounters)
