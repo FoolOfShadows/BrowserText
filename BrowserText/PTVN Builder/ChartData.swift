@@ -174,12 +174,12 @@ class ChartData {
         var lineCount = 0
         if !theSplitText.isEmpty {
             for currentLine in theSplitText {
-                if currentLine.range(of: "PRN: ") != nil {
-                    let ageLine = theSplitText[lineCount + 1]
+                if currentLine.range(of: "PRN: ") != nil {
+                    let ageLine = theSplitText[lineCount + 2]
                     ptName = theSplitText[lineCount - 1]
                     ptAge = ageLine.simpleRegExMatch("^\\d*")
                 } else if currentLine.hasPrefix("DOB: "){
-                    let dobLine = currentLine
+                    let dobLine = /*currentLine*/ theSplitText[lineCount + 1]
                     ptDOB = dobLine.simpleRegExMatch("\\d./\\d./\\d*")
                 }
                 lineCount += 1

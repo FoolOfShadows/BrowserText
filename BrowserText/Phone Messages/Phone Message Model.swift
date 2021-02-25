@@ -71,7 +71,7 @@ struct Message {
                 lineCount += 1
             }
         }
-        print("Patient Data: \(ptName)")
+        //print("Patient Data: \(ptName)")
         return (ptName, ptAge, ptDOB, ptPhoneArray.joined(separator: "\t"))
         
     }
