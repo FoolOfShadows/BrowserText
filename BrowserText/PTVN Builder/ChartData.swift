@@ -185,6 +185,7 @@ class ChartData {
                 lineCount += 1
             }
         }
+        print("Name: \(ptName)")
         return (ptName, ptAge, ptDOB)
     }
     
@@ -208,7 +209,7 @@ class ChartData {
         let dateToEndOfCCLine = "(?m)(\\d./\\d./\\d*)(.*?)(\\n)(CC:.*)"
         
         //If I don't include the map{String($0)} I end up with an array of substrings which can't be used by simpleRegExMatch in the next step
-        let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.lowercased().contains("No chief complaint recorded") &&
+        let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.lowercased().contains("no chief complaint recorded") &&
             !$0.lowercased().contains("cc: epogen inj") &&
             !$0.lowercased().contains("cc: testosterone inj") &&
             !$0.lowercased().contains("cc: flu inj") &&

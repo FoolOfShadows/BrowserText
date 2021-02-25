@@ -123,7 +123,7 @@ class BuilderInterfaceVC: NSViewController {
             //Search for files with the same visit date
             let ptvnList = originFolderURL.getFilesInDirectoryWhereNameContains(["\(currentData.lastAppointment)"])
             //print(ptvnList)
-            //Create a the smallest likely unique version of the pt name
+            //Create the smallest likely unique version of the pt name
             //to search with
             let filterName = getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.firstLast)
             //Use that search name to filter the PTVNs whose date matched

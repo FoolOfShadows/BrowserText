@@ -41,8 +41,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     var visitTime = "00"
     
     //The URL of the Practice Fusion login page as opposed to their main page
-    //let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/login"
-    let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/PF/home/main"
+    let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/login"
+    //let myPage = "https://static.practicefusion.com/apps/ehr/index.html?#/PF/home/main"
     
     //JavaScript bits
     let context = JSContext()
@@ -163,8 +163,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     @IBAction func openPhoneMessage(_ sender: Any?) {
         //print("manual segue activated")
         let pmHandler: () -> Void = {
-            //self.viewContent.copyToPasteboard()
-            if self.viewContent.contains("DOB: ") {
+            self.viewContent.copyToPasteboard()
+            if self.viewContent.contains("DOB: ") {
             self.performSegue(withIdentifier: "showPhoneMessage", sender: self)
             } else {
                 guard let theWindow = self.view.window else { return }
@@ -197,7 +197,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         //Create a completion handler to deal with the results of the JS call to the webView
         let assignmentHandler: () -> Void = {
             print("In the PTVN Builder assignmentHandler")
-            if self.viewContent.contains("DOB: ") {
+            if self.viewContent.contains("DOB: ") {
             self.currentData = ChartData(chartData: self.viewContent, aptTime: self.timeView.stringValue, aptDate: self.daysUntilPopup.indexOfSelectedItem)
             self.performSegue(withIdentifier: "showPTVNBuilder", sender: self)
             
