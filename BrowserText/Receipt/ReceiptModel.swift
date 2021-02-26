@@ -49,15 +49,17 @@ struct Receipt {
         var lineCount = 0
         if !theSplitText.isEmpty {
             for currentLine in theSplitText {
-                if currentLine.range(of: "PRN: ") != nil {
+                if currentLine.range(of: "PRN: ") != nil {
                     let ageLine = theSplitText[lineCount + 1]
                     ptName = theSplitText[lineCount - 1].replacingOccurrences(of: "(Inactive) ", with: "")
                     ptAge = ageLine.simpleRegExMatch("^\\d*")
-                } else if currentLine.hasPrefix("DOB: ") {
-                    let dobLine = currentLine
+                } else if currentLine.hasPrefix("DOB: ") {
+                    let dobLine = /*currentLine*/ theSplitText[lineCount + 1]
                     ptDOB = dobLine.simpleRegExMatch("\\d./\\d./\\d*")
-                } else if currentLine.hasPrefix("H: (") || currentLine.hasPrefix("W: (") || currentLine.hasPrefix("M: (") {
-                    ptPhoneArray.append(currentLine)
+                } else if currentLine.hasPrefix("H: ") || currentLine.hasPrefix("W: ") || currentLine.hasPrefix("M: ") {
+                    let phoneLine = theSplitText[lineCount + 1]
+                    ptPhoneArray.append("\(currentLine)\(phoneLine)")
+
                 }
                 lineCount += 1
             }
