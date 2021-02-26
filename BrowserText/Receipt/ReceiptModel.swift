@@ -11,6 +11,8 @@ import Foundation
 struct Receipt {
     var theText:String
     
+    var ptDemo:PatientDemo {return PatientDemo(theText: theText)}
+    
     private let currentDate = Date()
     private let formatter = DateFormatter()
     var messageDate:String {
@@ -28,7 +30,7 @@ struct Receipt {
         return timeFormatter.string(from: currentDate)
     }
     
-    var ptInnerName:String {return nameAgeDOB(theText).0}
+    var ptInnerName:String {return ptDemo.ptName}
     var ptLabelName:String {return getFileLabellingName(ptInnerName)}
 //    var paymentType = String()
 //    var paymentAmount = String()
@@ -39,35 +41,6 @@ struct Receipt {
     let reasonChoices = ["", "Co-pay", "Labs", "Injections", "Procedure", "Bill", "Visit"]
     let processorChoices = ["", "Nikki I.", "Bertha C.", "Tina I."]
     
-    private func nameAgeDOB(_ theText: String) -> (String, String, String, String){
-        var ptName = ""
-        var ptAge = ""
-        var ptDOB = ""
-        var ptPhoneArray = [String]()
-        let theSplitText = theText.components(separatedBy: "\n")
-        
-        var lineCount = 0
-        if !theSplitText.isEmpty {
-            for currentLine in theSplitText {
-                if currentLine.range(of: "PRN: ") != nil {
-                    let ageLine = theSplitText[lineCount + 1]
-                    ptName = theSplitText[lineCount - 1].replacingOccurrences(of: "(Inactive) ", with: "")
-                    ptAge = ageLine.simpleRegExMatch("^\\d*")
-                } else if currentLine.hasPrefix("DOB: ") {
-                    let dobLine = /*currentLine*/ theSplitText[lineCount + 1]
-                    ptDOB = dobLine.simpleRegExMatch("\\d./\\d./\\d*")
-                } else if currentLine.hasPrefix("H: ") || currentLine.hasPrefix("W: ") || currentLine.hasPrefix("M: ") {
-                    let phoneLine = theSplitText[lineCount + 1]
-                    ptPhoneArray.append("\(currentLine)\(phoneLine)")
-
-                }
-                lineCount += 1
-            }
-        }
-        //print(ptName, ptAge, ptDOB, ptPhone)
-        return (ptName, ptAge, ptDOB, ptPhoneArray.joined(separator: "\t"))
-        
-    }
     
     private func getFileLabellingName(_ name: String) -> String {
         var fileLabellingName = String()

@@ -12,6 +12,8 @@ struct Message {
     
     var theText:String
     
+    var ptDemo:PatientDemo {return PatientDemo(theText: theText)}
+    
     private let currentDate = Date()
     private let formatter = DateFormatter()
     var messageDate:String {
@@ -24,10 +26,10 @@ struct Message {
         return formatter.string(from: currentDate)
     }
     
-    var ptInnerName:String {return nameAgeDOB(theText).0}
+    var ptInnerName:String {return ptDemo.ptName}
     var ptLabelName:String {return getFileLabellingName(ptInnerName)}
-    var ptDOB:String {return nameAgeDOB(theText).2}
-    var phone:String {return nameAgeDOB(theText).3}
+    var ptDOB:String {return ptDemo.ptDOB}
+    var phone:String {return ptDemo.ptPhoneArray.joined(separator: "\t")}
     var allergies:String {return theText.simpleRegExMatch(Regexes.allergies.rawValue).cleanTheTextOf(basicAllergyBadBits)/*getAllergyTextFrom(theText)*/}
     var medicines:String {return theText.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits)/*getMedTextFrom(theText)*/}
     var lastAppointment:String {return getLastAptInfoFrom(theText)}

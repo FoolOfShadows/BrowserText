@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5DCADE6325E95BFD00FED55D /* Patient Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCADE6225E95BFD00FED55D /* Patient Demo.swift */; };
 		7900395223E073F7006EA6B7 /* MissingDataErrorDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7900395123E073F7006EA6B7 /* MissingDataErrorDialogue.swift */; };
 		79013F6422A96CFE005CC358 /* LetterheadPrinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79013F6322A96CFE005CC358 /* LetterheadPrinting.swift */; };
 		79361199222EE44A0009D2AF /* PF Summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 79361191222EE44A0009D2AF /* PF Summary.png */; };
@@ -84,6 +85,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5DCADE6225E95BFD00FED55D /* Patient Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Patient Demo.swift"; sourceTree = "<group>"; };
 		7900395123E073F7006EA6B7 /* MissingDataErrorDialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingDataErrorDialogue.swift; sourceTree = "<group>"; };
 		79013F6322A96CFE005CC358 /* LetterheadPrinting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LetterheadPrinting.swift; path = "BrowserText/Printing To Letterhead/LetterheadPrinting.swift"; sourceTree = SOURCE_ROOT; };
 		79361191222EE44A0009D2AF /* PF Summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PF Summary.png"; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				7900395123E073F7006EA6B7 /* MissingDataErrorDialogue.swift */,
 				79F8DB7F22A6C69A0018F21A /* GeneralBits.swift */,
 				79F577242225864F001B0C81 /* Assets.xcassets */,
+				5DCADE6225E95BFD00FED55D /* Patient Demo.swift */,
 			);
 			path = BrowserText;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				79425B5B2292EDD20097CC88 /* eSFunctions.swift in Sources */,
 				79C0DEAA225CEC18002894FC /* PM Constants.swift in Sources */,
 				7936119D222EE44A0009D2AF /* ChartData.swift in Sources */,
+				5DCADE6325E95BFD00FED55D /* Patient Demo.swift in Sources */,
 				79E30454243F7066002571CC /* eScriptModel.swift in Sources */,
 				79F8DB8522A6C69B0018F21A /* GeneralBits.swift in Sources */,
 				79C0DEAC225CEC18002894FC /* PMSymptomsController.swift in Sources */,
@@ -740,7 +744,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -763,7 +767,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

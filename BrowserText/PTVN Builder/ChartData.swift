@@ -13,11 +13,12 @@ class ChartData {
     //This string will be populated later with data on the clipboard pulled from PF
     var chartData:String
     
+    var ptDemo:PatientDemo {return PatientDemo(theText: chartData)}
     
     //Use closures to populate the relevant vars with the desired data copied from PF
-    var ptName: String {return nameAgeDOB(chartData).0}
-    var ptDOB: String {return nameAgeDOB(chartData).2}
-    var ptAge: String {return nameAgeDOB(chartData).1}
+    var ptName:String {return ptDemo.ptName}
+    var ptDOB:String {return ptDemo.ptDOB}
+    var ptAge:String {return ptDemo.ptAge}
     var currentMeds: String {return chartData.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits).addCharacterToBeginningOfEachLine("-")}
     var diagnoses: String {return chartData.simpleRegExMatch(Regexes.diagnoses.rawValue).cleanTheTextOf(dxBadBits)}
     var allergies: String {return chartData.simpleRegExMatch(Regexes.allergies.rawValue).cleanTheTextOf(basicAllergyBadBits)}
