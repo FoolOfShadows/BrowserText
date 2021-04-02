@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D18F40D2616148B0009879D /* GeneralLetterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18F40C2616148B0009879D /* GeneralLetterVC.swift */; };
+		5D18F41226162BAE0009879D /* GeneralLetterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D18F41126162BAE0009879D /* GeneralLetterModel.swift */; };
 		5DCADE6325E95BFD00FED55D /* Patient Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCADE6225E95BFD00FED55D /* Patient Demo.swift */; };
 		7900395223E073F7006EA6B7 /* MissingDataErrorDialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7900395123E073F7006EA6B7 /* MissingDataErrorDialogue.swift */; };
 		79013F6422A96CFE005CC358 /* LetterheadPrinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79013F6322A96CFE005CC358 /* LetterheadPrinting.swift */; };
@@ -85,6 +87,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5D18F40C2616148B0009879D /* GeneralLetterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralLetterVC.swift; sourceTree = "<group>"; };
+		5D18F41126162BAE0009879D /* GeneralLetterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralLetterModel.swift; sourceTree = "<group>"; };
 		5DCADE6225E95BFD00FED55D /* Patient Demo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Patient Demo.swift"; sourceTree = "<group>"; };
 		7900395123E073F7006EA6B7 /* MissingDataErrorDialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissingDataErrorDialogue.swift; sourceTree = "<group>"; };
 		79013F6322A96CFE005CC358 /* LetterheadPrinting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LetterheadPrinting.swift; path = "BrowserText/Printing To Letterhead/LetterheadPrinting.swift"; sourceTree = SOURCE_ROOT; };
@@ -262,6 +266,8 @@
 				797560B623C79133007D8B96 /* NHAdmitVC.swift */,
 				794A31D224043593006CEE10 /* NHAdmitModel.swift */,
 				79E35BC024096F5B00705B4F /* InsuranceProblemVC.swift */,
+				5D18F40C2616148B0009879D /* GeneralLetterVC.swift */,
+				5D18F41126162BAE0009879D /* GeneralLetterModel.swift */,
 			);
 			path = "Form Letters";
 			sourceTree = "<group>";
@@ -541,7 +547,9 @@
 				793611A2222EE9220009D2AF /* URLExtensions.swift in Sources */,
 				79E35BC124096F5B00705B4F /* InsuranceProblemVC.swift in Sources */,
 				7936119A222EE44A0009D2AF /* BuilderInterfaceVC.swift in Sources */,
+				5D18F40D2616148B0009879D /* GeneralLetterVC.swift in Sources */,
 				79F72D8A2399549D0090E8C3 /* CollectionLetterVC.swift in Sources */,
+				5D18F41226162BAE0009879D /* GeneralLetterModel.swift in Sources */,
 				79A92BF222AAD4C800C103DB /* FormLettersModel.swift in Sources */,
 				79F577212225864D001B0C81 /* AppDelegate.swift in Sources */,
 				79A92BED22AAC6E300C103DB /* BMDModel.swift in Sources */,
@@ -744,7 +752,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -752,7 +760,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 0.11;
+				MARKETING_VERSION = 0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fulgentwake.BrowserText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -767,7 +775,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
 				INFOPLIST_FILE = BrowserText/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -775,7 +783,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 0.11;
+				MARKETING_VERSION = 0.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.fulgentwake.BrowserText;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -94,6 +94,16 @@ class FormLettersVC: NSViewController {
         createPatientObject(withHandler: creationHandler)
     }
     
+    @IBAction func openGeneralLetter(_ sender: Any?) {
+        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        
+        let creationHandler = {
+            //print(self.currentPatient.firstName)
+            self.performSegue(withIdentifier: "showGeneralLetter", sender: self)
+        }
+        createPatientObject(withHandler: creationHandler)
+    }
+    
     @IBAction func openNHAdmitForm(_ sender: Any?) {
         viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
         let creationHandler = {
@@ -158,6 +168,12 @@ class FormLettersVC: NSViewController {
         case "showBMDLetter":
             //print("Opening BMD view?")
             if let toViewController = segue.destinationController as? BMDViewController {
+                //print("Sending data: \(self.currentPatient.fullName)")
+                toViewController.currentPatient = self.currentPatient
+            }
+        case "showGeneralLetter":
+            //printReferral("Opening General Letter View?")
+            if let toViewController = segue.destinationController as? GeneralLetterVC {
                 //print("Sending data: \(self.currentPatient.fullName)")
                 toViewController.currentPatient = self.currentPatient
             }
