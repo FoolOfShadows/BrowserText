@@ -87,7 +87,7 @@ class GeneralLetterVC: NSViewController {
         case drWSender = "Dawn Whelchel, M.D."
         case drWTitle = ""
         case dwSender = "Donna Whelchel"
-        case dwTitle = "Accounting Manager"
+        case dwTitle = "Accounts Manager"
         case bcSender = "Bertha Cowart, M.A."
         case bcTitle = "Office Manager"
     }
