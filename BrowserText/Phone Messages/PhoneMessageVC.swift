@@ -8,11 +8,11 @@
 
 import Cocoa
 
-protocol scriptTableDelegate: class {
+protocol scriptTableDelegate: AnyObject {
     func currentMedsWillBeDismissed(sender: PMCurrentMedsController)
 }
 
-protocol symptomsDelegate: class {
+protocol symptomsDelegate: AnyObject {
     func symptomsSelectionWillBeDismissed(sender: PMSymptomsController)
 }
 
@@ -111,7 +111,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         //lastEncounterView.stringValue = currentMessageText.lastAppointment
         allergiesView.string = currentMessageText.allergies
         medicationString = currentMessageText.medicines
-        messageView.string = "Last apt: \(currentMessageText.lastAppointment) - Next apt: \(currentMessageText.nextAppointment)"
+        messageView.string = "Message taken by: \(currentMessageText.employee)\nLast apt: \(currentMessageText.lastAppointment) - Next apt: \(currentMessageText.nextAppointment)"
     }
     
     @IBAction func getMeds(_ sender: Any) {

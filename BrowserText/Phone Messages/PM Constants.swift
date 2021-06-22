@@ -18,7 +18,7 @@ let socialBadBits = ["Past medical history", "Social history (free text) \n", "S
 
 let fmhBadBits = ["Family health history\n", "Family health history \n", "Preventive care", "Social history", "Past medical history"]
 
-let basicAllergyBadBits = ["Drug allergies\n", "Environmental allergies\n", "No environmental allergies recorded\n", "No Environmental Allergies Recorded", "No Food Allergies Recorded", "Food allergies\n", "Allergies\n", "Medications", "You have previously recorded allergies in a free-text note", "To receive interaction alerts, record the note in a structured format here. Record",  "(free-text note)", "Delete", "Developmental history\\n", "Developmental history\\s+\\n", "No developmental history recorded", "Food\\nNo food allergies recorded\\nEnvironmental\\nNo environmental allergies recorded", "Food\\nNo food allergies recorded\\nEnvironmental"]
+let basicAllergyBadBits = ["Drug allergies\n", "Environmental allergies\n", "No environmental allergies recorded\n", "No Environmental Allergies Recorded", "No Food Allergies Recorded", "Food allergies\n", "Allergies\n", "Medications", "You have previously recorded allergies in a free-text note", "To receive interaction alerts, record the note in a structured format here. Record",  "(free-text note)", "Delete", "Developmental history\\n", "Developmental history\\s+\\n", "No developmental history recorded", "Food\\nNo food allergies recorded\\nEnvironmental\\nNo environmental allergies recorded", "Food\\nNo food allergies recorded\\nEnvironmental", "No advance directives recorded", "Advance directives"]
 
 let freeAllergyBadBits = ["Allergies (free text)\n", "ALLERGIES:", "ALLERGIES", "Use structured allergies to receive interaction alerts\n", "Food allergies:", "Food Allergies:", "Food Allergies", "Food allergies\n", "Food Allergies\n", "Environmental allergies:\n", "Environmental allergies: ", "Environmental allergies\n", "Environmental Allergies\n", "Drug allergies:", "Drug allergies-", "Drug allergies", "No Known Drug Allergies", "No Known", "Drug Allergies:", "Drug Allergies", "Family health history", "Preventive care", "No food allergies recorded\n", "Allergies\n"]
 
@@ -37,3 +37,5 @@ let mucusColor = ["", "Clear", "White", "Yellow", "Green", "Brown", "Bloody"]
 
 let pharmacies = ["", "Krogers", "Matthewsons", "Walgreens", "Super1", "Walmart", "CVS", "Killions", "Humana", "Express Scripts", "Optum Rx", "Walmart (Carthage)", "Super1 (Tyler)", "Krogers (Longview)", "City Drug", "Well Dynamix", "Davita Rx", "Walmart (4th St.)", "Written script"]
 let resultsList = ["", "XRAY", "MRI", "CT", "Ultrasound","Labs", "Referral"]
+
+let employeeNameBadBits = ["Help", "None", "MA", "LVN"]

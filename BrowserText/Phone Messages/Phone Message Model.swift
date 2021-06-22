@@ -34,6 +34,7 @@ struct Message {
     var medicines:String {return theText.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits)/*getMedTextFrom(theText)*/}
     var lastAppointment:String {return getLastAptInfoFrom(theText)}
     var nextAppointment:String {return getNextAptInfoFrom(theText)}
+    var employee:String {return theText.simpleRegExMatch(Regexes.employee.rawValue).cleanTheTextOf(employeeNameBadBits)}
 
     enum Regexes:String {
         case social = "(?s)(Social history).*((?<=)Past medical history)"
@@ -47,6 +48,7 @@ struct Message {
         case pmh = "(?s)(Ongoing medical problems).*(Family health history)"
         case psh = "(?s)(Major events).*(Ongoing medical problems)"
         case preventive = "(?s)(Preventive care).*((?<=)Social history)"
+        case employee = "(?s)Help.*?(None|MA)"
     }
     
     private func nameAgeDOB(_ theText: String) -> (String, String, String, String){
