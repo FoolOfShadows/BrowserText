@@ -87,9 +87,9 @@ class zzBuilderInterfaceVC: NSViewController, ptvnDelegate {
         //var saveLocation = "Desktop"
         switch ptVisitDate {
         case 0:
-            saveLocation = "WPCMSharedFiles/zDoctor Review/06 Dummy Files"
+            saveLocation = "Sync/WPCMSharedFiles/zDoctor Review/06 Dummy Files"
         case 1...4:
-            saveLocation = "WPCMSharedFiles/zruss Review/Tomorrows Files"
+            saveLocation = "Sync/WPCMSharedFiles/zruss Review/Tomorrows Files"
         default:
             saveLocation = "Desktop"
         }
@@ -98,7 +98,7 @@ class zzBuilderInterfaceVC: NSViewController, ptvnDelegate {
         
 //        //Search for PTVN from last visit
 //        //Set the search directory to the PTVN folder
-//        let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/WPCMSharedFiles/zDonna Review/01 PTVN Files")
+//        let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/Sync/WPCMSharedFiles/zDonna Review/01 PTVN Files")
 //        //Search for files with the same visit date
 //        let ptvnList = originFolderURL.getFilesInDirectoryWhereNameContains(["\(currentData.lastAppointment)"])
 //        //Create a the smallest likely unique version of the pt name

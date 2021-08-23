@@ -290,7 +290,7 @@ class FormLettersVC: NSViewController {
     
     private func saveExportDialogWithData(_ data: Data, andFileName fileName: String) {
         let savePath = NSHomeDirectory()
-        let saveLocation = "WPCMSharedFiles/zBertha Review/Referrals"
+        let saveLocation = "Sync/WPCMSharedFiles/zBertha Review/Referrals"
         
         let saveDialog = NSSavePanel()
         saveDialog.nameFieldStringValue = fileName

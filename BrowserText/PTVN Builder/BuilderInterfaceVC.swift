@@ -119,7 +119,7 @@ class BuilderInterfaceVC: NSViewController {
             
             //Search for PTVN from last visit
             //Set the search directory to the PTVN folder
-            let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/WPCMSharedFiles/zDonna Review/01 PTVN Files")
+            let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/Sync/WPCMSharedFiles/zDonna Review/01 PTVN Files")
             //Search for files with the same visit date
             let ptvnList = originFolderURL.getFilesInDirectoryWhereNameContains(["\(currentData.lastAppointment)"])
             //print(ptvnList)

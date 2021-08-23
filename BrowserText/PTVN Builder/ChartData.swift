@@ -251,8 +251,8 @@ class ChartData {
 }
 
 enum SaveLocation:String {
-    case dummyFiles = "WPCMSharedFiles/zDoctor Review/06 Dummy Files"
-    case tomorrowFiles = "WPCMSharedFiles/zruss Review/Tomorrows Files"
+    case dummyFiles = "Sync/WPCMSharedFiles/zDoctor Review/06 Dummy Files"
+    case tomorrowFiles = "Sync/WPCMSharedFiles/zruss Review/Tomorrows Files"
     case desktop = "Desktop"
 }
 
