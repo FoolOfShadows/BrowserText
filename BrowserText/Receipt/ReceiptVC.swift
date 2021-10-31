@@ -81,7 +81,7 @@ class ReceiptVC: NSViewController {
         let receiptData = receiptText.data(using: String.Encoding.utf8)
         let newFileManager = FileManager.default
         let savePath = NSHomeDirectory()
-        newFileManager.createFile(atPath: "\(savePath)/Sync/WPCMSharedFiles/zDonna Review/02 RECEIPTS/\(fileName)", contents: receiptData, attributes: nil)
+            newFileManager.createFile(atPath: "\(savePath)/\(FilePath.baseFolder.rawValue)/\(FilePath.receipts.rawValue)/\(fileName)", contents: receiptData, attributes: nil)
         
         //Print receipt on letter head for patient
             printLetterheadWithText(receiptText, window: self.view.window!, andCloseWindow: true, defaultCopies: 2)

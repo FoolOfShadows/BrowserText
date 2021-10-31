@@ -39,14 +39,16 @@ class ChartData {
     var nextAppointment:String {return getNextAptInfoFrom(chartData)}
     var aptTime:String
     var aptDate:Int
-    var saveLocation:SaveLocation {
+    var saveLocation:String {
         switch aptDate {
         case 0:
-            return .dummyFiles
+            return "\(FilePath.baseFolder.rawValue)/\(FilePath.todayPTVNs.rawValue)"
+            //return .dummyFiles
         case 1...4:
-            return .tomorrowFiles
+            return "\(FilePath.baseFolder.rawValue)/\(FilePath.tomorrowPTVNs.rawValue)"
+            //return .tomorrowFiles
         default:
-            return .desktop
+            return "Desktop"
         }
     }
     

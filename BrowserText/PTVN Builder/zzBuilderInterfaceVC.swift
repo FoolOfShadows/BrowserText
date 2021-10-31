@@ -87,9 +87,9 @@ class zzBuilderInterfaceVC: NSViewController, ptvnDelegate {
         //var saveLocation = "Desktop"
         switch ptVisitDate {
         case 0:
-            saveLocation = "Sync/WPCMSharedFiles/zDoctor Review/06 Dummy Files"
+            saveLocation = "\(FilePath.baseFolder.rawValue)/\(FilePath.todayPTVNs.rawValue)"
         case 1...4:
-            saveLocation = "Sync/WPCMSharedFiles/zruss Review/Tomorrows Files"
+            saveLocation = "\(FilePath.baseFolder.rawValue)/\(FilePath.tomorrowPTVNs.rawValue)"
         default:
             saveLocation = "Desktop"
         }

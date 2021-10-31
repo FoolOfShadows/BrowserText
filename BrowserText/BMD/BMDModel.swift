@@ -23,7 +23,7 @@ struct BMDData {
     var diagnosis:String { return getDxFromTScore(tScore)}
     var address:String
     var sigImage:NSImage {
-        let sigURL = URL(fileURLWithPath: "\(NSHomeDirectory())/Sync/WPCMSharedFiles/WPCM Software Bits/00 CAUTION - Data Files/DawnSig1.png")
+        let sigURL = URL(fileURLWithPath: "\(NSHomeDirectory())/\(FilePath.baseFolder.rawValue)/\(FilePath.dawnSigFile)")
         return NSImage(byReferencing: sigURL)
     }
     var sigString:NSAttributedString {

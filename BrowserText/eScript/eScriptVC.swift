@@ -108,7 +108,7 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
 		let labelRequestDate = labelDateFormatter.string(from: requestDate)
 		
 		let savePath = NSHomeDirectory()
-		let saveLocation = "Sync/WPCMSharedFiles/zTina Review/01 The Script Corral"
+        let saveLocation = "\(FilePath.baseFolder.rawValue)/\(FilePath.scrapedScripts.rawValue)"
         
         //var saveSuccessful = false
 		

@@ -30,6 +30,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     @IBOutlet var followupView: NSView!
     @IBOutlet weak var interfaceView: NSView!
     
+    @IBOutlet weak var baseFolderPath: NSTextField!
     @IBOutlet weak var idView: NSTextField!
     
     var pfView:NSView!
@@ -277,6 +278,33 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                 toViewController.theText = self.viewContent
             }
         default:
+            return
+        }
+    }
+    
+    @IBAction func selectBaseFolder(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        
+        let dialog = NSOpenPanel();
+
+        dialog.title                   = "Locate WPCMSharedFiles folder";
+        dialog.showsResizeIndicator    = true;
+        dialog.showsHiddenFiles        = false;
+        dialog.allowsMultipleSelection = false;
+        dialog.canChooseDirectories = true;
+
+        if (dialog.runModal() ==  NSApplication.ModalResponse.OK) {
+            let result = dialog.url // Pathname of the file
+
+            if (result != nil) {
+                let path: String = result!.path
+                baseFolderPath.stringValue = path
+                defaults.set(path, forKey: "baseFolderPath")
+                print(path)
+            }
+            
+        } else {
+            // User clicked on "Cancel"
             return
         }
     }

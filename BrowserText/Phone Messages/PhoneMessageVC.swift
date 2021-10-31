@@ -153,7 +153,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     
     private func saveExportDialogWithData(_ data: Data, andFileExtension ext: String) {
         let savePath = NSHomeDirectory()
-        let saveLocation = "Sync/WPCMSharedFiles"
+        let saveLocation = FilePath.baseFolder.rawValue
         
         let saveDialog = NSSavePanel()
         saveDialog.nameFieldStringValue = "\(currentMessageText.ptLabelName) PMSG \(currentMessageText.labelDate)"

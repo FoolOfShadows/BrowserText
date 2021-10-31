@@ -47,7 +47,8 @@ class BuilderInterfaceVC: NSViewController {
     }
     
     func finishCreatingPTVNWithNoteData(_ noteData:String) {
-            saveLocation = currentData.saveLocation.rawValue
+        saveLocation = currentData.saveLocation
+            //saveLocation = currentData.saveLocation.rawValue
         
         //print("MED INFO\n\(noteData)")
 
@@ -116,6 +117,9 @@ class BuilderInterfaceVC: NSViewController {
             let labelDateFormatter = DateFormatter()
             labelDateFormatter.dateFormat = "yyMMdd"
             let labelVisitDate = labelDateFormatter.string(from: visitDate)
+        
+        let defaults = UserDefaults.standard
+        let basePath = defaults.string(forKey: "baseFolderPath")
             
             //Search for PTVN from last visit
             //Set the search directory to the PTVN folder
@@ -239,7 +243,7 @@ class BuilderInterfaceVC: NSViewController {
             let newFileManager = FileManager.default
             let savePath = NSHomeDirectory()
             newFileManager.createFile(atPath: "\(savePath)/\(saveLocation)/\(fileName)", contents: ptvnData, attributes: nil)
-            
+            print("Save Path:\n\(savePath)/\(saveLocation)/\(fileName)")
             self.view.window?.performClose(self)
     }
     
