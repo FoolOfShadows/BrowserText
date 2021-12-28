@@ -11,15 +11,18 @@ import WebKit
 //Quartz is required to access the PDFKit framework
 import Quartz
 import JavaScriptCore
+//import XCTest
 
 //Protocol for getting data out of the webview
-protocol webViewDataProtocol: class {
+protocol webViewDataProtocol: AnyObject {
     var viewContent:String { get set }
     //FIXME: See about making just one function here and giving it a more useful name
     func getWebViewDataByID(_ id: String, completion: @escaping () -> Void)
     func getWebViewValueByID(_ id: String, dataType:String, completion: @escaping () -> Void)
     func getWebViewValueByClassName(_ name: String, index: Int,  completion: @escaping () -> Void)
     func getWebViewValueByJSFunction(_ name: String, completion: @escaping () -> Void)
+    func getWebViewValueByQuerySelector(_ name: String, completion: @escaping () -> Void)
+    func getWebViewValueByQuerySelectorAll(_ name: String, index: Int, completion: @escaping () -> Void)
 }
 
 class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webViewDataProtocol, WKScriptMessageHandler {
@@ -74,6 +77,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         //FIXME: I'm not sure I need the UI Delegation
         (pfView as! WKWebView).uiDelegate = self
         (pfView as! WKWebView).navigationDelegate = self
+        
+        
         
     }
     
@@ -162,7 +167,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     
     
     @IBAction func openPhoneMessage(_ sender: Any?) {
-        //print("manual segue activated")
+        print("manual segue activated")
+        
         let pmHandler: () -> Void = {
             self.viewContent.copyToPasteboard()
             if self.viewContent.contains("DOB: ") {
@@ -174,7 +180,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                 MissingData().alertToMissingDataWithMessage(.clickElipsis, inWindow: theWindow)
             }
         }
-        getWebViewDataByID("ember3", completion: pmHandler)
+        //getWebViewDataByID("ember3", completion: pmHandler)
+        getWebViewValueByClassName("charts outlet", completion: pmHandler)
 
     }
     
@@ -182,7 +189,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         let receiptHandler: () -> Void = {
             self.performSegue(withIdentifier: "showReceipt", sender: nil)
         }
-        getWebViewDataByID("ember3", completion: receiptHandler)
+        //getWebViewDataByID("ember3", completion: receiptHandler)
+        getWebViewValueByClassName("charts outlet", completion: receiptHandler)
     }
     
     @IBAction func openeScripts(_ sender: Any?) {
@@ -190,7 +198,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             self.performSegue(withIdentifier: "showeScript", sender: nil)
         }
         
-        getWebViewDataByID("ember3", completion: eScriptHandler)
+        //getWebViewDataByID("ember3", completion: eScriptHandler)
+        getWebViewValueByClassName("charts outlet", completion: eScriptHandler)
     }
     
     @IBAction func openPTVNBuilder(_ sender: Any?) {
@@ -210,7 +219,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                 //FIXME: Need to add a "Continue" button to the dialog and if it's pressed the program should continue to the phone message view with an empty ChartData object so a message can be taken for a non-patient.
             }
         }
-        getWebViewDataByID("ember3", completion: assignmentHandler)
+        //getWebViewDataByID("ember3", completion: assignmentHandler)
+        getWebViewValueByClassName("charts outlet", completion: assignmentHandler)
     }
     
     @IBAction func openLabLetter(_ sender: Any?) {
@@ -220,7 +230,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             self.performSegue(withIdentifier: "showLabLetter", sender: self)
         }
         
-        getWebViewDataByID("ember3", completion: assignmentHandler)
+        //getWebViewDataByID("ember3", completion: assignmentHandler)
+        getWebViewValueByClassName("charts outlet", completion: assignmentHandler)
     }
     
     @IBAction func openFormLetters(_sender: Any?) {
@@ -229,7 +240,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         }
         
         //getWebViewValueByID("ember3", dataType: "innerHTML", completion: assignmentHandler)
-        getWebViewDataByID("ember3", completion: assignmentHandler)
+        //getWebViewDataByID("ember3", completion: assignmentHandler)
+        getWebViewValueByClassName("charts outlet", completion: assignmentHandler)
     }
     
     @IBAction func openLabs(_sender: Any?) {
@@ -237,7 +249,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
             self.performSegue(withIdentifier: "showLabs", sender: self)
         }
         
-        getWebViewDataByID("ember3", completion: assignmentHandler)
+        //getWebViewDataByID("ember3", completion: assignmentHandler)
+        getWebViewValueByClassName("charts outlet", completion: assignmentHandler)
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -245,10 +258,12 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         case "showPhoneMessage":
             if let toViewController = segue.destinationController as? PhoneMessageVC {
                 //print("opening new Phone Message")
+                toViewController.viewDataDelegate = self
                 toViewController.patientData = self.viewContent
             }
         case "showReceipt":
             if let toViewController = segue.destinationController as? ReceiptVC {
+                toViewController.viewDataDelegate = self
                 toViewController.patientData = self.viewContent
             }
         case "showPTVNBuilder":
@@ -341,13 +356,45 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     @IBAction func getDataFromBrowser(_ sender: Any) {
         //Create a completion handler to deal with the results of the JS call to the webView
         let assignmentHandler: () -> Void = {
-            //print("Copying to clipboard")
+            print("Copying to clipboard")
             //self.viewContent.copyToPasteboard()
-            self.currentData = ChartData(chartData: self.viewContent, aptTime: self.timeView.stringValue, aptDate: self.daysUntilPopup.indexOfSelectedItem)
-            
+            //self.currentData = ChartData(chartData: self.viewContent, aptTime: self.timeView.stringValue, aptDate: self.daysUntilPopup.indexOfSelectedItem)
+
         }
         
-        getWebViewDataByID("ember3", completion: assignmentHandler)
+
+        //getWebViewDataByID("ember3", completion: assignmentHandler)
+        //getWebViewDataByID("ember839", completion: assignmentHandler)
+        
+        //This will get the text out of the webview, but it's not pretty and may not be parsable by my existing functions
+//        (pfView as! WKWebView).evaluateJavaScript("document.body.textContent") { (string, error) in
+//            print("Copying view contents to clipboard")
+//            if let theString = string as? String {
+//                theString.copyToPasteboard()
+//            }
+//        }
+        
+//        (pfView as! WKWebView).evaluateJavaScript("document.getElementsByClassName('charts outlet')[0].textContent", completionHandler: { (result:Any?, error:Error?) in
+//            if error == nil {
+//                print("No error. Attempting to conver data to string and copy to clipboard.")
+//                let theResults = (result as? String) ?? "Unable to convert results to string."
+//                theResults.copyToPasteboard()
+//            } else {
+//                print("ERROR\n\(String(describing: error))")
+//            }
+//        })
+        
+        (pfView as! WKWebView).evaluateJavaScript("document.querySelectorAll('[data-element=plan-name]')[0].innerText", completionHandler: { (result:Any?, error:Error?) in
+            
+            if error == nil {
+                print("No error. Attempting to conver data to string and copy to clipboard.")
+                let theResults = (result as? String) ?? "Unable to convert results to string."
+                theResults.copyToPasteboard()
+            } else {
+                print("ERROR\n\(String(describing: error))")
+            }
+        })
+        
     }
     
     
@@ -366,6 +413,8 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
                                         //Run the completion handler passed in as a parameter
                                         (html as? String)?.copyToPasteboard()
                                         completion()
+                                    } else {
+                                        print(error)
                                     }
         })
         
@@ -407,17 +456,34 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
     }
 //"document.getElementsByClassName('\(name)')[0].innerHTML"
     func getWebViewValueByClassName(_ name:String, index:Int = 0, completion: @escaping () -> Void) {
-        let js = """
-document.querySelectorAll('[data-element*=\(name)]')[\(index)].innerHTML
-"""
-        (pfView as! WKWebView).evaluateJavaScript(js, completionHandler: { (html: Any?, error: Error?) in
+        (pfView as! WKWebView).evaluateJavaScript("document.getElementsByClassName('\(name)')[0].innerText", completionHandler: { (result:Any?, error:Error?) in
             if error == nil {
-                self.viewContent = html as? String ?? "No string"
+                print("No error. Attempting to conver data to string and copy to clipboard.")
+                self.viewContent = (result as? String) ?? "Unable to convert results to string."
+                self.viewContent.copyToPasteboard()
                 completion()
             } else {
-                print("Error: \(String(describing: error))")
+                print("ERROR\n\(String(describing: error))")
+                
+                //FIX ME: Probably not the ideal way to handle this.
+                //These were added to handle the JavaScript error occurring when creating a PTVN for a new patient
+                //Because there is no previous note on which to execute the JS function, the function was erroring
+                //out and stopping the PTVN creation process.
+                self.viewContent = "A JavaScript exception occured."
+                completion()
             }
         })
+//        let js = """
+//document.querySelectorAll('[data-element*=\(name)]')[\(index)].innerHTML
+//"""
+//        (pfView as! WKWebView).evaluateJavaScript(js, completionHandler: { (html: Any?, error: Error?) in
+//            if error == nil {
+//                self.viewContent = html as? String ?? "No string"
+//                completion()
+//            } else {
+//                print("Error: \(String(describing: error))")
+//            }
+//        })
     }
     
     func getWebViewValueByJSFunction(_ function:String, completion: @escaping () -> Void) {
@@ -437,18 +503,31 @@ Array.from(document.querySelectorAll('[class*=data-grid-cell]')).map(med => med.
     }
     
     
-//    func getWebViewValueByDataName(_ name:String, completion: @escaping () -> Void) {
-//        (pfView as! WKWebView).evaluateJavaScript("document.querySelectorAll('[data-\(name)]')", completionHandler: { (html: Any?, error: Error?) in
-//            if error == nil {
-//                print ("Assining data to viewContent")
-//
-//                self.viewContent = (html as? String) ?? "No string"
-//                completion()
-//            } else {
-//                print("Error: \(error)")
-//            }
-//        })
-//    }
+    func getWebViewValueByQuerySelector(_ name:String, completion: @escaping () -> Void) {
+        (pfView as! WKWebView).evaluateJavaScript("document.querySelector('[\(name)]').innerText", completionHandler: { (result: Any?, error: Error?) in
+            if error == nil {
+                //print ("Assigning data to viewContent")
+                self.viewContent = (result as? String) ?? "Unable to convert results to string."
+                self.viewContent.copyToPasteboard()
+                completion()
+            } else {
+                print("Error: \(String(describing: error))")
+            }
+        })
+    }
+    
+    func getWebViewValueByQuerySelectorAll(_ name:String, index: Int, completion: @escaping () -> Void) {
+        (pfView as! WKWebView).evaluateJavaScript("document.querySelectorAll('[\(name)]')[\(index)].innerText", completionHandler: { (result: Any?, error: Error?) in
+            if error == nil {
+                //print ("Assigning data to viewContent")
+                self.viewContent = (result as? String) ?? "Unable to convert results to string."
+                self.viewContent.copyToPasteboard()
+                completion()
+            } else {
+                print("Error: \(String(describing: error))")
+            }
+        })
+    }
     
     func printWebView(_ view: WKWebView) {
 

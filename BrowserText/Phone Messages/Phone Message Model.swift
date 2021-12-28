@@ -34,7 +34,8 @@ struct Message {
     var medicines:String {return theText.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits)/*getMedTextFrom(theText)*/}
     var lastAppointment:String {return getLastAptInfoFrom(theText)}
     var nextAppointment:String {return getNextAptInfoFrom(theText)}
-    var employee:String {return theText.simpleRegExMatch(Regexes.employee.rawValue).cleanTheTextOf(employeeNameBadBits)}
+    //var employee:String {return theText.simpleRegExMatch(Regexes.employee.rawValue).cleanTheTextOf(employeeNameBadBits)}
+    var employee:String = ""
 
     enum Regexes:String {
         case social = "(?s)(Social history).*((?<=)Past medical history)"

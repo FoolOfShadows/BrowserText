@@ -91,6 +91,20 @@ func getDateRegEx(_ dateLine: String) -> String {
 	return theMatch
 }
 
+func getAgeFrom(DOB:String) -> String {
+    let dobComponents = DOB.components(separatedBy: "/")
+    guard let month = Int(dobComponents[0]) else { return "Unable to calculate age"}
+    guard let day = Int(dobComponents[1]) else { return "Unable to calculate age"}
+    guard let year = Int(dobComponents[2]) else { return "Unable to calculate age"}
+    
+    let birthdate = DateComponents(year: year, month: month, day: day)
+    //Calculate age
+    let calendar = Calendar.current
+    let now = calendar.dateComponents([.year, .month, .day], from: Date())
+    let ageComponents = calendar.dateComponents([.year], from: birthdate, to: now)
+    return String(ageComponents.year!)
+}
+
 
 func createFileLabelFrom(PatientName name:String, FileType type:String, date:String) -> String {
     //Format Date

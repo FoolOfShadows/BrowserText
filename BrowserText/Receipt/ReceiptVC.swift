@@ -92,6 +92,12 @@ class ReceiptVC: NSViewController {
         currentReceipt = Receipt(theText: patientData)
         ptName.stringValue = currentReceipt.ptInnerName
         date.stringValue = currentReceipt.messageDate
+        let employeeNameHandler: () -> Void = {
+            print("TAKEN BY: \(self.viewDataDelegate!.viewContent)")
+            self.processorCombo.stringValue = self.viewDataDelegate!.viewContent.cleanTheTextOf(employeeNameBadBits)
+        }
+        self.viewDataDelegate?.getWebViewValueByClassName("provider-name", index: 0, completion: employeeNameHandler)
+        print("EMPLOYEE: \(self.processorCombo.stringValue)")
         
     }
     

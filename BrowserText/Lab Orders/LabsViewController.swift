@@ -231,13 +231,15 @@ class LabsViewController: NSViewController {
                 //print("Street Data: \(self.viewDataDelegate!.viewContent)")
                 self.currentPatient.street = self.viewDataDelegate!.viewContent
             }
-            viewDataDelegate?.getWebViewValueByClassName("address1", index: 0, completion: streetHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("address1", index: 0, completion: streetHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelector("data-element=address1", completion: streetHandler)
             
             let cityStateZipHandler: () -> Void = {
                 self.currentPatient.city = self.viewDataDelegate!.viewContent.components(separatedBy: ",")[0]
                 self.currentPatient.zip = self.viewDataDelegate!.viewContent.components(separatedBy: " ").last!
             }
-            viewDataDelegate?.getWebViewValueByClassName("city-state-zip", index: 0, completion: cityStateZipHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("city-state-zip", index: 0, completion: cityStateZipHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelector("data-element=city-state-zip", completion: cityStateZipHandler)
     //        let cityHandler: () -> Void = {
     //            self.currentPatient.city = self.viewDataDelegate!.viewContent
     //            //print("City Data: \(self.viewDataDelegate!.viewContent)")
@@ -259,19 +261,22 @@ class LabsViewController: NSViewController {
                 self.currentPatient.dob = self.viewDataDelegate!.viewContent
                 //print("DOB Data: \(self.viewDataDelegate!.viewContent)")
             }
-            viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: dobHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: dobHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelector("data-element=birth-date-text", completion: dobHandler)
             
             let mobilePhoneHandler: () -> Void = {
                 self.currentPatient.mobilePhone = self.viewDataDelegate!.viewContent
                 //print("Mobile Data: \(self.viewDataDelegate!.viewContent)")
             }
-            viewDataDelegate?.getWebViewValueByClassName("phone-mobile", index: 0, completion: mobilePhoneHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("phone-mobile", index: 0, completion: mobilePhoneHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelector("data-element=phone-mobile", completion: mobilePhoneHandler)
             
             let homePhoneHandler: () -> Void = {
                 self.currentPatient.homePhone = self.viewDataDelegate!.viewContent
                 //print("Home Data: \(self.viewDataDelegate!.viewContent)")
             }
-            viewDataDelegate?.getWebViewValueByClassName("phone-home", index: 0, completion: homePhoneHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("phone-home", index: 0, completion: homePhoneHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelector("data-element=phone-home", completion: homePhoneHandler)
             
             //Get all the pieces of a patient's name
             let fullNameHandler: () -> Void = {
@@ -282,7 +287,8 @@ class LabsViewController: NSViewController {
                 self.currentPatient.middleName = ptNameComponents.middle
                 
             }
-            viewDataDelegate?.getWebViewValueByClassName("full-name", index: 0, completion: fullNameHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("full-name", index: 0, completion: fullNameHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelector("data-element=full-name", completion: fullNameHandler)
             
             
     //        let firstNameHandler: () -> Void = {
@@ -317,11 +323,14 @@ class LabsViewController: NSViewController {
                     }
                 }
             }
-    //        for index in 0...2 {
-            viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 0, completion: insuranceNameHandler)
-            viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 1, completion: insuranceNameHandler)
-            viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 2, completion: insuranceNameHandler)
-    //        }
+//            for index in 0...2 {
+            //viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 0, completion: insuranceNameHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 1, completion: insuranceNameHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 2, completion: insuranceNameHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=plan-name", index: 0, completion: insuranceNameHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=plan-name", index: 1, completion: insuranceNameHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=plan-name", index: 2, completion: insuranceNameHandler)
+//            }
             let insuranceNumberHandler: () -> Void = {
                 if let insuranceNumber = self.viewDataDelegate?.viewContent {
                     print(insuranceNumber)
@@ -331,9 +340,12 @@ class LabsViewController: NSViewController {
                 }
             }
     //        for index in 0...2 {
-            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 0, completion: insuranceNumberHandler)
-            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 1, completion: insuranceNumberHandler)
-            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 2, completion: insuranceNumberHandler)
+//            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 0, completion: insuranceNumberHandler)
+//            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 1, completion: insuranceNumberHandler)
+//            viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 2, completion: insuranceNumberHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=insured-id", index: 0, completion: insuranceNumberHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=insured-id", index: 1, completion: insuranceNumberHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=insured-id", index: 2, completion: insuranceNumberHandler)
     //        }
             let finalHandler: () -> Void = {
                 if insNumbers.count == insNames.count {
@@ -346,7 +358,8 @@ class LabsViewController: NSViewController {
                 print(self.currentPatient.insurances)
                 handler()
             }
-            viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: finalHandler)
+            //viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: finalHandler)
+            viewDataDelegate?.getWebViewValueByQuerySelector("data-element=birth-date-text", completion: finalHandler)
 
     //        let lastNameIDHandler: () -> Void = {
     //            //self.lastNameID = getEmberIDFromScrapedString(self.viewDataDelegate!.viewContent)

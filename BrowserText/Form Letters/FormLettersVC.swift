@@ -31,11 +31,11 @@ class FormLettersVC: NSViewController {
     }
     
     var textHandler: () -> Void { return
-    {
-        self.theText = self.viewDataDelegate!.viewContent
-        if !self.theText.contains(MissingData.MissingDataErrorMessage.ssn.rawValue) {
-            MissingData().alertToMissingDataWithMessage(.needProfileTab, inWindow: self.view.window!)
-        }
+        {
+            self.theText = self.viewDataDelegate!.viewContent
+            if !self.theText.contains(MissingData.MissingDataErrorMessage.ssn.rawValue) {
+                MissingData().alertToMissingDataWithMessage(.needProfileTab, inWindow: self.view.window!)
+            }
         }
     }
     
@@ -58,7 +58,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func printNoShowLetter(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         
         let creationHandler = {
             printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:noShowVerbiage), fontSize: 14.0, window: self.view.window!)
@@ -71,7 +72,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func printNeedAptLetter(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         
         let creationHandler = {
             printLetterheadWithText(createBasicLetterForPatient(self.currentPatient, withVerbiage:needAptVerbiage), fontSize: 14.0, window: self.view.window!)
@@ -85,7 +87,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openBMDLetter(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         
         let creationHandler = {
             //print(self.currentPatient.firstName)
@@ -95,7 +98,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openGeneralLetter(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         
         let creationHandler = {
             //print(self.currentPatient.firstName)
@@ -105,7 +109,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openNHAdmitForm(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         let creationHandler = {
             self.performSegue(withIdentifier: "showNHAdmit", sender: self)
         }
@@ -113,7 +118,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openDismissalLetter(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         //print("Opening dismissal letters")
         let creationHandler = {
             self.performSegue(withIdentifier: "showDismissals", sender: self)
@@ -122,7 +128,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openCollectionLetters(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         //print("Opening collection letters")
         let creationHandler = {
             self.performSegue(withIdentifier: "showCollectionLetters", sender: self)
@@ -131,7 +138,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func openInsuranceProblemLetters(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         //print("Opening insurance problem letters")
         let creationHandler = {
             self.performSegue(withIdentifier: "showInsuranceProblemSegue", sender: self)
@@ -140,7 +148,8 @@ class FormLettersVC: NSViewController {
     }
     
     @IBAction func printReferral(_ sender: Any?) {
-        viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        //viewDataDelegate?.getWebViewDataByID("ember3", completion: textHandler)
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         //let theCurrentDate = Date()
         //let labelDateFormatter = DateFormatter()
         //labelDateFormatter.dateFormat = "yyMMdd"
@@ -207,34 +216,46 @@ class FormLettersVC: NSViewController {
         var insNumbers = [String]()
         //Get all the pieces of a patient's address
         let streetHandler: () -> Void = {
-            //print("Street Data: \(self.viewDataDelegate!.viewContent)")
+            print("Street Data: \(self.viewDataDelegate!.viewContent)")
+            //let components = self.viewDataDelegate!.viewContent.components(separatedBy: "\n")
+            
+            //self.currentPatient.street = components[1]
             self.currentPatient.street = self.viewDataDelegate!.viewContent
         }
-        viewDataDelegate?.getWebViewValueByClassName("address1", index: 0, completion: streetHandler)
+        //viewDataDelegate?.getWebViewValueByClassName("address1", index: 0, completion: streetHandler)
+        //viewDataDelegate?.getWebViewValueByClassName("item gutter-lg patient-profile__address-card--read", index: 0, completion: streetHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelector("data-element=address1", completion: streetHandler)
+        
         
         let cityStateZipHandler: () -> Void = {
+            //self.printReferral("\(self.viewDataDelegate!.viewContent)")
+            print("City/State/Zip: \(self.viewDataDelegate!.viewContent)")
             self.currentPatient.city = self.viewDataDelegate!.viewContent.components(separatedBy: ",")[0]
-            self.currentPatient.zip = self.viewDataDelegate!.viewContent.components(separatedBy: " ").last!
+            self.currentPatient.zip = self.viewDataDelegate!.viewContent.components(separatedBy: " ").last!.replacingOccurrences(of: "--", with: "-")
         }
-        viewDataDelegate?.getWebViewValueByClassName("city-state-zip", index: 0, completion: cityStateZipHandler)
+        //viewDataDelegate?.getWebViewValueByClassName("city-state-zip", index: 0, completion: cityStateZipHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelector("data-element=city-state-zip", completion: cityStateZipHandler)
         
         let dobHandler: () -> Void = {
             self.currentPatient.dob = self.viewDataDelegate!.viewContent
-            //print("DOB Data: \(self.viewDataDelegate!.viewContent)")
+            print("DOB Data: \(self.viewDataDelegate!.viewContent)")
         }
-        viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: dobHandler)
-        
+        //viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: dobHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelector("data-element=birth-date-text", completion: dobHandler)
+
         let mobilePhoneHandler: () -> Void = {
             self.currentPatient.mobilePhone = self.viewDataDelegate!.viewContent
-            //print("Mobile Data: \(self.viewDataDelegate!.viewContent)")
+            print("Mobile Data: \(self.viewDataDelegate!.viewContent)")
         }
-        viewDataDelegate?.getWebViewValueByClassName("phone-mobile", index: 0, completion: mobilePhoneHandler)
-        
+        //viewDataDelegate?.getWebViewValueByClassName("phone-mobile", index: 0, completion: mobilePhoneHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelector("data-element=phone-mobile", completion: mobilePhoneHandler)
+
         let homePhoneHandler: () -> Void = {
             self.currentPatient.homePhone = self.viewDataDelegate!.viewContent
-            //print("Home Data: \(self.viewDataDelegate!.viewContent)")
+            print("Home Data: \(self.viewDataDelegate!.viewContent)")
         }
-        viewDataDelegate?.getWebViewValueByClassName("phone-home", index: 0, completion: homePhoneHandler)
+        //viewDataDelegate?.getWebViewValueByClassName("phone-home", index: 0, completion: homePhoneHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelector("data-element=phone-home", completion: homePhoneHandler)
         
         //Get all the pieces of a patient's name
         let fullNameHandler: () -> Void = {
@@ -243,9 +264,10 @@ class FormLettersVC: NSViewController {
             self.currentPatient.firstName = ptNameComponents.first
             self.currentPatient.lastName = ptNameComponents.last
             self.currentPatient.middleName = ptNameComponents.middle
-            
+
         }
-        viewDataDelegate?.getWebViewValueByClassName("full-name", index: 0, completion: fullNameHandler)
+        //viewDataDelegate?.getWebViewValueByClassName("full-name", index: 0, completion: fullNameHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelector("data-element=full-name", completion: fullNameHandler)
 
         //The insurances object is an array of tuples [(insName, insNumber)], ordered from primary to tertiary.  There are not more than three active ins at a time
         let insuranceNameHandler: () -> Void = {
@@ -257,9 +279,12 @@ class FormLettersVC: NSViewController {
             }
         }
 //        for index in 0...2 {
-        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 0, completion: insuranceNameHandler)
-        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 1, completion: insuranceNameHandler)
-        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 2, completion: insuranceNameHandler)
+//        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 0, completion: insuranceNameHandler)
+//        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 1, completion: insuranceNameHandler)
+//        viewDataDelegate?.getWebViewValueByClassName("payer-name", index: 2, completion: insuranceNameHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=plan-name", index: 0, completion: insuranceNameHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=plan-name", index: 1, completion: insuranceNameHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=plan-name", index: 2, completion: insuranceNameHandler)
 //        }
         let insuranceNumberHandler: () -> Void = {
             if let insuranceNumber = self.viewDataDelegate?.viewContent {
@@ -270,22 +295,26 @@ class FormLettersVC: NSViewController {
             }
         }
 //        for index in 0...2 {
-        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 0, completion: insuranceNumberHandler)
-        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 1, completion: insuranceNumberHandler)
-        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 2, completion: insuranceNumberHandler)
+//        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 0, completion: insuranceNumberHandler)
+//        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 1, completion: insuranceNumberHandler)
+//        viewDataDelegate?.getWebViewValueByClassName("insured-id", index: 2, completion: insuranceNumberHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=insured-id", index: 0, completion: insuranceNumberHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=insured-id", index: 1, completion: insuranceNumberHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelectorAll("data-element=insured-id", index: 2, completion: insuranceNumberHandler)
 //        }
         let finalHandler: () -> Void = {
-            if insNumbers.count == insNames.count {
-                var currentInsurances = [(String, String)]()
-                for (count, item) in insNames.enumerated() {
-                    currentInsurances.append((item.removeWhiteSpace(), insNumbers[count].removeWhiteSpace()))
-                }
-                self.currentPatient.insurances = currentInsurances
-            }
-            print(self.currentPatient.insurances)
+//            if insNumbers.count == insNames.count {
+//                var currentInsurances = [(String, String)]()
+//                for (count, item) in insNames.enumerated() {
+//                    currentInsurances.append((item.removeWhiteSpace(), insNumbers[count].removeWhiteSpace()))
+//                }
+//                self.currentPatient.insurances = currentInsurances
+//            }
+//            print(self.currentPatient.insurances)
             handler()
         }
-        viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: finalHandler)
+        //viewDataDelegate?.getWebViewValueByClassName("birth-date-text", index: 0, completion: finalHandler)
+        viewDataDelegate?.getWebViewValueByQuerySelector("data-element=birth-date-text", completion: finalHandler)
     }
     
     private func saveExportDialogWithData(_ data: Data, andFileName fileName: String) {

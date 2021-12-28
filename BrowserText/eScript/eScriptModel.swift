@@ -11,23 +11,36 @@ import Foundation
 struct eScript {
     var theText = String()
     var ptDemo: (name:String, dob:String, pharm:String, age:String) {return nameDOBPharmAge()}
-    var ptName: String {return ptDemo.name}
-    var ptDOB: String {return ptDemo.dob}
-    var ptAge: String {return ptDemo.age}
+    //var ptName: String {return ptDemo.name}
+    var ptName = ""
+    //var ptDOB: String {return ptDemo.dob}
+    var ptDOB = ""
+    //var ptAge: String {return ptDemo.age}
+    var ptAge: String {return getAgeFrom(DOB: ptDOB)}
     
-    var scriptDate: String {return simpleRegExMatch(theText, theExpression: "(?m)SCRIPT DATE\\s+?.*\\s+?LAST FILL DATE").cleanTheTextOf(["SCRIPT DATE", "LAST FILL DATE"]).removeWhiteSpace()}
-    var lastFillDate: String {return simpleRegExMatch(theText, theExpression: "(?m)LAST FILL DATE\\s+?.*\\s+?ASSOCIATED DIAGNOSIS").cleanTheTextOf(["LAST FILL DATE", "ASSOCIATED DIAGNOSIS"]).removeWhiteSpace()}
-    var scriptMed: String {return simpleRegExMatch(theText, theExpression: "(?m)Dispensed medication\\s+?(.*\\s+?){1,2}MATCHING MEDICATION").cleanTheTextOf(["Dispensed medication", "MATCHING MEDICATION"]).removeWhiteSpace()}
-    var scriptSig: String {return simpleRegExMatch(theText, theExpression: "(?m)SIG(?!\\s-)\\s+?.*\\s+?QUANTITY").cleanTheTextOf(["SIG", "QUANTITY"]).removeWhiteSpace()}
-    var scriptQty: String {return simpleRegExMatch(theText, theExpression: "(?m)QUANTITY\\s+?(\\d.+?\\n+?)(?!DAYS SUPPLY).*UNIT").cleanTheTextOf(["QUANTITY","UNIT"]).removeWhiteSpace()}
-    var scriptUnit: String { return simpleRegExMatch(theText, theExpression: "(?m)UNIT\\s+?.*\\s+?DAYS SUPPLY").cleanTheTextOf(["UNIT", "DAYS SUPPLY"]).removeWhiteSpace()}
-    var daysSupply: String {return simpleRegExMatch(theText, theExpression: "(?m)DAYS SUPPLY\\s+?\\d.*\\s+?SUBSTITUTIONS").cleanTheTextOf(["DAYS SUPPLY", "SUBSTITUTIONS"]).removeWhiteSpace()}
-    var substitutions: String {return simpleRegExMatch(theText, theExpression: "(?m)SUBSTITUTIONS\\s+?.*\\s+?NUMBER OF DISPENSINGS").cleanTheTextOf(["SUBSTITUTIONS", "NUMBER OF DISPENSINGS"]).removeWhiteSpace()}
-    var dx: String {return simpleRegExMatch(theText, theExpression: "(?m)ASSOCIATED DIAGNOSIS\\s+?.*\\s+?NOTE TO PHARMACY").cleanTheTextOf(["ASSOCIATED DIAGNOSIS", "NOTE TO PHARMACY"]).removeWhiteSpace()}
+    //var scriptDate: String {return simpleRegExMatch(theText, theExpression: "(?m)SCRIPT DATE\\s+?.*\\s+?LAST FILL DATE").cleanTheTextOf(["SCRIPT DATE", "LAST FILL DATE"]).removeWhiteSpace()}
+    var scriptDate = ""
+    //var lastFillDate: String {return simpleRegExMatch(theText, theExpression: "(?m)LAST FILL DATE\\s+?.*\\s+?ASSOCIATED DIAGNOSIS").cleanTheTextOf(["LAST FILL DATE", "ASSOCIATED DIAGNOSIS"]).removeWhiteSpace()}
+    var lastFillDate = ""
+    //var scriptMed: String {return simpleRegExMatch(theText, theExpression: "(?m)Dispensed medication\\s+?(.*\\s+?){1,2}MATCHING MEDICATION").cleanTheTextOf(["Dispensed medication", "MATCHING MEDICATION"]).removeWhiteSpace()}
+    var scriptMed = ""
+    //var scriptSig: String {return simpleRegExMatch(theText, theExpression: "(?m)SIG(?!\\s-)\\s+?.*\\s+?QUANTITY").cleanTheTextOf(["SIG", "QUANTITY"]).removeWhiteSpace()}
+    var scriptSig = ""
+    //var scriptQty: String {return simpleRegExMatch(theText, theExpression: "(?m)QUANTITY\\s+?(\\d.+?\\n+?)(?!DAYS SUPPLY).*UNIT").cleanTheTextOf(["QUANTITY","UNIT"]).removeWhiteSpace()}
+    var scriptQty = ""
+    //var scriptUnit: String { return simpleRegExMatch(theText, theExpression: "(?m)UNIT\\s+?.*\\s+?DAYS SUPPLY").cleanTheTextOf(["UNIT", "DAYS SUPPLY"]).removeWhiteSpace()}
+    var scriptUnit = ""
+    //var daysSupply: String {return simpleRegExMatch(theText, theExpression: "(?m)DAYS SUPPLY\\s+?\\d.*\\s+?SUBSTITUTIONS").cleanTheTextOf(["DAYS SUPPLY", "SUBSTITUTIONS"]).removeWhiteSpace()}
+    var daysSupply = ""
+    //var substitutions: String {return simpleRegExMatch(theText, theExpression: "(?m)SUBSTITUTIONS\\s+?.*\\s+?NUMBER OF DISPENSINGS").cleanTheTextOf(["SUBSTITUTIONS", "NUMBER OF DISPENSINGS"]).removeWhiteSpace()}
+    var substitutions = ""
+    //var dx: String {return simpleRegExMatch(theText, theExpression: "(?m)ASSOCIATED DIAGNOSIS\\s+?.*\\s+?NOTE TO PHARMACY").cleanTheTextOf(["ASSOCIATED DIAGNOSIS", "NOTE TO PHARMACY"]).removeWhiteSpace()}
+    var dx = ""
     //var refills: String { return simpleRegExMatch(theText, theExpression: "(?m)NUMBER OF REFILLS\\s+?.*\\s+?SUBSTITUTIONS").cleanTheTextOf(["NUMBER OF REFILLS", "SUBSTITUTIONS"]).removeWhiteSpace()}
     var refills = ""
     
-    var pharmacy: String {return ptDemo.pharm}
+    //var pharmacy: String {return ptDemo.pharm}
+    var pharmacy = ""
     
     func reportOutput() -> String {
         return """

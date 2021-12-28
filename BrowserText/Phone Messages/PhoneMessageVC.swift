@@ -16,7 +16,7 @@ protocol symptomsDelegate: AnyObject {
     func symptomsSelectionWillBeDismissed(sender: PMSymptomsController)
 }
 
-class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, NSComboBoxDelegate {
+class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, NSComboBoxDelegate, NSOpenSavePanelDelegate {
 
     @IBOutlet weak var dateView: NSTextField!
     @IBOutlet weak var nameView: NSTextField!
@@ -56,6 +56,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     var notedSymptoms = [String]()
     
     var patientData = String()
+    var viewDataDelegate: webViewDataProtocol?
     
     var currentMessageText:Message = Message(theText: String())
     
@@ -103,15 +104,29 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         }
         
         currentMessageText = Message(theText: patientData)
-        print(currentMessageText.allergies)
-        dateView.stringValue = currentMessageText.messageDate
-        nameView.stringValue = currentMessageText.ptInnerName
-        dobView.stringValue = currentMessageText.ptDOB
-        phoneView.stringValue = currentMessageText.phone
-        //lastEncounterView.stringValue = currentMessageText.lastAppointment
-        allergiesView.string = currentMessageText.allergies
-        medicationString = currentMessageText.medicines
-        messageView.string = "Message taken by: \(currentMessageText.employee)\nLast apt: \(currentMessageText.lastAppointment) - Next apt: \(currentMessageText.nextAppointment)"
+        //print(currentMessageText.allergies)
+        let employeeNameHandler: () -> Void = {
+            print("VIEW CONTENT: \(self.viewDataDelegate!.viewContent)")
+            self.currentMessageText.employee = self.viewDataDelegate!.viewContent.cleanTheTextOf(employeeNameBadBits)
+            self.dateView.stringValue = self.currentMessageText.messageDate
+            self.nameView.stringValue = self.currentMessageText.ptInnerName
+            self.dobView.stringValue = self.currentMessageText.ptDOB
+            self.phoneView.stringValue = self.currentMessageText.phone
+            //lastEncounterView.stringValue = currentMessageText.lastAppointment
+            self.allergiesView.string = self.currentMessageText.allergies
+            self.medicationString = self.currentMessageText.medicines
+            self.messageView.string = "Message taken by: \(self.currentMessageText.employee)\nLast apt: \(self.currentMessageText.lastAppointment) - Next apt: \(self.currentMessageText.nextAppointment)"
+        }
+        self.viewDataDelegate?.getWebViewValueByClassName("provider-name", index: 0, completion: employeeNameHandler)
+        print("EMPLOYEE NAME: \(self.currentMessageText.employee)")
+//        dateView.stringValue = currentMessageText.messageDate
+//        nameView.stringValue = currentMessageText.ptInnerName
+//        dobView.stringValue = currentMessageText.ptDOB
+//        phoneView.stringValue = currentMessageText.phone
+//        //lastEncounterView.stringValue = currentMessageText.lastAppointment
+//        allergiesView.string = currentMessageText.allergies
+//        medicationString = currentMessageText.medicines
+//        messageView.string = "Message taken by: \(currentMessageText.employee)\nLast apt: \(currentMessageText.lastAppointment) - Next apt: \(currentMessageText.nextAppointment)"
     }
     
     @IBAction func getMeds(_ sender: Any) {
@@ -147,7 +162,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         guard let fileTextData = messageText.data(using: String.Encoding.utf8) else { return }
         saveExportDialogWithData(fileTextData, andFileExtension: ".txt")
         //lastMessageView.stringValue = currentMessageText.ptLabelName
-        self.view.window?.performClose(self)
+        //self.view.window?.performClose(self)
     }
     
     
