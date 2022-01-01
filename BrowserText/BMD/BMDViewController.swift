@@ -16,7 +16,6 @@ class BMDViewController: NSViewController {
     @IBOutlet weak var locationView: NSTextField!
     @IBOutlet weak var dxView: NSTextField!
     
-    //var patientData = PatientDataForLetters(theText: "")
     var currentPatient = PatientDataProfile()
     
     weak var letterDelegate: LetterDataProtocol?
@@ -25,9 +24,7 @@ class BMDViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        //print("Loading BMD view")
         currentDateView.stringValue = currentDateLong()
-        //print("Data for patient: \(patientData.ptInnerName)")
         ptNameView.stringValue = currentPatient.fullName
         print(currentPatient.fullAddress)
     }
@@ -45,13 +42,8 @@ class BMDViewController: NSViewController {
         let pasteBoard = NSPasteboard.general
         pasteBoard.clearContents()
         pasteBoard.setString(fileName, forType: NSPasteboard.PasteboardType.string)
-        //pasteBoard.setString(currentBMD.generateOutput(), forType: NSPasteboard.PasteboardType.string)
         
         printLetterheadWithRichText(currentBMD.generateOutput(), fontSize: 14.0, window: self.view.window!, andCloseWindow: true)
-        
-        
-        //dismiss(self)
-        
     }
     
 }

@@ -47,7 +47,6 @@ struct PatientDataForLetters {
                 lineCount += 1
             }
         }
-        //print(ptName, ptAge, ptDOB, ptPhone)
         return (ptName, ptAge, ptDOB, ptPhoneArray.joined(separator: "\t"))
         
     }
@@ -101,14 +100,6 @@ func createNeedAptLetter(_ patient:PatientDataProfile) -> String {
 }
 
 enum ReferralSectionDelimiters:String {
-    //    case ptNameFirstStart = "#NAMEFIRST"
-    //    case ptNameFirstEnd = "NAMEFIRST#"
-    //
-    //    case ptNameLastStart = "#NAMELAST"
-    //    case ptNameLastEnd = "NAMELAST#"
-    //
-    //    case ptNameMiddleStart = "#NAMEMIDDLE"
-    //    case ptNameMiddleEnd = "NAMEMIDDLE#"
     
     case ptNameStart = "#PATIENTNAME"
     case ptNameEnd = "PATIENTNAME#"

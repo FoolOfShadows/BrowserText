@@ -62,8 +62,6 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //print("PM View loading")
-        //clearMessage(self)
         allergiesView.font = NSFont.systemFont(ofSize: 18)
         messageView.font = NSFont.systemFont(ofSize: 18)
         self.resultsCombo.delegate = self
@@ -104,7 +102,6 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         }
         
         currentMessageText = Message(theText: patientData)
-        //print(currentMessageText.allergies)
         let employeeNameHandler: () -> Void = {
             print("VIEW CONTENT: \(self.viewDataDelegate!.viewContent)")
             self.currentMessageText.employee = self.viewDataDelegate!.viewContent.cleanTheTextOf(employeeNameBadBits)
@@ -112,21 +109,12 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
             self.nameView.stringValue = self.currentMessageText.ptInnerName
             self.dobView.stringValue = self.currentMessageText.ptDOB
             self.phoneView.stringValue = self.currentMessageText.phone
-            //lastEncounterView.stringValue = currentMessageText.lastAppointment
             self.allergiesView.string = self.currentMessageText.allergies
             self.medicationString = self.currentMessageText.medicines
             self.messageView.string = "Message taken by: \(self.currentMessageText.employee)\nLast apt: \(self.currentMessageText.lastAppointment) - Next apt: \(self.currentMessageText.nextAppointment)"
         }
         self.viewDataDelegate?.getWebViewValueByClassName("provider-name", index: 0, completion: employeeNameHandler)
         print("EMPLOYEE NAME: \(self.currentMessageText.employee)")
-//        dateView.stringValue = currentMessageText.messageDate
-//        nameView.stringValue = currentMessageText.ptInnerName
-//        dobView.stringValue = currentMessageText.ptDOB
-//        phoneView.stringValue = currentMessageText.phone
-//        //lastEncounterView.stringValue = currentMessageText.lastAppointment
-//        allergiesView.string = currentMessageText.allergies
-//        medicationString = currentMessageText.medicines
-//        messageView.string = "Message taken by: \(currentMessageText.employee)\nLast apt: \(currentMessageText.lastAppointment) - Next apt: \(currentMessageText.nextAppointment)"
     }
     
     @IBAction func getMeds(_ sender: Any) {
@@ -161,8 +149,6 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         let messageText = "\(dateView.stringValue)\n\(nameView.stringValue) (DOB: \(dobView.stringValue))\n\(phoneView.stringValue)\(callingOnBehalf)\n\(pharmacyCombo.stringValue)\n\nMESSAGE:\n\(messageView.string)\n\nRESPONSE:\(allergySelection)"
         guard let fileTextData = messageText.data(using: String.Encoding.utf8) else { return }
         saveExportDialogWithData(fileTextData, andFileExtension: ".txt")
-        //lastMessageView.stringValue = currentMessageText.ptLabelName
-        //self.view.window?.performClose(self)
     }
     
     
@@ -173,7 +159,6 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         let saveDialog = NSSavePanel()
         saveDialog.nameFieldStringValue = "\(currentMessageText.ptLabelName) PMSG \(currentMessageText.labelDate)"
         saveDialog.directoryURL = NSURL.fileURL(withPath: "\(savePath)/\(saveLocation)")
-        //saveDialog.begin(completionHandler: {(result: NSApplication.ModalResponse) -> Void in
         saveDialog.beginSheetModal(for: self.view.window!, completionHandler: {(result: NSApplication.ModalResponse) -> Void in
             if result.rawValue == NSFileHandlingPanelOKButton {
                 if let filePath = saveDialog.url {
@@ -184,12 +169,6 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
                             self.closeTheWindow()
                         } catch {
                             MissingData().alertToMissingDataWithMessage(.existingFile, inWindow: self.view.window!)
-//                            let alert = NSAlert()
-//                            alert.messageText = "There is already a file with this name.\n Please choose a different name."
-//                            alert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
-//                                let returnCode = NSModalResponse
-//                                print(returnCode)
-//                            }
                         }
                         if let thePath = path.absoluteString.removingPercentEncoding {
                             self.lastMessageView.stringValue = thePath
@@ -245,27 +224,6 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
                 messageView.string = messageView.string.replacingOccurrences(of: "\n\(newSymptom)", with: "")
             }
         }
-   
-//    func comboBoxSelectionIsChanging(_ notification: Notification) {
-//        let comboBox = notification.object as! NSComboBox
-//        switch comboBox {
-//        case schedulingCombo:
-//            print("Scheduling value: \(schedulingCombo.stringValue)")
-//            if !schedulingCombo.stringValue.isEmpty {
-//                print("Scheduling not empty")
-//                let newSymptom = "Patient requesting scheduling update for \(schedulingCombo.stringValue)"
-//                messageView.string += "\n\(newSymptom)"
-//            }
-//        case resultsCombo:
-//            print("Results")
-//            if !resultsCombo.stringValue.isEmpty {
-//                let newSymptom = "Patient requesting results of \(resultsCombo.stringValue)"
-//                messageView.string += "\n\(newSymptom)"
-//            }
-//        default:
-//            return
-//        }
-//    }
     
     @IBAction func addResultRequest(_ sender: NSComboBox) {
         if !sender.stringValue.isEmpty {
@@ -294,7 +252,6 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
     //FIXME: Not sure I need this button and action anymore as the
     //window can be closed with its close button
     @IBAction func closePMSGView(_ sender: Any) {
-        //self.view.window?.isReleasedWhenClosed = true
         self.view.window?.performClose(sender)
     }
     

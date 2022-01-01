@@ -17,7 +17,6 @@ class ReceiptVC: NSViewController {
     @IBOutlet weak var methodStack: NSStackView!
     @IBOutlet weak var reasonStack: NSStackView!
     @IBOutlet weak var reasonText: NSTextField!
-    //@IBOutlet weak var reasonCombo: NSComboBox!
     @IBOutlet weak var processorCombo: NSComboBox!
     @IBOutlet weak var notesScrollView: NSScrollView!
     @IBOutlet weak var checkNumberView: NSTextField!
@@ -53,7 +52,6 @@ class ReceiptVC: NSViewController {
             theWindow.setFrameUsingName("receipt")
             theWindow.windowController!.windowFrameAutosaveName = "receipt"
             startNewReceipt()
-//            reasonCombo.clearComboBox(menuItems: currentReceipt.reasonChoices)
             processorCombo.clearComboBox(menuItems: currentReceipt.processorChoices)
         }
     }

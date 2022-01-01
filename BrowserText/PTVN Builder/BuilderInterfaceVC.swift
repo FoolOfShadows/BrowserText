@@ -43,16 +43,11 @@ class BuilderInterfaceVC: NSViewController {
             print("In the lastNoteHandler")
             self.finishCreatingPTVNWithNoteData(self.viewDataDelegate!.viewContent)
         }
-        //viewDataDelegate?.getWebViewDataByID("ember3", completion: lastNoteHandler)
         viewDataDelegate?.getWebViewValueByClassName("note-assessment", index: 0, completion: lastNoteHandler)
-        //viewDataDelegate?.getWebViewValueByJSFunction("edit-medication-", completion: lastNoteHandler)
     }
     
     func finishCreatingPTVNWithNoteData(_ noteData:String) {
         saveLocation = currentData.saveLocation
-            //saveLocation = currentData.saveLocation.rawValue
-        
-        //print("MED INFO\n\(noteData)")
 
             var newMeds = noteData.simpleRegExMatch(ChartData.Regexes.newMeds.rawValue).cleanTheTextOf(newMedsBadBits)
             newMeds = newMeds.replaceRegexPattern("(?m)\nEncounter Comments:\n", with: "Sig: ")
@@ -126,10 +121,8 @@ class BuilderInterfaceVC: NSViewController {
             //Search for PTVN from last visit
             //Set the search directory to the PTVN folder
         let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/\(FilePath.baseFolder.rawValue)/\(FilePath.ptvnStorage.rawValue)")
-            //let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/Sync/WPCMSharedFiles/zDonna Review/01 PTVN Files")
             //Search for files with the same visit date
             let ptvnList = originFolderURL.getFilesInDirectoryWhereNameContains(["\(currentData.lastAppointment)"])
-            //print(ptvnList)
             //Create the smallest likely unique version of the pt name
             //to search with
             let filterName = getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.firstLast)

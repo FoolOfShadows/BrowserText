@@ -45,9 +45,6 @@ func printLetterheadWithText(_ text:String, fontName:String = "Times New Roman",
     }
     
     operation.runModal(for: window, delegate: window, didRun: theSelector, contextInfo: nil)
-    //operation.run()
-
-    
 }
 
 func printBlankPageWithText(_ text:String, fontName:String = "Times New Roman", fontSize: CGFloat = 12.0, window: NSWindow) {
@@ -70,8 +67,6 @@ func printBlankPageWithText(_ text:String, fontName:String = "Times New Roman", 
     
     let operation:NSPrintOperation = NSPrintOperation(view: textView, printInfo: printInfo)
     operation.runModal(for: window, delegate: nil, didRun: nil, contextInfo: nil)
-    //operation.run()
-    
 }
 
 func printLetterheadWithRichText(_ text:NSAttributedString, fontName:String = "Times New Roman", fontSize: CGFloat = 12.0, window: NSWindow, andCloseWindow close: Bool = false, defaultCopies copies:Int = 1) {
@@ -83,9 +78,6 @@ func printLetterheadWithRichText(_ text:NSAttributedString, fontName:String = "T
     let textView = NSTextView()
     
     textView.setFrameSize(NSSize(width: imageView.frame.width - 100, height: imageView.frame.height - 400))
-//    let theUserFont = NSFont(name: fontName, size: fontSize)
-//    let fontAttributes = NSDictionary(object: theUserFont!, forKey: NSAttributedString.Key.font as NSCopying)
-//    textView.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
 
     textView.textStorage?.setAttributedString(text)
     
@@ -111,7 +103,4 @@ func printLetterheadWithRichText(_ text:NSAttributedString, fontName:String = "T
     }
     
     operation.runModal(for: window, delegate: window, didRun: theSelector, contextInfo: nil)
-    //operation.run()
-
-    
 }

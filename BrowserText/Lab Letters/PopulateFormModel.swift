@@ -10,8 +10,6 @@ import Cocoa
 
 func processRawData(_ rawData:String) -> RawLabData? {
 	//Get the clipboard and turn it into an array of strings representing each line of lab from PF
-	//let myPasteboard = NSPasteboard.general
-	//guard let copiedText = myPasteboard.string(forType: convertToNSPasteboardPasteboardType("public.utf8-plain-text")) else { return nil }
 	let fullText = stripOutExtraWords(rawData, textToRemove: StringValues().extraPhrases)
 	let textArray = fullText.components(separatedBy: "\n")
 	
@@ -169,8 +167,6 @@ func processRawData(_ rawData:String) -> RawLabData? {
 	currentPatient.totalCholesterolString = "\(findLabValue(of: LabIDs.CHOLESTEROL.rawValue))"
 	currentPatient.triglyceridesString = "\(findLabValue(of: LabIDs.TRIGLYCERIDES.rawValue))"
 	currentPatient.hdlsString = "\(findLabValue(of: LabIDs.HDL.rawValue))"
-	//currentPatient.ldlsString = "\(findLabValue(of: LabIDs.LDL.rawValue))"
-	//Check if LDL value is to high to calculate
 	let ldlValue = findLabValue(of: LabIDs.LDL.rawValue)
 	print(ldlValue)
 	if ldlValue == "NOTE" {
@@ -277,7 +273,6 @@ func generateSectionWith(heading:String, from labs: [(title: String, value: Stri
 	}
 	if !labArray.isEmpty {
 		results = stringOfThreeFromArray(labArray)
-		//results = labArray.joined(separator: "    ")
 		results = results.prependSectionHeader(heading)
 	}
 	

@@ -46,7 +46,6 @@ public struct PatientDataProfile {
         let calendar = Calendar.current
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "M/d/yyyy"
-        //print("DOB: \(self.dob)")
         let birth:Date = dateFormatter.date(from: self.dob)!
         let ageComponents = calendar.dateComponents([.year], from: birth, to: now)
         return String(ageComponents.year!)

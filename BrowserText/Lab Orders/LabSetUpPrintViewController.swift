@@ -19,11 +19,6 @@ class LabSetUpPrintViewController: NSViewController {
 	var labNoteVersion = String()
 	var addOnResult = Int()
     var currentPatient = PatientDataProfile()
-//    var ptName = String()
-//    var ptDOB = String()
-//    var fileLabelName = String()
-    
-//    var medicare:Int = 0
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,27 +79,6 @@ Dawn Whelchel, MD
 """
         
         printLetterheadWithText(labOrderOutputText, fontSize: 11, window: self.view.window!, andCloseWindow: true)
-//        //Create a view to hold the final text so it can be passed to the NSPrintOperation
-//        let printView = NSTextView()
-//        //Set the size of the view or the text won't appear on the page
-//        printView.setFrameSize(NSSize(width: 680, height: 0))
-//        //Transfer the final string to the TextView's string property
-//        printView.string = labOrderOutputText
-//        //printView.sizeToFit()
-//        //print(printView.string)
-//        let printInfo = NSPrintInfo.shared
-//        //printInfo.orientation = .portrait
-//        //printInfo.verticalPagination = .autoPagination
-//        printInfo.leftMargin = 40
-//        //printInfo.rightMargin = 20
-//        //printInfo.isHorizontallyCentered = false
-//        printInfo.isVerticallyCentered = false
-//        //printInfo.topMargin = 0
-//        printInfo.bottomMargin = 40
-//        let operation: NSPrintOperation = NSPrintOperation(view: printView, printInfo: printInfo)
-//        operation.run()
-        
-        //self.view.window?.close()
     }
 	
 }

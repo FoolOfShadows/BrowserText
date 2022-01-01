@@ -32,14 +32,9 @@ struct Receipt {
     
     var ptInnerName:String {return ptDemo.ptName}
     var ptLabelName:String {return getFileLabellingName(ptInnerName)}
-//    var paymentType = String()
-//    var paymentAmount = String()
-//    var checkNumber = String()
-//    var note = String()
-//    var receiver = String()
     
     let reasonChoices = ["", "Co-pay", "Labs", "Injections", "Procedure", "Bill", "Visit"]
-    let processorChoices = ["", "Nikki I.", "Bertha C.", "Tina I."]
+    let processorChoices = ["", "Rachel D.", "Bertha C.", "Tina I."]
     
     
     private func getFileLabellingName(_ name: String) -> String {
@@ -64,8 +59,6 @@ struct Receipt {
         //Break the string apart into the various name bits, removing Practice Fusion's
         //'preferred' name in the process, identifying it by the parentheses
         let nameComponents = name.components(separatedBy: " ").filter {!$0.contains("(")}
-        //print(nameComponents)
-        
         
         let extraBitsCheck = checkForMatchInSets(nameComponents, arrayToCheckFor: extraNameBits)
         
@@ -123,7 +116,7 @@ struct Receipt {
     }
     
     enum Receiver:String {
-        case nikki = "Nikki Irving"
+        case rachel = "Rachel Davis"
         case bertha = "Bertha Cowart"
         case tina = "Tina Irving"
     }

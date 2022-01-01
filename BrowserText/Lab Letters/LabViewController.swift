@@ -211,7 +211,6 @@ class LabViewController: NSViewController {
         }
         
         fileLabelName = createFileLabelFrom(PatientName: extractedLabData.patientLabelNameString, FileType: "LL", date: extractedLabData.labDateString ?? "")
-        //fileLabelName = "\(extractedLabData.patientLabelNameString) LL \(finalComponents.joined(separator: ""))"
         
 		//Detect the values which are out of range and color them red
 		//so they're easier to detect during the check process
@@ -245,12 +244,8 @@ class LabViewController: NSViewController {
 		//Pass the final letter string to the clipboard
 		let pasteBoard = NSPasteboard.general
 		pasteBoard.clearContents()
-		//pasteBoard.setString(finalLetter, forType: NSPasteboard.PasteboardType.string)
         pasteBoard.setString(fileLabelName, forType: NSPasteboard.PasteboardType.string)
         finalLabData = finalLetter
-        
-        //This seems to have stopped working and then throws an error
-        //self.view.window?.performClose(self)
 	}
 	
 	func generateDiabticLabSection() -> String {
@@ -316,8 +311,6 @@ class LabViewController: NSViewController {
         let lineCount = finalLabData.components(separatedBy: "\n").count
         var fontSize:CGFloat
         switch lineCount {
-//        case 47...51:
-//            fontSize = 9.0
         case 43...46:
             fontSize = 10.0
         case 39...42:
@@ -331,7 +324,6 @@ class LabViewController: NSViewController {
         }
         print("Number of lines: \(lineCount). Font size: \(fontSize)")
         printLetterheadWithText(finalLabData, fontSize: fontSize, window: self.view.window!, andCloseWindow: true)
-        //self.view.window?.performClose(self)
     }
 
 }

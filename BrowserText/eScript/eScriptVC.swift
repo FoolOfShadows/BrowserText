@@ -10,7 +10,6 @@ import Cocoa
 
 class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
     
-    //@IBOutlet var scriptText: NSTextView!
     @IBOutlet var scriptScroll: NSScrollView!
     @IBOutlet weak var eScriptView: NSView!
     
@@ -18,8 +17,6 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
     var patientName = String()
     var theText = String()
     var addPtName = String()
-    
-    //var saveSuccessful = false
     
     weak var viewDataDelegate: webViewDataProtocol?
     
@@ -30,7 +27,6 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
     }
     
     var scriptData = eScript(theText: "")
-    //var refillID = ""
     var ptChartData = ChartData(chartData: "", aptTime: "", aptDate: 0)
     
     var _undoManager = UndoManager()
@@ -44,7 +40,6 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
         //forcing the background of the scriptText view to stay white is a functional fix
         scriptText.backgroundColor = .white
         scriptText.font = NSFont.systemFont(ofSize: 16)
-        //scriptUndoManager = scriptText.undoManager
         processPFData(self)
         
     }
@@ -66,14 +61,11 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
     
     
     @IBAction func processPFData(_ sender: Any) {
-        //scriptData = eScript(theText: theText)
-        //print("The Original Text:\n\n\(theText)")
         
         let eScriptHandler = {
             print("In the eScriptHandler of the processPFData function")
             //Get name and DOB
             self.fileLabelName = getFileLabellingName(self.scriptData.ptName)
-            //print(self.fileLabelName)
             
             //Get script data
             
@@ -87,16 +79,11 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
             let theUserFont:NSFont = NSFont.systemFont(ofSize: 18)
             let fontAttributes = NSDictionary(object: theUserFont, forKey: NSAttributedString.Key.font as NSCopying)
             self.scriptText.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
-            //scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(patientName)          DOB: \(ptDOB)\n\n\(pharmWithLocation)\n\(finalScriptData)\n\nRESPONSE:\n"
             self.scriptText.string = "MEDICATION REFILL REQUEST - \(processRequestDate)\n\n\(self.scriptData.ptName)          DOB: \(self.scriptData.ptDOB) (\(self.scriptData.ptAge))\n\n\(self.scriptData.pharmacy)\n\(finalScriptData)\n\nRESPONSE:\n"
         }
         
         createeScriptObjectWithHandler(eScriptHandler)
         
-        
-        
-        
-        //print(theText)
     }
     
     @IBAction func saveFile(_ sender: Any) {
@@ -115,8 +102,6 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
         
         let savePath = NSHomeDirectory()
         let saveLocation = "\(FilePath.baseFolder.rawValue)/\(FilePath.scrapedScripts.rawValue)"
-        
-        //var saveSuccessful = false
         
         let saveDialog = NSSavePanel()
         
@@ -149,7 +134,6 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
         
         let visitDateHandler: () -> Void = {
             let theText = self.viewDataDelegate!.viewContent
-            //print("Trying to find visit date data in the text:\n\n\(theText)")
             
             var lastAppointment:String {return getLastAptInfoFrom(theText)}
             var nextAppointment:String {return self.getNextAptInfoFrom(theText)}
@@ -161,18 +145,14 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
             let theUserFont:NSFont = NSFont.systemFont(ofSize: 18)
             let fontAttributes = NSDictionary(object: theUserFont, forKey: NSAttributedString.Key.font as NSCopying)
             self.scriptText.typingAttributes = fontAttributes as! [NSAttributedString.Key : Any]
-            //let count = Int(scriptText.string.count)
-            //scriptText.shouldChangeText(in: NSMakeRange(0, count), replacementString: "\(finalScriptData)\n\nRESPONSE:\n")
             self.scriptText.string = "\(finalScriptData)\n\nRESPONSE:\n"
             self.scriptText.didChangeText()
         }
-        
-        //viewDataDelegate?.getWebViewDataByID("ember3", completion: visitDateHandler)
+
         viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: visitDateHandler)
     }
     
     @IBAction func addScript(_ sender: Any) {
-        //scriptData = eScript(theText: "")
         var namesMatch = true
         
         let newDemoHandler: () -> Void = {
@@ -180,11 +160,9 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
             print("New Script Pt Name:\n\n\(self.addPtName)")
             print("New name has been set to: \(self.addPtName)")
             let newNameComponents = Set(self.addPtName.lowercased().components(separatedBy: " "))
-            //let newNameComponents = Set(newScript.ptName.components(separatedBy: " "))
             let oldNameComponents = Set(self.scriptData.ptName.lowercased().components(separatedBy: " "))
             
             if !newNameComponents.isSubset(of: oldNameComponents) && !oldNameComponents.isSubset(of: newNameComponents) {
-                //print("\(ptNameAgeDOB.0.capitalized) :: \(patientName)")
                 //After notifying the user, break out of the program
                 namesMatch = false
                 let theAlert = NSAlert()
@@ -196,20 +174,12 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
                 return
             }
         }
-        //self.viewDataDelegate?.getWebViewValueByClassName("text-color-white box-margin-An patient-info__column--ellipses h3 inline", index: 0, completion: newDemoHandler)
         self.viewDataDelegate?.getWebViewValueByQuerySelector("data-element=patient-info-name", completion: newDemoHandler)
         
         
         if namesMatch == true {
         let addScriptHandler: () -> Void = {
-            //let newText = self.viewDataDelegate!.viewContent
-            //print("The New Script Data Is:\n\n\(newText)")
-
             let currentResults = self.scriptText.string
-            
-            //let newScript = eScript(theText: newText)
-            
-            
 
             //Get script data
             var finalScriptData = "\n\n\(self.scriptData.pharmacy)\n\(self.scriptData.reportOutput())"
@@ -225,9 +195,6 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
             self.scriptText.didChangeText()
         }
         
-        //viewDataDelegate?.getWebViewDataByID("ember3", completion: addScriptHandler)
-        //viewDataDelegate?.getWebViewValueByClassName("erx-change-detail ember-view", index: 0, completion: addScriptHandler)
-        
         createeScriptObjectWithHandler(addScriptHandler)
     }
     }
@@ -239,7 +206,6 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
     
     private func getNextAptInfoFrom(_ theText: String) -> String {
         let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments")
-        //print(nextAppointments)
         let activeEncounters = nextAppointments.ranges(of: "(?s)(\\w\\w\\w \\d\\d, \\d\\d\\d\\d)(.*?)(\\n)(?=\\w\\w\\w \\d\\d, \\d\\d\\d\\d)", options: .regularExpression).map{nextAppointments[$0]}.map{String($0)}.filter {$0.contains("Pending arrival")}
         if activeEncounters.count > 0 {
             return activeEncounters[0].simpleRegExMatch("\\w\\w\\w \\d\\d, \\d\\d\\d\\d - \\d\\d:\\d\\d \\w\\w")
@@ -314,36 +280,14 @@ class eScriptVC: NSViewController, NSOpenSavePanelDelegate {
         }
         self.viewDataDelegate?.getWebViewValueByClassName("erx-change-detail ember-view", index: 0, completion: pharmRefillsHandler)
         
-//        let finishThisHandler: () -> Void = {
             let refillHandler: () -> Void = {
                 print("In the refillHandler of the createeScriptObjectWithHandler function")
                 self.scriptData.lastFillDate = simpleRegExMatch(self.viewDataDelegate!.viewContent, theExpression: "(?m)LAST FILL DATE\\s+?.*\\s+?ASSOCIATED DIAGNOSIS").cleanTheTextOf(["LAST FILL DATE", "ASSOCIATED DIAGNOSIS"]).removeWhiteSpace()
                 self.scriptData.dx = simpleRegExMatch(self.viewDataDelegate!.viewContent, theExpression: "(?m)ASSOCIATED DIAGNOSIS\\s+?.*\\s+?NOTE TO PHARMACY").cleanTheTextOf(["ASSOCIATED DIAGNOSIS", "NOTE TO PHARMACY"]).removeWhiteSpace()
-                //self.scriptData.refills = self.viewDataDelegate!.viewContent
-                //print("Refill Data: \(self.viewDataDelegate!.viewContent)")
                 handler()
             }
-            //self.viewDataDelegate?.getWebViewValueByID(self.refillID, dataType: "value", completion: refillHandler)
-        //self.viewDataDelegate?.getWebViewValueByClassName("erx-change-detail ember-view", index: 0, completion: refillHandler)
+
         self.viewDataDelegate?.getWebViewValueByClassName("detail-pane-body-wrapper ember-view rx-renewal__detail-pane-body", index: 0, completion: refillHandler)
-//        }
-
-//        let refillIDHandler: () -> Void = {
-//            self.refillID = self.getRefillEmberIDFrom(self.viewDataDelegate!.viewContent)
-//            print("Refill ID: \(self.viewDataDelegate!.viewContent)")
-//            // self.eScript.refill = getInsData(self.viewDataDelegate!.viewContent)
-//            finishThisHandler()
-//        }
-        //viewDataDelegate?.getWebViewValueByID("ember3", dataType: "innerHTML", completion: refillIDHandler)
-        //viewDataDelegate?.getWebViewValueByClassName("erx-change-detail ember-view", index: 0, completion: refillIDHandler)
     }
-    
-//    func getRefillEmberIDFrom(_ data:String) -> String {
-//        var result = String()
-//        let theLine = data.simpleRegExMatch("data-element=\"number-of-refills\".*?\"ember-text-field")
-//        result = theLine.simpleRegExMatch("ember\\d{3,7}")
-//        return result
-//    }
-
 }
 

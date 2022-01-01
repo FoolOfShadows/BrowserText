@@ -19,11 +19,6 @@ class GeneralLetterVC: NSViewController {
     private let currentDate = Date()
     private let formatter = DateFormatter()
     
-//    var labelDate:String {
-//        formatter.dateFormat = "yyMMdd"
-//        return formatter.string(from: currentDate)
-//    }
-    
     var currentPatient = PatientDataProfile()
     
     weak var letterDelegate: LetterDataProtocol?
@@ -31,7 +26,6 @@ class GeneralLetterVC: NSViewController {
     
     override func viewDidLoad() {
         todaysDate.stringValue = currentDateLong()
-        //print("Patients name is: \(currentPatient.fullName)")
         ptName.stringValue = currentPatient.fullName
         ltrBodyTextView.font = .systemFont(ofSize: 16)
     }

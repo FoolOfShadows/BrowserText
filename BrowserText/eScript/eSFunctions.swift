@@ -110,7 +110,6 @@ func replaceLabelsOf(_ array: inout [String], with subs:[(String, String)]) -> [
 	for (position, item) in results.enumerated() {
 		for sub in subs {
 			if item.contains(sub.0) {
-				//print(item, sub.0)
 				results.remove(at: position)
 				let newItem = item.replacingOccurrences(of: sub.0, with: sub.1)
 				results.insert(newItem, at: position)
@@ -123,17 +122,10 @@ func replaceLabelsOf(_ array: inout [String], with subs:[(String, String)]) -> [
 
 func getScriptDataFrom(_ text:String?) -> String {
 	var finalScriptData = "Program failed to find script data."
-	if let scriptData = text?.simpleRegExMatch("(?s)Prescribed.*?ASSOCIATED DIAGNOSIS")/*text?.findRegexMatchFrom("Prescribed", to: "ASSOCIATED DIAGNOSIS")*/ {
-    //if let scriptData = text?.simpleRegExMatch("(?s)Dispensed medication.*?ASSOCIATED DIAGNOSIS") {
-        //print("Script Data: \(scriptData)")
-//        let extraneousData = scriptData.simpleRegExMatch("(?s)MATCHING MEDICATION.*Select override reason")
-//        print(extraneousData)
-//        var dataArray:[String] = scriptData.replacingOccurrences(of: extraneousData, with: "").components(separatedBy: "\n")
+	if let scriptData = text?.simpleRegExMatch("(?s)Prescribed.*?ASSOCIATED DIAGNOSIS") {
 		var dataArray:[String] = scriptData.components(separatedBy: "\n")
 		dataArray = dataArray.filter {!$0.isEmpty}
-		//print(dataArray)
 		let changedData = replaceLabelsOf(&dataArray, with: replacementSet)
-		//print(changedData)
 		
 		finalScriptData = changedData.joined(separator: "\n")
 	}
@@ -144,14 +136,11 @@ func getScriptDataFrom(_ text:String?) -> String {
 func checkPharmacyLocationFrom(_ pharm:String) -> String {
 	var result = pharm
 	var pharmParts = pharm.components(separatedBy: " ")
-	//print(pharmParts)
 	guard var pharmCode = pharmParts.last else { return result }
 	if pharmCode.first == "#" {
-		//print("Replacing")
 		pharmCode = pharmCode.replacingOccurrences(of: "#", with: "")
 	}
 	if let pharmCode = Int(pharmCode) {
-		//print(pharmCode)
 		if let location = pharmacyCodes[pharmCode] {
 			pharmParts.removeLast()
 			pharmParts.insert(location, at: pharmParts.endIndex)

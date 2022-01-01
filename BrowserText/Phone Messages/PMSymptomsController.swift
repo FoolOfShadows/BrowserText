@@ -40,7 +40,6 @@ class PMSymptomsController: NSViewController {
         let firstVC = presentingViewController as! PhoneMessageVC
         firstVC.notedSymptoms = selectedSymptoms
         symptomDelegate?.symptomsSelectionWillBeDismissed(sender: self)
-        //print(selectedSymptoms.joined(separator: ", "))
         self.dismiss(self)
     }
     

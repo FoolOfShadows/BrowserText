@@ -18,7 +18,6 @@ struct Message {
     private let formatter = DateFormatter()
     var messageDate:String {
         formatter.dateFormat = "MM/dd/yyyy, h:mm a"
-        //formatter.dateStyle = DateFormatter.Style.short
         return formatter.string(from: currentDate)
     }
     var labelDate:String {
@@ -30,11 +29,10 @@ struct Message {
     var ptLabelName:String {return getFileLabellingName(ptInnerName)}
     var ptDOB:String {return ptDemo.ptDOB}
     var phone:String {return ptDemo.ptPhoneArray.joined(separator: "\t")}
-    var allergies:String {return theText.simpleRegExMatch(Regexes.allergies.rawValue).cleanTheTextOf(basicAllergyBadBits)/*getAllergyTextFrom(theText)*/}
-    var medicines:String {return theText.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits)/*getMedTextFrom(theText)*/}
+    var allergies:String {return theText.simpleRegExMatch(Regexes.allergies.rawValue).cleanTheTextOf(basicAllergyBadBits)}
+    var medicines:String {return theText.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits)}
     var lastAppointment:String {return getLastAptInfoFrom(theText)}
     var nextAppointment:String {return getNextAptInfoFrom(theText)}
-    //var employee:String {return theText.simpleRegExMatch(Regexes.employee.rawValue).cleanTheTextOf(employeeNameBadBits)}
     var employee:String = ""
 
     enum Regexes:String {
@@ -45,7 +43,7 @@ struct Message {
         case nutrition2 = "(?s)(Nutrition history).*((?<=)Allergies\\n)"
         case diagnoses = "(?s)Diagnoses.*Social history*?\\s(?=\\nSmoking status*?\\s\\n)"
         case medications = "(?s)(Medications*\\s+?\\n).*(Screenings/ Interventions/)"
-        case allergies = "(?s)(Developmental\\shistory|Developmental\\shistory\\s)\\n.*(\\nMedications)" //"(?s)(\nAllergies\n).*(Medications)"
+        case allergies = "(?s)(Developmental\\shistory|Developmental\\shistory\\s)\\n.*(\\nMedications)"
         case pmh = "(?s)(Ongoing medical problems).*(Family health history)"
         case psh = "(?s)(Major events).*(Ongoing medical problems)"
         case preventive = "(?s)(Preventive care).*((?<=)Social history)"
@@ -76,16 +74,13 @@ struct Message {
                 lineCount += 1
             }
         }
-        //print("Patient Data: \(ptName)")
         return (ptName, ptAge, ptDOB, ptPhoneArray.joined(separator: "\t"))
         
     }
     
     private func getLastAptInfoFrom(_ theText: String) -> String {
         let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments")
-        //print(baseSection)
         let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages")
-        //print(encountersSection)
         let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.lowercased().contains("No chief complaint recorded") &&
             !$0.lowercased().contains("cc: epogen inj") &&
             !$0.lowercased().contains("cc: testosterone inj") &&
@@ -98,8 +93,7 @@ struct Message {
             !$0.lowercased().contains("cc: dk injection") &&
             !$0.lowercased().contains("nurse visit (soap note)")
         }
-        //let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded")}
-        //print(activeEncounters)
+
         if activeEncounters.count > 0 {
             return activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
         } else {
@@ -109,7 +103,6 @@ struct Message {
     
     private func getNextAptInfoFrom(_ theText: String) -> String {
         let nextAppointments = theText.findRegexMatchBetween("Appointments", and: "View all appointments")
-        //print(nextAppointments)
         let activeEncounters = nextAppointments.ranges(of: "(?s)(\\w\\w\\w \\d\\d, \\d\\d\\d\\d)(.*?)(\\n)(?=\\w\\w\\w \\d\\d, \\d\\d\\d\\d)", options: .regularExpression).map{nextAppointments[$0]}.map{String($0)}.filter {$0.contains("Pending arrival")}
         if activeEncounters.count > 0 {
             return activeEncounters[0].simpleRegExMatch("\\w\\w\\w \\d\\d, \\d\\d\\d\\d - \\d\\d:\\d\\d \\w\\w")
@@ -165,9 +158,7 @@ func getFileLabellingName(_ name: String) -> String {
     
     //Break the string apart into the various name bits, removing Practice Fusion's
     //'preferred' name in the process, identifying it by the parentheses
-    let nameComponents = name.components(separatedBy: " ").filter {!$0.contains("(")}
-    //print(nameComponents)
-    
+    let nameComponents = name.components(separatedBy: " ").filter {!$0.contains("(")}    
     
     let extraBitsCheck = checkForMatchInSets(nameComponents, arrayToCheckFor: extraNameBits)
     

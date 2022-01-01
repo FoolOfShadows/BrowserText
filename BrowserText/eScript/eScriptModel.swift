@@ -87,13 +87,8 @@ Associated Dx: \(dx)
                 case currentLine.range(of: "PRN:") != nil:
                     ptName = theSplitText[lineCount - 1]
                     lineCount += 1
-//                case currentLine.range(of: "NAME") != nil && theSplitText[lineCount - 1].range(of: "Patient") != nil && ptName == "":
-//                    ptName = theSplitText[lineCount + 1].replacingOccurrences(of: "Patient", with: "")
-//                    lineCount += 1
                 case currentLine.hasPrefix("DOB"):
                     ptDOB = theSplitText[lineCount + 1]
-                    //let dobLine = theSplitText[lineCount + 1]
-                    //ptDOB = simpleRegExMatch(dobLine, theExpression: "\\d./\\d./\\d*")
                     lineCount += 1
                 case currentLine.hasPrefix("Pharmacy"):
                     let pharmacyLine = lineCount + 2
@@ -121,7 +116,6 @@ Associated Dx: \(dx)
                 }
             }
         }
-        //print(ptName, ptPharmacy, ptDOB)
         return (ptName, ptPharmacy, ptDOB, ptAge)
         
     }

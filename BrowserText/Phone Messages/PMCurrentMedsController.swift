@@ -16,10 +16,7 @@ class PMCurrentMedsController: NSViewController, NSTableViewDelegate, NSTableVie
 	var medListArray = [String]()
 	var chosenMeds = [String]()
 	
-	//let unwantedBits = ["(- = currently taking; x = not currently taking; ? = unsure)\n", "- Patient has no implantable device", "- Implantable devices"]
-	
 	weak var medReloadDelegate: scriptTableDelegate?
-	
 	
 
     override func viewDidLoad() {
@@ -35,8 +32,6 @@ class PMCurrentMedsController: NSViewController, NSTableViewDelegate, NSTableVie
 	
 	func getArrayFrom(_ medsString:String) -> [String] {
 		let returnArray = medsString.removeWhiteSpace().components(separatedBy: "\n").filter { $0 != "" && $0 != "  " && !$0.lowercased().starts(with: "stop") && !$0.lowercased().starts(with: "start")}
-		//returnArray = returnArray.map { $0.replacingOccurrences(of: "- ", with: "") }
-		//print(returnArray)
 		return returnArray
 	}
 	
@@ -61,8 +56,6 @@ class PMCurrentMedsController: NSViewController, NSTableViewDelegate, NSTableVie
 		} else if (sender as! NSButton).state == .off {
 			chosenMeds = chosenMeds.filter { $0 != medListArray[currentRow] }
 		}
-		//print(chosenMeds)
-		
 	}
 	
 	@IBAction func getDataFromSelectedRowsText(_ sender:Any) {
@@ -73,22 +66,14 @@ class PMCurrentMedsController: NSViewController, NSTableViewDelegate, NSTableVie
         
         if (sender as! NSButton).state == .on {
             chosenMeds.append(currentText)
-            //chosenMeds.append(medListArray[currentRow])
         } else if (sender as! NSButton).state == .off {
             chosenMeds = chosenMeds.filter { $0 != currentText}
-            //chosenMeds = chosenMeds.filter { $0 != medListArray[currentRow] }
         }
 		
 		
 	}
 	
-//    func cleanArray() -> String {
-//        var results = medicationsString
-//        for item in unwantedBits {
-//            results = results.replacingOccurrences(of: item, with: "")
-//        }
-//        return results
-//    }
+
 	
 	@IBAction func returnResults(_ sender:Any) {
 		let firstVC = presentingViewController as! PhoneMessageVC

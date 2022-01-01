@@ -25,7 +25,6 @@ class ChartData {
     var nutritionalHistory: String { var theRegex = ""
                                     if chartData.contains("Developmental history") {
                                     theRegex = Regexes.nutrition1.rawValue
-                                        //print("Found Dev Hx")
                                     } else { theRegex = Regexes.nutrition2.rawValue}
                                     return chartData.simpleRegExMatch(theRegex).cleanTheTextOf(nutritionBadBits)}
     var socialHistory: String {return chartData.simpleRegExMatch(Regexes.social.rawValue).cleanTheTextOf(socialBadBits)}
@@ -43,10 +42,8 @@ class ChartData {
         switch aptDate {
         case 0:
             return "\(FilePath.baseFolder.rawValue)/\(FilePath.todayPTVNs.rawValue)"
-            //return .dummyFiles
         case 1...4:
             return "\(FilePath.baseFolder.rawValue)/\(FilePath.tomorrowPTVNs.rawValue)"
-            //return .tomorrowFiles
         default:
             return "Desktop"
         }
@@ -148,17 +145,17 @@ class ChartData {
     
     //The regular expressions used to define the desired sections of the text
     enum Regexes:String {
-        case social = "(?s)(Social history).*((?<=)Gender identity)"/*"(?s)(Social history).*((?<=)Past medical history)"*/
-        case family1 = "(?s)(Family health history).*(Past medical history)"/*"(?s)(Family health history).*(Preventive care)"*/
+        case social = "(?s)(Social history).*((?<=)Gender identity)"
+        case family1 = "(?s)(Family health history).*(Past medical history)"
         case family2 = "(?s)(Family health history).*(Social history)"
-        case nutrition1 = "(?s)(Nutrition history).*((?<=)Family health history)"/*"(?s)(Nutrition history).*((?<=)Developmental history)"*/
+        case nutrition1 = "(?s)(Nutrition history).*((?<=)Family health history)"
         case nutrition2 = "(?s)(Nutrition history).*((?<=)Allergies\\n)"
-        case diagnoses = "(?s)Diagnoses.*Social\\shistory(?!\\s\\(free\\stext\\))"/*"(?s)Diagnoses.*Social history*?\\s(?=\\nSmoking status*?\\s)"*/
-        case medications = "(?s)\\nMedications*\\s+?\\n.*Screenings/ Interventions" /*"(?s)\\nMedications*\\s+?\\n.*Encounters"*/
-        case allergies = "(?s)(Developmental\\shistory|Developmental\\shistory\\s+)\\n.*(\\nMedications)" /*"(?s)(\\nAllergies\\n).*(\\nMedications)"*/
-        case pmh = "(?s)(Ongoing medical problems).*(Preventive care)" /*"(?s)(Ongoing medical problems).*(Family health history)"*/
+        case diagnoses = "(?s)Diagnoses.*Social\\shistory(?!\\s\\(free\\stext\\))"
+        case medications = "(?s)\\nMedications*\\s+?\\n.*Screenings/ Interventions"
+        case allergies = "(?s)(Developmental\\shistory|Developmental\\shistory\\s+)\\n.*(\\nMedications)"
+        case pmh = "(?s)(Ongoing medical problems).*(Preventive care)"
         case psh = "(?s)(Major events).*(Ongoing medical problems)"
-        case preventive = "(?s)(Preventive care).*Social history" /*"(?s)(Preventive care).*((?<=)Social history)"*/
+        case preventive = "(?s)(Preventive care).*Social history"
         case preventive2 = "(?s)Screenings/ Interventions/ Assessments.*Encounters"
         case lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
         case pharmacy = "(?s)#PHARMACY.*PHARMACY#"
@@ -182,7 +179,7 @@ class ChartData {
                     ptName = theSplitText[lineCount - 1]
                     ptAge = ageLine.simpleRegExMatch("^\\d*")
                 } else if currentLine.hasPrefix("DOB: "){
-                    let dobLine = /*currentLine*/ theSplitText[lineCount + 1]
+                    let dobLine = theSplitText[lineCount + 1]
                     ptDOB = dobLine.simpleRegExMatch("\\d./\\d./\\d*")
                 }
                 lineCount += 1
@@ -208,7 +205,6 @@ class ChartData {
     private func getLastAptInfoFrom(_ theText: String) -> String {
         let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments")
         let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages")
-        //let dateToDateRegex = "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)"
         let dateToEndOfCCLine = "(?m)(\\d./\\d./\\d*)(.*?)(\\n)(CC:.*)"
         
         //If I don't include the map{String($0)} I end up with an array of substrings which can't be used by simpleRegExMatch in the next step
