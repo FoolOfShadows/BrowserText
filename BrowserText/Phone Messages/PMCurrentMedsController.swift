@@ -15,6 +15,8 @@ class PMCurrentMedsController: NSViewController, NSTableViewDelegate, NSTableVie
 	var medicationsString = String()
 	var medListArray = [String]()
 	var chosenMeds = [String]()
+    
+    var checkBoxState = [NSButton.StateValue]()
 	
 	weak var medReloadDelegate: scriptTableDelegate?
 	
@@ -27,6 +29,7 @@ class PMCurrentMedsController: NSViewController, NSTableViewDelegate, NSTableVie
     }
 	
 	func numberOfRows(in tableView: NSTableView) -> Int {
+        checkBoxState = Array(repeating: NSButton.StateValue.off, count: medListArray.count)
 		return medListArray.count
 	}
 	
@@ -39,11 +42,25 @@ class PMCurrentMedsController: NSViewController, NSTableViewDelegate, NSTableVie
 	
 	//Set up the tableview with the data from the medList array
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		guard let vw = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as? NSTableCellView else { return nil }
-		
-		vw.textField?.stringValue = medListArray[row]
-		
-		return vw
+//		guard let vw = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as? NSTableCellView else { return nil }
+//
+//		vw.textField?.stringValue = medListArray[row]
+//
+//		return vw
+        //The simple set up above broke with macOS Monterey and required a more detailed creation of the table
+        if tableColumn?.identifier == NSUserInterfaceItemIdentifier(rawValue: "textViewColumn") {
+            let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "textViewCell")
+            guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else { return nil }
+            cellView.textField?.stringValue = medListArray[row]
+            return cellView
+        } else if tableColumn?.identifier == NSUserInterfaceItemIdentifier(rawValue: "checkBoxColumn") {
+            let cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "checkBoxCell")
+            guard let cellView = tableView.makeView(withIdentifier: cellIdentifier, owner: self) as? NSTableCellView else { return nil }
+            let theCheckBox = cellView.subviews[0] as! NSButton
+            theCheckBox.state = checkBoxState[row]
+            return cellView
+        }
+        return nil
 	}
     
 	
@@ -53,7 +70,9 @@ class PMCurrentMedsController: NSViewController, NSTableViewDelegate, NSTableVie
 
 		if (sender as! NSButton).state == .on {
 			chosenMeds.append(medListArray[currentRow])
+            checkBoxState[currentRow] = .on
 		} else if (sender as! NSButton).state == .off {
+            checkBoxState[currentRow] = .off
 			chosenMeds = chosenMeds.filter { $0 != medListArray[currentRow] }
 		}
 	}

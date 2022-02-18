@@ -40,7 +40,7 @@ class BuilderInterfaceVC: NSViewController {
 
     @IBAction func getLastNoteData(_ sender: Any) {
         let lastNoteHandler: () -> Void = {
-            print("In the lastNoteHandler")
+            //print("In the lastNoteHandler")
             self.finishCreatingPTVNWithNoteData(self.viewDataDelegate!.viewContent)
         }
         viewDataDelegate?.getWebViewValueByClassName("note-assessment", index: 0, completion: lastNoteHandler)

@@ -285,7 +285,7 @@ class ViewController: NSViewController, WKNavigationDelegate, WKUIDelegate, webV
         }
 
         
-        (pfView as! WKWebView).evaluateJavaScript("document.querySelectorAll('[data-element=plan-name]')[0].innerText", completionHandler: { (result:Any?, error:Error?) in
+        (pfView as! WKWebView).evaluateJavaScript("document.querySelectorAll('[data-element=assessment-note-section-rich-text-editor]')[0].innerText", completionHandler: { (result:Any?, error:Error?) in
             
             if error == nil {
                 print("No error. Attempting to conver data to string and copy to clipboard.")
