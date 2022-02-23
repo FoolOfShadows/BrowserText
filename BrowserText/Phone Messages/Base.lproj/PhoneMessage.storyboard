@@ -310,18 +310,18 @@
                                 </buttonCell>
                             </button>
                             <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqr-O3-Pms">
-                                <rect key="frame" x="77" y="51" width="686" height="464"/>
+                                <rect key="frame" x="20" y="51" width="686" height="476"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <clipView key="contentView" drawsBackground="NO" id="f9O-93-e5t">
-                                    <rect key="frame" x="1" y="1" width="669" height="462"/>
+                                    <rect key="frame" x="1" y="1" width="669" height="474"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="gOg-M1-cKL">
-                                            <rect key="frame" x="0.0" y="0.0" width="669" height="462"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="669" height="474"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="669" height="462"/>
+                                            <size key="minSize" width="669" height="474"/>
                                             <size key="maxSize" width="957" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
@@ -332,7 +332,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="RC8-ZH-DwQ">
-                                    <rect key="frame" x="670" y="1" width="15" height="462"/>
+                                    <rect key="frame" x="670" y="1" width="15" height="474"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -357,7 +357,7 @@
                 </viewController>
                 <customObject id="afm-BN-pIq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="941" y="605"/>
+            <point key="canvasLocation" x="941" y="604.5"/>
         </scene>
         <!--Symptoms Controller-->
         <scene sceneID="kah-3F-cKH">
@@ -1357,7 +1357,7 @@ Gw
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="textViewCell" id="Sij-8I-bq1">
-                                                            <rect key="frame" x="53.5" y="1" width="621" height="20"/>
+                                                            <rect key="frame" x="54" y="1" width="621" height="20"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0fF-MU-73Z">
