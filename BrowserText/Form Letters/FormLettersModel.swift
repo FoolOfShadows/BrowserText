@@ -58,12 +58,12 @@ func createBasicLetterForPatient(_ patient:PatientDataProfile, withVerbiage verb
     let letter = """
     
     
-    \(currentDate)
-    
-    
-    
     \(patient.fullName)
     \(patient.fullAddress)
+    
+    
+    
+    \(currentDate)
     
     
     
