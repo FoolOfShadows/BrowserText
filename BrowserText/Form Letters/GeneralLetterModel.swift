@@ -28,7 +28,7 @@ struct GeneralLetterData {
         //Instatiate the foundational string to be built upon
         let baseString = NSMutableAttributedString()
         
-        let header = NSAttributedString(string: "\n\n\(ltrDate)\n\n\n\(ptName)\n\(address)\n\n\nDear \(ptName),\n\n")
+        let header = NSAttributedString(string: "\(ltrDate)\n\n\(ptName)\n\(address)\n\n\nDear \(ptName),\n\n")
         
         baseString.append(header)
         
