@@ -76,6 +76,23 @@ func createBasicLetterForPatient(_ patient:PatientDataProfile, withVerbiage verb
     return letter
 }
 
+func createAddressPageForPatient(_ patient:PatientDataProfile) -> String {
+    let letter = """
+    
+    
+    
+    
+    
+    
+    
+    \(patient.fullName)
+    \(patient.fullAddress)
+    
+    """
+    
+    return letter
+}
+
 func createNeedAptLetter(_ patient:PatientDataProfile) -> String {
     let currentDate = currentDateLong()
     let letter = """

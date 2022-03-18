@@ -146,7 +146,7 @@ class PhoneMessageVC: NSViewController, scriptTableDelegate, symptomsDelegate, N
         if includeAllergiesCheckbox.state == .on {
             allergySelection = "\n\n\nALLERGIES:\n\(allergiesView.string)"
         }
-        let messageText = "\(dateView.stringValue)\n\(nameView.stringValue) (DOB: \(dobView.stringValue))\n\(phoneView.stringValue)\(callingOnBehalf)\n\(pharmacyCombo.stringValue)\n\nMESSAGE:\n\(messageView.string)\n\nRESPONSE:\(allergySelection)"
+        let messageText = "\(dateView.stringValue)\n\(nameView.stringValue) (DOB: \(dobView.stringValue))\n\(phoneView.stringValue)\(callingOnBehalf)\n\(pharmacyCombo.stringValue)\n\nMESSAGE:\n\(messageView.string)\n\nRESEARCH:\n\nRESPONSE:\(allergySelection)"
         guard let fileTextData = messageText.data(using: String.Encoding.utf8) else { return }
         saveExportDialogWithData(fileTextData, andFileExtension: ".txt")
     }

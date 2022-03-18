@@ -98,6 +98,16 @@ class FormLettersVC: NSViewController {
         createPatientObject(withHandler: creationHandler)
     }
     
+    @IBAction func openAddressPage(_ sender: Any) {
+        viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
+        
+        let creationHandler = {
+            //self.performSegue(withIdentifier: "showAddressPage", sender: self)
+            printBlankPageWithText(createAddressPageForPatient(self.currentPatient), window: self.view.window!)
+        }
+        createPatientObject(withHandler: creationHandler)
+    }
+    
     @IBAction func openNHAdmitForm(_ sender: Any?) {
         viewDataDelegate?.getWebViewValueByClassName("charts outlet", index: 0, completion: textHandler)
         let creationHandler = {
